@@ -106,6 +106,7 @@
 <li class="toctree-l2"><a class="reference internal" href="advanced_climate.html">Advanced climate data analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_handling.html">Data handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Data administration</a></li>
 </ul>
 </li>
 </ul>
@@ -402,6 +403,64 @@
 <ul class="simple">
 <li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
 </ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="pavics_datacatalog.wps_processes.Period2Indices">
+<em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">Period2Indices</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_period2indices.html#Period2Indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.Period2Indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>period2indices <em>0.1</em> – NetCDF time indices from a period</p>
+<p>The final index is inclusive.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>initial_date</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – Format must be %Y-%m-%dT%H:%M:%S</li>
+<li><strong>final_date</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – Format must be %Y-%m-%dT%H:%M:%S</li>
+<li><strong>opendap_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – OPeNDAP url to a NetCDF file</li>
+<li><strong>calendar</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional:gregorian</em>) – If left unspecified, taken from NetCDF file time variable.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>initial_index</strong> (<em>integer</em>) – Initial time index of the period in the NetCDF file</li>
+<li><strong>final_index</strong> (<em>integer</em>) – The final index is inclusive.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pavics_datacatalog.wps_processes.GetPoint">
+<em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">GetPoint</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_getpoint.html#GetPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.GetPoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>getpoint <em>0.1</em> – Point value from a NetCDF file</p>
+<p>Pending.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>opendap_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – OPeNDAP url to NetCDF file</li>
+<li><strong>variable</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – NetCDF variable name</li>
+<li><strong>use_ordered_indices</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Whether ordered indices are used</li>
+<li><strong>ordered_index</strong> (<em>integer</em><em>, </em><em>optional</em>) – Indices for the point in the NetCDF variable</li>
+<li><strong>named_index</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Indices for the point in the NetCDF variable with named dimensions (dim:index)</li>
+<li><strong>nearest_to</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Nearest value for each dimension in the NetCDF variable for the point with named dimensions (dim:value)</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Thresholds for the distance to each nearest value with named dimensions (dim:threshold)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>point_result</strong> – Information for the requested point</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">application/json</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

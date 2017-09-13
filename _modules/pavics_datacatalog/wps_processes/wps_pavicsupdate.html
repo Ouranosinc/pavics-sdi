@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pavics_datacatalog.wps_processes.wps_pavicsupdate &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pavics_datacatalog.wps_processes.wps_pavicsupdate</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pavics_datacatalog.wps_processes.wps_pavicsupdate</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">get_format</span><span class="p">,</span> <span class="n">configuration</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+
+<span class="kn">from</span> <span class="nn">pavics</span> <span class="k">import</span> <span class="n">catalog</span>
+
+<span class="c1"># Example usage:</span>
+<span class="c1"># localhost/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;\</span>
+<span class="c1"># identifier=pavicsupdate&amp;DataInputs=source=source_string;url=url_string;\</span>
+<span class="c1"># updates=subject:new_subject,units:m</span>
+
+<span class="c1"># Still need to perhaps validate the inputs, and consider whether we want</span>
+<span class="c1"># to do updates that involve list of entries (not tested yet)</span>
+
+<span class="c1"># The user under which apache is running must be able to write to that</span>
+<span class="c1"># directory.</span>
+<span class="n">json_output_path</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_config_value</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="s1">&#39;outputpath&#39;</span><span class="p">)</span>
+
+<span class="n">json_format</span> <span class="o">=</span> <span class="n">get_format</span><span class="p">(</span><span class="s1">&#39;JSON&#39;</span><span class="p">)</span>
+<span class="n">gmlxml_format</span> <span class="o">=</span> <span class="n">get_format</span><span class="p">(</span><span class="s1">&#39;GML&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="PavicsUpdate"><a class="viewcode-back" href="../../../processes/maintenance.html#pavics_datacatalog.wps_processes.PavicsUpdate">[docs]</a><span class="k">class</span> <span class="nc">PavicsUpdate</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">env_solr_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># base_search_URL in the ESGF Search API is now a solr database URL,</span>
+        <span class="c1"># this is provided as the environment variable SOLR_SERVER.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/solr/birdhouse/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env_solr_host</span><span class="p">)</span>
+        <span class="c1"># The combination of the &#39;source&#39; and &#39;url&#39; fields provide the &#39;id&#39;</span>
+        <span class="c1"># in the Solr database, they both must be provided.</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;id field of the dataset or file&#39;</span><span class="p">,</span>
+                               <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                  <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Dataset or File&#39;</span><span class="p">,</span>
+                               <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                               <span class="n">default</span><span class="o">=</span><span class="s1">&#39;File&#39;</span><span class="p">,</span>
+                               <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                               <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+                  <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;updates&#39;</span><span class="p">,</span>
+                               <span class="s1">&#39;Fields to update with their new values&#39;</span><span class="p">,</span>
+                               <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">)]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;update_result&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;PAVICS Catalogue Update Result&#39;</span><span class="p">,</span>
+                                 <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">])]</span>
+        <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_reference</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">PavicsUpdate</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;pavicsupdate&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PAVICS Catalogue Update&#39;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="c1"># Get the source and url to setup the update dictionary.</span>
+        <span class="n">update_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">if</span> <span class="s1">&#39;type&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+            <span class="n">update_type</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">update_type</span> <span class="o">=</span> <span class="s1">&#39;File&#39;</span>
+        <span class="k">if</span> <span class="n">update_type</span> <span class="o">==</span> <span class="s1">&#39;File&#39;</span><span class="p">:</span>
+            <span class="n">update_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">update_id</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">update_type</span> <span class="o">==</span> <span class="s1">&#39;Dataset&#39;</span><span class="p">:</span>
+            <span class="n">update_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;dataset_id&#39;</span><span class="p">:</span> <span class="n">update_id</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+        <span class="c1"># Get updates, which are the facets to add/modify.</span>
+        <span class="n">data_inputs</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;updates&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="c1"># Split using comma &amp; colon as separator</span>
+        <span class="n">key_value_pairs</span> <span class="o">=</span> <span class="n">data_inputs</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key_value_pair</span> <span class="ow">in</span> <span class="n">key_value_pairs</span><span class="p">:</span>
+            <span class="n">kv</span> <span class="o">=</span> <span class="n">key_value_pair</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="c1"># Here, we do not use the {&#39;set&#39;:kv[1]} syntax, it does not work</span>
+            <span class="c1"># in birdhouse-solr. Instead it&#39;s like adding a new entry, but</span>
+            <span class="c1"># since the source and url already exist, it will update the other</span>
+            <span class="c1"># fields.</span>
+            <span class="n">update_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">kv</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">kv</span><span class="p">[</span><span class="mi">1</span><span class="p">]})</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">update_result</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">pavicsupdate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span><span class="p">,</span> <span class="n">update_dict</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
+
+        <span class="c1"># Here we construct a unique filename</span>
+        <span class="n">time_str</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%SZ&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())</span>
+        <span class="n">output_file_name</span> <span class="o">=</span> <span class="s2">&quot;solr_result_</span><span class="si">{0}</span><span class="s2">_.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">json_output_path</span><span class="p">,</span> <span class="n">output_file_name</span><span class="p">)</span>
+        <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">update_result</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;update_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_file</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;update_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
