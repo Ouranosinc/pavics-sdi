@@ -8,3 +8,4 @@ Developer Documentation
    :maxdepth: 2
 
    installation
+   builddocs
