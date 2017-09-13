@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-PAVICS is a research platform dedicated to climate analysis and visualization. It bundles 
+PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
 data search, analytics and visualization services.
 
 

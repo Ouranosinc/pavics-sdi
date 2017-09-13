@@ -24,6 +24,7 @@ Weather analogs
 .. autoclass:: flyingpigeon.processes.AnalogscompareProcess
 
 .. autoclass:: flyingpigeon.processes.AnalogsviewerProcess
+   :noindex:
 
 
 Spatial analogs

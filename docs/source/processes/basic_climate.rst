@@ -19,6 +19,10 @@ Spatial and temporal subsetting
 
 .. autoclass:: flyingpigeon.processes.LandseamaskProcess
 
+.. autoclass:: pavics_datacatalog.wps_processes.Period2Indices
+
+.. autoclass:: pavics_datacatalog.wps_processes.GetPoint
+
 
 Regridding
 ==========

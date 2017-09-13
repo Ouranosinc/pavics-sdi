@@ -10,7 +10,9 @@ PAVICS offers a fair number of processes that were developed by different groups
    impacts
    advanced_climate
    visualization
+   workflows
    data_handling
+   maintenance
 
 
 
