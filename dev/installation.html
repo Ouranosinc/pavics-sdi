@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; PAVICS 0.1 documentation</title>
+  <title>Installation and Deployment &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -97,7 +97,13 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-from-docker-containers">Installation from docker containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ports">Ports</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 </ul>
 </li>
@@ -149,7 +155,7 @@
         
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>Installation</li>
+      <li>Installation and Deployment</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -168,8 +174,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="installation-and-deployment">
+<h1>Installation and Deployment<a class="headerlink" href="#installation-and-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Here we’ll cover two cases: a local installation for development and testing, and a full installation of all the components from their <a class="reference external" href="http://docker.com">docker</a> containers.</p>
+<div class="section" id="installation-from-docker-containers">
+<h2>Installation from docker containers<a class="headerlink" href="#installation-from-docker-containers" title="Permalink to this headline">¶</a></h2>
+<p>Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of DockerHub. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
+</pre></div>
+</div>
+<p>Most of the code base has been forked from the Birdhouse project which already has multiple <a href="#id1"><span class="problematic" id="id2">`DockerHub build processes &lt;https://hub.docker.com/u/birdhouse/`_</span></a>. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.</p>
+<p>Let’s assume that you have a LinuxOS with Docker (&gt;1.10) installed.
+First mount or create a symlink for for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
+Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver
+A full install of the PAVICS platform would start by downloading the images for all the components, but instead of doing this manually, we use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+</pre></div>
+</div>
+<p>Then get the build recipe from <a href="#id3"><span class="problematic" id="id4">`pavics-sdi`_</span></a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
+</pre></div>
+</div>
+<p>In the file <code class="docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx “ssl_certificate_key” and “ssl_certificate” parameters.</p>
+<p>Then simply run the following command, taking care to select an appropriate host name:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="ports">
+<h3>Ports<a class="headerlink" href="#ports" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> config exposes ports for each docker container (left part is the public one, right part the container internal one). We try to respect the following convention:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">xxx</span> <span class="p">:</span> <span class="n">port</span> <span class="n">usually</span> <span class="n">responding</span> <span class="k">for</span> <span class="n">the</span> <span class="n">service</span> <span class="p">(</span><span class="n">The</span> <span class="n">HTTP</span> <span class="n">port</span><span class="p">)</span>
+<span class="mi">28</span><span class="n">xxx</span><span class="p">:</span> <span class="n">https</span> <span class="n">port</span>
+<span class="mi">38</span><span class="n">xxx</span><span class="p">:</span> <span class="n">the</span> <span class="n">output</span> <span class="n">port</span> <span class="p">(</span><span class="n">To</span> <span class="n">be</span> <span class="n">documented</span><span class="p">)</span>
+<span class="mi">48</span><span class="n">xxx</span><span class="p">:</span> <span class="n">the</span> <span class="n">supervisor</span> <span class="n">port</span> <span class="n">of</span> <span class="n">the</span> <span class="n">container</span>
+</pre></div>
+</div>
+<p>Container xxx value:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Phoenix</span> <span class="p">:</span> <span class="mi">443</span> <span class="p">(</span><span class="n">With</span> <span class="mi">8081</span> <span class="k">as</span> <span class="n">http</span> <span class="ow">and</span> <span class="mi">8443</span> <span class="k">as</span> <span class="n">https</span><span class="p">)</span>
+<span class="n">Malleefowl</span> <span class="p">:</span> <span class="mi">091</span>
+<span class="n">Flyingpigeon</span> <span class="p">:</span> <span class="mi">093</span>
+<span class="n">Emu</span> <span class="p">:</span> <span class="mi">094</span>
+<span class="n">Solr</span> <span class="p">:</span> <span class="mi">983</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
+<span class="n">ncWMS2</span> <span class="p">:</span> <span class="mi">080</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
+<span class="n">thredds</span> <span class="p">:</span> <span class="mi">083</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
+<span class="n">pavics</span><span class="o">-</span><span class="n">catalog</span> <span class="p">:</span> <span class="mi">086</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
+<span class="n">geoserver</span> <span class="p">:</span> <span class="mi">087</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The exception is the Pavics-frontend, which has port 3000.</p>
+</div>
+</div>
 </div>
 
 
