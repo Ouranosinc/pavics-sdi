@@ -2,6 +2,10 @@
 Advanced climate data analysis
 ==============================
 
+
+
+
+
 Uncertainty analysis
 --------------------
 
@@ -83,7 +87,7 @@ can then be called to create a graphic displaying the dissimilarity value.
 An example of such graphic is shown below, with the target location indicated
 by a white marker.
 
-.. figure:: spatial_analog_example.*
+.. figure:: ../images/spatial_analog_example.*
    :alt: Example of spatial analog graphic.
 
    A map of the dissimilarity metric computed from mean annual precipitation and

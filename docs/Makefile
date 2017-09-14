@@ -5,7 +5,9 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = ../../pavics-sdi-docs
+
+BUILDDIR      = build
+GHBUILDDIR    = ../../pavics-sdi-docs
 PDFBUILDDIR   = /tmp
 PDF           = ../manual.pdf
 
@@ -58,17 +60,6 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
-gh-pages:
-	git checkout gh-pages
-	rm -rf _build _sources _static
-	git checkout master $(GH_PAGES_SOURCES)
-	git reset HEAD
-	make html
-	mv -fv _build/html/* ./
-	rm -rf $(GH_PAGES_SOURCES) _build
-	git add -A
-	git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
-    
 .PHONY: dirhtml
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
@@ -242,6 +233,7 @@ dummy:
 
 .PHONY: gh-pages
 gh-pages: html
-	cd $(BUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
+	cp -r $(BUILDDIR)/html/* $(GHBUILDDIR)/html/
+	cd $(GHBUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
 	@echo
 	@echo "Commited to gh-pages."
