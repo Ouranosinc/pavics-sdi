@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="Building the docs" href="builddocs.html"/>
+        <link rel="next" title="Load balancing" href="load_balancing.html"/>
         <link rel="prev" title="Developer Documentation" href="index.html"/> 
 
   
@@ -98,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-configuration">Hardware configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
@@ -113,6 +114,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 </ul>
 </li>
@@ -190,16 +192,19 @@
 </pre></div>
 </div>
 <p>Most of the code base has been forked from the Birdhouse project which already has multiple DockerHub <a class="reference external" href="https://hub.docker.com/u/birdhouse">build processes</a>. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.</p>
+<div class="section" id="hardware-configuration">
+<h2>Hardware configuration<a class="headerlink" href="#hardware-configuration" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="installation-using-docker-compose">
 <h2>Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code><a class="headerlink" href="#installation-using-docker-compose" title="Permalink to this headline">¶</a></h2>
 <p>Let’s assume that you have a LinuxOS with <a class="reference external" href="http://docker.com">Docker</a> (&gt;1.10) installed.
 First mount or create a symlink for for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
 Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver
-A full install of the PAVICS platform would start by downloading the images for all the components, but instead of doing this manually, we use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>:</p>
+To install the suite of docker images, we use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>, so you’ll need to install it:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
 </pre></div>
 </div>
-<p>Then get the build recipe from <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>:</p>
+<p>Then get the <em>build recipe</em> from <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
 </pre></div>
@@ -209,6 +214,7 @@ A full install of the PAVICS platform would start by downloading the images for 
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
 </div>
+<p>This installation will run on a single server instance, but there are instructions for <a class="reference internal" href="load_balancing.html#load-balancing"><span class="std std-ref">Load balancing</span></a>.</p>
 </div>
 <div class="section" id="updating-container-to-the-latest-version">
 <h2>Updating container to the latest version<a class="headerlink" href="#updating-container-to-the-latest-version" title="Permalink to this headline">¶</a></h2>
@@ -434,7 +440,7 @@ Set the WMS alternate server if desired.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="builddocs.html" class="btn btn-neutral float-right" title="Building the docs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="load_balancing.html" class="btn btn-neutral float-right" title="Load balancing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Developer Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

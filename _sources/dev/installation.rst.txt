@@ -8,17 +8,21 @@ Since all of the code produced for the PAVICS project is hosted on public GitHub
 
 Most of the code base has been forked from the Birdhouse project which already has multiple DockerHub `build processes <https://hub.docker.com/u/birdhouse>`_. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.
 
+Hardware configuration
+======================
+
+
 Installation using ``docker-compose``
 =====================================
 
 Let's assume that you have a LinuxOS with `Docker`_ (>1.10) installed.
 First mount or create a symlink for for the datasets storage at ``/data``.
 Mount or make a symlink for the geoserver data storage so that ``/geoserver_data`` could be used (read/write) by geoserver
-A full install of the PAVICS platform would start by downloading the images for all the components, but instead of doing this manually, we use `docker-compose <https://docs.docker.com/compose/>`_::
+To install the suite of docker images, we use `docker-compose <https://docs.docker.com/compose/>`_, so you'll need to install it::
 
    sudo pip install docker-compose
 
-Then get the build recipe from `pavics-sdi`_::
+Then get the *build recipe* from `pavics-sdi`_::
 
    git clone https://github.com/Ouranosinc/pavics-sdi.git
    cd pavics-sdi/birdhouse
@@ -28,6 +32,8 @@ In the file :file:`docker-compose.yml`, within the ``phoenix/volumes`` configura
 Then simply run the following command, taking care to select an appropriate host name::
 
    HOSTNAME='boreas.ouranos.ca' bash -c 'docker-compose up -d'
+
+This installation will run on a single server instance, but there are instructions for :ref:`load_balancing`.
 
 
 Updating container to the latest version
