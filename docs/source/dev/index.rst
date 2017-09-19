@@ -8,4 +8,5 @@ Developer Documentation
    :maxdepth: 2
 
    installation
+   load_balancing
    builddocs
