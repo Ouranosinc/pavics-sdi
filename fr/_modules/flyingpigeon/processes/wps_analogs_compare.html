@@ -1,0 +1,727 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_analogs_compare &mdash; documentation PAVICS 0.1</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Recherche" href="../../../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_analogs_compare</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Code source de flyingpigeon.processes.wps_analogs_compare</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">date</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+<span class="kn">import</span> <span class="nn">time</span>  <span class="c1"># performance test</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">mkstemp</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">analogs</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.ocgis_module</span> <span class="k">import</span> <span class="n">call</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.datafetch</span> <span class="k">import</span> <span class="n">reanalyses</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">get_variable</span><span class="p">,</span> <span class="n">rename_variable</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.datafetch</span> <span class="k">import</span> <span class="n">_PRESSUREDATA_</span>
+
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">LiteralOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="AnalogscompareProcess"><a class="viewcode-back" href="../../../processes/advanced_climate.html#flyingpigeon.processes.AnalogscompareProcess">[docs]</a><span class="k">class</span> <span class="nc">AnalogscompareProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;NetCDF Files or archive (tar/zip) containing netCDF files.&#39;</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                         <span class="p">]),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;reanalyses&quot;</span><span class="p">,</span> <span class="s2">&quot;Reanalyses Data&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Choose a reanalyses model for comparison&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;NCEP_slp&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="n">_PRESSUREDATA_</span>
+                         <span class="p">),</span>
+
+        <span class="c1"># self.BBox = self.addBBoxInput(</span>
+        <span class="c1">#   identifier=&quot;BBox&quot;,</span>
+        <span class="c1">#   title=&quot;Bounding Box&quot;,</span>
+        <span class="c1">#   abstract=&quot;coordinates to define the region to be analysed&quot;,</span>
+        <span class="c1">#   minOccurs=1,</span>
+        <span class="c1">#   maxOccurs=1,</span>
+        <span class="c1">#   crss=[&#39;EPSG:4326&#39;]</span>
+        <span class="c1">#   )</span>
+
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;dateSt&#39;</span><span class="p">,</span> <span class="s1">&#39;Start date of analysis period&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;First day of the period to be analysed&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;2013-07-15&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;dateEn&#39;</span><span class="p">,</span> <span class="s1">&#39;End date of analysis period&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Last day of the period to be analysed&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;2013-12-31&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;refSt&#39;</span><span class="p">,</span> <span class="s1">&#39;Start date of reference period&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;First day of the period where analogues being picked&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;refEn&#39;</span><span class="p">,</span> <span class="s1">&#39;End date of reference period&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Last day of the period where analogues being picked&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;2014-12-31&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;normalize&quot;</span><span class="p">,</span> <span class="s2">&quot;normalization&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Normalize by subtraction of annual cycle&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;base&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;sim&#39;</span><span class="p">,</span> <span class="s1">&#39;own&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;seasonwin&quot;</span><span class="p">,</span> <span class="s2">&quot;Seasonal window&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Number of days befor and after the date to be analysed&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;30&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;nanalog&quot;</span><span class="p">,</span> <span class="s2">&quot;Nr of analogues&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Number of analogues to be detected&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;20&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;dist&quot;</span><span class="p">,</span> <span class="s2">&quot;Distance&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Distance function to define analogues&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="s1">&#39;mahalanobis&#39;</span><span class="p">,</span> <span class="s1">&#39;cosine&#39;</span><span class="p">,</span> <span class="s1">&#39;of&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;outformat&quot;</span><span class="p">,</span> <span class="s2">&quot;output file format&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Choose the format for the analogue output file&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;ascii&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;netCDF4&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;timewin&quot;</span><span class="p">,</span> <span class="s2">&quot;Time window&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Number of days following the analogue day the distance will be averaged&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;direction&quot;</span><span class="p">,</span> <span class="s2">&quot;Comparison direction&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Compare direction. Pick analog days in Modeldata for a simulation period in Reanalyses data </span><span class="se">\</span>
+<span class="s2">                                    (re2mo) or vice versa&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;re2mo&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mo2re&#39;</span><span class="p">,</span> <span class="s1">&#39;re2mo&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+        <span class="p">]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">LiteralOutput</span><span class="p">(</span><span class="s2">&quot;config&quot;</span><span class="p">,</span> <span class="s2">&quot;Config File&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Config file used for the Fortran process&quot;</span><span class="p">,</span>
+                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;analogs&quot;</span><span class="p">,</span> <span class="s2">&quot;Analogues File&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;mulit-column text file&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">,</span> <span class="s1">&#39;Subsets for model&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Prepared netCDF file as input for weatherregime calculation&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;target_netcdf&quot;</span><span class="p">,</span> <span class="s1">&#39;subset of ref file&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;File with subset and normaized values of target model&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+
+
+            <span class="c1"># ComplexOutput(&quot;output_html&quot;, &quot;Analogues Viewer html page&quot;,</span>
+            <span class="c1">#               abstract=&quot;Interactive visualization of calculated analogues&quot;,</span>
+            <span class="c1">#               data_formats=[Format(&quot;text/html&quot;)],</span>
+            <span class="c1">#               as_reference=True,</span>
+            <span class="c1">#               )</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">AnalogscompareProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;analogs_compare&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Analogues of circulation (based on reanalyses data and climate model data)&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Search for days with analogue pressure pattern for reanalyses data sets&#39;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;LSCE&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.lsce.ipsl.fr/en/index.php&#39;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Doc&#39;</span><span class="p">,</span> <span class="s1">&#39;http://flyingpigeon.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+        <span class="n">process_start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># measure process execution time ...</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;execution started at : </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">(),</span> <span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># measure init ...</span>
+
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]))</span>
+
+        <span class="n">refSt</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;refSt&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">refEn</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;refEn&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">dateSt</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;dataSt&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">dateEn</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;dataEn&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">seasonwin</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;seasonwin&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">nanalog</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;nanalog&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">70</span><span class="p">]</span>
+
+        <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getInputValues</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;direction&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">normalize</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;normalize&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">outformat</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;outformat&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">timewin</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;timewin&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+        <span class="n">model_var</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;reanalyses&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">model_var</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;re2mo&#39;</span><span class="p">:</span>
+                <span class="n">anaSt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateSt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">anaEn</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateEn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">refSt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">refSt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">refEn</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">refEn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;mo2re&#39;</span><span class="p">:</span>
+                <span class="n">anaSt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">refSt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">anaEn</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">refEn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">refSt</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateSt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+                <span class="n">refEn</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dateEn</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to find time periods for comparison direction&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to put simulation and reference time in order&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">normalize</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+            <span class="n">seacyc</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seacyc</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">outformat</span> <span class="o">==</span> <span class="s1">&#39;ascii&#39;</span><span class="p">:</span>
+            <span class="n">outformat</span> <span class="o">=</span> <span class="s1">&#39;.txt&#39;</span>
+        <span class="k">elif</span> <span class="n">outformat</span> <span class="o">==</span> <span class="s1">&#39;netCDF&#39;</span><span class="p">:</span>
+            <span class="n">outformat</span> <span class="o">=</span> <span class="s1">&#39;.nc&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;output format not valid&#39;</span><span class="p">)</span>
+
+        <span class="c1"># if bbox_obj is not None:</span>
+        <span class="c1">#     LOGGER.info(&quot;bbox_obj={0}&quot;.format(bbox_obj.coords))</span>
+        <span class="c1">#     bbox = [bbox_obj.coords[0][0],</span>
+        <span class="c1">#             bbox_obj.coords[0][1],</span>
+        <span class="c1">#             bbox_obj.coords[1][0],</span>
+        <span class="c1">#             bbox_obj.coords[1][1]]</span>
+        <span class="c1">#     LOGGER.info(&quot;bbox={0}&quot;.format(bbox))</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     bbox = None</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;NCEP&#39;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">var</span><span class="p">:</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;hgt&#39;</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+                    <span class="c1"># conform_units_to=&#39;hPa&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;slp&#39;</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="c1"># conform_units_to=&#39;hPa&#39;</span>
+            <span class="k">elif</span> <span class="s1">&#39;20CRV2&#39;</span> <span class="ow">in</span> <span class="n">var</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">level</span><span class="p">:</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;hgt&#39;</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+                    <span class="c1"># conform_units_to=None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">variable</span> <span class="o">=</span> <span class="s1">&#39;prmsl&#39;</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="c1"># conform_units_to=&#39;hPa&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Reanalyses model not known&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;environment set&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to set environment&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;init took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Read in the arguments&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+        <span class="c1">#################</span>
+        <span class="c1"># get input data</span>
+        <span class="c1">#################</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># measure get_input_data ...</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;fetching input data&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nc_reanalyses</span> <span class="o">=</span> <span class="n">reanalyses</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">anaSt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">anaEn</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                                       <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">model</span><span class="p">)</span>
+            <span class="n">nc_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">nc_reanalyses</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="n">bbox</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;get_input_subset_model took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;**** Input data fetched&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to fetch or subset input files&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1">########################</span>
+        <span class="c1"># input data preperation</span>
+        <span class="c1">########################</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start preparing input data&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># mesure data preperation ...</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;re2mo&#39;</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Preparing simulation data&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+                    <span class="n">reanalyses_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">nc_subset</span><span class="p">,</span> <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="n">anaSt</span><span class="p">,</span> <span class="n">anaEn</span><span class="p">])</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to prepare simulation period&#39;</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Preparing target data&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+                    <span class="n">var_target</span> <span class="o">=</span> <span class="n">get_variable</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+                    <span class="c1"># var_simulation = get_variable(simulation)</span>
+                    <span class="n">model_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">resource</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var_target</span><span class="p">,</span>
+                                        <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="n">refSt</span><span class="p">,</span> <span class="n">refEn</span><span class="p">],</span>
+                                        <span class="n">geom</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                                        <span class="n">t_calendar</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+                                        <span class="c1"># conform_units_to=conform_units_to,</span>
+                                        <span class="c1"># spatial_wrapping=&#39;wrap&#39;,</span>
+                                        <span class="n">regrid_destination</span><span class="o">=</span><span class="n">reanalyses_subset</span><span class="p">,</span>
+                                        <span class="n">regrid_options</span><span class="o">=</span><span class="s1">&#39;bil&#39;</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed subset archive model&#39;</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Preparing target data&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+                    <span class="n">var_target</span> <span class="o">=</span> <span class="n">get_variable</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+                    <span class="c1"># var_simulation = get_variable(simulation)</span>
+                    <span class="n">model_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">resource</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">var_target</span><span class="p">,</span>
+                                        <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="n">refSt</span><span class="p">,</span> <span class="n">refEn</span><span class="p">],</span>
+                                        <span class="n">geom</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                                        <span class="n">t_calendar</span><span class="o">=</span><span class="s1">&#39;standard&#39;</span><span class="p">,</span>
+                                        <span class="c1"># conform_units_to=conform_units_to,</span>
+                                        <span class="c1"># spatial_wrapping=&#39;wrap&#39;,</span>
+                                        <span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed subset archive model&#39;</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Preparing simulation data&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+                    <span class="n">reanalyses_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">nc_subset</span><span class="p">,</span>
+                                             <span class="n">time_range</span><span class="o">=</span><span class="p">[</span><span class="n">anaSt</span><span class="p">,</span> <span class="n">anaEn</span><span class="p">],</span>
+                                             <span class="n">regrid_destination</span><span class="o">=</span><span class="n">model_subset</span><span class="p">,</span>
+                                             <span class="n">regrid_options</span><span class="o">=</span><span class="s1">&#39;bil&#39;</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to prepare simulation period&#39;</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to subset simulation or reference data&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;mo2re&#39;</span><span class="p">:</span>
+                <span class="n">simulation</span> <span class="o">=</span> <span class="n">model_subset</span>
+                <span class="n">archive</span> <span class="o">=</span> <span class="n">reanalyses_subset</span>
+            <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="s1">&#39;re2mo&#39;</span><span class="p">:</span>
+                <span class="n">simulation</span> <span class="o">=</span> <span class="n">reanalyses_subset</span>
+                <span class="n">archive</span> <span class="o">=</span> <span class="n">model_subset</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;direction not valid: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">direction</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to find comparison direction&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">var_archive</span> <span class="o">=</span> <span class="n">get_variable</span><span class="p">(</span><span class="n">archive</span><span class="p">)</span>
+            <span class="n">var_simulation</span> <span class="o">=</span> <span class="n">get_variable</span><span class="p">(</span><span class="n">simulation</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">var_archive</span> <span class="o">!=</span> <span class="n">var_simulation</span><span class="p">:</span>
+                <span class="n">rename_variable</span><span class="p">(</span><span class="n">archive</span><span class="p">,</span> <span class="n">oldname</span><span class="o">=</span><span class="n">var_archive</span><span class="p">,</span> <span class="n">newname</span><span class="o">=</span><span class="n">var_simulation</span><span class="p">)</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;varname </span><span class="si">%s</span><span class="s1"> in netCDF renamed to </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">var_archive</span><span class="p">,</span> <span class="n">var_simulation</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to rename variable in target files&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">seacyc</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">seasoncyc_base</span><span class="p">,</span> <span class="n">seasoncyc_sim</span> <span class="o">=</span> <span class="n">analogs</span><span class="o">.</span><span class="n">seacyc</span><span class="p">(</span>
+                                        <span class="n">archive</span><span class="p">,</span> <span class="n">simulation</span><span class="p">,</span>
+                                        <span class="n">method</span><span class="o">=</span><span class="n">normalize</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">seasoncyc_base</span><span class="p">,</span> <span class="n">seasoncyc_sim</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to prepare seasonal cycle reference files&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">ip</span><span class="p">,</span> <span class="n">output</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.txt&#39;</span><span class="p">)</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">archive</span><span class="p">),</span> <span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">simulation</span><span class="p">),</span> <span class="n">output_file</span><span class="p">]</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;data preperation took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+
+        <span class="c1">############################</span>
+        <span class="c1"># generating the config file</span>
+        <span class="c1">############################</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;writing config file&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># measure write config ...</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">config_file</span> <span class="o">=</span> <span class="n">analogs</span><span class="o">.</span><span class="n">get_configfile</span><span class="p">(</span>
+                <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+                <span class="n">seasoncyc_base</span><span class="o">=</span><span class="n">seasoncyc_base</span><span class="p">,</span>
+                <span class="n">seasoncyc_sim</span><span class="o">=</span><span class="n">seasoncyc_sim</span><span class="p">,</span>
+                <span class="n">timewin</span><span class="o">=</span><span class="n">timewin</span><span class="p">,</span>
+                <span class="n">varname</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+                <span class="n">seacyc</span><span class="o">=</span><span class="n">seacyc</span><span class="p">,</span>
+                <span class="n">cycsmooth</span><span class="o">=</span><span class="mi">91</span><span class="p">,</span>
+                <span class="n">nanalog</span><span class="o">=</span><span class="n">nanalog</span><span class="p">,</span>
+                <span class="n">seasonwin</span><span class="o">=</span><span class="n">seasonwin</span><span class="p">,</span>
+                <span class="n">distfun</span><span class="o">=</span><span class="n">distance</span><span class="p">,</span>
+                <span class="n">outformat</span><span class="o">=</span><span class="n">outformat</span><span class="p">,</span>
+                <span class="n">calccor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">period</span><span class="o">=</span><span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">refSt</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span>
+                        <span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">refEn</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)],</span>
+                <span class="n">bbox</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">,</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bbox</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bbox</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to generate config file&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;write_config took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+
+        <span class="c1">#######################</span>
+        <span class="c1"># CASTf90 call</span>
+        <span class="c1">#######################</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+        <span class="kn">import</span> <span class="nn">shlex</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>  <span class="c1"># measure call castf90</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start CASTf90 call&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># response.update_status(&#39;execution of CASTf90&#39;, 50)</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;analogue.out </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+            <span class="c1"># system(cmd)</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">output</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span>
+                <span class="n">args</span><span class="p">,</span>
+                <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;analogue.out info:</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">output</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;analogue.out errors:</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">error</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;**** CASTf90 suceeded&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;CASTf90 failed&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;castf90 took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;preparting output&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config_output_url</span>  <span class="c1"># config_file )</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;analogs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">output_file</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">simulation</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;target_netcdf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">archive</span>
+
+        <span class="c1"># response.outputs[&#39;output_html&#39;] = output_av</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;execution ended&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;total execution took </span><span class="si">%s</span><span class="s2"> seconds.&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">process_start_time</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;preparting output&#39;</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

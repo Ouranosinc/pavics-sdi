@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_robustness &mdash; documentation PAVICS 0.1</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Recherche" href="../../../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_robustness</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Code source de flyingpigeon.processes.wps_robustness</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archiveextract</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">robustness</span> <span class="k">as</span> <span class="n">erob</span>
+<span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">mkstemp</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.datafetch</span> <span class="k">import</span> <span class="n">write_fileinfo</span>
+
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="RobustnessProcess"><a class="viewcode-back" href="../../../processes/advanced_climate.html#flyingpigeon.processes.RobustnessProcess">[docs]</a><span class="k">class</span> <span class="nc">RobustnessProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;NetCDF Files or archive (tar/zip) containing NetCDF files.&#39;</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                         <span class="p">]),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;Method of robustness calculation&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Detailed information about the methods can be found in the documentation&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;Method_A&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Method_A&#39;</span><span class="p">,</span> <span class="s1">&#39;Method_B&#39;</span><span class="p">,</span> <span class="s1">&#39;Method_C&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="s2">&quot;Start Year&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Beginn of the analysed period (e.g 1971; if not set, the first consistend </span><span class="se">\</span>
+<span class="s2">                                  year of the ensemble will be taken)&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;1971&#39;</span>
+                         <span class="c1"># allowedValues=range(1900,2200)</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s2">&quot;End Year&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;End of the analysed period (e.g. 2050 if not set, </span><span class="se">\</span>
+<span class="s2">                                   the last consistend year of the ensemble will be taken)&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;timeslice&quot;</span><span class="p">,</span> <span class="s2">&quot;Time slice&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Time slice (in years) for robustness reference (default=10))&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;10&#39;</span>
+                         <span class="c1"># allowedValues=range(1,50)</span>
+                         <span class="p">),</span>
+
+            <span class="c1"># self.variableIn = self.addLiteralInput(</span>
+            <span class="c1">#   identifier=&quot;variable&quot;,</span>
+            <span class="c1">#   title=&quot;Variable&quot;,</span>
+            <span class="c1">#   abstract=&quot;Variable to be expected in the input files (Variable will be detected if not set, )&quot;,</span>
+            <span class="c1">#   # default=None,</span>
+            <span class="c1">#   type=type(&#39;&#39;),</span>
+            <span class="c1">#   minOccurs=0,</span>
+            <span class="c1">#   maxOccurs=1,</span>
+            <span class="c1">#   )</span>
+
+        <span class="p">]</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_high&#39;</span><span class="p">,</span> <span class="s1">&#39;Mask for areas with high agreement&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF file containing calculated robustness mask&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_low&#39;</span><span class="p">,</span> <span class="s1">&#39;Mask for areas with low agreement&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF file containing calculated robustness mask&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;Signal&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF file containing calculated change of mean over the timeperiod and ensemble&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_graphic&quot;</span><span class="p">,</span> <span class="s2">&quot;Graphic&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Graphic showing the signal difference with high and low ensemble agreement&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;image/png&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_text&quot;</span><span class="p">,</span> <span class="s2">&quot;Sourcefiles&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;text file with a list of the used input data sets&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">RobustnessProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;robustness&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Ensemble robustness&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.5&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s2">&quot;LSCE&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.lsce.ipsl.fr/&quot;</span><span class="p">)</span>
+                <span class="p">],</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Calculates the robustness as the ratio of noise to signal in an ensemle of timeseries&quot;</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;starting uncertainty process&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ncfiles</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]))</span>
+
+            <span class="n">start</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;end&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">timeslice</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;timeslice&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="c1"># # variable = self.variableIn.getValue()</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;arguments read&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Successfully read in the arguments&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;failed to read in the arguments&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">write_fileinfo</span><span class="p">(</span><span class="n">ncfiles</span><span class="p">)</span>
+
+        <span class="c1">#  LOGGER.debug(&#39;variable set to %s&#39; % variable)</span>
+        <span class="c1"># if method == &#39;Method_A&#39;:</span>
+        <span class="n">signal</span><span class="p">,</span> <span class="n">low_agreement_mask</span><span class="p">,</span> <span class="n">high_agreement_mask</span><span class="p">,</span> <span class="n">text_src</span> <span class="o">=</span> <span class="n">erob</span><span class="o">.</span><span class="n">method_A</span><span class="p">(</span>
+                <span class="n">resource</span><span class="o">=</span><span class="n">ncfiles</span><span class="p">,</span>
+                <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
+                <span class="n">timeslice</span><span class="o">=</span><span class="n">timeslice</span><span class="p">,</span>
+                <span class="c1"># variable=variable</span>
+                <span class="p">)</span>  <span class="c1"># graphic,</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Robustness calculated&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># LOGGER.info(&#39;variable to be plotted: %s&#39; % variable)</span>
+            <span class="kn">from</span> <span class="nn">flyingpigeon.visualisation</span> <span class="k">import</span> <span class="n">map_robustness</span>
+
+            <span class="c1"># if title is None:</span>
+            <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;signal robustness&#39;</span>  <span class="c1"># , end1, end2, start1, start2</span>
+
+            <span class="n">graphic</span> <span class="o">=</span> <span class="n">map_robustness</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span>
+                                     <span class="n">high_agreement_mask</span><span class="p">,</span>
+                                     <span class="n">low_agreement_mask</span><span class="p">,</span>
+                                     <span class="c1"># variable=variable,</span>
+                                     <span class="c1"># cmap=cmap,</span>
+                                     <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;graphic generated&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;graphic generation failed&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">graphic</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.png&#39;</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;process worker done&#39;</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_signal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">signal</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_high&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">high_agreement_mask</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_low&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">low_agreement_mask</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_graphic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">graphic</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;uncertainty process done&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Developer Documentation &mdash; PAVICS 0.1 documentation</title>
+  <title>Overview &mdash; documentation PAVICS 0.1</title>
   
 
   
@@ -34,10 +34,11 @@
   
         <link rel="index" title="Index"
               href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="Installation and Deployment" href="installation.html"/>
-        <link rel="prev" title="Searching for data" href="../tutorials/searching.html"/> 
+        <link rel="search" title="Recherche" href="../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+        <link rel="up" title="System Architecture" href="index.html"/>
+        <link rel="next" title="Data Catalog" href="data_catalog.html"/>
+        <link rel="prev" title="System Architecture" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -95,13 +96,15 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Deployment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#credits">Credits</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Data Catalog</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 </ul>
 
@@ -147,13 +150,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Developer Documentation</li>
+          <li><a href="index.html">System Architecture</a> &raquo;</li>
+        
+      <li>Overview</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/dev/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/arch/overview.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -166,29 +171,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="developer-documentation">
-<h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and Deployment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#hardware-configuration">Hardware configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#restarting-the-birdhouse-dockers">Restarting the birdhouse dockers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#ports">Ports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#individual-components-configuration">Individual Components Configuration</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="load_balancing.html">Load balancing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="load_balancing.html#modifying-the-docker-compose-yml">Modifying the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="builddocs.html">Building the docs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html#translations">Translations</a></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Lien permanent vers ce titre">¶</a></h1>
+<p>PAVICS is a Spatial Data Infrastructure (SDI) for climate data. It is composed of modular components that together provide access to data and a library of climate services. It is meant to facilitate climate data analysis for both researchers and climate service providers. PAVICS is not intended to be installed on individual computers, but rather on servers located close to data archives.</p>
+<p>There are multiple building blocks composing the PAVICS SDI:</p>
+<dl class="docutils">
+<dt>PAVICS-frontend</dt>
+<dd>The user interface (UI) handling user accounts, workspace, workflows and data visualization.</dd>
+<dt>PAVICS-DataCatalog</dt>
+<dd>The database storing the information about the climate data available to users.</dd>
+<dt>Birdhouse</dt>
+<dd>A collection of Web Processing Services (WPS) supporting data processing in the climate science community. It includes multiple sub-components.</dd>
+<dt>Birdhouse/Malleefowl</dt>
+<dd>Access to ESGF data nodes and THREDDS catalogs, workflow engine.</dd>
+<dt>Birdhouse/Flyingpigeon</dt>
+<dd>Climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc.</dd>
+<dt>Birdhouse/Hummingbird</dt>
+<dd>Climate Data Operators (CDO) and compliance-checker for netCDF files.</dd>
+<dt>Magpie</dt>
+<dd>Authentication and authorization services.</dd>
+<dt>THREEDS</dt>
+<dd>netCDF data server.</dd>
+<dt>GeoServer</dt>
+<dd>Geospatial data server.</dd>
+</dl>
+<p>These components work together to offer users a seamless access to data and a suite of services that can convert raw climate data into useful information, graphics and tables.</p>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Lien permanent vers ce titre">¶</a></h2>
+<p>PAVICS is led by Ouranos, a regional climate consortium, and CRIM, a software research institute, both located in Montreal.</p>
+<p>a project led by Ouranos to provide climate scientists with a
+set of tools to acquire and analyze climate data.</p>
 </div>
 </div>
 
@@ -202,10 +214,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation and Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="data_catalog.html" class="btn btn-neutral float-right" title="Data Catalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../tutorials/searching.html" class="btn btn-neutral" title="Searching for data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="System Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -246,6 +258,7 @@
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
