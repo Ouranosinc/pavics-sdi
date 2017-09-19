@@ -1,4 +1,8 @@
 pywps>=4.0.0
 sphinx>=1.4
+cdo
 -e git+https://github.com/huard/sphinx-autodoc-pywps.git#egg=sphinx_autodoc_pywps
 sphinx_rtd_theme
+-e git+https://github.com/Ouranosinc/PAVICS-DataCatalog.git#egg=pavics_datacatalog
+#-e git+https://github.com/Ouranosinc/malleefowl.git@pavics#egg=mallefowl
+#-e git+https://github.com/Ouranosinc/flyingpigeon.git@pavics#egg=flyingpigeon
