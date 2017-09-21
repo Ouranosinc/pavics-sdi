@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/index.rst:6
+msgid ""
+"PAVICS is a research platform dedicated to climate analysis and "
+"visualization. It bundles data search, analytics and visualization "
+"services."
+msgstr ""
+
+#: ../../source/index.rst:11
+msgid "Documentation structure"
+msgstr "Structure de la documentation"
+
+#: ../../source/index.rst:12
+msgid ""
+"We plan to build extensive documentation for PAVICS. We're just getting "
+"started, but please provide your comments on our `issue tracker`_."
+msgstr ""
+
+#: ../../source/index.rst:14
+msgid ""
+":doc:`Tutorials </tutorials/index>` discuss step by step how to use "
+"PAVICS. Start here to get a feeling of what can be done."
+msgstr ""
+
+#: ../../source/index.rst:16
+msgid ""
+":doc:`Installation </dev/index>` explains how to install the various "
+"components and run the system tests."
+msgstr ""
+
+#: ../../source/index.rst:18
+msgid ""
+":doc:`Process documentation </processes/index>` documents all processes "
+"available on the platform."
+msgstr ""
+
+#: ../../source/index.rst:20
+msgid ""
+":doc:`System architecture <arch/index>` describes the individual "
+"components of the system and how they work together."
+msgstr ""
+
+#: ../../source/index.rst:27
+msgid "Contents"
+msgstr ""
+
+#: ../../source/index.rst:37
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../source/index.rst:39
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../source/index.rst:40
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../../source/index.rst:41
+msgid ":ref:`search`"
+msgstr ""
+

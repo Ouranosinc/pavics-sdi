@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/arch/data_catalog.rst:2
+msgid "Data Catalog"
+msgstr ""
+
+#: ../../source/arch/data_catalog.rst:4
+msgid ""
+"Pavics bundles a number of cataloguing services that allow you to search "
+"for data and add data to the catalog."
+msgstr ""
+
+#: ../../source/arch/data_catalog.rst:8
+msgid "PAVICS Catalogue Search"
+msgstr ""
+
+#: ../../source/arch/data_catalog.rst:9
+msgid ""
+"The ``pavicssearch`` service closely mimics the API for the Earth System "
+"Grid Federation (ESGF) search. The search fields (or *facets*) include "
+"author, category, cf_standard_name, experiment, frequency, institute, "
+"model, project, source, subject, title, units, variable and "
+"variable_long_name. The search results are returned in a ``json`` file "
+"and include the URL to download the file or access it through DAP."
+msgstr ""
+
+#: ../../source/arch/data_catalog.rst:18
+msgid "Examples"
+msgstr ""
+
+#: ../../source/arch/data_catalog.rst:19
+msgid ""
+"The request "
+"`pavicsearch&DataInputs=constraints=model:CRCM4,experiment:rcp85 "
+"<http://132.217.140.45:8009/pywps?service=WPS&request=execute&version=1.0.0&identifier=pavicsearch&DataInputs=constraints=model:CRCM4,experiment:rcp85>`_"
+" will search for all files that are part of the RCP8.5 experiment and "
+"based on the CRCM4 model."
+msgstr ""
+

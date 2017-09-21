@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/data_handling.rst:3
+msgid "Data handling"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:1 of
+msgid "fetch_resources *0.10* – Fetch Resources"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:3 of
+msgid ""
+"Fetch data resources (limited to 50GB) to the local filesystem of the "
+"birdhouse compute provider."
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess malleefowl.processes.Download
+#: malleefowl.processes.ESGSearchProcess malleefowl.processes.ThreddsDownload
+#: of
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess malleefowl.processes.Download
+#: malleefowl.processes.ESGSearchProcess malleefowl.processes.ThreddsDownload
+#: of
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:8 of
+msgid ""
+"* **output** (*text/plain*) -- File containing the local pathes to "
+"downloades files. * **output_log** (*text/plain*) -- Collected logs "
+"during process run."
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:8 of
+msgid ""
+"**output** (*text/plain*) -- File containing the local pathes to "
+"downloades files."
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:9 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:12 malleefowl.processes.Download:12
+#: malleefowl.processes.ESGSearchProcess:35
+#: malleefowl.processes.ThreddsDownload:12 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:13 of
+msgid "`Documentation <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.FetchProcess:15 of
+msgid ""
+"TODO: rename process to Copy? Could be a base process (hummingbird). "
+"TODO: Provide first output directly. TODO: should provide urls of copied "
+"files. TODO: Need a better way to provide multiple outputs (json file ..."
+" could be interpreted and displayed by UI), COWS has done somthing like "
+"this with an xml output."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:1 of
+msgid "esgsearch *0.6* – ESGF Search"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:3 of
+msgid "Search ESGF datasets, files and aggreations."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:5 of
+msgid "URL of ESGF Search Index. Example: http://esgf-data.dkrz.de/esg-search"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:7 of
+msgid "If flag is set then a distributed search will be run."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:9 of
+msgid "If flag is set then search will include replicated datasets."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:11 of
+msgid "If flag is set then search will include only latest datasets."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:13 of
+msgid "If flag is set then search will use temporal filter."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:15 of
+msgid "Search on Datasets, Files or Aggregations."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:17 of
+msgid ""
+"Constraints as list of key/value pairs.Example: project:CORDEX, "
+"time_frequency:mon, variable:tas"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:19 of
+msgid "Freetext query. For Example: temperatue"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:21 of
+msgid "Startime: 2000-01-11T12:00:00Z"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:23 of
+msgid "Endtime: 2005-12-31T12:00:00Z"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:25 of
+msgid "Maximum number of datasets in search result"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:27 of
+msgid "Start search of datasets at offset."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:30 of
+msgid ""
+"* **output** (*application/json*) -- JSON document with search result * "
+"**summary** (*application/json*) -- JSON document with search result "
+"summary * **facet_counts** (*application/json*) -- JSON document with "
+"facet counts for constraints."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:30 of
+msgid "**output** (*application/json*) -- JSON document with search result"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:31 of
+msgid ""
+"**summary** (*application/json*) -- JSON document with search result "
+"summary"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:32 of
+msgid ""
+"**facet_counts** (*application/json*) -- JSON document with facet counts "
+"for constraints."
+msgstr ""
+
+#: malleefowl.processes.Download:13 malleefowl.processes.ESGSearchProcess:36
+#: malleefowl.processes.ThreddsDownload:13 of
+msgid "`Birdhouse <http://bird-house.github.io/>`_"
+msgstr ""
+
+#: malleefowl.processes.Download:14 malleefowl.processes.ESGSearchProcess:37
+#: malleefowl.processes.ThreddsDownload:14 of
+msgid "`User Guide <http://malleefowl.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:39 of
+msgid "wps wrapper for esg search."
+msgstr ""
+
+#: malleefowl.processes.ESGSearchProcess:41 of
+msgid "TODO: bbox constraint for datasets"
+msgstr ""
+
+#: malleefowl.processes.Download:1 of
+msgid "download *0.8* – Download files"
+msgstr ""
+
+#: malleefowl.processes.Download:3 of
+msgid "Downloads files and provides file list as json document."
+msgstr ""
+
+#: malleefowl.processes.Download:5 of
+msgid "URL of your resource."
+msgstr ""
+
+#: malleefowl.processes.Download:8 of
+msgid "**output** -- Json document with list of downloaded files with file url."
+msgstr ""
+
+#: malleefowl.processes.Download malleefowl.processes.ThreddsDownload of
+msgid "Return type"
+msgstr ""
+
+#: malleefowl.processes.ThreddsDownload:1 of
+msgid "thredds_download *0.5* – Download files from Thredds Catalog"
+msgstr ""
+
+#: malleefowl.processes.ThreddsDownload:3 of
+msgid ""
+"Downloads files from Thredds Catalog and provides file list as JSON "
+"Document."
+msgstr ""
+
+#: malleefowl.processes.ThreddsDownload:5 of
+msgid "URL of the catalog."
+msgstr ""
+
+#: malleefowl.processes.ThreddsDownload:8 of
+msgid "**output** -- JSON document with list of downloaded files with file url."
+msgstr ""
+

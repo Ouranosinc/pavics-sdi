@@ -1,0 +1,371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/impacts.rst:3
+msgid "Impacts and adaptation"
+msgstr ""
+
+#: ../../source/processes/impacts.rst:6
+msgid "Biodiversity"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:1 of
+msgid "sdm_gbiffetch *0.2* – Species distribution Model (GBIF data fetch only)"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:3 of
+msgid ""
+"Species occurence search in Global Biodiversity              "
+"Infrastructure Facillity (GBIF)"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess
+#: flyingpigeon.processes.SDMallinoneProcess
+#: flyingpigeon.processes.SDMcsvProcess
+#: flyingpigeon.processes.SDMcsvindicesProcess
+#: flyingpigeon.processes.SDMgetindicesProcess
+#: flyingpigeon.processes.SegetalfloraProcess of
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:5
+#: flyingpigeon.processes.SDMallinoneProcess:7 of
+msgid "Taxonomic name of tree species (e. g. Fagus sylvatica)"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess
+#: flyingpigeon.processes.SDMallinoneProcess
+#: flyingpigeon.processes.SDMcsvProcess
+#: flyingpigeon.processes.SDMcsvindicesProcess
+#: flyingpigeon.processes.SDMgetindicesProcess
+#: flyingpigeon.processes.SegetalfloraProcess of
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:8 of
+msgid ""
+"* **output_map** (*image/png*) -- PNG graphic file showing the presence "
+"of tree species                                according to GBIF data "
+"fetch * **output_csv** (*text/csv*) -- Extracted CSV file containing the "
+"tree species table * **output_log** (*text/plain*) -- Collected logs "
+"during process run."
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:8 of
+msgid ""
+"**output_map** (*image/png*) -- PNG graphic file showing the presence of "
+"tree species                                according to GBIF data fetch"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:9
+#: flyingpigeon.processes.SDMallinoneProcess:16 of
+msgid ""
+"**output_csv** (*text/csv*) -- Extracted CSV file containing the tree "
+"species table"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:10
+#: flyingpigeon.processes.SDMallinoneProcess:23
+#: flyingpigeon.processes.SDMcsvProcess:22
+#: flyingpigeon.processes.SDMcsvindicesProcess:19
+#: flyingpigeon.processes.SDMgetindicesProcess:14
+#: flyingpigeon.processes.SegetalfloraProcess:14 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:13
+#: flyingpigeon.processes.SDMallinoneProcess:26
+#: flyingpigeon.processes.SDMcsvProcess:25
+#: flyingpigeon.processes.SDMcsvindicesProcess:22
+#: flyingpigeon.processes.SDMgetindicesProcess:17
+#: flyingpigeon.processes.SegetalfloraProcess:17 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:14
+#: flyingpigeon.processes.SegetalfloraProcess:19 of
+msgid "`Doc <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.GBIFfetchProcess:15 of
+msgid "`GBIF <http://gbif.org/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.SDMgetindicesProcess:1 of
+msgid ""
+"sdm_getindices *0.10* – Species distribution Model (only indices "
+"calculation )"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:3
+#: flyingpigeon.processes.SDMcsvProcess:3
+#: flyingpigeon.processes.SDMcsvindicesProcess:3
+#: flyingpigeon.processes.SDMgetindicesProcess:3 of
+msgid "Indices preparation for SDM process"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:5
+#: flyingpigeon.processes.SDMcsvProcess:5
+#: flyingpigeon.processes.SDMgetindicesProcess:5
+#: flyingpigeon.processes.SegetalfloraProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:9
+#: flyingpigeon.processes.SDMcsvProcess:9
+#: flyingpigeon.processes.SDMgetindicesProcess:7 of
+msgid ""
+"Climate indices related to growth conditions"
+"                                     of tree species"
+msgstr ""
+
+#: flyingpigeon.processes.SDMgetindicesProcess:9 of
+msgid ""
+"Result files will be compressed into archives."
+"                                    Choose an appropriate format"
+msgstr ""
+
+#: flyingpigeon.processes.SDMgetindicesProcess:12 of
+msgid ""
+"* **output_indices** (*application/x-tar*) -- Archive (tar/zip) "
+"containing calculated climate indices * **ncout** "
+"(*application/x-netcdf*) -- NetCDF file with subsets of one resource. * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:19
+#: flyingpigeon.processes.SDMcsvProcess:18
+#: flyingpigeon.processes.SDMgetindicesProcess:12 of
+msgid ""
+"**output_indices** (*application/x-tar*) -- Archive (tar/zip) containing "
+"calculated climate indices"
+msgstr ""
+
+#: flyingpigeon.processes.SDMgetindicesProcess:13 of
+msgid ""
+"**ncout** (*application/x-netcdf*) -- NetCDF file with subsets of one "
+"resource."
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:27
+#: flyingpigeon.processes.SDMcsvProcess:26
+#: flyingpigeon.processes.SDMcsvindicesProcess:23
+#: flyingpigeon.processes.SDMgetindicesProcess:18 of
+msgid "`LWF <http://www.lwf.bayern.de/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:28
+#: flyingpigeon.processes.SDMcsvProcess:27
+#: flyingpigeon.processes.SDMcsvindicesProcess:24
+#: flyingpigeon.processes.SDMgetindicesProcess:19 of
+msgid ""
+"`Doc "
+"<http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html"
+"#species-distribution-model>`_"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:29
+#: flyingpigeon.processes.SDMcsvProcess:28
+#: flyingpigeon.processes.SDMcsvindicesProcess:25
+#: flyingpigeon.processes.SDMgetindicesProcess:20 of
+msgid "`paper <http://www.hindawi.com/journals/jcli/2013/787250/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:30
+#: flyingpigeon.processes.SDMcsvProcess:29
+#: flyingpigeon.processes.SDMcsvindicesProcess:26
+#: flyingpigeon.processes.SDMgetindicesProcess:21 of
+msgid ""
+"`Tutorial "
+"<http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html>`_"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvProcess:1 of
+msgid "sdm_csv *0.10* – Species distribution Model (GBIF-CSV table as input)"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvProcess:7
+#: flyingpigeon.processes.SDMcsvindicesProcess:7 of
+msgid ""
+"GBIF table (csv) with tree occurence                          (output of "
+"'GBIF data fetch' process )"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:11
+#: flyingpigeon.processes.SDMcsvProcess:11
+#: flyingpigeon.processes.SDMcsvindicesProcess:9 of
+msgid ""
+"Reference period for climate conditions                         (all = "
+"entire timeseries)"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:13
+#: flyingpigeon.processes.SDMcsvProcess:13
+#: flyingpigeon.processes.SDMcsvindicesProcess:11 of
+msgid ""
+"Result files will be compressed into archives."
+"                                  Choose an appropriate format"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvProcess:16 of
+msgid ""
+"* **output_gbif** (*image/png*) -- PNG graphic file showing the presence "
+"of tree species                                    according to the CSV "
+"file * **output_PA** (*image/png*) -- PNG graphic file showing PA mask "
+"generated based on                                    netCDF spatial "
+"increment * **output_indices** (*application/x-tar*) -- Archive (tar/zip)"
+" containing calculated climate indices * **output_reference** "
+"(*application/x-tar*) -- Archive (tar/zip) containing calculated climate "
+"indices * **output_prediction** (*application/x-tar*) -- Archive "
+"containing files of the predicted                                     "
+"growth conditions * **output_info** (*application/pdf*) -- Graphics and "
+"information of the learning statistics * **output_log** (*text/plain*) --"
+" Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:17
+#: flyingpigeon.processes.SDMcsvProcess:16
+#: flyingpigeon.processes.SDMcsvindicesProcess:14 of
+msgid ""
+"**output_gbif** (*image/png*) -- PNG graphic file showing the presence of"
+" tree species                                    according to the CSV "
+"file"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:18
+#: flyingpigeon.processes.SDMcsvProcess:17
+#: flyingpigeon.processes.SDMcsvindicesProcess:15 of
+msgid ""
+"**output_PA** (*image/png*) -- PNG graphic file showing PA mask generated"
+" based on                                    netCDF spatial increment"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:20
+#: flyingpigeon.processes.SDMcsvProcess:19
+#: flyingpigeon.processes.SDMcsvindicesProcess:16 of
+msgid ""
+"**output_reference** (*application/x-tar*) -- Archive (tar/zip) "
+"containing calculated climate indices"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:21
+#: flyingpigeon.processes.SDMcsvProcess:20
+#: flyingpigeon.processes.SDMcsvindicesProcess:17 of
+msgid ""
+"**output_prediction** (*application/x-tar*) -- Archive containing files "
+"of the predicted                                     growth conditions"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:22
+#: flyingpigeon.processes.SDMcsvProcess:21
+#: flyingpigeon.processes.SDMcsvindicesProcess:18 of
+msgid ""
+"**output_info** (*application/pdf*) -- Graphics and information of the "
+"learning statistics"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvindicesProcess:1 of
+msgid ""
+"sdm_csvindices *0.10* – Species distribution Model (GBIF-CSV Table and "
+"Indices as calculation basis)"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvindicesProcess:5 of
+msgid ""
+"Precalculated Indices as basis for the SDM calculation (list of netCDF "
+"files or tar/zip archive)"
+msgstr ""
+
+#: flyingpigeon.processes.SDMcsvindicesProcess:14 of
+msgid ""
+"* **output_gbif** (*image/png*) -- PNG graphic file showing the presence "
+"of tree species                                    according to the CSV "
+"file * **output_PA** (*image/png*) -- PNG graphic file showing PA mask "
+"generated based on                                    netCDF spatial "
+"increment * **output_reference** (*application/x-tar*) -- Archive "
+"(tar/zip) containing calculated climate indices * **output_prediction** "
+"(*application/x-tar*) -- Archive containing files of the predicted"
+"                                     growth conditions * **output_info** "
+"(*application/pdf*) -- Graphics and information of the learning "
+"statistics * **output_log** (*text/plain*) -- Collected logs during "
+"process run."
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:1 of
+msgid "sdm_allinone *0.10* – Species distribution Model (all in one)"
+msgstr ""
+
+#: flyingpigeon.processes.SDMallinoneProcess:16 of
+msgid ""
+"* **output_csv** (*text/csv*) -- Extracted CSV file containing the tree "
+"species table * **output_gbif** (*image/png*) -- PNG graphic file showing"
+" the presence of tree species                                    "
+"according to the CSV file * **output_PA** (*image/png*) -- PNG graphic "
+"file showing PA mask generated based on"
+"                                    netCDF spatial increment * "
+"**output_indices** (*application/x-tar*) -- Archive (tar/zip) containing "
+"calculated climate indices * **output_reference** (*application/x-tar*) "
+"-- Archive (tar/zip) containing calculated climate indices * "
+"**output_prediction** (*application/x-tar*) -- Archive containing files "
+"of the predicted                                     growth conditions * "
+"**output_info** (*application/pdf*) -- Graphics and information of the "
+"learning statistics * **output_log** (*text/plain*) -- Collected logs "
+"during process run."
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:1 of
+msgid "segetalflora *0.10* – Segetal Flora"
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:3 of
+msgid "Species biodiversity of segetal flora."
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:7 of
+msgid "Select climate type"
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:9 of
+msgid "Select culture type"
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:12 of
+msgid ""
+"* **out_tasmean** (*application/x-tar*) -- Tar archive containing the "
+"netCDF EUR tas mean files * **out_segetalflora** (*application/x-tar*) --"
+" Tar archive containing the segetalflora data * **output_log** "
+"(*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:12 of
+msgid ""
+"**out_tasmean** (*application/x-tar*) -- Tar archive containing the "
+"netCDF EUR tas mean files"
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:13 of
+msgid ""
+"**out_segetalflora** (*application/x-tar*) -- Tar archive containing the "
+"segetalflora data"
+msgstr ""
+
+#: flyingpigeon.processes.SegetalfloraProcess:18 of
+msgid "`LSCE <http://www.lsce.ipsl.fr/en/index.php>`_"
+msgstr ""
+

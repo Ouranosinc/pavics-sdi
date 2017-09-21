@@ -9,4 +9,5 @@ Developer Documentation
 
    installation
    load_balancing
+   vm
    builddocs

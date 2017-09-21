@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/arch/overview.rst:2
+msgid "Overview"
+msgstr ""
+
+#: ../../source/arch/overview.rst:4
+msgid ""
+"PAVICS is a Spatial Data Infrastructure (SDI) for climate data. It is "
+"composed of modular components that together provide access to data and a"
+" library of climate services. It is meant to facilitate climate data "
+"analysis for both researchers and climate service providers. PAVICS is "
+"not intended to be installed on individual computers, but rather on "
+"servers located close to data archives."
+msgstr ""
+
+#: ../../source/arch/overview.rst:10
+msgid "There are multiple building blocks composing the PAVICS SDI:"
+msgstr ""
+
+#: ../../source/arch/overview.rst:13
+msgid "PAVICS-frontend"
+msgstr ""
+
+#: ../../source/arch/overview.rst:13
+msgid ""
+"The user interface (UI) handling user accounts, workspace, workflows and "
+"data visualization."
+msgstr ""
+
+#: ../../source/arch/overview.rst:16
+msgid "PAVICS-DataCatalog"
+msgstr ""
+
+#: ../../source/arch/overview.rst:16
+msgid ""
+"The database storing the information about the climate data available to "
+"users."
+msgstr ""
+
+#: ../../source/arch/overview.rst:19
+msgid "Birdhouse"
+msgstr ""
+
+#: ../../source/arch/overview.rst:19
+msgid ""
+"A collection of Web Processing Services (WPS) supporting data processing "
+"in the climate science community. It includes multiple sub-components."
+msgstr ""
+
+#: ../../source/arch/overview.rst:22
+msgid "Birdhouse/Malleefowl"
+msgstr ""
+
+#: ../../source/arch/overview.rst:22
+msgid "Access to ESGF data nodes and THREDDS catalogs, workflow engine."
+msgstr ""
+
+#: ../../source/arch/overview.rst:25
+msgid "Birdhouse/Flyingpigeon"
+msgstr ""
+
+#: ../../source/arch/overview.rst:25
+msgid ""
+"Climate services including indices computation, spatial analogs, weather "
+"analogs, species distribution model, subsetting and averaging, climate "
+"fact sheets, etc."
+msgstr ""
+
+#: ../../source/arch/overview.rst:28
+msgid "Birdhouse/Hummingbird"
+msgstr ""
+
+#: ../../source/arch/overview.rst:28
+msgid "Climate Data Operators (CDO) and compliance-checker for netCDF files."
+msgstr ""
+
+#: ../../source/arch/overview.rst:31
+msgid "Magpie"
+msgstr ""
+
+#: ../../source/arch/overview.rst:31
+msgid "Authentication and authorization services."
+msgstr ""
+
+#: ../../source/arch/overview.rst:34
+msgid "THREEDS"
+msgstr ""
+
+#: ../../source/arch/overview.rst:34
+msgid "netCDF data server."
+msgstr ""
+
+#: ../../source/arch/overview.rst:38
+msgid "GeoServer"
+msgstr ""
+
+#: ../../source/arch/overview.rst:37
+msgid "Geospatial data server."
+msgstr ""
+
+#: ../../source/arch/overview.rst:40
+msgid ""
+"These components work together to offer users a seamless access to data "
+"and a suite of services that can convert raw climate data into useful "
+"information, graphics and tables."
+msgstr ""
+
+#: ../../source/arch/overview.rst:48
+msgid "Credits"
+msgstr ""
+
+#: ../../source/arch/overview.rst:49
+msgid ""
+"PAVICS is led by Ouranos, a regional climate consortium, and CRIM, a "
+"software research institute, both located in Montreal."
+msgstr ""
+
+#: ../../source/arch/overview.rst:51
+msgid ""
+"a project led by Ouranos to provide climate scientists with a set of "
+"tools to acquire and analyze climate data."
+msgstr ""
+

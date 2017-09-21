@@ -1,0 +1,425 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/basic_climate.rst:3
+msgid "Basic climate data analysis"
+msgstr ""
+
+#: ../../source/processes/basic_climate.rst:6
+msgid "Spatial and temporal subsetting"
+msgstr ""
+
+#: flyingpigeon.processes.SubsetWFSProcess:1 of
+msgid "subset_WFS *0.1* – Subset WFS"
+msgstr ""
+
+#: flyingpigeon.processes.SubsetWFSProcess:3 of
+msgid ""
+"Return the data for which grid cells intersect the selected polygon for "
+"each input dataset."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess
+#: flyingpigeon.processes.ClipcontinentProcess
+#: flyingpigeon.processes.ClippingProcess
+#: flyingpigeon.processes.ClipregionseuropeProcess
+#: flyingpigeon.processes.LandseamaskProcess
+#: flyingpigeon.processes.PointinspectionProcess
+#: flyingpigeon.processes.SubsetWFSProcess of
+#: pavics_datacatalog.wps_processes.GetPoint
+#: pavics_datacatalog.wps_processes.Period2Indices
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:5
+#: flyingpigeon.processes.SubsetWFSProcess:5 of
+msgid "NetCDF files, can be OPEnDAP urls."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:7
+#: flyingpigeon.processes.SubsetWFSProcess:7 of
+msgid "Name of the layer in GeoServer."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:9
+#: flyingpigeon.processes.SubsetWFSProcess:9 of
+msgid "fid(s) of the feature in the layer."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:11
+#: flyingpigeon.processes.SubsetWFSProcess:11 of
+msgid "Typically of the form http://host:port/geoserver/wfs"
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:13
+#: flyingpigeon.processes.ClipcontinentProcess:7
+#: flyingpigeon.processes.ClippingProcess:7
+#: flyingpigeon.processes.ClipregionseuropeProcess:7
+#: flyingpigeon.processes.SubsetWFSProcess:13 of
+msgid "If True, selected regions will be merged into a single geometry."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:15
+#: flyingpigeon.processes.SubsetWFSProcess:15 of
+msgid "Name of the variable in the NetCDF file.Will be guessed if not provided."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess
+#: flyingpigeon.processes.ClipcontinentProcess
+#: flyingpigeon.processes.ClippingProcess
+#: flyingpigeon.processes.ClipregionseuropeProcess
+#: flyingpigeon.processes.LandseamaskProcess
+#: flyingpigeon.processes.PointinspectionProcess
+#: flyingpigeon.processes.SubsetWFSProcess of
+#: pavics_datacatalog.wps_processes.GetPoint
+#: pavics_datacatalog.wps_processes.Period2Indices
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:18
+#: flyingpigeon.processes.SubsetWFSProcess:18 of
+msgid "**output** -- JSON file with link to NetCDF outputs."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess
+#: flyingpigeon.processes.SubsetWFSProcess of
+#: pavics_datacatalog.wps_processes.GetPoint
+msgid "Return type"
+msgstr ""
+
+#: flyingpigeon.processes.SubsetWFSProcess:21 of
+msgid "Subset a NetCDF file using WFS geometry."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:1 of
+msgid "averager_WFS *0.1* – Averager WFS"
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:3 of
+msgid ""
+"Return the data with weighted average of grid cells intersecting the "
+"selected polygon for each input dataset."
+msgstr ""
+
+#: flyingpigeon.processes.AveragerWFSProcess:21 of
+msgid "Weighted spatial average of a NetCDF file using a WFS geometry."
+msgstr ""
+
+#: flyingpigeon.processes.ClippingProcess:1 of
+msgid "subset_countries *0.10* – Subset (World Countries)"
+msgstr ""
+
+#: flyingpigeon.processes.ClippingProcess:3 of
+msgid ""
+"Return the data whose grid cells intersect the selected countries for "
+"each input dataset."
+msgstr ""
+
+#: flyingpigeon.processes.ClippingProcess:5 of
+msgid ""
+"Country code, see ISO-3166-3:                          "
+"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements"
+msgstr ""
+
+#: flyingpigeon.processes.ClippingProcess:9
+#: flyingpigeon.processes.ClipregionseuropeProcess:9
+#: flyingpigeon.processes.PointinspectionProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing NetCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:12
+#: flyingpigeon.processes.ClippingProcess:12
+#: flyingpigeon.processes.ClipregionseuropeProcess:12 of
+msgid ""
+"* **output** (*application/x-tar*) -- Tar archive of the subsetted netCDF"
+" files. * **ncout** (*application/x-netcdf*) -- NetCDF file with subset "
+"for one dataset. * **output_log** (*text/plain*) -- Collected logs during"
+" process run."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:12
+#: flyingpigeon.processes.ClippingProcess:12
+#: flyingpigeon.processes.ClipregionseuropeProcess:12 of
+msgid ""
+"**output** (*application/x-tar*) -- Tar archive of the subsetted netCDF "
+"files."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:13
+#: flyingpigeon.processes.ClippingProcess:13
+#: flyingpigeon.processes.ClipregionseuropeProcess:13 of
+msgid ""
+"**ncout** (*application/x-netcdf*) -- NetCDF file with subset for one "
+"dataset."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:14
+#: flyingpigeon.processes.ClippingProcess:14
+#: flyingpigeon.processes.ClipregionseuropeProcess:14
+#: flyingpigeon.processes.LandseamaskProcess:18
+#: flyingpigeon.processes.PointinspectionProcess:10 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:17
+#: flyingpigeon.processes.ClippingProcess:17
+#: flyingpigeon.processes.ClipregionseuropeProcess:17
+#: flyingpigeon.processes.LandseamaskProcess:21
+#: flyingpigeon.processes.PointinspectionProcess:14 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.ClippingProcess:18
+#: flyingpigeon.processes.ClipregionseuropeProcess:18
+#: flyingpigeon.processes.PointinspectionProcess:15 of
+msgid "`LSCE <http://www.lsce.ipsl.fr/en/index.php>`_"
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:18
+#: flyingpigeon.processes.ClippingProcess:19
+#: flyingpigeon.processes.LandseamaskProcess:22
+#: flyingpigeon.processes.PointinspectionProcess:16 of
+msgid "`Doc <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:20
+#: flyingpigeon.processes.ClippingProcess:21
+#: flyingpigeon.processes.ClipregionseuropeProcess:21 of
+msgid "TODO: opendap input support, additional metadata to display region names."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:1 of
+msgid "subset_continents *0.10* – Subset (Continents)"
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:3 of
+msgid ""
+"Return the data whose grid cells intersect the selected continents for "
+"each input dataset."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:5 of
+msgid "Continent name."
+msgstr ""
+
+#: flyingpigeon.processes.ClipcontinentProcess:9 of
+msgid "NetCDF Files or archive (tar/zip) containing netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.ClipregionseuropeProcess:1 of
+msgid "subset_regionseurope *0.10* – Subset (European Regions)"
+msgstr ""
+
+#: flyingpigeon.processes.ClipregionseuropeProcess:3 of
+msgid ""
+"Return the data whose grid cells inteserct the selected regions for each "
+"input dataset."
+msgstr ""
+
+#: flyingpigeon.processes.ClipregionseuropeProcess:5 of
+msgid ""
+"European region code, see ISO-3166 Alpha2: "
+"https://en.wikipedia.org/wiki/ISO_3166-2"
+msgstr ""
+
+#: flyingpigeon.processes.ClipregionseuropeProcess:19 of
+msgid "`Documentation <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:1 of
+msgid "pointinspection *0.10* – Point Inspection"
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:3 of
+msgid "Extract the timeseries at the given coordinates."
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:7 of
+msgid ""
+"A comma-seperated tuple of WGS85 lon,lat decimal coordinates (e.g. "
+"2.356138, 48.846450)"
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:10 of
+msgid ""
+"* **output_log** (*text/plain*) -- Collected logs during process run. * "
+"**tarout** (*application/x-tar*) -- Tar archive containing the netCDF "
+"files"
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:11 of
+msgid ""
+"**tarout** (*application/x-tar*) -- Tar archive containing the netCDF "
+"files"
+msgstr ""
+
+#: flyingpigeon.processes.PointinspectionProcess:18 of
+msgid "TODO: optionally provide point list as file (csv, geojson) and WFS service"
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:1 of
+msgid "landseamask *0.3* – Land-Sea Mask"
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:3 of
+msgid ""
+"Mask grid cells according to their land area fraction. This process uses "
+"the ESGF datastore to access an appropriate land/sea mask."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:5 of
+msgid ""
+"URL pointing to a NetCDF File or an archive (tar/zip) containing NetCDF "
+"files."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:7 of
+msgid ""
+"Remote OpenDAP data URL, for example: "
+"http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc"
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:9 of
+msgid "Land Area Fraction in percent."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:11 of
+msgid ""
+"Optionally provide an OpenDAP URL to an appropriate land area fraction "
+"file. If no file is provided, the process will run a search on the ESGF "
+"archive."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:13 of
+msgid "Either the land or the sea area of the mask will be subsetted."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:16 of
+msgid ""
+"* **output_archive** (*application/x-tar*) -- Tar archive of the masked "
+"netCDF files. * **output_example** (*application/x-netcdf*) -- An example"
+" file to display in the WMS. * **output_log** (*text/plain*) -- Collected"
+" logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:16 of
+msgid ""
+"**output_archive** (*application/x-tar*) -- Tar archive of the masked "
+"netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.LandseamaskProcess:17 of
+msgid ""
+"**output_example** (*application/x-netcdf*) -- An example file to display"
+" in the WMS."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:1
+msgid "period2indices *0.1* – NetCDF time indices from a period"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:3
+msgid "The final index is inclusive."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:5
+#: pavics_datacatalog.wps_processes.Period2Indices:7
+#, python-format
+msgid "Format must be %Y-%m-%dT%H:%M:%S"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:9
+msgid "OPeNDAP url to a NetCDF file"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:11
+msgid "If left unspecified, taken from NetCDF file time variable."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:14
+msgid ""
+"* **initial_index** (*integer*) -- Initial time index of the period in "
+"the NetCDF file * **final_index** (*integer*) -- The final index is "
+"inclusive."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:14
+msgid ""
+"**initial_index** (*integer*) -- Initial time index of the period in the "
+"NetCDF file"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.Period2Indices:15
+msgid "**final_index** (*integer*) -- The final index is inclusive."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:1
+msgid "getpoint *0.1* – Point value from a NetCDF file"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:3
+msgid "Pending."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:5
+msgid "OPeNDAP url to NetCDF file"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:7
+msgid "NetCDF variable name"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:9
+msgid "Whether ordered indices are used"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:11
+msgid "Indices for the point in the NetCDF variable"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:13
+msgid ""
+"Indices for the point in the NetCDF variable with named dimensions "
+"(dim:index)"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:15
+msgid ""
+"Nearest value for each dimension in the NetCDF variable for the point "
+"with named dimensions (dim:value)"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:17
+msgid ""
+"Thresholds for the distance to each nearest value with named dimensions "
+"(dim:threshold)"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.GetPoint:20
+msgid "**point_result** -- Information for the requested point"
+msgstr ""
+
+#: ../../source/processes/basic_climate.rst:28
+msgid "Regridding"
+msgstr ""
+
+#: ../../source/processes/basic_climate.rst:29
+msgid "TODO"
+msgstr ""
+

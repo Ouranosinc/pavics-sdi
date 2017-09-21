@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/visualization.rst:3
+msgid "Visualization"
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:1 of
+msgid "plot_timeseries *0.10* – Graphics (timeseries)"
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:3 of
+msgid ""
+"Outputs some timeseries of the file field means. Spaghetti and "
+"uncertainty plot"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess
+#: flyingpigeon.processes.MapSpatialAnalogProcess
+#: flyingpigeon.processes.PlottimeseriesProcess of
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing NetCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:7 of
+msgid ""
+"Variable to be expected in the input files (variable will be detected if "
+"not set)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess
+#: flyingpigeon.processes.MapSpatialAnalogProcess
+#: flyingpigeon.processes.PlottimeseriesProcess of
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:10 of
+msgid ""
+"* **output_log** (*text/plain*) -- Collected logs during process run. * "
+"**plotout_spagetti** (*image/png*) -- Visualisation of single variables "
+"as a spaghetti plot * **plotout_uncertainty** (*image/png*) -- "
+"Visualisation of single variables ensemble mean with uncertainty"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:10
+#: flyingpigeon.processes.MapSpatialAnalogProcess:13
+#: flyingpigeon.processes.PlottimeseriesProcess:10 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:11 of
+msgid ""
+"**plotout_spagetti** (*image/png*) -- Visualisation of single variables "
+"as a spaghetti plot"
+msgstr ""
+
+#: flyingpigeon.processes.PlottimeseriesProcess:12 of
+msgid ""
+"**plotout_uncertainty** (*image/png*) -- Visualisation of single "
+"variables ensemble mean with uncertainty"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:13
+#: flyingpigeon.processes.MapSpatialAnalogProcess:16
+#: flyingpigeon.processes.PlottimeseriesProcess:15 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:15
+#: flyingpigeon.processes.MapSpatialAnalogProcess:17
+#: flyingpigeon.processes.PlottimeseriesProcess:16 of
+msgid "`Doc <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:1 of
+msgid ""
+"analogs_viewer *0.10* – Analogues of circulation (visualization of "
+"analogs data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:3 of
+msgid "Visualisation of text output of analogue process"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:5 of
+msgid "Analogues text file computed by Analogues of Corculation processes"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:8 of
+msgid ""
+"* **output_html** (*text/html*) -- web browser compatible html file * "
+"**output_txt** (*string*) -- txt file for analogue viewer * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:8 of
+msgid "**output_html** (*text/html*) -- web browser compatible html file"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:9 of
+msgid "**output_txt** (*string*) -- txt file for analogue viewer"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:14 of
+msgid "`LSCE <http://www.lsce.ipsl.fr/en/index.php>`_"
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:1 of
+msgid ""
+"map_spatial_analog *0.1* – Map of dissimilarity values calculated by the "
+"spatial_analog process."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:3 of
+msgid ""
+"Produce map showing the dissimilarity values computed by the "
+"spatial_analog process as well as indicating by a marker the location of "
+"the target site."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:5 of
+msgid ""
+"Dissimilarity between target at selected location and candidate "
+"distributions over the entire grid."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:7 of
+msgid "Figure format"
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:9 of
+msgid "Figure title."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:12 of
+msgid ""
+"* **output_figure** (*image/png*) -- Map of dissimilarity values. * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:12 of
+msgid "**output_figure** (*image/png*) -- Map of dissimilarity values."
+msgstr ""
+

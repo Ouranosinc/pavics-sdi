@@ -1,6 +1,6 @@
 pywps>=4.0.0
 sphinx>=1.4
-cdo
+sphinx-intl
 -e git+https://github.com/huard/sphinx-autodoc-pywps.git#egg=sphinx_autodoc_pywps
 sphinx_rtd_theme
 -e git+https://github.com/Ouranosinc/PAVICS-DataCatalog.git#egg=pavics_datacatalog

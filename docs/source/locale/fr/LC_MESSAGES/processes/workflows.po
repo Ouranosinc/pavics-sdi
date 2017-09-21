@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/workflows.rst:3
+msgid "Workflows"
+msgstr ""
+
+#: malleefowl.processes.DispelWorkflow:1 of
+msgid "workflow *0.7* – Workflow"
+msgstr ""
+
+#: malleefowl.processes.DispelWorkflow:3 of
+msgid "Runs Workflow with dispel4py."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow
+#: malleefowl.processes.DispelWorkflow of
+msgid "Parameters"
+msgstr ""
+
+#: malleefowl.processes.DispelWorkflow:5 of
+msgid "Workflow description in YAML."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow
+#: malleefowl.processes.DispelWorkflow of
+msgid "Returns"
+msgstr ""
+
+#: malleefowl.processes.DispelWorkflow:8 of
+msgid ""
+"* **output** (*text/yaml*) -- Workflow result document in YAML. * "
+"**logfile** (*text/plain*) -- Workflow log file."
+msgstr ""
+
+#: malleefowl.processes.DispelWorkflow:8 of
+msgid "**output** (*text/yaml*) -- Workflow result document in YAML."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:11
+#: malleefowl.processes.DispelWorkflow:9 of
+msgid "**logfile** (*text/plain*) -- Workflow log file."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:14
+#: malleefowl.processes.DispelWorkflow:12 of
+msgid "References"
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:15
+#: malleefowl.processes.DispelWorkflow:13 of
+msgid "`Birdhouse <http://bird-house.github.io/>`_"
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:16
+#: malleefowl.processes.DispelWorkflow:14 of
+msgid "`User Guide <http://malleefowl.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:1 of
+msgid "custom_workflow *0.1* – Custom Workflow"
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:3 of
+msgid "Runs custom workflow with dispel4py."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:5 of
+msgid "Workflow description in JSON."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:7 of
+msgid "Workflow description in json as string"
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:10 of
+msgid ""
+"* **output** (*application/json*) -- Workflow result document in JSON. * "
+"**logfile** (*text/plain*) -- Workflow log file."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:10 of
+msgid "**output** (*application/json*) -- Workflow result document in JSON."
+msgstr ""
+
+#: malleefowl.processes.DispelCustomWorkflow:18 of
+msgid "Implement a PyWPS process for executing custom workflow"
+msgstr ""
+

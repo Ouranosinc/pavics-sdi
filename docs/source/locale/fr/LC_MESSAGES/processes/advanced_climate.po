@@ -1,0 +1,729 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/advanced_climate.rst:3
+msgid "Advanced climate data analysis"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:12
+msgid "Uncertainty analysis"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:1 of
+msgid "robustness *0.5* – Ensemble robustness"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:3 of
+msgid ""
+"Calculates the robustness as the ratio of noise to signal in an ensemle "
+"of timeseries"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess
+#: flyingpigeon.processes.AnalogsmodelProcess
+#: flyingpigeon.processes.AnalogsreanalyseProcess
+#: flyingpigeon.processes.AnalogsviewerProcess
+#: flyingpigeon.processes.MapSpatialAnalogProcess
+#: flyingpigeon.processes.RobustnessProcess
+#: flyingpigeon.processes.SpatialAnalogProcess
+#: flyingpigeon.processes.WeatherregimesmodelProcess
+#: flyingpigeon.processes.WeatherregimesprojectionProcess
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess of
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing NetCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:7 of
+msgid "Detailed information about the methods can be found in the documentation"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:9 of
+msgid ""
+"Beginn of the analysed period (e.g 1971; if not set, the first consistend"
+"                                   year of the ensemble will be taken)"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:11 of
+msgid ""
+"End of the analysed period (e.g. 2050 if not set,"
+"                                    the last consistend year of the "
+"ensemble will be taken)"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:13 of
+msgid "Time slice (in years) for robustness reference (default=10))"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess
+#: flyingpigeon.processes.AnalogsmodelProcess
+#: flyingpigeon.processes.AnalogsreanalyseProcess
+#: flyingpigeon.processes.AnalogsviewerProcess
+#: flyingpigeon.processes.MapSpatialAnalogProcess
+#: flyingpigeon.processes.RobustnessProcess
+#: flyingpigeon.processes.SpatialAnalogProcess
+#: flyingpigeon.processes.WeatherregimesmodelProcess
+#: flyingpigeon.processes.WeatherregimesprojectionProcess
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess of
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:16 of
+msgid ""
+"* **output_high** (*application/x-netcdf*) -- netCDF file containing "
+"calculated robustness mask * **output_low** (*application/x-netcdf*) -- "
+"netCDF file containing calculated robustness mask * **output_signal** "
+"(*application/x-netcdf*) -- netCDF file containing calculated change of "
+"mean over the timeperiod and ensemble * **output_graphic** (*image/png*) "
+"-- Graphic showing the signal difference with high and low ensemble "
+"agreement * **output_text** (*text/plain*) -- text file with a list of "
+"the used input data sets * **output_log** (*text/plain*) -- Collected "
+"logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:16 of
+msgid ""
+"**output_high** (*application/x-netcdf*) -- netCDF file containing "
+"calculated robustness mask"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:17 of
+msgid ""
+"**output_low** (*application/x-netcdf*) -- netCDF file containing "
+"calculated robustness mask"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:18 of
+msgid ""
+"**output_signal** (*application/x-netcdf*) -- netCDF file containing "
+"calculated change of mean over the timeperiod and ensemble"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:19 of
+msgid ""
+"**output_graphic** (*image/png*) -- Graphic showing the signal difference"
+" with high and low ensemble agreement"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:20 of
+msgid ""
+"**output_text** (*text/plain*) -- text file with a list of the used input"
+" data sets"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:36
+#: flyingpigeon.processes.AnalogsmodelProcess:31
+#: flyingpigeon.processes.AnalogsreanalyseProcess:33
+#: flyingpigeon.processes.AnalogsviewerProcess:10
+#: flyingpigeon.processes.MapSpatialAnalogProcess:13
+#: flyingpigeon.processes.RobustnessProcess:21
+#: flyingpigeon.processes.SpatialAnalogProcess:25
+#: flyingpigeon.processes.WeatherregimesmodelProcess:20
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:24
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:20 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:104
+#: flyingpigeon.processes.AnalogscompareProcess:39
+#: flyingpigeon.processes.AnalogsmodelProcess:34
+#: flyingpigeon.processes.AnalogsreanalyseProcess:36
+#: flyingpigeon.processes.AnalogsviewerProcess:13
+#: flyingpigeon.processes.MapSpatialAnalogProcess:16
+#: flyingpigeon.processes.RobustnessProcess:24
+#: flyingpigeon.processes.SpatialAnalogProcess:28
+#: flyingpigeon.processes.WeatherregimesmodelProcess:23
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:27
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:23 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.RobustnessProcess:25 of
+msgid "`LSCE <http://www.lsce.ipsl.fr/>`_"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:18
+msgid "Weather analogs"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:1 of
+msgid ""
+"weatherregimes_reanalyse *0.10* – Weather Regimes (based on reanalyses "
+"data)"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:3
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:3
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:3 of
+msgid ""
+"k-mean cluster analyse of the pressure patterns. Clusters are equivalent "
+"to weather regimes"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:7
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:13
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:5 of
+msgid ""
+"Select the months to define the time region (all == whole year will be "
+"analysed)"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:9
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:15
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:7 of
+msgid "Period for analysing the dataset"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:11
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:17
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:9 of
+msgid "Period for anual cycle calculation"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:5
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:11 of
+msgid "Choose a reanalyses dataset for comparison"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:13
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:13 of
+msgid "Set the number of clusters to be detected"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:16
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:16 of
+msgid ""
+"* **Routput_graphic** (*image/pdf*) -- Weather Classification * "
+"**output_pca** (*text/plain*) -- Principal components (PCA) * "
+"**output_classification** (*application/octet-stream*) -- Weather regime "
+"classification * **output_netcdf** (*application/x-netcdf*) -- Prepared "
+"netCDF file as input for weatherregime calculation * **output_log** "
+"(*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:16
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:16 of
+msgid "**Routput_graphic** (*image/pdf*) -- Weather Classification"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:17
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:20
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:17 of
+msgid "**output_pca** (*text/plain*) -- Principal components (PCA)"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:18
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:21
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:18 of
+msgid ""
+"**output_classification** (*application/octet-stream*) -- Weather regime "
+"classification"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:34
+#: flyingpigeon.processes.AnalogsmodelProcess:30
+#: flyingpigeon.processes.AnalogsreanalyseProcess:31
+#: flyingpigeon.processes.WeatherregimesmodelProcess:19
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:23
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:19 of
+msgid ""
+"**output_netcdf** (*application/x-netcdf*) -- Prepared netCDF file as "
+"input for weatherregime calculation"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:40
+#: flyingpigeon.processes.AnalogsmodelProcess:35
+#: flyingpigeon.processes.AnalogsreanalyseProcess:37
+#: flyingpigeon.processes.AnalogsviewerProcess:14
+#: flyingpigeon.processes.WeatherregimesmodelProcess:24
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:28
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:24 of
+msgid "`LSCE <http://www.lsce.ipsl.fr/en/index.php>`_"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:41
+#: flyingpigeon.processes.AnalogsmodelProcess:36
+#: flyingpigeon.processes.AnalogsreanalyseProcess:38
+#: flyingpigeon.processes.AnalogsviewerProcess:15
+#: flyingpigeon.processes.MapSpatialAnalogProcess:17
+#: flyingpigeon.processes.SpatialAnalogProcess:29
+#: flyingpigeon.processes.WeatherregimesmodelProcess:25
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:29
+#: flyingpigeon.processes.WeatherregimesreanalyseProcess:25 of
+msgid "`Doc <http://flyingpigeon.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:1 of
+msgid ""
+"weatherregimes_projection *0.10* – Weather Regimes (Projection based on "
+"precalculated statistics)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:5
+#: flyingpigeon.processes.AnalogsmodelProcess:5
+#: flyingpigeon.processes.WeatherregimesmodelProcess:5
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:7 of
+msgid "R workspace as output from weather regime reference process"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:9 of
+msgid "R datafile as output from weather regime reference process"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:11 of
+msgid "netCDF file as output from weather regime reference process"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:20 of
+msgid ""
+"* **output_pca** (*text/plain*) -- Principal components (PCA) * "
+"**output_classification** (*application/octet-stream*) -- Weather regime "
+"classification * **output_frequency** (*text/plain*) -- Weather regime "
+"frequency values per year * **output_netcdf** (*application/x-netcdf*) --"
+" Prepared netCDF file as input for weatherregime calculation * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesprojectionProcess:22 of
+msgid ""
+"**output_frequency** (*text/plain*) -- Weather regime frequency values "
+"per year"
+msgstr ""
+
+#: flyingpigeon.processes.WeatherregimesmodelProcess:1 of
+msgid ""
+"weatherregimes_model *0.10* – Weather Regimes (based on climate model "
+"data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:1 of
+msgid ""
+"analogs_reanalyse *0.10* – Analogues of circulation (based on reanalyses "
+"data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:3
+#: flyingpigeon.processes.AnalogsmodelProcess:3
+#: flyingpigeon.processes.AnalogsreanalyseProcess:3 of
+msgid "Search for days with analogue pressure pattern for reanalyses data sets"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:9
+#: flyingpigeon.processes.AnalogsmodelProcess:7
+#: flyingpigeon.processes.AnalogsreanalyseProcess:7 of
+msgid "First day of the period to be analysed"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:11
+#: flyingpigeon.processes.AnalogsmodelProcess:9
+#: flyingpigeon.processes.AnalogsreanalyseProcess:9 of
+msgid "Last day of the period to be analysed"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:13
+#: flyingpigeon.processes.AnalogsmodelProcess:11
+#: flyingpigeon.processes.AnalogsreanalyseProcess:11 of
+msgid "First day of the period where analogues being picked"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:15
+#: flyingpigeon.processes.AnalogsmodelProcess:13
+#: flyingpigeon.processes.AnalogsreanalyseProcess:13 of
+msgid "Last day of the period where analogues being picked"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:17
+#: flyingpigeon.processes.AnalogsmodelProcess:15
+#: flyingpigeon.processes.AnalogsreanalyseProcess:15 of
+msgid "Normalize by subtraction of annual cycle"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:19
+#: flyingpigeon.processes.AnalogsmodelProcess:17
+#: flyingpigeon.processes.AnalogsreanalyseProcess:17 of
+msgid "Number of days befor and after the date to be analysed"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:21
+#: flyingpigeon.processes.AnalogsmodelProcess:19
+#: flyingpigeon.processes.AnalogsreanalyseProcess:19 of
+msgid "Number of analogues to be detected"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:23
+#: flyingpigeon.processes.AnalogsmodelProcess:21
+#: flyingpigeon.processes.AnalogsreanalyseProcess:21 of
+msgid "Distance function to define analogues"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:25
+#: flyingpigeon.processes.AnalogsmodelProcess:23
+#: flyingpigeon.processes.AnalogsreanalyseProcess:23 of
+msgid "Choose the format for the analogue output file"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:27
+#: flyingpigeon.processes.AnalogsmodelProcess:25
+#: flyingpigeon.processes.AnalogsreanalyseProcess:25 of
+msgid "Number of days following the analogue day the distance will be averaged"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:28 of
+msgid ""
+"* **config** (*text/plain*) -- Config file used for the Fortran process *"
+" **analogs** (*text/plain*) -- mulit-column text file * "
+"**formated_analogs** (*text/plain*) -- Formated analogues file for viewer"
+" * **output_netcdf** (*application/x-netcdf*) -- Prepared netCDF file as "
+"input for weatherregime calculation * **output** (*text/html*) -- "
+"Interactive visualization of calculated analogues * **output_log** "
+"(*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:28 of
+msgid "**config** (*text/plain*) -- Config file used for the Fortran process"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:33
+#: flyingpigeon.processes.AnalogsmodelProcess:29
+#: flyingpigeon.processes.AnalogsreanalyseProcess:29 of
+msgid "**analogs** (*text/plain*) -- mulit-column text file"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:30 of
+msgid "**formated_analogs** (*text/plain*) -- Formated analogues file for viewer"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsreanalyseProcess:32 of
+msgid ""
+"**output** (*text/html*) -- Interactive visualization of calculated "
+"analogues"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsmodelProcess:1 of
+msgid ""
+"analogs_model *0.10* – Analogues of circulation (based on climate model "
+"data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsmodelProcess:28 of
+msgid ""
+"* **config** (*string*) -- Config file used for the Fortran process * "
+"**analogs** (*text/plain*) -- mulit-column text file * **output_netcdf** "
+"(*application/x-netcdf*) -- Prepared netCDF file as input for "
+"weatherregime calculation * **output_log** (*text/plain*) -- Collected "
+"logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:32
+#: flyingpigeon.processes.AnalogsmodelProcess:28 of
+msgid "**config** (*string*) -- Config file used for the Fortran process"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:1 of
+msgid ""
+"analogs_compare *0.10* – Analogues of circulation (based on reanalyses "
+"data and climate model data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:7 of
+msgid "Choose a reanalyses model for comparison"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:29 of
+msgid ""
+"Compare direction. Pick analog days in Modeldata for a simulation period "
+"in Reanalyses data                                     (re2mo) or vice "
+"versa"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:32 of
+msgid ""
+"* **config** (*string*) -- Config file used for the Fortran process * "
+"**analogs** (*text/plain*) -- mulit-column text file * **output_netcdf** "
+"(*application/x-netcdf*) -- Prepared netCDF file as input for "
+"weatherregime calculation * **target_netcdf** (*application/x-netcdf*) --"
+" File with subset and normaized values of target model * **output_log** "
+"(*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.AnalogscompareProcess:35 of
+msgid ""
+"**target_netcdf** (*application/x-netcdf*) -- File with subset and "
+"normaized values of target model"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:1 of
+msgid ""
+"analogs_viewer *0.10* – Analogues of circulation (visualization of "
+"analogs data)"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:3 of
+msgid "Visualisation of text output of analogue process"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:5 of
+msgid "Analogues text file computed by Analogues of Corculation processes"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:8 of
+msgid ""
+"* **output_html** (*text/html*) -- web browser compatible html file * "
+"**output_txt** (*string*) -- txt file for analogue viewer * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:8 of
+msgid "**output_html** (*text/html*) -- web browser compatible html file"
+msgstr ""
+
+#: flyingpigeon.processes.AnalogsviewerProcess:9 of
+msgid "**output_txt** (*string*) -- txt file for analogue viewer"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:37
+msgid "Spatial analogs"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:39
+msgid ""
+"Spatial analogues are maps showing which areas have a climate today that "
+"is *analogous* to the future climate of a given place. This type of map "
+"can be useful for climate adaptation to see which places are coping today"
+" with specific climate conditions. For example, officials from a city "
+"located in a temperate region could learn from the experience of another "
+"city where heatwaves are a common occurrence and intervention plans have "
+"been improved over time."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:46
+msgid ""
+"Spatial analogues are estimated by comparing the distribution of climate "
+"indices computed at the target location over the future period with the "
+"distribution of the same climate indices computed over a reference period"
+" for multiple candidate regions. A number of methodological choices thus "
+"enter the computation:"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:51
+msgid "the climate indices,"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:52
+msgid "the metric measuring the difference between both distributions,"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:53
+msgid "the reference data from which to compute the indices,"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:54
+msgid "the future climate scenario to compute the target indices."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:56
+msgid ""
+"The climate indices chosen to compute the spatial analogs are usually "
+"annual values of indices relevant to the intended audience of these maps."
+" For example, if the maps are made for the grape industry, then the "
+"climate indices used could be the length of the frost-free season, "
+"growing degree-days, annual winter minimum temperature andand annual "
+"number of very cold days [Roy2017]_."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:62
+msgid ""
+"The :class:`flyingpigeon.processes.SpatialAnalogProcess` offers six "
+"distance metrics: standard euclidean distance, nearest neighbor, Zech-"
+"Aslan energy distance, Kolmogorov-Smirnov statistic,Friedman-Rafsky runs "
+"statistics and the Kullback-Leibler divergence. A description and "
+"reference for each distance metric is given in "
+":mod:`flyingpigeon.dissimilarity` and based on [Grenier2013]_."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:69
+msgid ""
+"The reference data set should cover the target site in order to perform "
+"validation tests, and a large area around it. Global or continental scale"
+" datasets are generally used, but the spatial resolution should be high "
+"enough for users to be able to *recognize* climate features they are "
+"familiar with."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:74
+msgid ""
+"Different future climate scenarios from climate models can be used to "
+"compute the target distribution over the future period. Usually the raw "
+"model outputs are bias-corrected with the observation dataset. This is "
+"done to avoid discrepancies that would be introduced by systematic model "
+"errors. One way to validate the results is to compute the spatial analog "
+"using the simulation over the historical period. The best analog region "
+"should thus cover the target site."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:81
+msgid ""
+"The WPS process automatically extracts the target series from a netCDF "
+"file using geographical coordinates and the names of the climate indices "
+"(the name of the climate indices should be the same for both netCDF "
+"files). It also allows users to specify the period over which the "
+"distributions should be compared, for both the target and candidate "
+"datasets."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:87
+msgid ""
+"An accompanying process "
+":class:`flyingpigeon.processes.MapSpatialAnalogProcess` can then be "
+"called to create a graphic displaying the dissimilarity value. An example"
+" of such graphic is shown below, with the target location indicated by a "
+"white marker."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:95
+msgid ""
+"A map of the dissimilarity metric computed from mean annual precipitation"
+" and temperature values in Montreal over the period 1970-1990."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:1 of
+msgid "spatial_analog *0.1* – Spatial analog of a target climate."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:3 of
+msgid ""
+"Spatial analogs based on the comparison of climate indices. The algorithm"
+" compares the distribution of the target indices with the distribution of"
+" spatially distributed candidate indices and returns a value  measuring "
+"the dissimilarity between both distributions over the candidate grid."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:5 of
+msgid ""
+"NetCDF files or archive (tar/zip)  storing the candidate indices. The "
+"output will be stored on this grid."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:7 of
+msgid ""
+"NetCDF files or archive (tar/zip).containing netcdf files storing the "
+"target indices."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:9 of
+msgid "Geographical coordinates (lon,lat) of the target location."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:11 of
+msgid "One or more climate indices to use for the comparison."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:13 of
+msgid "Dissimilarity metric comparing distributions."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:15 of
+msgid ""
+"Beginning of period (YYYY-MM-DD) for candidate data. Defaults to first "
+"entry."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:17 of
+msgid "End of period (YYYY-MM_DD) for candidate data. Defaults to last entry."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:19 of
+msgid "Beginning of period (YYYY-MM-DD) for target data. Defaults to first entry."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:21 of
+msgid "End of period (YYYY-MM_DD) for target data. Defaults to last entry."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:24 of
+msgid ""
+"* **output_netcdf** (*application/x-netcdf*) -- Dissimilarity between "
+"target at selected location and candidate distributions over the entire "
+"grid. * **output_log** (*text/plain*) -- Collected logs during process "
+"run."
+msgstr ""
+
+#: flyingpigeon.processes.SpatialAnalogProcess:24 of
+msgid ""
+"**output_netcdf** (*application/x-netcdf*) -- Dissimilarity between "
+"target at selected location and candidate distributions over the entire "
+"grid."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:1 of
+msgid ""
+"map_spatial_analog *0.1* – Map of dissimilarity values calculated by the "
+"spatial_analog process."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:3 of
+msgid ""
+"Produce map showing the dissimilarity values computed by the "
+"spatial_analog process as well as indicating by a marker the location of "
+"the target site."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:5 of
+msgid ""
+"Dissimilarity between target at selected location and candidate "
+"distributions over the entire grid."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:7 of
+msgid "Figure format"
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:9 of
+msgid "Figure title."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:12 of
+msgid ""
+"* **output_figure** (*image/png*) -- Map of dissimilarity values. * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.MapSpatialAnalogProcess:12 of
+msgid "**output_figure** (*image/png*) -- Map of dissimilarity values."
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:105
+msgid ""
+"Roy, P., Grenier, P., Barriault, E. et al. Climatic Change (2017) 143: "
+"43. `<doi:10.1007/s10584-017-1960-x>`_"
+msgstr ""
+
+#: ../../source/processes/advanced_climate.rst:106
+msgid ""
+"Grenier, P., A.-C. Parent, D. Huard, F. Anctil, and D. Chaumont, 2013: An"
+" assessment of six dissimilarity metrics for climate analogs. J. Appl. "
+"Meteor. Climatol., 52, 733–752, `<doi:10.1175/JAMC-D-12-0170.1>`_"
+msgstr ""
+

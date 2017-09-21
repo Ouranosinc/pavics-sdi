@@ -60,6 +60,12 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
+.PHONY: html_fr
+html_fr:
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) -D language='fr' $(BUILDDIR)/html/fr
+	@echo
+	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
 .PHONY: dirhtml
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
@@ -232,7 +238,7 @@ dummy:
 	@echo "Build finished. Dummy builder generates no files."
 
 .PHONY: gh-pages
-gh-pages: html
+gh-pages: html html_fr
 	cp -r $(BUILDDIR)/html/* $(GHBUILDDIR)/html/
 	cd $(GHBUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
 	@echo

@@ -1,0 +1,51 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/dev/builddocs.rst:3
+msgid "Building the docs"
+msgstr ""
+
+#: ../../source/dev/builddocs.rst:5
+msgid "To build the docs, grab a copy of the `pavics-sdi`_ repository on github::"
+msgstr ""
+
+#: ../../source/dev/builddocs.rst:9
+msgid ""
+"This is the repository storing the overall system configuration for the "
+"PAVICS platform. Because processes are documented using the `autoclass` "
+"directive, you'll also need to install a few other packages that "
+"constribute services to PAVICS::"
+msgstr ""
+
+#: ../../source/dev/builddocs.rst:31
+msgid "Then if all went well, you should be able to build the docs::"
+msgstr ""
+
+#: ../../source/dev/builddocs.rst:36
+msgid ""
+"If you have write permissions to `pavics-sdi`_, you can also deploy the "
+"html `online <https://ouranosinc.github.io/pavics-sdi/>`_::"
+msgstr ""
+
+#: ../../source/dev/builddocs.rst:40
+msgid ""
+"but this requires creating a build directory according to these "
+"`instructions <https://daler.github.io/sphinxdoc-test/includeme.html>`_."
+msgstr ""
+

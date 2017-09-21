@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/indices.rst:3
+msgid "Climate indices"
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:1 of
+msgid "indices_single *0.10* – Climate indices (Single variable)"
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:3 of
+msgid "Climate index calculated from one daily input variable."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess
+#: flyingpigeon.processes.IndicessingleProcess of
+msgid "Parameters"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:5
+#: flyingpigeon.processes.IndicessingleProcess:5 of
+msgid "NetCDF Files or archive (tar/zip) containing netCDF files."
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:7 of
+msgid "Climate index code."
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:9 of
+msgid "Temporal group over which the index is computed."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:9
+#: flyingpigeon.processes.IndicessingleProcess:11 of
+msgid ""
+"Country code, see ISO-3166-3:                          "
+"https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements"
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:13 of
+msgid ""
+"If Mosaic is checked, selected polygons be clipped as a mosaic for each "
+"input file"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess
+#: flyingpigeon.processes.IndicessingleProcess of
+msgid "Returns"
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:16 of
+msgid ""
+"* **output_archive** (*application/x-tar*) -- Tar archive of the netCDF "
+"files storing the index values. * **ncout** (*application/x-netcdf*) -- "
+"NetCDF file storing the index computed over one dataset. * **output_log**"
+" (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:16 of
+msgid ""
+"**output_archive** (*application/x-tar*) -- Tar archive of the netCDF "
+"files storing the index values."
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:17 of
+msgid ""
+"**ncout** (*application/x-netcdf*) -- NetCDF file storing the index "
+"computed over one dataset."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:16
+#: flyingpigeon.processes.IndicessingleProcess:18 of
+msgid "**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:19
+#: flyingpigeon.processes.IndicessingleProcess:21 of
+msgid "References"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:20
+#: flyingpigeon.processes.IndicessingleProcess:22 of
+msgid ""
+"`Doc <http://flyingpigeon.readthedocs.io/en/latest/descriptions/"
+"                 index.html#climate-indices>`_"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:21
+#: flyingpigeon.processes.IndicessingleProcess:23 of
+msgid "`ICCLIM <http://icclim.readthedocs.io/en/latest/>`_"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:22
+#: flyingpigeon.processes.IndicessingleProcess:24 of
+msgid ""
+"`Percentile-based indices <http://flyingpigeon.readthedocs.io/en/"
+"                latest/descriptions/indices.html#percentile-based-"
+"indices>`_"
+msgstr ""
+
+#: flyingpigeon.processes.IndicessingleProcess:26 of
+msgid ""
+"TODO: improved description TODO: additional ows:metadata to display "
+"indices and regions."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:1 of
+msgid "indices_percentiledays *0.10* – Climate indices (Daily percentiles)"
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:3 of
+msgid ""
+"Climatological percentile for each day of the year computed over the "
+"entire dataset."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:7 of
+msgid "Percentile value [1-100]."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:11 of
+msgid ""
+"If Mosaic is checked, selected polygons be clipped as a mosaic for each "
+"input file."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:14 of
+msgid ""
+"* **output_archive** (*application/x-tar*) -- Tar archive of the netCDF "
+"files storing the percentile values. * **ncout** (*application/x-netcdf*)"
+" -- NetCDF file storing the percentiles computed over one dataset. * "
+"**output_log** (*text/plain*) -- Collected logs during process run."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:14 of
+msgid ""
+"**output_archive** (*application/x-tar*) -- Tar archive of the netCDF "
+"files storing the percentile values."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:15 of
+msgid ""
+"**ncout** (*application/x-netcdf*) -- NetCDF file storing the percentiles"
+" computed over one dataset."
+msgstr ""
+
+#: flyingpigeon.processes.IndicespercentiledaysProcess:24 of
+msgid ""
+"TODO: need a more detailed description and an example. TODO: data input "
+"might need a data selection filter? metadata attributes could be used for"
+" this."
+msgstr ""
+

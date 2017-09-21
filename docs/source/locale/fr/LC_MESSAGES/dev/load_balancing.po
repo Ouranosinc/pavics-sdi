@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/dev/load_balancing.rst:5
+msgid "Load balancing"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:7
+msgid ""
+"Here we'll cover the case where pavics-sdi is installed on more than one "
+"machine and you want to balance the load across these machines. This is "
+"done with `NGINX`_ and requires modifications to :file:`docker-"
+"compose.yml` and creating a configuration file for the `NGINX`_ server."
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:10
+msgid "Modifying the :file:`docker-compose.yml`"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:12
+msgid ""
+"To enable load balancing, we need a proxy to redirect requests to "
+"machines according to their usage. This is done by mapping proxy ports "
+"(5XXXX) to the *service* ports, such as those of flyingpigeon (8093) and "
+"malleefowl (8091)."
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:14
+msgid ":file:`docker-compose.yml`"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:31
+msgid "Modifying the Nginx configuration"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:33
+msgid ""
+"In the :file:`config/proxy` directory, there should be a file named "
+":file:`nginx.conf`. This file can be edited for example to specify the "
+"number of *worker_processes*. In the :file:`conf.d` directory, there are "
+"a number of additional configuration file for each *load balanced* "
+"service, for example :file:`flyingpigeon.conf`, which would look like:"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:35
+msgid ":file:`config/proxy/conf.d/flyingpigeon.conf`"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:51
+msgid ""
+"This tell the proxy, listing on port 8093, to redirect requests to "
+"servers 1, 2 or 3 according to the ``machineid`` argument passed in the "
+"request header. That is, requests with the same ``machineid`` will be "
+"sent to the same server. This is important to control since output files "
+"are not automatically visible to all servers. So if for example process A"
+" downloads a file from a remote server and process B subsets the file, "
+"both have to be run on the same machine otherwise process B won't find "
+"the downloaded file."
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:55
+msgid "Server configuration is static"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:56
+msgid ""
+"It is not possible to assign port numbers to environment variables (eg "
+"``$PORT_NUMBER``)"
+msgstr ""
+
+#: ../../source/dev/load_balancing.rst:57
+msgid ""
+"When you change a configuration file and restart NGINX to pick up the new"
+" configuration, it implements a *graceful restart*. Both the old and new "
+"copies of NGINX run side-by-side for a short period of time. The old "
+"processes don’t accept any new connections and terminate once all their "
+"existing connections terminate."
+msgstr ""
+

@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Ouranos & CRIM
+# This file is distributed under the same license as the PAVICS package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PAVICS 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-19 16:48-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../source/processes/maintenance.rst:3
+msgid "Data administration"
+msgstr ""
+
+#: ../../source/processes/maintenance.rst:6
+msgid "SOLR"
+msgstr ""
+
+#: ../../source/processes/maintenance.rst:8
+msgid "The following processes are used to interact with the SOLR database."
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler:1
+msgid "pavicrawler *0.1* – PAVICS Crawler"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler
+#: pavics_datacatalog.wps_processes.PavicsSearch
+#: pavics_datacatalog.wps_processes.PavicsUpdate
+#: pavics_datacatalog.wps_processes.PavicsValidate
+msgid "Parameters"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler:5
+msgid "Files to crawl"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler:7
+msgid "Thredds server to scan"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler
+#: pavics_datacatalog.wps_processes.PavicsSearch
+#: pavics_datacatalog.wps_processes.PavicsUpdate
+#: pavics_datacatalog.wps_processes.PavicsValidate
+msgid "Returns"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler:10
+msgid "**crawler_result** -- PAVICS Crawler Result"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsCrawler
+#: pavics_datacatalog.wps_processes.PavicsSearch
+#: pavics_datacatalog.wps_processes.PavicsUpdate
+#: pavics_datacatalog.wps_processes.PavicsValidate
+msgid "Return type"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:1
+msgid "pavicsearch *0.1* – PAVICS Catalogue Search"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:5
+msgid "Facet values and counts"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:7
+msgid "Shards to be queried"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:9
+msgid "Pagination offset"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:11
+msgid "Pagination limit"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:13
+msgid "Metadata fields to return"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:15
+msgid "Output Format"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:17
+msgid "Free text search"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:19
+msgid "Distributed query"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:21
+msgid "Type of the record"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:23
+msgid "Search constraints"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsSearch:26
+msgid "**search_result** -- PAVICS Catalogue Search Result"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsUpdate:1
+msgid "pavicsupdate *0.1* – PAVICS Catalogue Update"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsUpdate:5
+msgid "id field of the dataset or file"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsUpdate:7
+msgid "Dataset or File"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsUpdate:9
+msgid "Fields to update with their new values"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsUpdate:12
+msgid "**update_result** -- PAVICS Catalogue Update Result"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsValidate:1
+msgid "pavicsvalidate *0.1* – PAVICS Catalogue Validation"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsValidate:5
+msgid "Required facets"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsValidate:7
+msgid "Search paths"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsValidate:9
+msgid "Search files"
+msgstr ""
+
+#: of pavics_datacatalog.wps_processes.PavicsValidate:12
+msgid "**validation_result** -- Validation result"
+msgstr ""
+
