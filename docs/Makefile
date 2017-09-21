@@ -78,6 +78,12 @@ singlehtml:
 	@echo
 	@echo "Build finished. The HTML page is in $(BUILDDIR)/singlehtml."
 
+.PHONY: workflow_schema
+workflow_schema:
+	python -c "import os, json, malleefowl; s = malleefowl.custom_workflow.WORKFLOW_SCHEMA; F = open(os.path.join('source', 'workflows', 'workflow_schema.json'), 'w'); F.write(json.dumps(s))"
+	@echo
+	@echo "Copied WORKFLOW_SCHEMA to file."
+
 .PHONY: pickle
 pickle:
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) $(BUILDDIR)/pickle
@@ -243,3 +249,4 @@ gh-pages: html html_fr
 	cd $(GHBUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
 	@echo
 	@echo "Commited to gh-pages."
+workflow_schema:
