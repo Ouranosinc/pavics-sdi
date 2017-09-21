@@ -11,3 +11,4 @@ Developer Documentation
    load_balancing
    vm
    builddocs
+   geoserver
