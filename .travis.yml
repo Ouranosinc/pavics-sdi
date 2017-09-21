@@ -15,6 +15,10 @@ install:
     - conda install --yes python="2.7" sphinx
     - pip install --user travis-sphinx
     - pip install --user -r requirements.txt
+    - git clone git@github.com:Ouranosinc/flyingpigeon.git
+    - cd flyingpigeon; make clean install; cd ..
+    - git clone git@github.com:Ouranosinc/malleefowl.git
+    - cd malleefowl; make clean install; cd ..
 
 script:
     - travis-sphinx build
