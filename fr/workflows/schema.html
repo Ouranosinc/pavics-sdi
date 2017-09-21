@@ -1,0 +1,632 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Workflow schema &mdash; documentation PAVICS 0.1</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Recherche" href="../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+        <link rel="up" title="Using workflows" href="index.html"/>
+        <link rel="next" title="TODO" href="../todo.html"/>
+        <link rel="prev" title="Examples" href="examples.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Using workflows</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="vocabulary.html">Workflow vocabulary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Workflow schema</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#workflow">Workflow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Using workflows</a> &raquo;</li>
+        
+      <li>Workflow schema</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/workflows/schema.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="workflow-schema">
+<span id="schema"></span><h1>Workflow schema<a class="headerlink" href="#workflow-schema" title="Lien permanent vers ce titre">¶</a></h1>
+<p>This is the json schema describing workflows. It is defined in <code class="file docutils literal"><span class="pre">malleefowl/custom_workflow.py</span></code></p>
+<div class="section" id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Lien permanent vers ce titre">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="8">Advanced workflow schema</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="7"><em>object</em></td>
+</tr>
+<tr class="row-odd"><td colspan="8">properties</td>
+</tr>
+<tr class="row-even"><td rowspan="5"><ul class="first last simple">
+<li>tasks</li>
+</ul>
+</td>
+<td colspan="7">Array of workflow task</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="6"><em>array</em></td>
+</tr>
+<tr class="row-even"><td colspan="7">items</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="6"><span class="xref std std-ref">#/definitions/workflow_task_schema</span></td>
+</tr>
+<tr class="row-even"><td>minItems</td>
+<td colspan="6">1</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><ul class="first last simple">
+<li><strong>name</strong></li>
+</ul>
+</td>
+<td colspan="7">Workflow name</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="6"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><ul class="first last simple">
+<li>parallel_groups</li>
+</ul>
+</td>
+<td colspan="7">Array of group of tasks being executed on multiple processes</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="6"><em>array</em></td>
+</tr>
+<tr class="row-odd"><td colspan="7">items</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="6"><span class="xref std std-ref">#/definitions/group_of_task_schema</span></td>
+</tr>
+<tr class="row-odd"><td>minItems</td>
+<td colspan="6">1</td>
+</tr>
+<tr class="row-even"><td>additionalProperties</td>
+<td colspan="7">False</td>
+</tr>
+<tr class="row-odd"><td>minProperties</td>
+<td colspan="7">2</td>
+</tr>
+<tr class="row-even"><td colspan="8">definitions</td>
+</tr>
+<tr class="row-odd"><td rowspan="37"><ul class="first last simple">
+<li>workflow_task_schema</li>
+</ul>
+</td>
+<td colspan="7">Describe a WPS process task</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="6"><em>object</em></td>
+</tr>
+<tr class="row-odd"><td colspan="7">properties</td>
+</tr>
+<tr class="row-even"><td rowspan="10"><ul class="first last simple">
+<li>inputs</li>
+</ul>
+</td>
+<td colspan="6">Dictionary of inputs that must be fed to the WPS process</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>object</em></td>
+</tr>
+<tr class="row-even"><td colspan="6">patternProperties</td>
+</tr>
+<tr class="row-odd"><td rowspan="7"><ul class="first last simple">
+<li>.*</li>
+</ul>
+</td>
+<td rowspan="7">oneOf</td>
+<td rowspan="2"><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="3">Data that must be fed to this input</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="2"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="3">Array of data that must be fed to this input</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="2"><em>array</em></td>
+</tr>
+<tr class="row-odd"><td colspan="3">items</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>type</td>
+<td><em>string</em></td>
+</tr>
+<tr class="row-odd"><td>minItems</td>
+<td colspan="2">1</td>
+</tr>
+<tr class="row-even"><td rowspan="2"><ul class="first last simple">
+<li><strong>name</strong></li>
+</ul>
+</td>
+<td colspan="6">Unique name given to each workflow task</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><ul class="first last simple">
+<li><strong>url</strong></li>
+</ul>
+</td>
+<td colspan="6">Url of the WPS provider</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-even"><td rowspan="9"><ul class="first last simple">
+<li>linked_inputs</li>
+</ul>
+</td>
+<td colspan="6">Dictionary of dynamic inputs that must be fed to the WPS process and obtained by the output of other tasks</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>object</em></td>
+</tr>
+<tr class="row-even"><td colspan="6">patternProperties</td>
+</tr>
+<tr class="row-odd"><td rowspan="6"><ul class="first last simple">
+<li>.*</li>
+</ul>
+</td>
+<td rowspan="6">oneOf</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="3"><span class="xref std std-ref">#/definitions/input_description_schema</span></td>
+</tr>
+<tr class="row-even"><td rowspan="5"><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="3">Array of input description that must be fed to this input</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="2"><em>array</em></td>
+</tr>
+<tr class="row-even"><td colspan="3">items</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="2"><span class="xref std std-ref">#/definitions/input_description_schema</span></td>
+</tr>
+<tr class="row-even"><td>minItems</td>
+<td colspan="2">1</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><ul class="first last simple">
+<li><strong>identifier</strong></li>
+</ul>
+</td>
+<td colspan="6">Identifier of a WPS process</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td rowspan="8"><ul class="first last simple">
+<li>progress_range</li>
+</ul>
+</td>
+<td colspan="6">Progress range to map the whole progress of this task</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>array</em></td>
+</tr>
+<tr class="row-odd"><td colspan="6">items</td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>type</td>
+<td colspan="4"><em>number</em></td>
+</tr>
+<tr class="row-odd"><td>maximum</td>
+<td colspan="4">100</td>
+</tr>
+<tr class="row-even"><td>minimum</td>
+<td colspan="4">0</td>
+</tr>
+<tr class="row-odd"><td>maxItems</td>
+<td colspan="5">2</td>
+</tr>
+<tr class="row-even"><td>minItems</td>
+<td colspan="5">2</td>
+</tr>
+<tr class="row-odd"><td>additionalProperties</td>
+<td colspan="6">False</td>
+</tr>
+<tr class="row-even"><td rowspan="10"><ul class="first last simple">
+<li>input_description_schema</li>
+</ul>
+</td>
+<td colspan="7">Description of an input source</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="6"><em>object</em></td>
+</tr>
+<tr class="row-even"><td colspan="7">properties</td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><ul class="first last simple">
+<li>output</li>
+</ul>
+</td>
+<td colspan="6">Task output name</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><ul class="first last simple">
+<li>as_reference</li>
+</ul>
+</td>
+<td colspan="6">Specify if the task output should be obtained as a reference or not</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>boolean</em></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><ul class="first last simple">
+<li><strong>task</strong></li>
+</ul>
+</td>
+<td colspan="6">Task name</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td>additionalProperties</td>
+<td colspan="6">False</td>
+</tr>
+<tr class="row-even"><td rowspan="21"><ul class="first last simple">
+<li>group_of_task_schema</li>
+</ul>
+</td>
+<td colspan="7">Describe a group of tasks to be run concurrently</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="6"><em>object</em></td>
+</tr>
+<tr class="row-even"><td colspan="7">properties</td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="first last simple">
+<li><strong>max_processes</strong></li>
+</ul>
+</td>
+<td colspan="6">Number of processes to run concurrently to process the data</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="5"><em>number</em></td>
+</tr>
+<tr class="row-odd"><td>minimum</td>
+<td colspan="5">1</td>
+</tr>
+<tr class="row-even"><td rowspan="5"><ul class="first last simple">
+<li><strong>tasks</strong></li>
+</ul>
+</td>
+<td colspan="6">Array of workflow task to run concurrently inside the group</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>array</em></td>
+</tr>
+<tr class="row-even"><td colspan="6">items</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="5"><span class="xref std std-ref">#/definitions/workflow_task_schema</span></td>
+</tr>
+<tr class="row-even"><td>minItems</td>
+<td colspan="5">1</td>
+</tr>
+<tr class="row-odd"><td><ul class="first last simple">
+<li><strong>reduce</strong></li>
+</ul>
+</td>
+<td colspan="6"><span class="xref std std-ref">#/definitions/input_description_schema</span></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><ul class="first last simple">
+<li><strong>name</strong></li>
+</ul>
+</td>
+<td colspan="6">Group of task name</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td colspan="5"><em>string</em></td>
+</tr>
+<tr class="row-even"><td rowspan="6"><ul class="first last simple">
+<li><strong>map</strong></li>
+</ul>
+</td>
+<td rowspan="6">oneOf</td>
+<td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="4"><span class="xref std std-ref">#/definitions/input_description_schema</span></td>
+</tr>
+<tr class="row-odd"><td rowspan="5"><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td colspan="4">Array of data that has to be mapped directly</td>
+</tr>
+<tr class="row-even"><td>type</td>
+<td colspan="3"><em>array</em></td>
+</tr>
+<tr class="row-odd"><td colspan="4">items</td>
+</tr>
+<tr class="row-even"><td><ul class="first last simple">
+<li></li>
+</ul>
+</td>
+<td>type</td>
+<td colspan="2"><em>string</em></td>
+</tr>
+<tr class="row-odd"><td>minItems</td>
+<td colspan="3">1</td>
+</tr>
+<tr class="row-even"><td>additionalProperties</td>
+<td colspan="6">False</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../todo.html" class="btn btn-neutral float-right" title="TODO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="examples.html" class="btn btn-neutral" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

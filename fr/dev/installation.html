@@ -8,10 +8,12 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Deployment &mdash; documentation PAVICS 0.1</title>
+  <title>Installation and Configuration &mdash; documentation PAVICS 0.1</title>
   
 
   
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
   
   
@@ -97,8 +99,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Deployment</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hardware-configuration">Hardware configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Configuration</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
@@ -115,11 +116,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
 
             
@@ -166,7 +171,7 @@
         
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>Installation and Deployment</li>
+      <li>Installation and Configuration</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -185,16 +190,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation-and-deployment">
-<h1>Installation and Deployment<a class="headerlink" href="#installation-and-deployment" title="Lien permanent vers ce titre">¶</a></h1>
+  <div class="section" id="installation-and-configuration">
+<h1>Installation and Configuration<a class="headerlink" href="#installation-and-configuration" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
 </pre></div>
 </div>
 <p>Most of the code base has been forked from the Birdhouse project which already has multiple DockerHub <a class="reference external" href="https://hub.docker.com/u/birdhouse">build processes</a>. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.</p>
-<div class="section" id="hardware-configuration">
-<h2>Hardware configuration<a class="headerlink" href="#hardware-configuration" title="Lien permanent vers ce titre">¶</a></h2>
-</div>
 <div class="section" id="installation-using-docker-compose">
 <h2>Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code><a class="headerlink" href="#installation-using-docker-compose" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Let’s assume that you have a LinuxOS with <a class="reference external" href="http://docker.com">Docker</a> (&gt;1.10) installed.

@@ -1,15 +1,12 @@
-===========================
-Installation and Deployment
-===========================
+==============================
+Installation and Configuration
+==============================
 
 Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of `DockerHub`_. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The `resulting images <https://hub.docker.com/u/pavics/>`_ are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command::
 
    docker pull pavics/pavics-datacatalog
 
 Most of the code base has been forked from the Birdhouse project which already has multiple DockerHub `build processes <https://hub.docker.com/u/birdhouse>`_. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.
-
-Hardware configuration
-======================
 
 
 Installation using ``docker-compose``

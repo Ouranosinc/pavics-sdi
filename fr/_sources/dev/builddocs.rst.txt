@@ -23,11 +23,6 @@ This is the repository storing the overall system configuration for the PAVICS p
     make clean install
     cd ..
 
-    git clone git@github.com:Ouranosinc/PAVICS-DataCatalog.git
-    cd PAVICS-Datacatalog
-    python setup.py install
-    cd ..
-
 There are other requirements (sphinx and a few extensions) that can be installed using pip::
 
    pip install -r requirements.txt

@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
   
   
 
@@ -37,8 +39,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="System Architecture" href="../arch/index.html"/>
-        <link rel="prev" title="Load balancing" href="load_balancing.html"/> 
+        <link rel="next" title="Geoserver administration" href="geoserver.html"/>
+        <link rel="prev" title="VM configuration" href="vm.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -97,16 +99,20 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Building the docs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#translations">Translations</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
 
             
@@ -193,11 +199,6 @@
 <span class="n">cd</span> <span class="n">hummingbird</span>
 <span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
 <span class="n">cd</span> <span class="o">..</span>
-
-<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">PAVICS</span><span class="o">-</span><span class="n">Datacatalog</span>
-<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
-<span class="n">cd</span> <span class="o">..</span>
 </pre></div>
 </div>
 <p>There are other requirements (sphinx and a few extensions) that can be installed using pip:</p>
@@ -247,10 +248,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../arch/index.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="geoserver.html" class="btn btn-neutral float-right" title="Geoserver administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="load_balancing.html" class="btn btn-neutral" title="Load balancing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="vm.html" class="btn btn-neutral" title="VM configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

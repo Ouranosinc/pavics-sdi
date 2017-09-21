@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
   
   
 
@@ -36,7 +38,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
-        <link rel="next" title="Installation and Deployment" href="installation.html"/>
+        <link rel="next" title="Installation and Configuration" href="installation.html"/>
         <link rel="prev" title="Searching for data" href="../tutorials/searching.html"/> 
 
   
@@ -96,13 +98,17 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
 </ul>
 
             
@@ -170,8 +176,7 @@
 <h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and Deployment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#hardware-configuration">Hardware configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="installation.html#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
@@ -184,10 +189,18 @@
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html#modifying-the-docker-compose-yml">Modifying the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="vm.html">VM configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#data-volumes">Data volumes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#docker-volume">Docker volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#automount">Automount</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html#hostname-resolution">Hostname resolution</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="builddocs.html">Building the docs</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html#translations">Translations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 </ul>
 </div>
 </div>
@@ -202,7 +215,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation and Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation and Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../tutorials/searching.html" class="btn btn-neutral" title="Searching for data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
