@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Catalog &mdash; PAVICS 0.1 documentation</title>
+  <title>Data management &mdash; documentation PAVICS 0.1</title>
   
 
   
@@ -36,11 +36,11 @@
   
         <link rel="index" title="Index"
               href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="System Architecture" href="index.html"/>
-        <link rel="next" title="Processes" href="../processes/index.html"/>
-        <link rel="prev" title="Overview" href="overview.html"/> 
+        <link rel="search" title="Recherche" href="../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+        <link rel="up" title="Developer Documentation" href="index.html"/>
+        <link rel="next" title="Geoserver administration" href="geoserver.html"/>
+        <link rel="prev" title="Building the docs" href="builddocs.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -98,18 +98,20 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Catalog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#manually-adding-netcdf-files">Manually adding NetCDF files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
@@ -161,15 +163,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">System Architecture</a> &raquo;</li>
+          <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>Data Catalog</li>
+      <li>Data management</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/arch/data_catalog.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/dev/data_management.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -182,22 +184,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-catalog">
-<h1>Data Catalog<a class="headerlink" href="#data-catalog" title="Permalink to this headline">¶</a></h1>
-<p>Pavics bundles a number of cataloguing services that allow you to search
-for data and add data to the catalog.</p>
-<div class="section" id="pavics-catalogue-search">
-<h2>PAVICS Catalogue Search<a class="headerlink" href="#pavics-catalogue-search" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">pavicssearch</span></code> service closely mimics the API for the Earth
-System Grid Federation (ESGF) search. The search fields (or <em>facets</em>)
-include author, category, cf_standard_name, experiment, frequency,
-institute, model, project, source, subject, title, units, variable and
-variable_long_name. The search results are returned in a <code class="docutils literal"><span class="pre">json</span></code> file and
-include the URL to download the file or access it through DAP.</p>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<p>The request <a class="reference external" href="http://132.217.140.45:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85">pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85</a>
-will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model.</p>
+  <div class="section" id="data-management">
+<h1>Data management<a class="headerlink" href="#data-management" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="manually-adding-netcdf-files">
+<h2>Manually adding NetCDF files<a class="headerlink" href="#manually-adding-netcdf-files" title="Lien permanent vers ce titre">¶</a></h2>
+<p>NetCDF files can be manually added to the THREDDS Data Server by copying
+them to the directory used as a docker volume in docker-compose.yml (see
+<a class="reference internal" href="installation.html"><span class="doc">Installation and Configuration</span></a>).</p>
+<p>In order for the new files to be catalogued, the Solr and PAVICS-DataCatalog
+components must be running and pavicrawler must be run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># replace localhost and port number with your PAVICS-DataCatalog deployment address
+http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
+</pre></div>
+</div>
+<p>Note that the crawler scans for typical attributes (mostly defined by CMIP) in
+the NetCDF global attributes. This allows search by facets by other components
+of the platform. This list is currently not configurable and includes:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project</span>
+<span class="n">institute</span>
+<span class="n">model</span>
+<span class="n">experiment</span>
+<span class="n">frequency</span>
+</pre></div>
+</div>
+<p>New entries in the catalog should appear in Solr:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8983</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span><span class="c1">#/birdhouse/query</span>
+<span class="c1"># must Execute Query, with relevant search criteria, or by increasing rows to get more results</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -212,10 +225,10 @@ will search for all files that are part of the RCP8.5 experiment and based on th
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../processes/index.html" class="btn btn-neutral float-right" title="Processes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="geoserver.html" class="btn btn-neutral float-right" title="Geoserver administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="builddocs.html" class="btn btn-neutral" title="Building the docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -256,6 +269,7 @@ will search for all files that are part of the RCP8.5 experiment and based on th
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
