@@ -33,6 +33,10 @@ Contents
    arch/index
    processes/index
    workflows/index
+   support/index
+   provenance/index
+   releasenotes
+   license
    todo
 
 
