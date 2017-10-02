@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Catalog &mdash; documentation PAVICS 0.1</title>
+  <title>Frontend &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -36,11 +36,8 @@
   
         <link rel="index" title="Index"
               href="../genindex.html"/>
-        <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
-        <link rel="up" title="System Architecture" href="index.html"/>
-        <link rel="next" title="Processes" href="../processes/index.html"/>
-        <link rel="prev" title="Backend" href="backend.html"/> 
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,22 +93,10 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Catalog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
@@ -163,15 +148,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">System Architecture</a> &raquo;</li>
-        
-      <li>Data Catalog</li>
+      <li>Frontend</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/arch/data_catalog.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/arch/frontend.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,23 +167,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-catalog">
-<h1>Data Catalog<a class="headerlink" href="#data-catalog" title="Lien permanent vers ce titre">¶</a></h1>
-<p>Pavics bundles a number of cataloguing services that allow you to search
-for data and add data to the catalog.</p>
-<div class="section" id="pavics-catalogue-search">
-<h2>PAVICS Catalogue Search<a class="headerlink" href="#pavics-catalogue-search" title="Lien permanent vers ce titre">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">pavicssearch</span></code> service closely mimics the API for the Earth
-System Grid Federation (ESGF) search. The search fields (or <em>facets</em>)
-include author, category, cf_standard_name, experiment, frequency,
-institute, model, project, source, subject, title, units, variable and
-variable_long_name. The search results are returned in a <code class="docutils literal"><span class="pre">json</span></code> file and
-include the URL to download the file or access it through DAP.</p>
-<div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Lien permanent vers ce titre">¶</a></h3>
-<p>The request <a class="reference external" href="http://132.217.140.45:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85">pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85</a>
-will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model.</p>
-</div>
+  <div class="section" id="frontend">
+<h1>Frontend<a class="headerlink" href="#frontend" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Write frontend docs.</p>
 </div>
 </div>
 
@@ -211,15 +182,6 @@ will search for all files that are part of the RCP8.5 experiment and based on th
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../processes/index.html" class="btn btn-neutral float-right" title="Processes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="backend.html" class="btn btn-neutral" title="Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -258,7 +220,6 @@ will search for all files that are part of the RCP8.5 experiment and based on th
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
-      <script type="text/javascript" src="../_static/translations.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   

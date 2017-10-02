@@ -7,4 +7,6 @@ System Architecture
    :maxdepth: 2
 
    overview
+   frontend
+   backend
    data_catalog
