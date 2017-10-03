@@ -40,7 +40,8 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="Load balancing" href="load_balancing.html"/>
-        <link rel="prev" title="Developer Documentation" href="index.html"/> 
+        <link rel="prev" title="Developer Documentation" href="index.html"/>
+
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -49,7 +50,8 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
+  
+
   <div class="wy-grid-for-nav">
 
     
@@ -57,6 +59,7 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
+  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -87,6 +90,14 @@
 </div>
 
           
+  <a href="/../fr/dev/installation.html">
+  <i class="fa fa-language" aria-hidden="true"></i> Français
+  </a>
+  |
+  <a href="/../en/dev/installation.html">
+  <i class="fa fa-language" aria-hidden="true"></i> English
+  </a>
+
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -217,7 +228,7 @@ To install the suite of docker images, we use <a class="reference external" href
 <span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
 </pre></div>
 </div>
-<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx «&nbsp;ssl_certificate_key&nbsp;» and «&nbsp;ssl_certificate&nbsp;» parameters.</p>
+<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx «&nbsp;ssl_certificate_key&nbsp;» and «&nbsp;ssl_certificate&nbsp;» parameters. You may use localhost.perm has a self-signed certificate.</p>
 <p>Then simply run the following command, taking care to select an appropriate host name:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
@@ -310,7 +321,11 @@ To install the suite of docker images, we use <a class="reference external" href
 <span class="n">geoserver</span> <span class="p">:</span> <span class="mi">087</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The exception is the Pavics-frontend, which has port 3000.</p>
+<p>The exceptions are</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Pavics</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span> <span class="n">http</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">3000</span> <span class="ow">and</span> <span class="n">https</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">28000</span>
+<span class="n">Magpie</span><span class="p">:</span> <span class="n">http</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">2001</span> <span class="ow">and</span> <span class="n">https</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">28001</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="individual-components-configuration">
 <h2>Individual Components Configuration<a class="headerlink" href="#individual-components-configuration" title="Lien permanent vers ce titre">¶</a></h2>

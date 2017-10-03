@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_sdm_csvindices &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/>
+
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+  
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+  <a href="/../fr/_modules/flyingpigeon/processes/wps_sdm_csvindices.html">
+  <i class="fa fa-language" aria-hidden="true"></i> Français
+  </a>
+  |
+  <a href="/../en/_modules/flyingpigeon/processes/wps_sdm_csvindices.html">
+  <i class="fa fa-language" aria-hidden="true"></i> English
+  </a>
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../support/index.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_sdm_csvindices</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flyingpigeon.processes.wps_sdm_csvindices</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Processes for Species distribution</span>
+<span class="sd">Author: Nils Hempelmann (nils.hempelmann@lsce.ipsl.fr)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.sdm</span> <span class="k">import</span> <span class="n">_SDMINDICES_</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SDMcsvindicesProcess"><a class="viewcode-back" href="../../../processes/impacts.html#flyingpigeon.processes.SDMcsvindicesProcess">[docs]</a><span class="k">class</span> <span class="nc">SDMcsvindicesProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s2">&quot;input_indices&quot;</span><span class="p">,</span> <span class="s2">&quot;Precalculated Indices&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Precalculated Indices as basis for the SDM calculation&quot;</span>
+                                  <span class="s2">&quot; (list of netCDF files or tar/zip archive)&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">)],</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;gbif&quot;</span><span class="p">,</span> <span class="s2">&quot;GBIF csv file&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;GBIF table (csv) with tree occurence </span><span class="se">\</span>
+<span class="s2">                         (output of &#39;GBIF data fetch&#39; process )&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;http://localhost:8090/wpsoutputs/flyingpigeon/output_csv-abe15f64-c30d-11e6-bf63-142d277ef1f3.csv&#39;</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;period&quot;</span><span class="p">,</span> <span class="s2">&quot;Reference period&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Reference period for climate conditions</span><span class="se">\</span>
+<span class="s2">                         (all = entire timeseries)&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;1951-1980&#39;</span><span class="p">,</span> <span class="s1">&#39;1961-1990&#39;</span><span class="p">,</span>
+                                         <span class="s1">&#39;1971-2000&#39;</span><span class="p">,</span> <span class="s1">&#39;1981-2010&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;archive_format&quot;</span><span class="p">,</span> <span class="s2">&quot;Archive format&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Result files will be compressed into archives.</span><span class="se">\</span>
+<span class="s2">                                  Choose an appropriate format&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;tar&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;zip&#39;</span><span class="p">,</span> <span class="s1">&#39;tar&#39;</span><span class="p">]</span>
+                         <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_gbif&quot;</span><span class="p">,</span> <span class="s2">&quot;Graphic of GBIF coordinates&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;PNG graphic file showing the presence of tree species</span><span class="se">\</span>
+<span class="s2">                                    according to the CSV file&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;image/png&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_PA&quot;</span><span class="p">,</span> <span class="s2">&quot;Graphic of PA mask&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;PNG graphic file showing PA mask generated based on</span><span class="se">\</span>
+<span class="s2">                                    netCDF spatial increment&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;image/png&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_reference&quot;</span><span class="p">,</span> <span class="s2">&quot;Climate indices for growth conditions of reference period&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Archive (tar/zip) containing calculated climate indices&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">)</span>
+                                             <span class="p">],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_prediction&quot;</span><span class="p">,</span> <span class="s2">&quot;predicted growth conditions&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Archive containing files of the predicted</span><span class="se">\</span>
+<span class="s2">                                     growth conditions&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">)</span>
+                                             <span class="p">],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_info&quot;</span><span class="p">,</span> <span class="s2">&quot;GAM statistics information&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Graphics and information of the learning statistics&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;application/pdf&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]</span>
+                          <span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">SDMcsvindicesProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;sdm_csvindices&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Species distribution Model (GBIF-CSV Table and Indices as calculation basis)&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s2">&quot;LWF&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.lwf.bayern.de/&quot;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span>
+                    <span class="s2">&quot;Doc&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#species-distribution-model&quot;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s2">&quot;paper&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;http://www.hindawi.com/journals/jcli/2013/787250/&quot;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s2">&quot;Tutorial&quot;</span><span class="p">,</span>
+                         <span class="s2">&quot;http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html&quot;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Indices preparation for SDM process&quot;</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">basename</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">sdm</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>  <span class="c1"># , get_domain</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon.visualisation</span> <span class="k">import</span> <span class="n">map_PAmask</span>
+
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start process&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;reading the arguments&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+            <span class="n">resources</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span>
+                <span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resources&#39;</span><span class="p">]))</span>
+            <span class="n">csv_file</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;gbif&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">period</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">]</span>
+            <span class="n">period</span> <span class="o">=</span> <span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">archive_format</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;archive_format&#39;</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;failed to read in the arguments&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;read in latlon coordinates&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">latlon</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">latlon_gbifcsv</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to extract the latlon points&#39;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;plot map&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+            <span class="kn">from</span> <span class="nn">flyingpigeon.visualisation</span> <span class="k">import</span> <span class="n">map_gbifoccurrences</span>
+            <span class="c1"># latlon = sdm.latlon_gbifdic(gbifdic)</span>
+            <span class="n">occurence_map</span> <span class="o">=</span> <span class="n">map_gbifoccurrences</span><span class="p">(</span><span class="n">latlon</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to plot occurence map&#39;</span><span class="p">)</span>
+
+        <span class="c1"># try:</span>
+        <span class="c1">#     response.update_status(&#39;get domain&#39;, 30)</span>
+        <span class="c1">#     domains = set()</span>
+        <span class="c1">#     for indice in resources:</span>
+        <span class="c1">#         # get_domain works only if metadata are set in a correct way</span>
+        <span class="c1">#         domains = domains.union([basename(indice).split(&#39;_&#39;)[1]])</span>
+        <span class="c1">#     if len(domains) == 1:</span>
+        <span class="c1">#         domain = list(domains)[0]</span>
+        <span class="c1">#         logger.info(&#39;Domain %s found in indices files&#39; % domain)</span>
+        <span class="c1">#     else:</span>
+        <span class="c1">#         logger.warn(&#39;NOT a single domain in indices files %s&#39; % domains)</span>
+        <span class="c1"># except:</span>
+        <span class="c1">#     logger.exception(&#39;failed to get domains&#39;)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># sort indices</span>
+            <span class="n">indices_dic</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">sort_indices</span><span class="p">(</span><span class="n">resources</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;indice files sorted for </span><span class="si">%s</span><span class="s1"> Datasets&#39;</span> <span class="o">%</span>
+                        <span class="nb">len</span><span class="p">(</span><span class="n">indices_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to sort indices&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">ncs_references</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">species_files</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">stat_infos</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">PAmask_pngs</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start processing for </span><span class="si">%s</span><span class="s1"> Datasets&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indices_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">staus_nr</span> <span class="o">=</span> <span class="mi">40</span> <span class="o">+</span> <span class="n">count</span> <span class="o">*</span> <span class="mi">10</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start processing of </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">key</span><span class="p">,</span> <span class="n">staus_nr</span><span class="p">)</span>
+                <span class="n">ncs</span> <span class="o">=</span> <span class="n">indices_dic</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;with </span><span class="si">%s</span><span class="s1"> files&#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">ncs</span><span class="p">))</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;generating the PA mask&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+                    <span class="n">PAmask</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">get_PAmask</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="n">latlon</span><span class="p">,</span> <span class="n">nc</span><span class="o">=</span><span class="n">ncs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;PA mask sucessfully generated&#39;</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to generate the PA mask&#39;</span><span class="p">)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Ploting PA mask&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+                    <span class="n">PAmask_pngs</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">map_PAmask</span><span class="p">(</span><span class="n">PAmask</span><span class="p">)])</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to plot the PA mask&#39;</span><span class="p">)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ncs_reference</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">get_reference</span><span class="p">(</span><span class="n">ncs_indices</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">)</span>
+                    <span class="n">ncs_references</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">ncs_reference</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;reference indice calculated </span><span class="si">%s</span><span class="s1"> &#39;</span>
+                                <span class="o">%</span> <span class="n">ncs_references</span><span class="p">)</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;reference indice calculated&#39;</span><span class="p">,</span> <span class="n">staus_nr</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to calculate the reference&#39;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="c1"># raise Exception(msg)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">gam_model</span><span class="p">,</span> <span class="n">predict_gam</span><span class="p">,</span> <span class="n">gam_info</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">get_gam</span><span class="p">(</span><span class="n">ncs_reference</span><span class="p">,</span> <span class="n">PAmask</span><span class="p">,</span> <span class="n">modelname</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+                    <span class="n">stat_infos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gam_info</span><span class="p">)</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;GAM sucessfully trained&#39;</span><span class="p">,</span> <span class="n">staus_nr</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to train GAM for </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">prediction</span> <span class="o">=</span> <span class="n">sdm</span><span class="o">.</span><span class="n">get_prediction</span><span class="p">(</span><span class="n">gam_model</span><span class="p">,</span> <span class="n">ncs</span><span class="p">)</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;prediction done&#39;</span><span class="p">,</span> <span class="n">staus_nr</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to predict tree occurence&#39;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="c1"># raise Exception(msg)</span>
+
+                <span class="c1"># try:</span>
+                <span class="c1">#     response.update_status(&#39;land sea mask for predicted data&#39;, staus_nr + 8)</span>
+                <span class="c1">#     from numpy import invert, isnan, nan, broadcast_arrays  # , array, zeros, linspace, meshgrid</span>
+                <span class="c1">#     mask = invert(isnan(PAmask))</span>
+                <span class="c1">#     mask = broadcast_arrays(prediction, mask)[1]</span>
+                <span class="c1">#     prediction[mask is False] = nan</span>
+                <span class="c1"># except:</span>
+                <span class="c1">#     logger.exception(&#39;failed to mask predicted data&#39;)</span>
+
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">species_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdm</span><span class="o">.</span><span class="n">write_to_file</span><span class="p">(</span><span class="n">ncs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prediction</span><span class="p">))</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Favourabillity written to file&#39;</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to write species file&#39;</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="c1"># raise Exception(msg)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to process SDM chain for </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">key</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="c1"># raise Exception(msg)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">archive_references</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">archive_references</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">ncs_references</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">archive_format</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;indices 2D added to archive&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed adding 2D indices to archive&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">archive_predicion</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">archive_predicion</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">species_files</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">archive_format</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;species_files added to archive&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed adding species_files indices to archive&#39;</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">flyingpigeon.visualisation</span> <span class="k">import</span> <span class="n">pdfmerge</span><span class="p">,</span> <span class="n">concat_images</span>
+            <span class="n">stat_infosconcat</span> <span class="o">=</span> <span class="n">pdfmerge</span><span class="p">(</span><span class="n">stat_infos</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;pngs </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">PAmask_pngs</span><span class="p">)</span>
+            <span class="n">PAmask_png</span> <span class="o">=</span> <span class="n">concat_images</span><span class="p">(</span><span class="n">PAmask_pngs</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;stat infos pdfs and mask pngs merged&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to concat images&#39;</span><span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">stat_infosconcat</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.pdf&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;foobar-&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">PAmask_png</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;foobar-&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_gbif&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">occurence_map</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_PA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">PAmask_png</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_reference&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">archive_references</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;archive_predicion&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">archive_predicion</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_info&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">stat_infosconcat</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
