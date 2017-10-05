@@ -210,7 +210,8 @@
                                <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Format must be %Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;opendap_url&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;OPeNDAP url to a NetCDF file&#39;</span><span class="p">,</span>
-                               <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                               <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;OPeNDAP url to a NetCDF file&#39;</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;NetCDF calendar type&#39;</span><span class="p">,</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
@@ -219,11 +220,11 @@
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
         <span class="n">title_ini</span> <span class="o">=</span> <span class="s1">&#39;Initial time index of the period in the NetCDF file&#39;</span>
         <span class="n">title_fin</span> <span class="o">=</span> <span class="s1">&#39;Final time index of the period in the NetCDF file&#39;</span>
+        <span class="n">abstract_fin</span> <span class="o">=</span> <span class="n">title_fin</span> <span class="o">+</span> <span class="s1">&#39;. The final index is inclusive.&#39;</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralOutput</span><span class="p">(</span><span class="s1">&#39;initial_index&#39;</span><span class="p">,</span> <span class="n">title_ini</span><span class="p">,</span>
-                                 <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">),</span>
+                                 <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="n">title_ini</span><span class="p">),</span>
                    <span class="n">LiteralOutput</span><span class="p">(</span><span class="s1">&#39;final_index&#39;</span><span class="p">,</span> <span class="n">title_fin</span><span class="p">,</span>
-                                 <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
-                                 <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;The final index is inclusive.&#39;</span><span class="p">)]</span>
+                                 <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span> <span class="n">abstract</span><span class="o">=</span><span class="n">abstract_fin</span><span class="p">)]</span>
 
         <span class="nb">super</span><span class="p">(</span><span class="n">Period2Indices</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>

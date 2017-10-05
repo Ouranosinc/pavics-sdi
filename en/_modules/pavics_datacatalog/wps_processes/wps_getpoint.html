@@ -211,41 +211,51 @@
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;opendap_url&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;OPeNDAP url to NetCDF file&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;OPeNDAP url to NetCDF file.&#39;</span><span class="p">,</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">100000</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;variable&#39;</span><span class="p">,</span>
                          <span class="s1">&#39;NetCDF variable name&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;NetCDF variable name.&#39;</span><span class="p">,</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;use_ordered_indices&#39;</span><span class="p">,</span>
-                         <span class="s1">&#39;Whether ordered indices are used&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Use ordered indices&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Whether ordered indices are used.&#39;</span><span class="p">,</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;boolean&#39;</span><span class="p">,</span>
                          <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;ordered_index&#39;</span><span class="p">,</span>
-                         <span class="s1">&#39;Indices for the point in the NetCDF variable&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Ordered index&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Indices for the point in the NetCDF &#39;</span>
+                                   <span class="s1">&#39;variable.&#39;</span><span class="p">),</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
                          <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;named_index&#39;</span><span class="p">,</span>
-                         <span class="s1">&#39;Indices for the point in the NetCDF variable with &#39;</span>
-                         <span class="s1">&#39;named dimensions (dim:index)&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Named index&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Indices for the point in the NetCDF &#39;</span>
+                                   <span class="s1">&#39;variable with named dimensions &#39;</span>
+                                   <span class="s1">&#39;(dim:index).&#39;</span><span class="p">),</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;nearest_to&#39;</span><span class="p">,</span>
-                         <span class="s1">&#39;Nearest value for each dimension in the NetCDF &#39;</span>
-                         <span class="s1">&#39;variable for the point with named dimensions &#39;</span>
-                         <span class="s1">&#39;(dim:value)&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Nearest to&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Nearest value for each dimension in the &#39;</span>
+                                   <span class="s1">&#39;NetCDF variable for the point with named &#39;</span>
+                                   <span class="s1">&#39;dimensions (dim:value).&#39;</span><span class="p">),</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;threshold&#39;</span><span class="p">,</span>
-                         <span class="s1">&#39;Thresholds for the distance to each nearest value &#39;</span>
-                         <span class="s1">&#39;with named dimensions (dim:threshold)&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;Threshold&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Thresholds for the distance to each &#39;</span>
+                                   <span class="s1">&#39;nearest value with named dimensions &#39;</span>
+                                   <span class="s1">&#39;(dim:threshold).&#39;</span><span class="p">),</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -253,6 +263,8 @@
 
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;point_result&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;Information for the requested point&#39;</span><span class="p">,</span>
+                                 <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Information for the requested &#39;</span>
+                                           <span class="s1">&#39;point.&#39;</span><span class="p">),</span>
                                  <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">])]</span>
         <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_reference</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -260,7 +272,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;getpoint&#39;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Point value from a NetCDF file&#39;</span><span class="p">,</span>
-            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Pending.&#39;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Return a single value from a NetCDF file at the given grid coordinates.&#39;</span><span class="p">,</span>
             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>

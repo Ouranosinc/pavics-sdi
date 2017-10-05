@@ -27,10 +27,12 @@ There are other requirements (sphinx and a few extensions) that can be installed
 
    pip install -r requirements.txt
 
-Then if all went well, you should be able to build the docs::
+Then if all went well, you should be able to build the docs (in both french and english)::
 
    cd pavics-sdi/docs
    make html
+
+The output goes into :file:`build/en` and :file:`build/fr`. Note that there are also ``make`` targets called ``html_en`` and ``html_fr`` to build only the english or french documentation.
 
 If you have write permissions to `pavics-sdi`_, you can also deploy the html `online <https://ouranosinc.github.io/pavics-sdi/>`_::
 
@@ -52,19 +54,33 @@ Translators will then be able to edit those ``.po`` files to translate the docum
 
    make -e SPHINXOPTS="-D language='de'" html
 
-
-A ``make`` command to build the french documentation has been created to facilitate building::
-
-   make html_fr
-
 When the source documentation in english changes and the translation needs to be updated, run::
 
    sphinx-intl update -p build/locale
 
 edit the ``.po`` files and rebuild the documentation.
 
+File :file:`source/_templates/layout.html` extends the ReadTheDocs theme to add a language switcher:
+
+.. code-block:: html
+
+    {% block sidebartitle %}
+      {{ super() }}
+      <a href="/{{server_root}}/fr/{{pagename}}.html">
+      <i class="fa fa-language" aria-hidden="true"></i> Français
+      </a>
+      |
+      <a href="/{{server_root}}/en/{{pagename}}.html">
+      <i class="fa fa-language" aria-hidden="true"></i> English
+      </a>
+    {% endblock %}
 
 
+The target link is given by ``server_root``, defined in :file:`conf.py` and set to ``pavics-sdi``. The switcher will thus not work as is if deployed on another site or if the site is browsed locally. To use the switcher on your local disk, launch a simple http server (for example `http-server <https://www.npmjs.com/package/http-server>`_) inside the :file:`build` directory and create a symbolic link::
+
+   ln -s  html pavics-sdi
+
+The language switcher should then work.
 
 .. _pavics-sdi: https://github.com/Ouranosinc/pavics-sdi.git
 

@@ -183,6 +183,7 @@
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">get_format</span><span class="p">,</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
 
@@ -214,18 +215,26 @@
         <span class="c1"># in the Solr database, they both must be provided.</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;id field of the dataset or file&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;id field of the dataset or file.&#39;</span><span class="p">,</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Dataset or File&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;The File type will update a single &#39;</span>
+                                         <span class="s1">&#39;file, the Dataset type will update &#39;</span>
+                                         <span class="s1">&#39;all documents sharing its &#39;</span>
+                                         <span class="s1">&#39;dataset_id&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                                <span class="n">default</span><span class="o">=</span><span class="s1">&#39;File&#39;</span><span class="p">,</span>
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;updates&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Fields to update with their new values&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Format is &#39;</span>
+                                         <span class="s1">&#39;key1:value1,key2:value2,...&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">)]</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;update_result&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;PAVICS Catalogue Update Result&#39;</span><span class="p">,</span>
+                                 <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Update result as a json.&#39;</span><span class="p">,</span>
                                  <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">])]</span>
         <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_reference</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -233,6 +242,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;pavicsupdate&#39;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PAVICS Catalogue Update&#39;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Update database entries using key:value pairs and &#39;</span>
+                      <span class="s1">&#39;identified by their ids.&#39;</span><span class="p">),</span>
             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
@@ -274,7 +285,7 @@
         <span class="n">output_file_name</span> <span class="o">=</span> <span class="s2">&quot;solr_result_</span><span class="si">{0}</span><span class="s2">_.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">json_output_path</span><span class="p">,</span> <span class="n">output_file_name</span><span class="p">)</span>
         <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-        <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">update_result</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">update_result</span><span class="p">))</span>
         <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;update_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_file</span>
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;update_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span>

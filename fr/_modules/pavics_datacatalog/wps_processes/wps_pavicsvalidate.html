@@ -217,21 +217,29 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/solr/birdhouse/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env_solr_host</span><span class="p">)</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;facets&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Required facets&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Facets that are required to be &#39;</span>
+                                         <span class="s1">&#39;present in each database entry.&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;paths&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Search paths&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Limit validation to certain paths &#39;</span>
+                                         <span class="s1">&#39;relative to thredds main &#39;</span>
+                                         <span class="s1">&#39;directory.&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                                <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;files&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Search files&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Limit validation according to file &#39;</span>
+                                         <span class="s1">&#39;names.&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                                <span class="n">default</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">)]</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;validation_result&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;Validation result&#39;</span><span class="p">,</span>
+                                 <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Validation result as a json.&#39;</span><span class="p">,</span>
                                  <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">])]</span>
         <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">as_reference</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -239,6 +247,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;pavicsvalidate&#39;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PAVICS Catalogue Validation&#39;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Query database entries for missing required facets.&#39;</span><span class="p">,</span>
             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>

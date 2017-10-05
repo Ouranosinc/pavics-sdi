@@ -205,17 +205,18 @@
 <dt id="pavics_datacatalog.wps_processes.PavicsCrawler">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsCrawler</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicrawler.html#PavicsCrawler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsCrawler" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>pavicrawler <em>0.1</em> – PAVICS Crawler</p>
+<p>Crawl thredds server and write metadata to SOLR database.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_files</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Files to crawl</li>
-<li><strong>target_thredds</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Thredds server to scan</li>
+<li><strong>target_files</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Only those file names will be crawled.</li>
+<li><strong>target_thredds</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Thredds server to scan.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>crawler_result</strong> – PAVICS Crawler Result</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>crawler_result</strong> – Crawler result as a json.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
@@ -229,28 +230,30 @@
 <dt id="pavics_datacatalog.wps_processes.PavicsSearch">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsSearch</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsearch.html#PavicsSearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsSearch" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>pavicsearch <em>0.1</em> – PAVICS Catalogue Search</p>
+<p>Search the PAVICS database and return a catalogue of matches.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Facet values and counts</li>
+<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
 <li><strong>shards</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Shards to be queried</li>
-<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Pagination offset</li>
-<li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional:10</em>) – Pagination limit</li>
-<li><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Metadata fields to return</li>
-<li><strong>format</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:application/solr+json</em>) – Output Format</li>
-<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Free text search</li>
+<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Where to start in the document count of the database search.</li>
+<li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional:10</em>) – Maximum number of documents to return.</li>
+<li><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Comme separated list of fields to return.</li>
+<li><strong>format</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:application/solr+json</em>) – Output format.</li>
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Direct query to the database.</li>
 <li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Distributed query</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:Dataset</em>) – Type of the record</li>
-<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Search constraints</li>
+<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:Dataset</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
+<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Format is facet1:value1,facet2:value2,…</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>search_result</strong> – PAVICS Catalogue Search Result</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>search_result</strong> (<em>application/json</em>) – PAVICS Catalogue Search Result</li>
+<li><strong>list_result</strong> (<em>application/json</em>) – List of OPEnDAP urls of the search result.</li>
+</ul>
+</p>
 </td>
 </tr>
 </tbody>
@@ -261,18 +264,19 @@
 <dt id="pavics_datacatalog.wps_processes.PavicsUpdate">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsUpdate</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsupdate.html#PavicsUpdate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsUpdate" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>pavicsupdate <em>0.1</em> – PAVICS Catalogue Update</p>
+<p>Update database entries using key:value pairs and identified by their ids.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>id</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – id field of the dataset or file</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:File</em>) – Dataset or File</li>
-<li><strong>updates</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Fields to update with their new values</li>
+<li><strong>id</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – id field of the dataset or file.</li>
+<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:File</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
+<li><strong>updates</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Format is key1:value1,key2:value2,…</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>update_result</strong> – PAVICS Catalogue Update Result</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>update_result</strong> – Update result as a json.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
@@ -286,18 +290,19 @@
 <dt id="pavics_datacatalog.wps_processes.PavicsValidate">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsValidate</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsvalidate.html#PavicsValidate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsValidate" title="Lien permanent vers cette définition">¶</a></dt>
 <dd><p>pavicsvalidate <em>0.1</em> – PAVICS Catalogue Validation</p>
+<p>Query database entries for missing required facets.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Required facets</li>
-<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Search paths</li>
-<li><strong>files</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Search files</li>
+<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Facets that are required to be present in each database entry.</li>
+<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Limit validation to certain paths relative to thredds main directory.</li>
+<li><strong>files</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Limit validation according to file names.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>validation_result</strong> – Validation result</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>validation_result</strong> – Validation result as a json.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>

@@ -183,6 +183,7 @@
 <span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">get_format</span><span class="p">,</span> <span class="n">configuration</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
 
@@ -214,9 +215,6 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">env_solr_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">env_thredds_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;THREDDS_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="c1"># OPENSTACK support is obsolete</span>
-        <span class="n">env_openstack_internal_ip</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-            <span class="s1">&#39;OPENSTACK_INTERNAL_IP&#39;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s1">&#39;WMS_ALTERNATE_SERVER&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thredds_hosts</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">env_thredds_host</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
@@ -227,22 +225,22 @@
         <span class="c1"># base_search_URL in the ESGF Search API is now a solr database URL,</span>
         <span class="c1"># this is provided as the environment variable SOLR_SERVER.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/solr/birdhouse/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env_solr_host</span><span class="p">)</span>
-        <span class="c1"># Fix for OpenStack internal/external ip:</span>
-        <span class="c1"># (the internal ip is the environment variable OPENSTACK_INTERNAL_IP)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">internal_ip</span> <span class="o">=</span> <span class="n">env_openstack_internal_ip</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">external_ip</span> <span class="o">=</span> <span class="n">env_solr_host</span>
 
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;target_files&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Files to crawl&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Only those file names will be &#39;</span>
+                                         <span class="s1">&#39;crawled.&#39;</span><span class="p">),</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
                                <span class="n">max_occurs</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
                   <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;target_thredds&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Thredds server to scan&#39;</span><span class="p">,</span>
+                               <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Thredds server to scan.&#39;</span><span class="p">,</span>
                                <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                                <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;crawler_result&#39;</span><span class="p">,</span>
                                  <span class="s1">&#39;PAVICS Crawler Result&#39;</span><span class="p">,</span>
+                                 <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Crawler result as a json.&#39;</span><span class="p">,</span>
                                  <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">],</span>
                                  <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
 
@@ -250,6 +248,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;pavicrawler&#39;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PAVICS Crawler&#39;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Crawl thredds server and write metadata to SOLR database.&#39;</span><span class="p">,</span>
             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
@@ -287,9 +286,7 @@
                     <span class="n">wms_with_host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span>
                 <span class="n">update_result</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">pavicrawler</span><span class="p">(</span>
                     <span class="n">thredds_server</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span><span class="p">,</span> <span class="n">my_facets</span><span class="p">,</span>
-                    <span class="n">set_dataset_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">internal_ip</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">internal_ip</span><span class="p">,</span>
-                    <span class="n">external_ip</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">external_ip</span><span class="p">,</span> <span class="n">output_internal_ip</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                    <span class="n">wms_alternate_server</span><span class="o">=</span><span class="n">wms_with_host</span><span class="p">,</span>
+                    <span class="n">set_dataset_id</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">wms_alternate_server</span><span class="o">=</span><span class="n">wms_with_host</span><span class="p">,</span>
                     <span class="n">target_files</span><span class="o">=</span><span class="n">target_files</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
@@ -299,7 +296,7 @@
         <span class="n">output_file_name</span> <span class="o">=</span> <span class="s2">&quot;solr_result_</span><span class="si">{0}</span><span class="s2">_.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span>
         <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">output_file_name</span><span class="p">)</span>
         <span class="n">f1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-        <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">update_result</span><span class="p">)</span>
+        <span class="n">f1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">update_result</span><span class="p">))</span>
         <span class="n">f1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;crawler_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_file</span>
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;crawler_result&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span>
