@@ -24,7 +24,7 @@ Then get the *build recipe* from `pavics-sdi`_::
    git clone https://github.com/Ouranosinc/pavics-sdi.git
    cd pavics-sdi/birdhouse
 
-In the file :file:`docker-compose.yml`, within the ``phoenix/volumes`` configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx "ssl_certificate_key" and "ssl_certificate" parameters.
+In the file :file:`docker-compose.yml`, within the ``phoenix/volumes`` configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx "ssl_certificate_key" and "ssl_certificate" parameters. You may use localhost.perm has a self-signed certificate.
 
 Then simply run the following command, taking care to select an appropriate host name::
 
@@ -121,7 +121,10 @@ Container xxx value::
    pavics-catalog : 086 (No https or output ports)
    geoserver : 087 (No https or output ports)
 
-The exception is the Pavics-frontend, which has port 3000.
+The exceptions are ::
+
+   Pavics-frontend: http on port 3000 and https on port 28000
+   Magpie: http on port 2001 and https on port 28001
 
 
 Individual Components Configuration

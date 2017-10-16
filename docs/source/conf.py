@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 #
 import os
+from docutils.parsers.rst.directives.admonitions import BaseAdmonition
+from sphinx.util import compat
+compat.make_admonition = BaseAdmonition
 
 # PAVICS documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct  3 13:56:31 2016.
@@ -45,13 +48,17 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinxjsondomain',
-    'sphinx-jsonschema'
+    'sphinx-jsonschema',
+    'ablog'
 ]
 
 napoleon_numpy_docstring = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ['_templates',]
+
+import ablog
+templates_path.append( ablog.get_html_templates_path() )
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -152,6 +159,13 @@ else:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
+# Used to switch language. To use it on a local server, simply create a pavics-sdi symbolic link in build/ pointing on html and launch the server inside the build/ directory.
+# inside docs/build
+# ln -s html pavics-sdi
+html_context = {'server_root':'pavics-sdi'}
+# There is a also redirect in the top githubio directory in index.html:
+# file <meta http-equiv="refresh" content="0; url=./en/index.html" />
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
