@@ -39,9 +39,6 @@ Contents
    releasenotes
    license
    todo
-   blog/index
-
-Read our :doc:`blog <blog/index>` !
 
 
 Credits

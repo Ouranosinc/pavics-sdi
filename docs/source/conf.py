@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 #
 import os
-from docutils.parsers.rst.directives.admonitions import BaseAdmonition
-from sphinx.util import compat
-compat.make_admonition = BaseAdmonition
 
 # PAVICS documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct  3 13:56:31 2016.
@@ -49,16 +46,12 @@ extensions = [
     'sphinx.ext.githubpages',
     'sphinxjsondomain',
     'sphinx-jsonschema',
-    'ablog'
 ]
 
 napoleon_numpy_docstring = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates',]
-
-import ablog
-templates_path.append( ablog.get_html_templates_path() )
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
