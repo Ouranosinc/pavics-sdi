@@ -14,3 +14,4 @@ Developer Documentation
    data_management
    geoserver
    integration_tests
+   contributing

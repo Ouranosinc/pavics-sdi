@@ -29,3 +29,10 @@ New entries in the catalog should appear in Solr::
 
     http://localhost:8983/solr/#/birdhouse/query
     # must Execute Query, with relevant search criteria, or by increasing rows to get more results
+
+
+THREDDS Data Server example
+===========================
+
+An example of a public THREDDS Data Server can be found here:
+https://data.nodc.noaa.gov/thredds/catalog.html
