@@ -29,6 +29,8 @@ Setting up pycharm
 
 Commands to run in Python console:
 
+::
+
     import pip
     pip.main(['install', 'https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip'])
     pip.main(['install', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
@@ -40,11 +42,15 @@ Launching individual local components
 Public THREDDS
 --------------
 
+::
+
     git clone https://github.com/Ouranosinc/PAVICS.git
     cp PAVICS/birdhouse/templates/docker-compose.override.public_thredds.yml PAVICS/birdhouse/docker-compose.override.yml
 
 In this new docker-compose.override.yml change ${PATH_TO_LOCAL_NETCDF_FILES}
 to an actual path on disk with NetCDF files.
+
+::
 
     docker-compose up -d thredds
 
@@ -55,28 +61,40 @@ HTTPS THREDDS
 
 First you will need a self-signed certificate:
 
+::
+
     openssl req -x509 -nodes -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 
 This will ask for various inputs that may be left blank.
+
+::
 
     cat key.pem >> cert.pem
 
 cert.pm is your self-signed certificate.
 
+::
+
     git clone https://github.com/Ouranosinc/PAVICS.git
 
 Switch to PAVICS/birdhouse directory.
+
+::
 
     ./set_hostname.sh dummy
 
 Either set SSL_CERTIFICATE to the location of cert.pem and HOSTNAME to
 dummy.crim.ca or use the template docker-compose_shorcut.sh and set those
-values in it (here renamed to mycompose.sh). Copy
+values in it (here renamed to mycompose.sh).
+
+::
 
     cp PAVICS/birdhouse/templates/docker-compose.override.local_https_thredds.yml PAVICS/birdhouse/docker-compose.override.yml
 
 In this override file specify the path to local netcdf files and set
 localhost IP.
+
+::
 
     ./mycompose.sh up -d thredds proxy magpie twitcher
 
