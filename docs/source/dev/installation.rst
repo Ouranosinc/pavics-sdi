@@ -13,8 +13,8 @@ Installation using ``docker-compose``
 =====================================
 
 Let's assume that you have a LinuxOS with `Docker`_ (>1.10) installed.
-First mount or create a symlink for for the datasets storage at ``/data``.
-Mount or make a symlink for the geoserver data storage so that ``/geoserver_data`` could be used (read/write) by geoserver
+First mount or create a symlink for the datasets storage at ``/data``.
+Mount or make a symlink for the geoserver data storage so that ``/geoserver_data`` could be used (read/write) by geoserver.
 To install the suite of docker images, we use `docker-compose <https://docs.docker.com/compose/>`_, so you'll need to install it::
 
    sudo pip install docker-compose
