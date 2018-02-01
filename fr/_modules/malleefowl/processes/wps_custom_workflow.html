@@ -38,8 +38,7 @@
               href="../../../genindex.html"/>
         <link rel="search" title="Recherche" href="../../../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
-        <link rel="up" title="Code du module" href="../../index.html"/>
-
+        <link rel="up" title="Code du module" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -48,8 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -57,7 +55,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../../../index.html" class="icon icon-home"> PAVICS
@@ -88,14 +85,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/_modules/malleefowl/processes/wps_custom_workflow.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/_modules/malleefowl/processes/wps_custom_workflow.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -185,7 +174,6 @@
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexOutput</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span>
@@ -200,18 +188,119 @@
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">PyWPSMonitor</span><span class="p">(</span><span class="n">Monitor</span><span class="p">):</span>
+<div class="viewcode-block" id="DispelCustomWorkflow"><a class="viewcode-back" href="../../../processes/workflows.html#malleefowl.processes.DispelCustomWorkflow">[docs]</a><span class="k">class</span> <span class="nc">DispelCustomWorkflow</span><span class="p">(</span><span class="n">Process</span><span class="p">,</span> <span class="n">Monitor</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implement the task monitoring class malleefowl.utils.Monitor for the PyWPS needs</span>
+<span class="sd">    Implement a PyWPS process for executing custom workflow</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;workflow&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow description&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Workflow description in JSON.&#39;</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">)]),</span>
+        <span class="p">]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow result&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Workflow result document in JSON.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">)]),</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;logfile&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow log file&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Workflow log file.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]),</span>
+        <span class="p">]</span>
+
+        <span class="n">Process</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;custom_workflow&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom Workflow&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Runs custom workflow with dispel4py.&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Birdhouse&#39;</span><span class="p">,</span> <span class="s1">&#39;http://bird-house.github.io/&#39;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;User Guide&#39;</span><span class="p">,</span> <span class="s1">&#39;http://malleefowl.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">synch</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">full_log</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overall_progress</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exceptions_list</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">result_summary</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">overall_progress</span> <span class="o">=</span> <span class="n">synch</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implement the PyWPS process handler</span>
+<span class="sd">        :param request:</span>
+<span class="sd">        :param response:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Reset and preparation</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="p">[:]</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">[:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result_summary</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overall_progress</span><span class="p">[</span><span class="s1">&#39;progress&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;starting workflow ...&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Load the workflow</span>
+        <span class="n">workflow</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;workflow&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
+        <span class="n">workflow_name</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;workflow </span><span class="si">{0}</span><span class="s2"> prepared:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span>
+                                        <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                        <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">)))</span>
+
+        <span class="c1"># Prepare headers</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="s1">&#39;X-X509-User-Proxy&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-X509-User-Proxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-X509-User-Proxy&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;Access-Token&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Access-Token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Access-Token&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Run the workflow</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">run</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;workflow </span><span class="si">{0}</span><span class="s2"> done.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+
+            <span class="n">formatted_summary</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_summary</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Workflow result:&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">formatted_summary</span><span class="p">,</span>
+                                            <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                            <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">),</span>
+                                            <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">formatted_summary</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raise_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="c1"># Handle exceptions (if any)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">full_msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Catch </span><span class="si">{nb_e}</span><span class="s1"> exception(s) while running the workflow:</span><span class="se">\n</span><span class="s1">&#39;</span>
+                        <span class="s1">&#39;</span><span class="si">{exceptions}</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+                        <span class="s1">&#39;Execution log:</span><span class="se">\n</span><span class="si">{log}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">nb_e</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">),</span>
+                <span class="n">exceptions</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">),</span>
+                <span class="n">log</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="p">))</span>
+
+            <span class="c1"># Augment the exception message by appending the full log but conserve the full exception stack</span>
+            <span class="k">raise</span> <span class="n">WorkflowException</span><span class="p">(</span><span class="n">full_msg</span><span class="p">)</span>
+
+        <span class="c1"># Send result</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;logfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">full_log</span><span class="p">))</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;logfile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">formatted_summary</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">return</span> <span class="n">response</span>
 
     <span class="k">def</span> <span class="nf">update_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">progress</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -251,130 +340,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">result_summary</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">task</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">execution_order</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result_summary</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
                                                    <span class="n">processes</span><span class="o">=</span><span class="p">[</span><span class="n">result</span><span class="p">,</span> <span class="p">])})</span>
 
-    <span class="k">def</span> <span class="nf">format_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_format_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Format the summary for a better looking</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ordered_task</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result_summary</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;execution_order&#39;</span><span class="p">])</span>
 
-        <span class="k">return</span> <span class="p">[{</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;processes&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_id&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))}</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">ordered_task</span><span class="p">]</span>
-
-
-<div class="viewcode-block" id="DispelCustomWorkflow"><a class="viewcode-back" href="../../../processes/workflows.html#malleefowl.processes.DispelCustomWorkflow">[docs]</a><span class="k">class</span> <span class="nc">DispelCustomWorkflow</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implement a PyWPS process for executing custom workflow</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;workflow&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow description&#39;</span><span class="p">,</span>
-                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Workflow description in JSON.&#39;</span><span class="p">,</span>
-                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
-                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">)]),</span>
-            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;workflow_string&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow description&#39;</span><span class="p">,</span>
-                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
-                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Workflow description in json as string&quot;</span><span class="p">,</span>
-                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="p">]</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow result&#39;</span><span class="p">,</span>
-                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Workflow result document in JSON.&quot;</span><span class="p">,</span>
-                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/json&#39;</span><span class="p">)]),</span>
-            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;logfile&#39;</span><span class="p">,</span> <span class="s1">&#39;Workflow log file&#39;</span><span class="p">,</span>
-                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Workflow log file.&quot;</span><span class="p">,</span>
-                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]),</span>
-        <span class="p">]</span>
-
-        <span class="n">Process</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
-            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;custom_workflow&quot;</span><span class="p">,</span>
-            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Custom Workflow&quot;</span><span class="p">,</span>
-            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
-            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Runs custom workflow with dispel4py.&quot;</span><span class="p">,</span>
-            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Birdhouse&#39;</span><span class="p">,</span> <span class="s1">&#39;http://bird-house.github.io/&#39;</span><span class="p">),</span>
-                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;User Guide&#39;</span><span class="p">,</span> <span class="s1">&#39;http://malleefowl.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
-            <span class="p">],</span>
-            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
-            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
-            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Implement the PyWPS process handler</span>
-<span class="sd">        :param request:</span>
-<span class="sd">        :param response:</span>
-<span class="sd">        :return:</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">monitor</span> <span class="o">=</span> <span class="n">PyWPSMonitor</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-        <span class="n">monitor</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;starting workflow ...&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="c1"># Load the workflow</span>
-        <span class="k">if</span> <span class="s1">&#39;workflow&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
-            <span class="n">workflow</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;workflow&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stream</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">workflow</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;workflow_string&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="n">workflow_name</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;unknown&#39;</span><span class="p">)</span>
-        <span class="n">monitor</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;workflow </span><span class="si">{0}</span><span class="s2"> prepared:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">monitor</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span>
-                                           <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                                           <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">)))</span>
-
-        <span class="c1"># Prepare headers</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">if</span> <span class="s1">&#39;X-X509-User-Proxy&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
-            <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-X509-User-Proxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;X-X509-User-Proxy&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;Access-Token&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
-            <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Access-Token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Access-Token&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="s1">&#39;Cookie&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
-            <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Cookie&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">http_request</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Cookie&#39;</span><span class="p">]</span>
-
-        <span class="c1"># Run the workflow</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">run</span><span class="p">(</span><span class="n">workflow</span><span class="p">,</span> <span class="n">monitor</span><span class="o">=</span><span class="n">monitor</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;workflow </span><span class="si">{0}</span><span class="s2"> done.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">workflow_name</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
-
-            <span class="n">formatted_summary</span> <span class="o">=</span> <span class="n">monitor</span><span class="o">.</span><span class="n">format_summary</span><span class="p">()</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Workflow result:&#39;</span><span class="p">)</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">full_log</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">formatted_summary</span><span class="p">,</span>
-                                               <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                                               <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">),</span>
-                                               <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">formatted_summary</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">monitor</span><span class="o">.</span><span class="n">raise_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-
-        <span class="c1"># Handle exceptions (if any)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">monitor</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">full_msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Catch </span><span class="si">{nb_e}</span><span class="s1"> exception(s) while running the workflow:</span><span class="se">\n</span><span class="s1">&#39;</span>
-                        <span class="s1">&#39;</span><span class="si">{exceptions}</span><span class="se">\n\n</span><span class="s1">&#39;</span>
-                        <span class="s1">&#39;Execution log:</span><span class="se">\n</span><span class="si">{log}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">nb_e</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">monitor</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">),</span>
-                <span class="n">exceptions</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">monitor</span><span class="o">.</span><span class="n">exceptions_list</span><span class="p">),</span>
-                <span class="n">log</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">monitor</span><span class="o">.</span><span class="n">full_log</span><span class="p">))</span>
-
-            <span class="c1"># Augment the exception message by appending the full log but conserve the full exception stack</span>
-            <span class="k">raise</span> <span class="n">WorkflowException</span><span class="p">(</span><span class="n">full_msg</span><span class="p">)</span>
-
-        <span class="c1"># Send result</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;logfile.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">monitor</span><span class="o">.</span><span class="n">full_log</span><span class="p">))</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;logfile&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span>
-
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;output.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-            <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">formatted_summary</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">name</span>
-
-        <span class="k">return</span> <span class="n">response</span></div>
+        <span class="k">return</span> <span class="p">[{</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;processes&#39;</span><span class="p">],</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_id&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))}</span> <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="n">ordered_task</span><span class="p">]</span></div>
 </pre></div>
 
            </div>
@@ -422,7 +394,7 @@
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

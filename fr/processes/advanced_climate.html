@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Visualization" href="visualization.html"/>
-        <link rel="prev" title="Impacts and adaptation" href="impacts.html"/>
-
+        <link rel="prev" title="Impacts and adaptation" href="impacts.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/advanced_climate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/advanced_climate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -116,8 +105,6 @@
 <li class="toctree-l2"><a class="reference internal" href="indices.html">Climate indices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impacts.html">Impacts and adaptation</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced climate data analysis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#uncertainty-analysis">Uncertainty analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#weather-analogs">Weather analogs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#spatial-analogs">Spatial analogs</a></li>
 </ul>
 </li>
@@ -202,327 +189,24 @@
 <h1>Advanced climate data analysis<a class="headerlink" href="#advanced-climate-data-analysis" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="contents local topic" id="sommaire">
 <ul class="simple">
-<li><a class="reference internal" href="#uncertainty-analysis" id="id19">Uncertainty analysis</a></li>
-<li><a class="reference internal" href="#weather-analogs" id="id20">Weather analogs</a></li>
-<li><a class="reference internal" href="#spatial-analogs" id="id21">Spatial analogs</a></li>
+<li><a class="reference internal" href="#spatial-analogs" id="id7">Spatial analogs</a></li>
 </ul>
 </div>
-<div class="section" id="uncertainty-analysis">
-<h2><a class="toc-backref" href="#id19">Uncertainty analysis</a><a class="headerlink" href="#uncertainty-analysis" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
-<dt id="flyingpigeon.processes.RobustnessProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">RobustnessProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_robustness.html#RobustnessProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.RobustnessProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>robustness <em>0.5</em> – Ensemble robustness</p>
-<p>Calculates the robustness as the ratio of noise to signal in an ensemle of timeseries</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
-<li><strong>method</strong> (<em>{'Method_A'</em><em>, </em><em>'Method_B'</em><em>, </em><em>'Method_C'}</em><em>, </em><em>optional:Method_A</em>) – Detailed information about the methods can be found in the documentation</li>
-<li><strong>start</strong> (<em>integer</em><em>, </em><em>optional:1971</em>) – Beginn of the analysed period (e.g 1971; if not set, the first consistend                                   year of the ensemble will be taken)</li>
-<li><strong>end</strong> (<em>integer</em><em>, </em><em>optional:2000</em>) – End of the analysed period (e.g. 2050 if not set,                                    the last consistend year of the ensemble will be taken)</li>
-<li><strong>timeslice</strong> (<em>integer</em><em>, </em><em>optional:10</em>) – Time slice (in years) for robustness reference (default=10))</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_high</strong> (<em>application/x-netcdf</em>) – netCDF file containing calculated robustness mask</li>
-<li><strong>output_low</strong> (<em>application/x-netcdf</em>) – netCDF file containing calculated robustness mask</li>
-<li><strong>output_signal</strong> (<em>application/x-netcdf</em>) – netCDF file containing calculated change of mean over the timeperiod and ensemble</li>
-<li><strong>output_graphic</strong> (<em>image/png</em>) – Graphic showing the signal difference with high and low ensemble agreement</li>
-<li><strong>output_text</strong> (<em>text/plain</em>) – text file with a list of the used input data sets</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/">LSCE</a></li>
-</ul>
-</dd></dl>
-
-</div>
-<div class="section" id="weather-analogs">
-<h2><a class="toc-backref" href="#id20">Weather analogs</a><a class="headerlink" href="#weather-analogs" title="Lien permanent vers ce titre">¶</a></h2>
-<dl class="class">
-<dt id="flyingpigeon.processes.WeatherregimesreanalyseProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">WeatherregimesreanalyseProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_weatherregimes_reanalyse.html#WeatherregimesreanalyseProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.WeatherregimesreanalyseProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>weatherregimes_reanalyse <em>0.10</em> – Weather Regimes (based on reanalyses data)</p>
-<p>k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>season</strong> (<em>{'all'</em><em>, </em><em>'SOND'</em><em>, </em><em>'MAMJJA'</em><em>, </em><em>'DJF'</em><em>, </em><em>'SONDJF'</em><em>, </em><em>'FMA'</em><em>, </em><em>'JJAS'</em><em>, </em><em>'OND'</em><em>, </em><em>'SON'</em><em>, </em><em>'MAMJ'</em><em>, </em><em>..}</em>) – Select the months to define the time region (all == whole year will be analysed)</li>
-<li><strong>period</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for analysing the dataset</li>
-<li><strong>anualcycle</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for anual cycle calculation</li>
-<li><strong>reanalyses</strong> (<em>{'NCEP_slp'</em><em>, </em><em>'NCEP_z1000'</em><em>, </em><em>'NCEP_z925'</em><em>, </em><em>'NCEP_z850'</em><em>, </em><em>'NCEP_z700'</em><em>, </em><em>'NCEP_z600'</em><em>, </em><em>'NCEP_z500'</em><em>, </em><em>'NCEP_z400'</em><em>, </em><em>'NCEP_z300'</em><em>, </em><em>'NCEP_z250'</em><em>, </em><em>..}</em>) – Choose a reanalyses dataset for comparison</li>
-<li><strong>kappa</strong> (<em>{'2'</em><em>, </em><em>'3'</em><em>, </em><em>'4'</em><em>, </em><em>'5'</em><em>, </em><em>'6'</em><em>, </em><em>'7'</em><em>, </em><em>'8'</em><em>, </em><em>'9'</em><em>, </em><em>'10'}</em>) – Set the number of clusters to be detected</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>Routput_graphic</strong> (<em>image/pdf</em>) – Weather Classification</li>
-<li><strong>output_pca</strong> (<em>text/plain</em>) – Principal components (PCA)</li>
-<li><strong>output_classification</strong> (<em>application/octet-stream</em>) – Weather regime classification</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt id="flyingpigeon.processes.WeatherregimesprojectionProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">WeatherregimesprojectionProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_weatherregimes_projection.html#WeatherregimesprojectionProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.WeatherregimesprojectionProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>weatherregimes_projection <em>0.10</em> – Weather Regimes (Projection based on precalculated statistics)</p>
-<p>k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>Rdat</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – R workspace as output from weather regime reference process</li>
-<li><strong>dat</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – R datafile as output from weather regime reference process</li>
-<li><strong>netCDF</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – netCDF file as output from weather regime reference process</li>
-<li><strong>season</strong> (<em>{'all'</em><em>, </em><em>'SOND'</em><em>, </em><em>'MAMJJA'</em><em>, </em><em>'DJF'</em><em>, </em><em>'SONDJF'</em><em>, </em><em>'FMA'</em><em>, </em><em>'JJAS'</em><em>, </em><em>'OND'</em><em>, </em><em>'SON'</em><em>, </em><em>'MAMJ'</em><em>, </em><em>..}</em>) – Select the months to define the time region (all == whole year will be analysed)</li>
-<li><strong>period</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for analysing the dataset</li>
-<li><strong>anualcycle</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for anual cycle calculation</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_pca</strong> (<em>text/plain</em>) – Principal components (PCA)</li>
-<li><strong>output_classification</strong> (<em>application/octet-stream</em>) – Weather regime classification</li>
-<li><strong>output_frequency</strong> (<em>text/plain</em>) – Weather regime frequency values per year</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt id="flyingpigeon.processes.WeatherregimesmodelProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">WeatherregimesmodelProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_weatherregimes_model.html#WeatherregimesmodelProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.WeatherregimesmodelProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>weatherregimes_model <em>0.10</em> – Weather Regimes (based on climate model data)</p>
-<p>k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>season</strong> (<em>{'all'</em><em>, </em><em>'SOND'</em><em>, </em><em>'MAMJJA'</em><em>, </em><em>'DJF'</em><em>, </em><em>'SONDJF'</em><em>, </em><em>'FMA'</em><em>, </em><em>'JJAS'</em><em>, </em><em>'OND'</em><em>, </em><em>'SON'</em><em>, </em><em>'MAMJ'</em><em>, </em><em>..}</em>) – Select the months to define the time region (all == whole year will be analysed)</li>
-<li><strong>period</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for analysing the dataset</li>
-<li><strong>anualcycle</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Period for anual cycle calculation</li>
-<li><strong>kappa</strong> (<em>{'2'</em><em>, </em><em>'3'</em><em>, </em><em>'4'</em><em>, </em><em>'5'</em><em>, </em><em>'6'</em><em>, </em><em>'7'</em><em>, </em><em>'8'</em><em>, </em><em>'9'</em><em>, </em><em>'10'}</em>) – Set the number of clusters to be detected</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>Routput_graphic</strong> (<em>image/pdf</em>) – Weather Classification</li>
-<li><strong>output_pca</strong> (<em>text/plain</em>) – Principal components (PCA)</li>
-<li><strong>output_classification</strong> (<em>application/octet-stream</em>) – Weather regime classification</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt id="flyingpigeon.processes.AnalogsreanalyseProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AnalogsreanalyseProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_analogs_reanalyse.html#AnalogsreanalyseProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.AnalogsreanalyseProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>analogs_reanalyse <em>0.10</em> – Analogues of circulation (based on reanalyses data)</p>
-<p>Search for days with analogue pressure pattern for reanalyses data sets</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>reanalyses</strong> (<em>{'NCEP_slp'</em><em>, </em><em>'NCEP_z1000'</em><em>, </em><em>'NCEP_z925'</em><em>, </em><em>'NCEP_z850'</em><em>, </em><em>'NCEP_z700'</em><em>, </em><em>'NCEP_z600'</em><em>, </em><em>'NCEP_z500'</em><em>, </em><em>'NCEP_z400'</em><em>, </em><em>'NCEP_z300'</em><em>, </em><em>'NCEP_z250'</em><em>, </em><em>..}</em>) – Choose a reanalyses dataset for comparison</li>
-<li><strong>dateSt</strong> (<em>date</em>) – First day of the period to be analysed</li>
-<li><strong>dateEn</strong> (<em>date</em>) – Last day of the period to be analysed</li>
-<li><strong>refSt</strong> (<em>date</em>) – First day of the period where analogues being picked</li>
-<li><strong>refEn</strong> (<em>date</em>) – Last day of the period where analogues being picked</li>
-<li><strong>normalize</strong> (<em>{'None'</em><em>, </em><em>'base'</em><em>, </em><em>'sim'</em><em>, </em><em>'own'}</em>) – Normalize by subtraction of annual cycle</li>
-<li><strong>seasonwin</strong> (<em>integer</em><em>, </em><em>optional:30</em>) – Number of days befor and after the date to be analysed</li>
-<li><strong>nanalog</strong> (<em>integer</em><em>, </em><em>optional:20</em>) – Number of analogues to be detected</li>
-<li><strong>dist</strong> (<em>{'euclidean'</em><em>, </em><em>'mahalanobis'</em><em>, </em><em>'cosine'</em><em>, </em><em>'of'}</em>) – Distance function to define analogues</li>
-<li><strong>outformat</strong> (<em>{'ascii'</em><em>, </em><em>'netCDF4'}</em>) – Choose the format for the analogue output file</li>
-<li><strong>timewin</strong> (<em>integer</em><em>, </em><em>optional:1</em>) – Number of days following the analogue day the distance will be averaged</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>config</strong> (<em>text/plain</em>) – Config file used for the Fortran process</li>
-<li><strong>analogs</strong> (<em>text/plain</em>) – mulit-column text file</li>
-<li><strong>formated_analogs</strong> (<em>text/plain</em>) – Formated analogues file for viewer</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>output</strong> (<em>text/html</em>) – Interactive visualization of calculated analogues</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt id="flyingpigeon.processes.AnalogsmodelProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AnalogsmodelProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_analogs_model.html#AnalogsmodelProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.AnalogsmodelProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>analogs_model <em>0.10</em> – Analogues of circulation (based on climate model data)</p>
-<p>Search for days with analogue pressure pattern for reanalyses data sets</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>dateSt</strong> (<em>date</em>) – First day of the period to be analysed</li>
-<li><strong>dateEn</strong> (<em>date</em>) – Last day of the period to be analysed</li>
-<li><strong>refSt</strong> (<em>date</em>) – First day of the period where analogues being picked</li>
-<li><strong>refEn</strong> (<em>date</em>) – Last day of the period where analogues being picked</li>
-<li><strong>normalize</strong> (<em>{'None'</em><em>, </em><em>'base'</em><em>, </em><em>'sim'</em><em>, </em><em>'own'}</em>) – Normalize by subtraction of annual cycle</li>
-<li><strong>seasonwin</strong> (<em>integer</em><em>, </em><em>optional:30</em>) – Number of days befor and after the date to be analysed</li>
-<li><strong>nanalog</strong> (<em>integer</em><em>, </em><em>optional:20</em>) – Number of analogues to be detected</li>
-<li><strong>dist</strong> (<em>{'euclidean'</em><em>, </em><em>'mahalanobis'</em><em>, </em><em>'cosine'</em><em>, </em><em>'of'}</em>) – Distance function to define analogues</li>
-<li><strong>outformat</strong> (<em>{'ascii'</em><em>, </em><em>'netCDF4'}</em>) – Choose the format for the analogue output file</li>
-<li><strong>timewin</strong> (<em>integer</em><em>, </em><em>optional:1</em>) – Number of days following the analogue day the distance will be averaged</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>config</strong> (<em>string</em>) – Config file used for the Fortran process</li>
-<li><strong>analogs</strong> (<em>text/plain</em>) – mulit-column text file</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt id="flyingpigeon.processes.AnalogscompareProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AnalogscompareProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_analogs_compare.html#AnalogscompareProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.AnalogscompareProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>analogs_compare <em>0.10</em> – Analogues of circulation (based on reanalyses data and climate model data)</p>
-<p>Search for days with analogue pressure pattern for reanalyses data sets</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>reanalyses</strong> (<em>{'NCEP_slp'</em><em>, </em><em>'NCEP_z1000'</em><em>, </em><em>'NCEP_z925'</em><em>, </em><em>'NCEP_z850'</em><em>, </em><em>'NCEP_z700'</em><em>, </em><em>'NCEP_z600'</em><em>, </em><em>'NCEP_z500'</em><em>, </em><em>'NCEP_z400'</em><em>, </em><em>'NCEP_z300'</em><em>, </em><em>'NCEP_z250'</em><em>, </em><em>..}</em>) – Choose a reanalyses model for comparison</li>
-<li><strong>dateSt</strong> (<em>date</em>) – First day of the period to be analysed</li>
-<li><strong>dateEn</strong> (<em>date</em>) – Last day of the period to be analysed</li>
-<li><strong>refSt</strong> (<em>date</em>) – First day of the period where analogues being picked</li>
-<li><strong>refEn</strong> (<em>date</em>) – Last day of the period where analogues being picked</li>
-<li><strong>normalize</strong> (<em>{'None'</em><em>, </em><em>'base'</em><em>, </em><em>'sim'</em><em>, </em><em>'own'}</em>) – Normalize by subtraction of annual cycle</li>
-<li><strong>seasonwin</strong> (<em>integer</em><em>, </em><em>optional:30</em>) – Number of days befor and after the date to be analysed</li>
-<li><strong>nanalog</strong> (<em>integer</em><em>, </em><em>optional:20</em>) – Number of analogues to be detected</li>
-<li><strong>dist</strong> (<em>{'euclidean'</em><em>, </em><em>'mahalanobis'</em><em>, </em><em>'cosine'</em><em>, </em><em>'of'}</em>) – Distance function to define analogues</li>
-<li><strong>outformat</strong> (<em>{'ascii'</em><em>, </em><em>'netCDF4'}</em>) – Choose the format for the analogue output file</li>
-<li><strong>timewin</strong> (<em>integer</em><em>, </em><em>optional:1</em>) – Number of days following the analogue day the distance will be averaged</li>
-<li><strong>direction</strong> (<em>{'mo2re'</em><em>, </em><em>'re2mo'}</em>) – Compare direction. Pick analog days in Modeldata for a simulation period in Reanalyses data                                     (re2mo) or vice versa</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>config</strong> (<em>string</em>) – Config file used for the Fortran process</li>
-<li><strong>analogs</strong> (<em>text/plain</em>) – mulit-column text file</li>
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Prepared netCDF file as input for weatherregime calculation</li>
-<li><strong>target_netcdf</strong> (<em>application/x-netcdf</em>) – File with subset and normaized values of target model</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AnalogsviewerProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_analogs_viewer.html#AnalogsviewerProcess"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>analogs_viewer <em>0.10</em> – Analogues of circulation (visualization of analogs data)</p>
-<p>Visualisation of text output of analogue process</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>analog_result</strong> (<em>text/plain</em>) – Analogues text file computed by Analogues of Corculation processes</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
-<li><strong>output_html</strong> (<em>text/html</em>) – web browser compatible html file</li>
-<li><strong>output_txt</strong> (<em>string</em>) – txt file for analogue viewer</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://www.lsce.ipsl.fr/en/index.php">LSCE</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-</div>
+<p>#Uncertainty analysis
+#——————–</p>
+<p>#.. autoprocess:: flyingpigeon.processes.RobustnessProcess</p>
+<p>#Weather analogs
+#—————</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogscompareProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
+#   :noindex:</p>
 <div class="section" id="spatial-analogs">
-<h2><a class="toc-backref" href="#id21">Spatial analogs</a><a class="headerlink" href="#spatial-analogs" title="Lien permanent vers ce titre">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Spatial analogs</a><a class="headerlink" href="#spatial-analogs" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Spatial analogues are maps showing which areas have a climate today that is
 <em>analogous</em> to the future climate of a given place. This type of map can be
 useful for climate adaptation to see which places are coping today with specific climate
@@ -545,13 +229,13 @@ A number of methodological choices thus enter the computation:</p>
 of indices relevant to the intended audience of these maps. For example, if the maps are
 made for the grape industry, then the climate indices used could
 be the length of the frost-free season, growing degree-days, annual winter minimum
-temperature andand annual number of very cold days <a class="reference internal" href="#roy2017" id="id14">[Roy2017]</a>.</p>
+temperature andand annual number of very cold days <a class="reference internal" href="#roy2017" id="id1">[Roy2017]</a>.</p>
 <p>The <a class="reference internal" href="#flyingpigeon.processes.SpatialAnalogProcess" title="flyingpigeon.processes.SpatialAnalogProcess"><code class="xref py py-class docutils literal"><span class="pre">flyingpigeon.processes.SpatialAnalogProcess</span></code></a> offers six
 distance metrics: standard euclidean distance, nearest neighbor,
 Zech-Aslan energy distance, Kolmogorov-Smirnov statistic,Friedman-Rafsky runs
 statistics and the Kullback-Leibler divergence. A description and reference for
 each distance metric is given in <code class="xref py py-mod docutils literal"><span class="pre">flyingpigeon.dissimilarity</span></code> and based
-on <a class="reference internal" href="#grenier2013" id="id15">[Grenier2013]</a>.</p>
+on <a class="reference internal" href="#grenier2013" id="id2">[Grenier2013]</a>.</p>
 <p>The reference data set should cover the target site in order to perform
 validation tests, and a large area around it. Global or continental scale datasets
 are generally used, but the spatial resolution should be high enough for users to be
@@ -571,7 +255,7 @@ the target and candidate datasets.</p>
 can then be called to create a graphic displaying the dissimilarity value.
 An example of such graphic is shown below, with the target location indicated
 by a white marker.</p>
-<div class="figure" id="id18">
+<div class="figure" id="id6">
 <img alt="Example of spatial analog graphic." src="../_images/spatial_analog_example.png" />
 <p class="caption"><span class="caption-text">A map of the dissimilarity metric computed from mean annual precipitation and
 temperature values in Montreal over the period 1970-1990.</span></p>
@@ -579,18 +263,19 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 <dl class="class">
 <dt id="flyingpigeon.processes.SpatialAnalogProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_spatial_analog.html#SpatialAnalogProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SpatialAnalogProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>spatial_analog <em>0.1</em> – Spatial analog of a target climate.</p>
+<dd><p><strong class="program">spatial_analog</strong> Spatial analog of a target climate. (v0.1)</p>
 <p>Spatial analogs based on the comparison of climate indices. The algorithm compares the distribution of the target indices with the distribution of spatially distributed candidate indices and returns a value  measuring the dissimilarity between both distributions over the candidate grid.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>candidate</strong> (<em>application/x-netcdf</em>) – NetCDF files or archive (tar/zip)  storing the candidate indices. The output will be stored on this grid.</li>
-<li><strong>target</strong> (<em>application/x-netcdf</em>) – NetCDF files or archive (tar/zip).containing netcdf files storing the target indices.</li>
+<li><strong>candidate</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF files or archive (tar/zip)  storing the candidate indices. The output will be stored on this grid. (<a class="reference external" href="None">Info</a>)</li>
+<li><strong>target</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF files or archive (tar/zip).containing netcdf files storing the target indices. (<a class="reference external" href="None">Info</a>)</p>
+</li>
 <li><strong>location</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Geographical coordinates (lon,lat) of the target location.</li>
 <li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – One or more climate indices to use for the comparison.</li>
-<li><strong>dist</strong> (<em>{'seuclidean'</em><em>, </em><em>'nearest_neighbor'</em><em>, </em><em>'zech_aslan'</em><em>, </em><em>'kolmogorov_smirnov'</em><em>, </em><em>'friedman_rafsky'</em><em>, </em><em>'kldiv'}</em><em>, </em><em>optional:kldiv</em>) – Dissimilarity metric comparing distributions.</li>
+<li><strong>dist</strong> (<em>{'seuclidean'</em><em>, </em><em>'nearest_neighbor'</em><em>, </em><em>'zech_aslan'</em><em>, </em><em>'kolmogorov_smirnov'</em><em>, </em><em>'friedman_rafsky'</em><em>, </em><em>'kldiv'}</em><em>, </em><em>optional</em>) – Dissimilarity metric comparing distributions.</li>
 <li><strong>dateStartCandidate</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for candidate data. Defaults to first entry.</li>
 <li><strong>dateEndCandidate</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – End of period (YYYY-MM_DD) for candidate data. Defaults to last entry.</li>
 <li><strong>dateStartTarget</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for target data. Defaults to first entry.</li>
@@ -599,8 +284,8 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_netcdf</strong> (<em>application/x-netcdf</em>) – Dissimilarity between target at selected location and candidate distributions over the entire grid.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – Dissimilarity between target at selected location and candidate distributions over the entire grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -616,22 +301,23 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 <dl class="class">
 <dt>
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">MapSpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_map_spatial_analog.html#MapSpatialAnalogProcess"><span class="viewcode-link">[source]</span></a></dt>
-<dd><p>map_spatial_analog <em>0.1</em> – Map of dissimilarity values calculated by the spatial_analog process.</p>
+<dd><p><strong class="program">map_spatial_analog</strong> Map of dissimilarity values calculated by the spatial_analog process. (v0.1)</p>
 <p>Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – Dissimilarity between target at selected location and candidate distributions over the entire grid.</li>
-<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional:png</em>) – Figure format</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>Dissimilarity between target at selected location and candidate distributions over the entire grid. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional</em>) – Figure format</li>
 <li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Figure title.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_figure</strong> (<em>image/png</em>) – Map of dissimilarity values.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output_figure</strong> (<em class="mimetype">image/png</em>, <em class="mimetype">application/pdf</em>, <em class="mimetype">image/svg+xml</em>, <em class="mimetype">application/postscript</em>) – Map of dissimilarity values.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -648,13 +334,13 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 <table class="docutils citation" frame="void" id="roy2017" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id14">[Roy2017]</a></td><td>Roy, P., Grenier, P., Barriault, E. et al. Climatic Change (2017) 143: 43. <a class="reference external" href="doi:10.1007/s10584-017-1960-x">doi:10.1007/s10584-017-1960-x</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[Roy2017]</a></td><td>Roy, P., Grenier, P., Barriault, E. et al. Climatic Change (2017) 143: 43. <a class="reference external" href="doi:10.1007/s10584-017-1960-x">doi:10.1007/s10584-017-1960-x</a></td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="grenier2013" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id15">[Grenier2013]</a></td><td>Grenier, P., A.-C. Parent, D. Huard, F. Anctil, and D. Chaumont, 2013: An assessment of six dissimilarity metrics for climate analogs. J. Appl. Meteor. Climatol., 52, 733–752, <a class="reference external" href="doi:10.1175/JAMC-D-12-0170.1">doi:10.1175/JAMC-D-12-0170.1</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[Grenier2013]</a></td><td>Grenier, P., A.-C. Parent, D. Huard, F. Anctil, and D. Chaumont, 2013: An assessment of six dissimilarity metrics for climate analogs. J. Appl. Meteor. Climatol., 52, 733–752, <a class="reference external" href="doi:10.1175/JAMC-D-12-0170.1">doi:10.1175/JAMC-D-12-0170.1</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -715,7 +401,7 @@ temperature values in Montreal over the period 1970-1990.</span></p>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

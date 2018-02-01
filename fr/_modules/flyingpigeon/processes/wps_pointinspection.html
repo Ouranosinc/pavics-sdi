@@ -38,8 +38,7 @@
               href="../../../genindex.html"/>
         <link rel="search" title="Recherche" href="../../../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
-        <link rel="up" title="Code du module" href="../../index.html"/>
-
+        <link rel="up" title="Code du module" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -48,8 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -57,7 +55,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../../../index.html" class="icon icon-home"> PAVICS
@@ -88,14 +85,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/_modules/flyingpigeon/processes/wps_pointinspection.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/_modules/flyingpigeon/processes/wps_pointinspection.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -274,7 +263,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;start calculation for </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
                 <span class="n">ncs</span> <span class="o">=</span> <span class="n">nc_exp</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-                <span class="n">times</span> <span class="o">=</span> <span class="n">get_time</span><span class="p">(</span><span class="n">ncs</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">_%H:%M:%S&#39;</span><span class="p">)</span>
+                <span class="n">times</span> <span class="o">=</span> <span class="n">get_time</span><span class="p">(</span><span class="n">ncs</span><span class="p">)</span>  <span class="c1"># , format=&#39;%Y-%m-%d_%H:%M:%S&#39;)</span>
                 <span class="n">concat_vals</span> <span class="o">=</span> <span class="n">times</span>  <span class="c1"># [&#39;%s-%02d-%02d_%02d:%02d:%02d&#39; %</span>
                 <span class="c1"># (t.year, t.month, t.day, t.hour, t.minute, t.second) for t in times]</span>
                 <span class="n">header</span> <span class="o">=</span> <span class="s1">&#39;date_time&#39;</span>
@@ -354,7 +343,7 @@
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

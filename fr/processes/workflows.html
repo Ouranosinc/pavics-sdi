@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Data handling" href="data_handling.html"/>
-        <link rel="prev" title="Visualization" href="visualization.html"/>
-
+        <link rel="prev" title="Visualization" href="visualization.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/workflows.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/workflows.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -198,17 +187,17 @@
 <dl class="class">
 <dt id="malleefowl.processes.DispelWorkflow">
 <em class="property">class </em><code class="descclassname">malleefowl.processes.</code><code class="descname">DispelWorkflow</code><a class="reference internal" href="../_modules/malleefowl/processes/wps_workflow.html#DispelWorkflow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#malleefowl.processes.DispelWorkflow" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>workflow <em>0.7</em> – Workflow</p>
+<dd><p><strong class="program">workflow</strong> Workflow (v0.7)</p>
 <p>Runs Workflow with dispel4py.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>workflow</strong> (<em>text/yaml</em>) – Workflow description in YAML.</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>workflow</strong> (<em class="mimetype">text/yaml</em>) – Workflow description in YAML. (<a class="reference external" href="None">Info</a>)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
-<li><strong>output</strong> (<em>text/yaml</em>) – Workflow result document in YAML.</li>
-<li><strong>logfile</strong> (<em>text/plain</em>) – Workflow log file.</li>
+<li><strong>output</strong> (<em class="mimetype">text/yaml</em>) – Workflow result document in YAML.</li>
+<li><strong>logfile</strong> (<em class="mimetype">text/plain</em>) – Workflow log file.</li>
 </ul>
 </td>
 </tr>
@@ -224,23 +213,19 @@
 <dl class="class">
 <dt id="malleefowl.processes.DispelCustomWorkflow">
 <em class="property">class </em><code class="descclassname">malleefowl.processes.</code><code class="descname">DispelCustomWorkflow</code><a class="reference internal" href="../_modules/malleefowl/processes/wps_custom_workflow.html#DispelCustomWorkflow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#malleefowl.processes.DispelCustomWorkflow" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>custom_workflow <em>0.1</em> – Custom Workflow</p>
+<dd><p><strong class="program">custom_workflow</strong> Custom Workflow (v0.1)</p>
 <p>Runs custom workflow with dispel4py.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>workflow</strong> (<em>application/json</em><em>, </em><em>optional</em>) – Workflow description in JSON.</li>
-<li><strong>workflow_string</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Workflow description in json as string</li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>workflow</strong> (<em class="mimetype">application/json</em>) – <p>Workflow description in JSON. (<a class="reference external" href="None">Info</a>)</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output</strong> (<em>application/json</em>) – Workflow result document in JSON.</li>
-<li><strong>logfile</strong> (<em>text/plain</em>) – Workflow log file.</li>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
+<li><strong>output</strong> (<em class="mimetype">application/json</em>) – Workflow result document in JSON.</li>
+<li><strong>logfile</strong> (<em class="mimetype">text/plain</em>) – Workflow log file.</li>
 </ul>
-</p>
 </td>
 </tr>
 </tbody>
@@ -310,7 +295,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

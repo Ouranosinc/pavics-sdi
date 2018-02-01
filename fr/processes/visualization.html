@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Workflows" href="workflows.html"/>
-        <link rel="prev" title="Advanced climate data analysis" href="advanced_climate.html"/>
-
+        <link rel="prev" title="Advanced climate data analysis" href="advanced_climate.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/visualization.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/visualization.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -198,22 +187,22 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.PlottimeseriesProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">PlottimeseriesProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_plot_timeseries.html#PlottimeseriesProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.PlottimeseriesProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>plot_timeseries <em>0.10</em> – Graphics (timeseries)</p>
+<dd><p><strong class="program">plot_timeseries</strong> Graphics (timeseries) (v0.10)</p>
 <p>Outputs some timeseries of the file field means. Spaghetti and uncertainty plot</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files. (<a class="reference external" href="None">Info</a>)</li>
 <li><strong>variable</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Variable to be expected in the input files (variable will be detected if not set)</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-<li><strong>plotout_spagetti</strong> (<em>image/png</em>) – Visualisation of single variables as a spaghetti plot</li>
-<li><strong>plotout_uncertainty</strong> (<em>image/png</em>) – Visualisation of single variables ensemble mean with uncertainty</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+<li><strong>plotout_spagetti</strong> (<em class="mimetype">image/png</em>) – Visualisation of single variables as a spaghetti plot</li>
+<li><strong>plotout_uncertainty</strong> (<em class="mimetype">image/png</em>) – Visualisation of single variables ensemble mean with uncertainty</li>
 </ul>
 </p>
 </td>
@@ -229,18 +218,18 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.AnalogsviewerProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AnalogsviewerProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_analogs_viewer.html#AnalogsviewerProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.AnalogsviewerProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>analogs_viewer <em>0.10</em> – Analogues of circulation (visualization of analogs data)</p>
+<dd><p><strong class="program">analogs_viewer</strong> Analogues of circulation (visualization of analogs data) (v0.10)</p>
 <p>Visualisation of text output of analogue process</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>analog_result</strong> (<em>text/plain</em>) – Analogues text file computed by Analogues of Corculation processes</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>analog_result</strong> (<em class="mimetype">text/plain</em>) – Analogues text file computed by Analogues of Corculation processes</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
-<li><strong>output_html</strong> (<em>text/html</em>) – web browser compatible html file</li>
+<li><strong>output_html</strong> (<em class="mimetype">text/html</em>) – web browser compatible html file</li>
 <li><strong>output_txt</strong> (<em>string</em>) – txt file for analogue viewer</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </td>
 </tr>
@@ -256,22 +245,23 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.MapSpatialAnalogProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">MapSpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_map_spatial_analog.html#MapSpatialAnalogProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.MapSpatialAnalogProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>map_spatial_analog <em>0.1</em> – Map of dissimilarity values calculated by the spatial_analog process.</p>
+<dd><p><strong class="program">map_spatial_analog</strong> Map of dissimilarity values calculated by the spatial_analog process. (v0.1)</p>
 <p>Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – Dissimilarity between target at selected location and candidate distributions over the entire grid.</li>
-<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional:png</em>) – Figure format</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>Dissimilarity between target at selected location and candidate distributions over the entire grid. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional</em>) – Figure format</li>
 <li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Figure title.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_figure</strong> (<em>image/png</em>) – Map of dissimilarity values.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output_figure</strong> (<em class="mimetype">image/png</em>, <em class="mimetype">application/pdf</em>, <em class="mimetype">image/svg+xml</em>, <em class="mimetype">application/postscript</em>) – Map of dissimilarity values.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -341,7 +331,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

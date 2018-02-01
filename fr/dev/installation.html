@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="Load balancing" href="load_balancing.html"/>
-        <link rel="prev" title="Developer Documentation" href="index.html"/>
-
+        <link rel="prev" title="Developer Documentation" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/dev/installation.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/dev/installation.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -122,6 +111,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#thredds">Thredds</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#hummingbird">Hummingbird</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pavics-datacatalog">PAVICS-DataCatalog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#magpie">Magpie</a></li>
 </ul>
 </li>
 </ul>
@@ -129,9 +119,11 @@
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
@@ -209,6 +201,10 @@
             
   <div class="section" id="installation-and-configuration">
 <h1>Installation and Configuration<a class="headerlink" href="#installation-and-configuration" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">À faire</p>
+<p class="last">Update the installation and config with security changes</p>
+</div>
 <p>Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
 </pre></div>
@@ -217,8 +213,8 @@
 <div class="section" id="installation-using-docker-compose">
 <h2>Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code><a class="headerlink" href="#installation-using-docker-compose" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Let’s assume that you have a LinuxOS with <a class="reference external" href="http://docker.com">Docker</a> (&gt;1.10) installed.
-First mount or create a symlink for for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
-Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver
+First mount or create a symlink for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
+Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver.
 To install the suite of docker images, we use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>, so you’ll need to install it:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
 </pre></div>
@@ -228,7 +224,7 @@ To install the suite of docker images, we use <a class="reference external" href
 <span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
 </pre></div>
 </div>
-<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx «&nbsp;ssl_certificate_key&nbsp;» and «&nbsp;ssl_certificate&nbsp;» parameters. You may use localhost.perm has a self-signed certificate.</p>
+<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx «&nbsp;ssl_certificate_key&nbsp;» and «&nbsp;ssl_certificate&nbsp;» parameters.</p>
 <p>Then simply run the following command, taking care to select an appropriate host name:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
@@ -321,11 +317,7 @@ To install the suite of docker images, we use <a class="reference external" href
 <span class="n">geoserver</span> <span class="p">:</span> <span class="mi">087</span> <span class="p">(</span><span class="n">No</span> <span class="n">https</span> <span class="ow">or</span> <span class="n">output</span> <span class="n">ports</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The exceptions are</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Pavics</span><span class="o">-</span><span class="n">frontend</span><span class="p">:</span> <span class="n">http</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">3000</span> <span class="ow">and</span> <span class="n">https</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">28000</span>
-<span class="n">Magpie</span><span class="p">:</span> <span class="n">http</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">2001</span> <span class="ow">and</span> <span class="n">https</span> <span class="n">on</span> <span class="n">port</span> <span class="mi">28001</span>
-</pre></div>
-</div>
+<p>The exception is the Pavics-frontend, which has port 3000.</p>
 </div>
 <div class="section" id="individual-components-configuration">
 <h2>Individual Components Configuration<a class="headerlink" href="#individual-components-configuration" title="Lien permanent vers ce titre">¶</a></h2>
@@ -450,6 +442,13 @@ Provide the solr and thredds host.
 Set the wps host to the server that will be exposing the catalog (this is the server where wps temporary output files will be saved).
 Set the WMS alternate server if desired.</p>
 </div>
+<div class="section" id="magpie">
+<h3>Magpie<a class="headerlink" href="#magpie" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">À faire</p>
+<p class="last">Complete</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -508,7 +507,7 @@ Set the WMS alternate server if desired.</p>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

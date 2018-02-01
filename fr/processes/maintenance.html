@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Using workflows" href="../workflows/index.html"/>
-        <link rel="prev" title="Data handling" href="data_handling.html"/>
-
+        <link rel="prev" title="Data handling" href="data_handling.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/maintenance.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/maintenance.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -204,7 +193,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.PavicsCrawler">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsCrawler</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicrawler.html#PavicsCrawler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsCrawler" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>pavicrawler <em>0.1</em> – PAVICS Crawler</p>
+<dd><p><strong class="program">pavicrawler</strong> PAVICS Crawler (v0.1)</p>
 <p>Crawl thredds server and write metadata to SOLR database.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -219,7 +208,7 @@
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>crawler_result</strong> – Crawler result as a json.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last"><em class="mimetype">application/json</em></p>
 </td>
 </tr>
 </tbody>
@@ -229,7 +218,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.PavicsSearch">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsSearch</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsearch.html#PavicsSearch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsSearch" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>pavicsearch <em>0.1</em> – PAVICS Catalogue Search</p>
+<dd><p><strong class="program">pavicsearch</strong> PAVICS Catalogue Search (v0.1)</p>
 <p>Search the PAVICS database and return a catalogue of matches.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -237,21 +226,21 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
-<li><strong>shards</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Shards to be queried</li>
+<li><strong>shards</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Shards to be queried</li>
 <li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Where to start in the document count of the database search.</li>
-<li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional:10</em>) – Maximum number of documents to return.</li>
-<li><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Comme separated list of fields to return.</li>
-<li><strong>format</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:application/solr+json</em>) – Output format.</li>
-<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Direct query to the database.</li>
+<li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional</em>) – Maximum number of documents to return.</li>
+<li><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Comme separated list of fields to return.</li>
+<li><strong>format</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Output format.</li>
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Direct query to the database.</li>
 <li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Distributed query</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:Dataset</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
+<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
 <li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Format is facet1:value1,facet2:value2,…</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>search_result</strong> (<em>application/json</em>) – PAVICS Catalogue Search Result</li>
-<li><strong>list_result</strong> (<em>application/json</em>) – List of OPEnDAP urls of the search result.</li>
+<li><strong>search_result</strong> (<em class="mimetype">application/json</em>, <em class="mimetype">application/gml+xml</em>) – PAVICS Catalogue Search Result</li>
+<li><strong>list_result</strong> (<em class="mimetype">application/json</em>) – List of OPEnDAP urls of the search result.</li>
 </ul>
 </p>
 </td>
@@ -263,7 +252,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.PavicsUpdate">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsUpdate</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsupdate.html#PavicsUpdate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsUpdate" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>pavicsupdate <em>0.1</em> – PAVICS Catalogue Update</p>
+<dd><p><strong class="program">pavicsupdate</strong> PAVICS Catalogue Update (v0.1)</p>
 <p>Update database entries using key:value pairs and identified by their ids.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -271,7 +260,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>id</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – id field of the dataset or file.</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:File</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
+<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
 <li><strong>updates</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Format is key1:value1,key2:value2,…</li>
 </ul>
 </td>
@@ -279,7 +268,7 @@
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>update_result</strong> – Update result as a json.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last"><em class="mimetype">application/json</em></p>
 </td>
 </tr>
 </tbody>
@@ -289,7 +278,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.PavicsValidate">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">PavicsValidate</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_pavicsvalidate.html#PavicsValidate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.PavicsValidate" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>pavicsvalidate <em>0.1</em> – PAVICS Catalogue Validation</p>
+<dd><p><strong class="program">pavicsvalidate</strong> PAVICS Catalogue Validation (v0.1)</p>
 <p>Query database entries for missing required facets.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -305,7 +294,7 @@
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>validation_result</strong> – Validation result as a json.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last"><em class="mimetype">application/json</em></p>
 </td>
 </tr>
 </tbody>
@@ -370,7 +359,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -39,8 +39,7 @@
         <link rel="search" title="Recherche" href="../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="next" title="Installation and Configuration" href="installation.html"/>
-        <link rel="prev" title="Searching for data" href="../tutorials/searching.html"/>
-
+        <link rel="prev" title="Working with Web Processing Service with python" href="../tutorials/wps_with_python.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -49,8 +48,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -58,7 +56,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -89,14 +86,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/dev/index.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/dev/index.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -113,9 +102,11 @@
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
@@ -217,12 +208,24 @@
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html#translations">Translations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">User management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html#permissions-and-authorizations">Permissions and authorizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html#adding-external-services">Adding external services</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="data_management.html">Data management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html#manually-adding-netcdf-files">Manually adding NetCDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html#thredds-data-server-example">THREDDS Data Server example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#benchmark-development-environment">Benchmark development environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#setting-up-pycharm">Setting up pycharm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#launching-individual-local-components">Launching individual local components</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -240,7 +243,7 @@
         <a href="installation.html" class="btn btn-neutral float-right" title="Installation and Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../tutorials/searching.html" class="btn btn-neutral" title="Searching for data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tutorials/wps_with_python.html" class="btn btn-neutral" title="Working with Web Processing Service with python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -282,7 +285,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

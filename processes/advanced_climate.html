@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced climate data analysis &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Processes" href="index.html"/>
+        <link rel="next" title="Visualization" href="visualization.html"/>
+        <link rel="prev" title="Impacts and adaptation" href="impacts.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices.html">Climate indices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="impacts.html">Impacts and adaptation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Advanced climate data analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-analogs">Spatial analogs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="workflows.html">Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_handling.html">Data handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maintenance.html">Data administration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Processes</a> &raquo;</li>
+        
+      <li>Advanced climate data analysis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/processes/advanced_climate.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-climate-data-analysis">
+<h1>Advanced climate data analysis<a class="headerlink" href="#advanced-climate-data-analysis" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#spatial-analogs" id="id7">Spatial analogs</a></li>
+</ul>
+</div>
+<p>#Uncertainty analysis
+#——————–</p>
+<p>#.. autoprocess:: flyingpigeon.processes.RobustnessProcess</p>
+<p>#Weather analogs
+#—————</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogscompareProcess</p>
+<p>#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
+#   :noindex:</p>
+<div class="section" id="spatial-analogs">
+<h2><a class="toc-backref" href="#id7">Spatial analogs</a><a class="headerlink" href="#spatial-analogs" title="Permalink to this headline">¶</a></h2>
+<p>Spatial analogues are maps showing which areas have a climate today that is
+<em>analogous</em> to the future climate of a given place. This type of map can be
+useful for climate adaptation to see which places are coping today with specific climate
+conditions. For example, officials from a city located in a temperate region could learn from
+the experience of another city where heatwaves are a common occurrence and
+intervention plans have been improved over time.</p>
+<p>Spatial analogues are estimated by comparing the distribution of climate indices
+computed at the target location over the future period with the distribution of
+the same climate indices computed over a reference period for multiple candidate regions.
+A number of methodological choices thus enter the computation:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the climate indices,</li>
+<li>the metric measuring the difference between both distributions,</li>
+<li>the reference data from which to compute the indices,</li>
+<li>the future climate scenario to compute the target indices.</li>
+</ul>
+</div></blockquote>
+<p>The climate indices chosen to compute the spatial analogs are usually annual values
+of indices relevant to the intended audience of these maps. For example, if the maps are
+made for the grape industry, then the climate indices used could
+be the length of the frost-free season, growing degree-days, annual winter minimum
+temperature andand annual number of very cold days <a class="reference internal" href="#roy2017" id="id1">[Roy2017]</a>.</p>
+<p>The <a class="reference internal" href="#flyingpigeon.processes.SpatialAnalogProcess" title="flyingpigeon.processes.SpatialAnalogProcess"><code class="xref py py-class docutils literal"><span class="pre">flyingpigeon.processes.SpatialAnalogProcess</span></code></a> offers six
+distance metrics: standard euclidean distance, nearest neighbor,
+Zech-Aslan energy distance, Kolmogorov-Smirnov statistic,Friedman-Rafsky runs
+statistics and the Kullback-Leibler divergence. A description and reference for
+each distance metric is given in <code class="xref py py-mod docutils literal"><span class="pre">flyingpigeon.dissimilarity</span></code> and based
+on <a class="reference internal" href="#grenier2013" id="id2">[Grenier2013]</a>.</p>
+<p>The reference data set should cover the target site in order to perform
+validation tests, and a large area around it. Global or continental scale datasets
+are generally used, but the spatial resolution should be high enough for users to be
+able to <em>recognize</em> climate features they are familiar with.</p>
+<p>Different future climate scenarios from climate models can be used to compute the
+target distribution over the future period. Usually the raw model outputs are
+bias-corrected with the observation dataset. This is done to avoid discrepancies
+that would be introduced by systematic model errors. One way to validate the results
+is to compute the spatial analog using the simulation over the historical period. The
+best analog region should thus cover the target site.</p>
+<p>The WPS process automatically extracts the target series from a netCDF file using
+geographical coordinates and the names of the climate indices (the name of the
+climate indices should be the same for both netCDF files). It also allows users
+to specify the period over which the distributions should be compared, for both
+the target and candidate datasets.</p>
+<p>An accompanying process <a class="reference internal" href="visualization.html#flyingpigeon.processes.MapSpatialAnalogProcess" title="flyingpigeon.processes.MapSpatialAnalogProcess"><code class="xref py py-class docutils literal"><span class="pre">flyingpigeon.processes.MapSpatialAnalogProcess</span></code></a>
+can then be called to create a graphic displaying the dissimilarity value.
+An example of such graphic is shown below, with the target location indicated
+by a white marker.</p>
+<div class="figure" id="id6">
+<img alt="Example of spatial analog graphic." src="../_images/spatial_analog_example.png" />
+<p class="caption"><span class="caption-text">A map of the dissimilarity metric computed from mean annual precipitation and
+temperature values in Montreal over the period 1970-1990.</span></p>
+</div>
+<dl class="class">
+<dt id="flyingpigeon.processes.SpatialAnalogProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_spatial_analog.html#SpatialAnalogProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SpatialAnalogProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">spatial_analog</strong> Spatial analog of a target climate. (v0.1)</p>
+<p>Spatial analogs based on the comparison of climate indices. The algorithm compares the distribution of the target indices with the distribution of spatially distributed candidate indices and returns a value  measuring the dissimilarity between both distributions over the candidate grid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>candidate</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF files or archive (tar/zip)  storing the candidate indices. The output will be stored on this grid. (<a class="reference external" href="None">Info</a>)</li>
+<li><strong>target</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF files or archive (tar/zip).containing netcdf files storing the target indices. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>location</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – Geographical coordinates (lon,lat) of the target location.</li>
+<li><strong>indices</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a>) – One or more climate indices to use for the comparison.</li>
+<li><strong>dist</strong> (<em>{'seuclidean'</em><em>, </em><em>'nearest_neighbor'</em><em>, </em><em>'zech_aslan'</em><em>, </em><em>'kolmogorov_smirnov'</em><em>, </em><em>'friedman_rafsky'</em><em>, </em><em>'kldiv'}</em><em>, </em><em>optional</em>) – Dissimilarity metric comparing distributions.</li>
+<li><strong>dateStartCandidate</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for candidate data. Defaults to first entry.</li>
+<li><strong>dateEndCandidate</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – End of period (YYYY-MM_DD) for candidate data. Defaults to last entry.</li>
+<li><strong>dateStartTarget</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for target data. Defaults to first entry.</li>
+<li><strong>dateEndTarget</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – End of period (YYYY-MM_DD) for target data. Defaults to last entry.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – Dissimilarity between target at selected location and candidate distributions over the entire grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">MapSpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_map_spatial_analog.html#MapSpatialAnalogProcess"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p><strong class="program">map_spatial_analog</strong> Map of dissimilarity values calculated by the spatial_analog process. (v0.1)</p>
+<p>Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>Dissimilarity between target at selected location and candidate distributions over the entire grid. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional</em>) – Figure format</li>
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(in Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Figure title.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_figure</strong> (<em class="mimetype">image/png</em>, <em class="mimetype">application/pdf</em>, <em class="mimetype">image/svg+xml</em>, <em class="mimetype">application/postscript</em>) – Map of dissimilarity values.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
+</ul>
+</dd></dl>
+
+<p class="rubric">References</p>
+<table class="docutils citation" frame="void" id="roy2017" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[Roy2017]</a></td><td>Roy, P., Grenier, P., Barriault, E. et al. Climatic Change (2017) 143: 43. <a class="reference external" href="doi:10.1007/s10584-017-1960-x">doi:10.1007/s10584-017-1960-x</a></td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="grenier2013" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[Grenier2013]</a></td><td>Grenier, P., A.-C. Parent, D. Huard, F. Anctil, and D. Chaumont, 2013: An assessment of six dissimilarity metrics for climate analogs. J. Appl. Meteor. Climatol., 52, 733–752, <a class="reference external" href="doi:10.1175/JAMC-D-12-0170.1">doi:10.1175/JAMC-D-12-0170.1</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="visualization.html" class="btn btn-neutral float-right" title="Visualization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="impacts.html" class="btn btn-neutral" title="Impacts and adaptation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

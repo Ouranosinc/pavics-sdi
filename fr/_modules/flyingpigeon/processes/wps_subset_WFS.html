@@ -38,8 +38,7 @@
               href="../../../genindex.html"/>
         <link rel="search" title="Recherche" href="../../../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
-        <link rel="up" title="Code du module" href="../../index.html"/>
-
+        <link rel="up" title="Code du module" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -48,8 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -57,7 +55,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../../../index.html" class="icon icon-home"> PAVICS
@@ -88,14 +85,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/_modules/flyingpigeon/processes/wps_subset_WFS.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/_modules/flyingpigeon/processes/wps_subset_WFS.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -182,7 +171,9 @@
   <h1>Code source de flyingpigeon.processes.wps_subset_WFS</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">traceback</span>
 
+<span class="kn">from</span> <span class="nn">urlparse</span> <span class="k">import</span> <span class="n">urlparse</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">ComplexOutput</span><span class="p">,</span> <span class="n">get_format</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">CookieNetCDFTransfer</span>
 
 <span class="kn">from</span> <span class="nn">flyingpigeon.handler_common</span> <span class="k">import</span> <span class="n">wfs_common</span>
 
@@ -250,7 +241,11 @@
 
     <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">wfs_common</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;subsetter&#39;</span><span class="p">)</span>
+            <span class="n">opendap_hostnames</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">urlparse</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">hostname</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]]</span>
+            <span class="k">with</span> <span class="n">CookieNetCDFTransfer</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">opendap_hostnames</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">wfs_common</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;subsetter&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span></div>
 </pre></div>
@@ -300,7 +295,7 @@
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

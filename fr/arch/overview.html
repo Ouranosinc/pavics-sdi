@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="System Architecture" href="index.html"/>
         <link rel="next" title="Frontend" href="frontend.html"/>
-        <link rel="prev" title="System Architecture" href="index.html"/>
-
+        <link rel="prev" title="System Architecture" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/arch/overview.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/arch/overview.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -111,7 +100,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#credits">Credits</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Data Catalog</a></li>
@@ -194,26 +186,32 @@
 <p>PAVICS is a Spatial Data Infrastructure (SDI) for climate data. It is composed of modular components that together provide access to data and a library of climate services. It is meant to facilitate climate data analysis for both researchers and climate service providers. PAVICS is not intended to be installed on individual computers, but rather on servers located close to data archives.</p>
 <p>There are multiple building blocks composing the PAVICS SDI:</p>
 <dl class="docutils">
-<dt><a class="reference external" href="https://github.com/Ouranosinc/PAVICS-frontend">PAVICS-frontend</a></dt>
+<dt>PAVICS-frontend</dt>
 <dd>The user interface (UI) handling user accounts, workspace, workflows and data visualization.</dd>
-<dt><a class="reference external" href="https://github.com/Ouranosinc/PAVICS-DataCatalog">PAVICS-DataCatalog</a></dt>
+<dt>PAVICS-DataCatalog</dt>
 <dd>The database storing the information about the climate data available to users.</dd>
-<dt><a class="reference external" href="http://bird-house.github.io/">Birdhouse</a></dt>
+<dt>Birdhouse</dt>
 <dd>A collection of Web Processing Services (WPS) supporting data processing in the climate science community. It includes multiple sub-components.</dd>
-<dt>Birdhouse/<a class="reference external" href="https://github.com/bird-house/malleefowl">Malleefowl</a></dt>
+<dt>Birdhouse/Malleefowl</dt>
 <dd>Access to ESGF data nodes and THREDDS catalogs, workflow engine.</dd>
-<dt>Birdhouse/<a class="reference external" href="https://github.com/bird-house/flyingpigeon">Flyingpigeon</a></dt>
+<dt>Birdhouse/Flyingpigeon</dt>
 <dd>Climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc.</dd>
-<dt>Birdhouse/<a class="reference external" href="https://github.com/bird-house/hummingbird">Hummingbird</a></dt>
+<dt>Birdhouse/Hummingbird</dt>
 <dd>Climate Data Operators (CDO) and compliance-checker for netCDF files.</dd>
-<dt><a class="reference external" href="https://github.com/Ouranosinc/Magpie">Magpie</a></dt>
+<dt>Magpie</dt>
 <dd>Authentication and authorization services.</dd>
-<dt><a class="reference external" href="http://www.unidata.ucar.edu/software/thredds/current/tds/">THREEDS</a></dt>
+<dt>THREEDS</dt>
 <dd>netCDF data server.</dd>
-<dt><a class="reference external" href="http://geoserver.org/">GeoServer</a></dt>
+<dt>GeoServer</dt>
 <dd>Geospatial data server.</dd>
 </dl>
 <p>These components work together to offer users a seamless access to data and a suite of services that can convert raw climate data into useful information, graphics and tables.</p>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Lien permanent vers ce titre">¶</a></h2>
+<p>PAVICS is led by Ouranos, a regional climate consortium, and CRIM, a software research institute, both located in Montreal.</p>
+<p>a project led by Ouranos to provide climate scientists with a
+set of tools to acquire and analyze climate data.</p>
+</div>
 </div>
 
 
@@ -271,7 +269,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

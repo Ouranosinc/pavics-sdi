@@ -38,8 +38,7 @@
               href="../../../genindex.html"/>
         <link rel="search" title="Recherche" href="../../../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
-        <link rel="up" title="Code du module" href="../../index.html"/>
-
+        <link rel="up" title="Code du module" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -48,8 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -57,7 +55,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../../../index.html" class="icon icon-home"> PAVICS
@@ -88,14 +85,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/_modules/pavics_datacatalog/wps_processes/wps_pavicsvalidate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/_modules/pavics_datacatalog/wps_processes/wps_pavicsvalidate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -211,10 +200,7 @@
 
 <div class="viewcode-block" id="PavicsValidate"><a class="viewcode-back" href="../../../processes/maintenance.html#pavics_datacatalog.wps_processes.PavicsValidate">[docs]</a><span class="k">class</span> <span class="nc">PavicsValidate</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">env_solr_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="c1"># base_search_URL in the ESGF Search API is now a solr database URL,</span>
-        <span class="c1"># this is provided as the environment variable SOLR_SERVER.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/solr/birdhouse/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env_solr_host</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;facets&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Required facets&#39;</span><span class="p">,</span>
                                <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Facets that are required to be &#39;</span>
@@ -336,7 +322,7 @@
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

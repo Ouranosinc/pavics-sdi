@@ -38,8 +38,7 @@
               href="../../../genindex.html"/>
         <link rel="search" title="Recherche" href="../../../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../../../index.html"/>
-        <link rel="up" title="Code du module" href="../../index.html"/>
-
+        <link rel="up" title="Code du module" href="../../index.html"/> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -48,8 +47,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -57,7 +55,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../../../index.html" class="icon icon-home"> PAVICS
@@ -88,14 +85,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/_modules/pavics_datacatalog/wps_processes/wps_pavicrawler.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/_modules/pavics_datacatalog/wps_processes/wps_pavicrawler.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -213,18 +202,11 @@
 
 <div class="viewcode-block" id="PavicsCrawler"><a class="viewcode-back" href="../../../processes/maintenance.html#pavics_datacatalog.wps_processes.PavicsCrawler">[docs]</a><span class="k">class</span> <span class="nc">PavicsCrawler</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">env_solr_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SOLR_HOST&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">env_thredds_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;THREDDS_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s1">&#39;WMS_ALTERNATE_SERVER&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">thredds_hosts</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">env_thredds_host</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">thredds_host</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">thredds_hosts</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="s1">&#39;http://</span><span class="si">{0}</span><span class="s1">/thredds&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">thredds_host</span><span class="p">))</span>
-        <span class="c1"># base_search_URL in the ESGF Search API is now a solr database URL,</span>
-        <span class="c1"># this is provided as the environment variable SOLR_SERVER.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">solr_server</span> <span class="o">=</span> <span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/solr/birdhouse/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">env_solr_host</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">env_thredds_host</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
 
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;target_files&#39;</span><span class="p">,</span>
                                <span class="s1">&#39;Files to crawl&#39;</span><span class="p">,</span>
@@ -248,7 +230,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;pavicrawler&#39;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PAVICS Crawler&#39;</span><span class="p">,</span>
-            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Crawl thredds server and write metadata to SOLR database.&#39;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Crawl thredds server and write metadata to SOLR &#39;</span>
+                      <span class="s1">&#39;database.&#39;</span><span class="p">),</span>
             <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
@@ -271,17 +254,16 @@
         <span class="c1"># comparison.</span>
         <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;target_thredds&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">)</span> <span class="ow">and</span> \
            <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;target_thredds&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span><span class="p">):</span>
-            <span class="n">target_thredds_servers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;http://</span><span class="si">{0}</span><span class="s2">/thredds&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;target_thredds&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)]</span>
+            <span class="n">target_thredds_servers</span> <span class="o">=</span> <span class="p">[</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;target_thredds&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">target_thredds_servers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">thredds_server</span> <span class="ow">in</span> <span class="n">target_thredds_servers</span><span class="p">:</span>
-                <span class="k">if</span> <span class="s1">&#39;&lt;HOST&gt;&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span><span class="p">:</span>
-                    <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">thredds_servers</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">thredds_server</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> \
+                   <span class="p">(</span><span class="s1">&#39;&lt;HOST&gt;&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span><span class="p">):</span>
                     <span class="n">wms_with_host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
-                        <span class="s1">&#39;&lt;HOST&gt;&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">thredds_hosts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="s1">&#39;&lt;HOST&gt;&#39;</span><span class="p">,</span> <span class="n">thredds_server</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">wms_with_host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wms_alternate_server</span>
                 <span class="n">update_result</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">pavicrawler</span><span class="p">(</span>
@@ -348,7 +330,7 @@
       <script type="text/javascript" src="../../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../../_static/doctools.js"></script>
       <script type="text/javascript" src="../../../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_indices_percentiledays &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../support/index.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_indices_percentiledays</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flyingpigeon.processes.wps_indices_percentiledays</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.indices</span> <span class="k">import</span> <span class="n">indices</span><span class="p">,</span> <span class="n">indices_description</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.indices</span> <span class="k">import</span> <span class="n">calc_indice_percentile</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.subset</span> <span class="k">import</span> <span class="n">countries</span><span class="p">,</span> <span class="n">countries_longname</span><span class="p">,</span> <span class="n">clipping</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">GROUPING</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="IndicespercentiledaysProcess"><a class="viewcode-back" href="../../../processes/indices.html#flyingpigeon.processes.IndicespercentiledaysProcess">[docs]</a><span class="k">class</span> <span class="nc">IndicespercentiledaysProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    TODO: need a more detailed description and an example.</span>
+<span class="sd">    TODO: data input might need a data selection filter? metadata attributes could be used for this.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;NetCDF Files or archive (tar/zip) containing netCDF files.&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="c1">#  maxmegabites=5000,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                         <span class="p">]),</span>
+
+            <span class="c1"># LiteralInput(&quot;indices&quot;, &quot;Index&quot;,</span>
+            <span class="c1">#              abstract=&#39;Select an index&#39;,</span>
+            <span class="c1">#              default=&#39;TG&#39;,</span>
+            <span class="c1">#              data_type=&#39;string&#39;,</span>
+            <span class="c1">#              min_occurs=1,</span>
+            <span class="c1">#              max_occurs=1,  # len(indices()),</span>
+            <span class="c1">#              allowed_values=[&#39;TG&#39;, &#39;TN&#39;, &#39;TX&#39;],  # indices()</span>
+            <span class="c1">#              ),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;percentile&quot;</span><span class="p">,</span> <span class="s2">&quot;Percentile&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Percentile value [1-100].&#39;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;90&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># len(indices()),</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>  <span class="c1"># indices()</span>
+                         <span class="p">),</span>
+
+            <span class="c1"># LiteralInput(&quot;refperiod&quot;, &quot;Reference Period&quot;,</span>
+            <span class="c1">#              abstract=&quot;Time refperiod to retrieve the percentile level&quot;,</span>
+            <span class="c1">#              default=&quot;19700101-20101231&quot;,</span>
+            <span class="c1">#              data_type=&#39;string&#39;,</span>
+            <span class="c1">#              min_occurs=0,</span>
+            <span class="c1">#              max_occurs=1,</span>
+            <span class="c1">#              ),</span>
+            <span class="c1">#</span>
+            <span class="c1"># self.refperiod = self.addLiteralInput(</span>
+            <span class="c1">#     identifier=&quot;refperiod&quot;,</span>
+            <span class="c1">#     title=&quot;Reference refperiod&quot;,</span>
+            <span class="c1">#     abstract=&quot;Reference refperiod for climate condition (all = entire timeserie)&quot;,</span>
+            <span class="c1">#     default=None,</span>
+            <span class="c1">#     type=type(&#39;&#39;),</span>
+            <span class="c1">#     minOccurs=0,</span>
+            <span class="c1">#     maxOccurs=1,</span>
+            <span class="c1">#     allowedValues=[&#39;all&#39;,&#39;1951-1980&#39;, &#39;1961-1990&#39;, &#39;1971-2000&#39;,&#39;1981-2010&#39;]</span>
+            <span class="c1">#     )</span>
+
+            <span class="c1"># LiteralInput(&quot;grouping&quot;, &quot;Grouping&quot;,</span>
+            <span class="c1">#              abstract=&quot;Select an time grouping (time aggregation)&quot;,</span>
+            <span class="c1">#              default=&#39;yr&#39;,</span>
+            <span class="c1">#              data_type=&#39;string&#39;,</span>
+            <span class="c1">#              min_occurs=1,</span>
+            <span class="c1">#              max_occurs=1,</span>
+            <span class="c1">#              allowed_values=GROUPING</span>
+            <span class="c1">#              ),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Country code, see ISO-3166-3:</span><span class="se">\</span>
+<span class="s2">                          https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">countries</span><span class="p">()),</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="n">countries</span><span class="p">()),</span>  <span class="c1"># REGION_EUROPE #COUNTRIES</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;mosaic&quot;</span><span class="p">,</span> <span class="s2">&quot;Mosaic&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;If Mosaic is checked, selected polygons be clipped as a mosaic for each input file.&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;boolean&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+        <span class="p">]</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_archive&quot;</span><span class="p">,</span> <span class="s2">&quot;Tar archive&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Tar archive of the netCDF files storing the percentile values.&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;application/x-tar&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;ncout&#39;</span><span class="p">,</span> <span class="s1">&#39;Example netCDF file&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;NetCDF file storing the percentiles computed over one dataset.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;text/plain&quot;</span><span class="p">)])</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">IndicespercentiledaysProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;indices_percentiledays&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Climate indices (Daily percentiles)&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Climatological percentile for each day of the year &quot;</span>
+                    <span class="s2">&quot;computed over the entire dataset.&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Doc&#39;</span><span class="p">,</span>
+                 <span class="s1">&#39;href&#39;</span><span class="p">:</span> <span class="s1">&#39;http://flyingpigeon.readthedocs.io/en/latest/descriptions/</span><span class="se">\</span>
+<span class="s1">                 index.html#climate-indices&#39;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ICCLIM&quot;</span><span class="p">,</span>
+                 <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://icclim.readthedocs.io/en/latest/&quot;</span><span class="p">},</span>
+                <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Percentile-based indices&quot;</span><span class="p">,</span> <span class="s2">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;http://flyingpigeon.readthedocs.io/en/</span><span class="se">\</span>
+<span class="s2">                latest/descriptions/indices.html#percentile-based-indices&quot;</span><span class="p">},</span>
+            <span class="p">],</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">resources</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span>
+                <span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]))</span>
+
+            <span class="k">if</span> <span class="s1">&#39;region&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+                <span class="n">region</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">region</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">if</span> <span class="s1">&#39;mosaic&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>
+                <span class="n">mosaic</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;mosaic&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mosaic</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="n">percentile</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;percentile&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;mosaic </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">mosaic</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;percentile: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">percentile</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;region </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">region</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Nr of input files </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">resources</span><span class="p">))</span>
+
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;failed to read in the arguments&#39;</span><span class="p">)</span>
+
+        <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">sort_by_filename</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon.ocgis_module</span> <span class="k">import</span> <span class="n">call</span>
+
+        <span class="n">datasets</span> <span class="o">=</span> <span class="n">sort_by_filename</span><span class="p">(</span><span class="n">resources</span><span class="p">,</span> <span class="n">historical_concatination</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">kwds</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;percentile&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;window_width&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+        <span class="n">calc</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;func&#39;</span><span class="p">:</span> <span class="s1">&#39;daily_perc&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;dp&#39;</span><span class="p">,</span> <span class="s1">&#39;kwds&#39;</span><span class="p">:</span> <span class="n">kwds</span><span class="p">}]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">datasets</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                                      <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;nc&#39;</span><span class="p">,</span>
+                                      <span class="n">calc</span><span class="o">=</span><span class="n">calc</span><span class="p">,</span>
+                                      <span class="c1"># prefix=key,</span>
+                                      <span class="c1"># time_region={&#39;year&#39;: [1995, 2000]}</span>
+                                      <span class="c1"># calc_grouping=&#39;year&#39;</span>
+                                      <span class="p">)</span>
+                        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">result</span><span class="p">])</span>
+                        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;percentile based indice done for </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">result</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">clipping</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">datasets</span><span class="p">[</span><span class="n">key</span><span class="p">],</span>
+                                          <span class="c1">#  variable=None,</span>
+                                          <span class="n">calc</span><span class="o">=</span><span class="n">calc</span><span class="p">,</span>
+                                          <span class="c1">#  calc_grouping=None,</span>
+                                          <span class="c1">#  time_range=None,</span>
+                                          <span class="c1">#  time_region=None,</span>
+                                          <span class="n">polygons</span><span class="o">=</span><span class="n">region</span><span class="p">,</span>
+                                          <span class="n">mosaic</span><span class="o">=</span><span class="n">mosaic</span>
+                                          <span class="p">)</span>
+                        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;failed to calculate percentil based indice for </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;failed to calculate percentile indices&quot;</span><span class="p">)</span>
+
+        <span class="n">tarf</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_archive&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">tarf</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="s2">&quot;dummy.nc&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;ncout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+<span class="c1">#       response.update_status(&quot;done&quot;, 100)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

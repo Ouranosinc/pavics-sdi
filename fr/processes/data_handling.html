@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Data administration" href="maintenance.html"/>
-        <link rel="prev" title="Workflows" href="workflows.html"/>
-
+        <link rel="prev" title="Workflows" href="workflows.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/data_handling.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/data_handling.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -198,17 +187,17 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.FetchProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">FetchProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_fetch.html#FetchProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.FetchProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>fetch_resources <em>0.10</em> – Fetch Resources</p>
+<dd><p><strong class="program">fetch_resources</strong> Fetch Resources (v0.10)</p>
 <p>Fetch data resources (limited to 50GB) to the local filesystem of the birdhouse compute provider.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
-<li><strong>output</strong> (<em>text/plain</em>) – File containing the local pathes to downloades files.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output</strong> (<em class="mimetype">text/plain</em>) – File containing the local pathes to downloades files.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </td>
 </tr>
@@ -228,7 +217,7 @@ COWS has done somthing like this with an xml output.</p>
 <dl class="class">
 <dt id="malleefowl.processes.ESGSearchProcess">
 <em class="property">class </em><code class="descclassname">malleefowl.processes.</code><code class="descname">ESGSearchProcess</code><a class="reference internal" href="../_modules/malleefowl/processes/wps_esgsearch.html#ESGSearchProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#malleefowl.processes.ESGSearchProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>esgsearch <em>0.6</em> – ESGF Search</p>
+<dd><p><strong class="program">esgsearch</strong> ESGF Search (v0.6)</p>
 <p>Search ESGF datasets, files and aggreations.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -236,24 +225,24 @@ COWS has done somthing like this with an xml output.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – URL of ESGF Search Index. Example: <a class="reference external" href="http://esgf-data.dkrz.de/esg-search">http://esgf-data.dkrz.de/esg-search</a></li>
-<li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional:0</em>) – If flag is set then a distributed search will be run.</li>
-<li><strong>replica</strong> (<em>boolean</em><em>, </em><em>optional:False</em>) – If flag is set then search will include replicated datasets.</li>
-<li><strong>latest</strong> (<em>boolean</em><em>, </em><em>optional:True</em>) – If flag is set then search will include only latest datasets.</li>
-<li><strong>temporal</strong> (<em>boolean</em><em>, </em><em>optional:1</em>) – If flag is set then search will use temporal filter.</li>
-<li><strong>search_type</strong> (<em>{'Dataset'</em><em>, </em><em>'File'</em><em>, </em><em>'Aggregation'}</em><em>, </em><em>optional:Dataset</em>) – Search on Datasets, Files or Aggregations.</li>
+<li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then a distributed search will be run.</li>
+<li><strong>replica</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include replicated datasets.</li>
+<li><strong>latest</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include only latest datasets.</li>
+<li><strong>temporal</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will use temporal filter.</li>
+<li><strong>search_type</strong> (<em>{'Dataset'</em><em>, </em><em>'File'</em><em>, </em><em>'Aggregation'}</em><em>, </em><em>optional</em>) – Search on Datasets, Files or Aggregations.</li>
 <li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Constraints as list of key/value pairs.Example: project:CORDEX, time_frequency:mon, variable:tas</li>
-<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:*</em>) – Freetext query. For Example: temperatue</li>
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Freetext query. For Example: temperatue</li>
 <li><strong>start</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Startime: 2000-01-11T12:00:00Z</li>
 <li><strong>end</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Endtime: 2005-12-31T12:00:00Z</li>
-<li><strong>limit</strong> (<em>{'0'</em><em>, </em><em>'1'</em><em>, </em><em>'2'</em><em>, </em><em>'5'</em><em>, </em><em>'10'</em><em>, </em><em>'20'</em><em>, </em><em>'50'</em><em>, </em><em>'100'</em><em>, </em><em>'200'}</em><em>, </em><em>optional:10</em>) – Maximum number of datasets in search result</li>
-<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional:0</em>) – Start search of datasets at offset.</li>
+<li><strong>limit</strong> (<em>{'0'</em><em>, </em><em>'1'</em><em>, </em><em>'2'</em><em>, </em><em>'5'</em><em>, </em><em>'10'</em><em>, </em><em>'20'</em><em>, </em><em>'50'</em><em>, </em><em>'100'</em><em>, </em><em>'200'}</em><em>, </em><em>optional</em>) – Maximum number of datasets in search result</li>
+<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Start search of datasets at offset.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output</strong> (<em>application/json</em>) – JSON document with search result</li>
-<li><strong>summary</strong> (<em>application/json</em>) – JSON document with search result summary</li>
-<li><strong>facet_counts</strong> (<em>application/json</em>) – JSON document with facet counts for constraints.</li>
+<li><strong>output</strong> (<em class="mimetype">application/json</em>) – JSON document with search result</li>
+<li><strong>summary</strong> (<em class="mimetype">application/json</em>) – JSON document with search result summary</li>
+<li><strong>facet_counts</strong> (<em class="mimetype">application/json</em>) – JSON document with facet counts for constraints.</li>
 </ul>
 </p>
 </td>
@@ -272,7 +261,7 @@ COWS has done somthing like this with an xml output.</p>
 <dl class="class">
 <dt id="malleefowl.processes.Download">
 <em class="property">class </em><code class="descclassname">malleefowl.processes.</code><code class="descname">Download</code><a class="reference internal" href="../_modules/malleefowl/processes/wps_download.html#Download"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#malleefowl.processes.Download" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>download <em>0.8</em> – Download files</p>
+<dd><p><strong class="program">download</strong> Download files (v0.8)</p>
 <p>Downloads files and provides file list as json document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -282,7 +271,7 @@ COWS has done somthing like this with an xml output.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><strong>output</strong> – Json document with list of downloaded files with file url.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body">application/json</td>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><em class="mimetype">application/json</em></td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +285,7 @@ COWS has done somthing like this with an xml output.</p>
 <dl class="class">
 <dt id="malleefowl.processes.ThreddsDownload">
 <em class="property">class </em><code class="descclassname">malleefowl.processes.</code><code class="descname">ThreddsDownload</code><a class="reference internal" href="../_modules/malleefowl/processes/wps_thredds.html#ThreddsDownload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#malleefowl.processes.ThreddsDownload" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>thredds_download <em>0.5</em> – Download files from Thredds Catalog</p>
+<dd><p><strong class="program">thredds_download</strong> Download files from Thredds Catalog (v0.5)</p>
 <p>Downloads files from Thredds Catalog and provides file list as JSON Document.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -306,7 +295,7 @@ COWS has done somthing like this with an xml output.</p>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><strong>output</strong> – JSON document with list of downloaded files with file url.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body">application/json</td>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><em class="mimetype">application/json</em></td>
 </tr>
 </tbody>
 </table>
@@ -374,7 +363,7 @@ COWS has done somthing like this with an xml output.</p>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

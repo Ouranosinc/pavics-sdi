@@ -40,8 +40,7 @@
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Climate indices" href="indices.html"/>
-        <link rel="prev" title="Processes" href="index.html"/>
-
+        <link rel="prev" title="Processes" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/processes/basic_climate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/processes/basic_climate.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -204,7 +193,7 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.SubsetWFSProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SubsetWFSProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_subset_WFS.html#SubsetWFSProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SubsetWFSProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>subset_WFS <em>0.1</em> – Subset WFS</p>
+<dd><p><strong class="program">subset_WFS</strong> Subset WFS (v0.1)</p>
 <p>Return the data for which grid cells intersect the selected polygon for each input dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -220,21 +209,21 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>output</strong> – JSON file with link to NetCDF outputs.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output</strong> (<em class="mimetype">application/json</em>) – JSON file with link to NetCDF outputs.</li>
+<li><em>Subset a NetCDF file using WFS geometry.</em></li>
+</ul>
+</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Subset a NetCDF file using WFS geometry.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="flyingpigeon.processes.AveragerWFSProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">AveragerWFSProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_averager_WFS.html#AveragerWFSProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.AveragerWFSProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>averager_WFS <em>0.1</em> – Averager WFS</p>
+<dd><p><strong class="program">averager_WFS</strong> Averager WFS (v0.1)</p>
 <p>Return the data with weighted average of grid cells intersecting the selected polygon for each input dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -250,21 +239,21 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>output</strong> – JSON file with link to NetCDF outputs.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output</strong> (<em class="mimetype">application/json</em>) – JSON file with link to NetCDF outputs.</li>
+<li><em>Weighted spatial average of a NetCDF file using a WFS geometry.</em></li>
+</ul>
+</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Weighted spatial average of a NetCDF file using a WFS geometry.</p>
 </dd></dl>
 
 <dl class="class">
 <dt id="flyingpigeon.processes.ClippingProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ClippingProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_subset_countries.html#ClippingProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.ClippingProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>subset_countries <em>0.10</em> – Subset (World Countries)</p>
+<dd><p><strong class="program">subset_countries</strong> Subset (World Countries) (v0.10)</p>
 <p>Return the data whose grid cells intersect the selected countries for each input dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -273,14 +262,14 @@
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'ABW'</em><em>, </em><em>'AFG'</em><em>, </em><em>'AGO'</em><em>, </em><em>'ALB'</em><em>, </em><em>'ALD'</em><em>, </em><em>'AND'</em><em>, </em><em>'ARE'</em><em>, </em><em>'ARG'</em><em>, </em><em>'ARM'</em><em>, </em><em>'ASM'</em><em>, </em><em>..}</em>) – Country code, see ISO-3166-3:                          <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements</a></li>
 <li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files. (<a class="reference external" href="None">Info</a>)</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output</strong> (<em>application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
-<li><strong>ncout</strong> (<em>application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
+<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -298,7 +287,7 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.ClipcontinentProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ClipcontinentProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_subset_continents.html#ClipcontinentProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.ClipcontinentProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>subset_continents <em>0.10</em> – Subset (Continents)</p>
+<dd><p><strong class="program">subset_continents</strong> Subset (Continents) (v0.10)</p>
 <p>Return the data whose grid cells intersect the selected continents for each input dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -307,14 +296,15 @@
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'Africa'</em><em>, </em><em>'Asia'</em><em>, </em><em>'Australia'</em><em>, </em><em>'North America'</em><em>, </em><em>'Oceania'</em><em>, </em><em>'South America'</em><em>, </em><em>'Antarctica'</em><em>, </em><em>'Europe'}</em>) – Continent name.</li>
 <li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output</strong> (<em>application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
-<li><strong>ncout</strong> (<em>application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
+<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -331,7 +321,7 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.ClipregionseuropeProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ClipregionseuropeProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_subset_regionseurope.html#ClipregionseuropeProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.ClipregionseuropeProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>subset_regionseurope <em>0.10</em> – Subset (European Regions)</p>
+<dd><p><strong class="program">subset_regionseurope</strong> Subset (European Regions) (v0.10)</p>
 <p>Return the data whose grid cells inteserct the selected regions for each input dataset.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -340,14 +330,14 @@
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'DE.BR'</em><em>, </em><em>'ME.AN'</em><em>, </em><em>'SE.VN'</em><em>, </em><em>'UA.KM'</em><em>, </em><em>'UK.NI'</em><em>, </em><em>'DE.BW'</em><em>, </em><em>'UK.WA'</em><em>, </em><em>'LV.RG'</em><em>, </em><em>'DE.BY'</em><em>, </em><em>'EE.SA'</em><em>, </em><em>..}</em>) – European region code, see ISO-3166 Alpha2: <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-2">https://en.wikipedia.org/wiki/ISO_3166-2</a></li>
 <li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output</strong> (<em>application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
-<li><strong>ncout</strong> (<em>application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the subsetted netCDF files.</li>
+<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file with subset for one dataset.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -365,21 +355,22 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.PointinspectionProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">PointinspectionProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_pointinspection.html#PointinspectionProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.PointinspectionProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>pointinspection <em>0.10</em> – Point Inspection</p>
+<dd><p><strong class="program">pointinspection</strong> Point Inspection (v0.10)</p>
 <p>Extract the timeseries at the given coordinates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em>application/x-netcdf</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing NetCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
 <li><strong>coords</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – A comma-seperated tuple of WGS85 lon,lat decimal coordinates (e.g. 2.356138, 48.846450)</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
-<li><strong>tarout</strong> (<em>application/x-tar</em>) – Tar archive containing the netCDF files</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+<li><strong>tarout</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive containing the netCDF files</li>
 </ul>
 </p>
 </td>
@@ -397,15 +388,15 @@
 <dl class="class">
 <dt id="flyingpigeon.processes.LandseamaskProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">LandseamaskProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_landseamask.html#LandseamaskProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.LandseamaskProcess" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>landseamask <em>0.3</em> – Land-Sea Mask</p>
+<dd><p><strong class="program">landseamask</strong> Land-Sea Mask (v0.3)</p>
 <p>Mask grid cells according to their land area fraction. This process uses the ESGF datastore to access an appropriate land/sea mask.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>dataset</strong> (<em>application/x-netcdf</em><em>, </em><em>optional</em>) – URL pointing to a NetCDF File or an archive (tar/zip) containing NetCDF files.</li>
-<li><strong>dataset_opendap</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Remote OpenDAP data URL, for example: <a class="reference external" href="http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc">http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc</a></li>
+<li><strong>dataset</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>, optional) – URL pointing to a NetCDF File or an archive (tar/zip) containing NetCDF files.</li>
+<li><strong>dataset_opendap</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Remote OpenDAP data URL, for example: <a class="reference external" href="http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc">http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc</a> (<a class="reference external" href="https://www.iana.org/assignments/media-types/media-types.xhtml">application/x-ogc-dods</a>)</li>
 <li><strong>threshold</strong> (<em>{'10'</em><em>, </em><em>'25'</em><em>, </em><em>'50'</em><em>, </em><em>'75'</em><em>, </em><em>'90'}</em>) – Land Area Fraction in percent.</li>
 <li><strong>mask</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Optionally provide an OpenDAP URL to an appropriate land area fraction file. If no file is provided, the process will run a search on the ESGF archive.</li>
 <li><strong>land_or_sea</strong> (<em>{'land'</em><em>, </em><em>'sea'}</em>) – Either the land or the sea area of the mask will be subsetted.</li>
@@ -413,9 +404,9 @@
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_archive</strong> (<em>application/x-tar</em>) – Tar archive of the masked netCDF files.</li>
-<li><strong>output_example</strong> (<em>application/x-netcdf</em>) – An example file to display in the WMS.</li>
-<li><strong>output_log</strong> (<em>text/plain</em>) – Collected logs during process run.</li>
+<li><strong>output_archive</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the masked netCDF files.</li>
+<li><strong>output_example</strong> (<em class="mimetype">application/x-netcdf</em>) – An example file to display in the WMS.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
 </td>
@@ -431,7 +422,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.Period2Indices">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">Period2Indices</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_period2indices.html#Period2Indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.Period2Indices" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>period2indices <em>0.1</em> – NetCDF time indices from a period</p>
+<dd><p><strong class="program">period2indices</strong> NetCDF time indices from a period (v0.1)</p>
 <p>The final index is inclusive.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -441,7 +432,7 @@
 <li><strong>initial_date</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Format must be %Y-%m-%dT%H:%M:%S</li>
 <li><strong>final_date</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Format must be %Y-%m-%dT%H:%M:%S</li>
 <li><strong>opendap_url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – OPeNDAP url to a NetCDF file</li>
-<li><strong>calendar</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional:gregorian</em>) – If left unspecified, taken from NetCDF file time variable.</li>
+<li><strong>calendar</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – If left unspecified, taken from NetCDF file time variable.</li>
 </ul>
 </td>
 </tr>
@@ -459,7 +450,7 @@
 <dl class="class">
 <dt id="pavics_datacatalog.wps_processes.GetPoint">
 <em class="property">class </em><code class="descclassname">pavics_datacatalog.wps_processes.</code><code class="descname">GetPoint</code><a class="reference internal" href="../_modules/pavics_datacatalog/wps_processes/wps_getpoint.html#GetPoint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pavics_datacatalog.wps_processes.GetPoint" title="Lien permanent vers cette définition">¶</a></dt>
-<dd><p>getpoint <em>0.1</em> – Point value from a NetCDF file</p>
+<dd><p><strong class="program">getpoint</strong> Point value from a NetCDF file (v0.1)</p>
 <p>Return a single value from a NetCDF file at the given grid coordinates.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -479,7 +470,7 @@
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first"><strong>point_result</strong> – Information for the requested point.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last">application/json</p>
+<tr class="field-odd field"><th class="field-name">Type retourné:</th><td class="field-body"><p class="first last"><em class="mimetype">application/json</em></p>
 </td>
 </tr>
 </tbody>
@@ -548,7 +539,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

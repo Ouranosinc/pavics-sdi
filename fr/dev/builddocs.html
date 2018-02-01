@@ -39,9 +39,8 @@
         <link rel="search" title="Recherche" href="../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="Data management" href="data_management.html"/>
-        <link rel="prev" title="VM configuration" href="vm.html"/>
-
+        <link rel="next" title="User management" href="permissions.html"/>
+        <link rel="prev" title="VM configuration" href="vm.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -50,8 +49,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
-  
-
+   
   <div class="wy-grid-for-nav">
 
     
@@ -59,7 +57,6 @@
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
           
-  
 
           
             <a href="../index.html" class="icon icon-home"> PAVICS
@@ -90,14 +87,6 @@
 </div>
 
           
-  <a href="/pavics-sdi/fr/dev/builddocs.html">
-  <i class="fa fa-language" aria-hidden="true"></i> Français
-  </a>
-  |
-  <a href="/pavics-sdi/en/dev/builddocs.html">
-  <i class="fa fa-language" aria-hidden="true"></i> English
-  </a>
-
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -117,9 +106,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#translations">Translations</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
@@ -201,7 +192,7 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-<p>This is the repository storing the overall system configuration for the PAVICS platform. Because processes are documented using the <cite>autoclass</cite> directive, you’ll also need to install a few other packages that contribute services:</p>
+<p>This is the repository storing the overall system configuration for the PAVICS platform. Because processes are documented using the <cite>autoprocess</cite> directive, you’ll also need to install a few other packages that contribute services:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">flyingpigeon</span>
 <span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
@@ -222,12 +213,11 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
-<p>Then if all went well, you should be able to build the docs (in both french and english):</p>
+<p>Then if all went well, you should be able to build the docs:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">docs</span>
 <span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
-<p>The output goes into <code class="file docutils literal"><span class="pre">build/en</span></code> and <code class="file docutils literal"><span class="pre">build/fr</span></code>. Note that there are also <code class="docutils literal"><span class="pre">make</span></code> targets called <code class="docutils literal"><span class="pre">html_en</span></code> and <code class="docutils literal"><span class="pre">html_fr</span></code> to build only the english or french documentation.</p>
 <p>If you have write permissions to <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>, you can also deploy the html <a class="reference external" href="https://ouranosinc.github.io/pavics-sdi/">online</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
 </pre></div>
@@ -244,29 +234,15 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="o">-</span><span class="n">e</span> <span class="n">SPHINXOPTS</span><span class="o">=</span><span class="s2">&quot;-D language=&#39;de&#39;&quot;</span> <span class="n">html</span>
 </pre></div>
 </div>
+<p>A <code class="docutils literal"><span class="pre">make</span></code> command to build the french documentation has been created to facilitate building:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html_fr</span>
+</pre></div>
+</div>
 <p>When the source documentation in english changes and the translation needs to be updated, run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">intl</span> <span class="n">update</span> <span class="o">-</span><span class="n">p</span> <span class="n">build</span><span class="o">/</span><span class="n">locale</span>
 </pre></div>
 </div>
 <p>edit the <code class="docutils literal"><span class="pre">.po</span></code> files and rebuild the documentation.</p>
-<p>File <code class="file docutils literal"><span class="pre">source/_templates/layout.html</span></code> extends the ReadTheDocs theme to add a language switcher:</p>
-<div class="highlight-html"><div class="highlight"><pre><span></span>{% block sidebartitle %}
-  {{ super() }}
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/{{server_root}}/fr/{{pagename}}.html&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fa fa-language&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span> Français
-  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-  |
-  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/{{server_root}}/en/{{pagename}}.html&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;fa fa-language&quot;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span> English
-  <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-{% endblock %}
-</pre></div>
-</div>
-<p>The target link is given by <code class="docutils literal"><span class="pre">server_root</span></code>, defined in <code class="file docutils literal"><span class="pre">conf.py</span></code> and set to <code class="docutils literal"><span class="pre">pavics-sdi</span></code>. The switcher will thus not work as is if deployed on another site or if the site is browsed locally. To use the switcher on your local disk, launch a simple http server (for example <a class="reference external" href="https://www.npmjs.com/package/http-server">http-server</a>) inside the <code class="file docutils literal"><span class="pre">build</span></code> directory and create a symbolic link:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">-</span><span class="n">s</span>  <span class="n">html</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span>
-</pre></div>
-</div>
-<p>The language switcher should then work.</p>
 </div>
 </div>
 
@@ -280,7 +256,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="data_management.html" class="btn btn-neutral float-right" title="Data management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="permissions.html" class="btn btn-neutral float-right" title="User management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="vm.html" class="btn btn-neutral" title="VM configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -325,7 +301,7 @@
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
       <script type="text/javascript" src="../_static/translations.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
