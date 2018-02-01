@@ -4,6 +4,7 @@ Tutorials
 
 .. toctree::
    searching
+   wps_with_python
 
 
 
