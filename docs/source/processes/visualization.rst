@@ -3,10 +3,10 @@ Visualization
 =============
 
 
-.. autoclass:: flyingpigeon.processes.PlottimeseriesProcess
+.. autoprocess:: flyingpigeon.processes.PlottimeseriesProcess
 
-.. autoclass:: flyingpigeon.processes.AnalogsviewerProcess
+.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
 
-.. autoclass:: flyingpigeon.processes.MapSpatialAnalogProcess
+.. autoprocess:: flyingpigeon.processes.MapSpatialAnalogProcess
 
 

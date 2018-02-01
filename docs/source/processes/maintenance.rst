@@ -7,10 +7,10 @@ SOLR
 
 The following processes are used to interact with the SOLR database.
 
-.. autoclass:: pavics_datacatalog.wps_processes.PavicsCrawler
+.. autoprocess:: pavics_datacatalog.wps_processes.PavicsCrawler
 
-.. autoclass:: pavics_datacatalog.wps_processes.PavicsSearch
+.. autoprocess:: pavics_datacatalog.wps_processes.PavicsSearch
 
-.. autoclass:: pavics_datacatalog.wps_processes.PavicsUpdate
+.. autoprocess:: pavics_datacatalog.wps_processes.PavicsUpdate
 
-.. autoclass:: pavics_datacatalog.wps_processes.PavicsValidate
+.. autoprocess:: pavics_datacatalog.wps_processes.PavicsValidate

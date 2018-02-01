@@ -8,29 +8,29 @@ Advanced climate data analysis
    :depth: 3
 
 
-Uncertainty analysis
---------------------
+#Uncertainty analysis
+#--------------------
 
-.. autoclass:: flyingpigeon.processes.RobustnessProcess
+#.. autoprocess:: flyingpigeon.processes.RobustnessProcess
 
 
-Weather analogs
----------------
+#Weather analogs
+#---------------
 
-.. autoclass:: flyingpigeon.processes.WeatherregimesreanalyseProcess
+#.. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess
 
-.. autoclass:: flyingpigeon.processes.WeatherregimesprojectionProcess
+#.. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess
 
-.. autoclass:: flyingpigeon.processes.WeatherregimesmodelProcess
+#.. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess
 
-.. autoclass:: flyingpigeon.processes.AnalogsreanalyseProcess
+#.. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess
 
-.. autoclass:: flyingpigeon.processes.AnalogsmodelProcess
+#.. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess
 
-.. autoclass:: flyingpigeon.processes.AnalogscompareProcess
+#.. autoprocess:: flyingpigeon.processes.AnalogscompareProcess
 
-.. autoclass:: flyingpigeon.processes.AnalogsviewerProcess
-   :noindex:
+#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
+#   :noindex:
 
 
 Spatial analogs
@@ -95,9 +95,9 @@ by a white marker.
    A map of the dissimilarity metric computed from mean annual precipitation and
    temperature values in Montreal over the period 1970-1990.
 
-.. autoclass:: flyingpigeon.processes.SpatialAnalogProcess
+.. autoprocess:: flyingpigeon.processes.SpatialAnalogProcess
 
-.. autoclass:: flyingpigeon.processes.MapSpatialAnalogProcess
+.. autoprocess:: flyingpigeon.processes.MapSpatialAnalogProcess
    :noindex:
 
 .. rubric:: References

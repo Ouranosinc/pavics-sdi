@@ -6,7 +6,7 @@ To build the docs, grab a copy of the `pavics-sdi`_ repository on github::
 
    git clone git@github.com:Ouranosinc/pavics-sdi.git
 
-This is the repository storing the overall system configuration for the PAVICS platform. Because processes are documented using the `autoclass` directive, you'll also need to install a few other packages that contribute services::
+This is the repository storing the overall system configuration for the PAVICS platform. Because processes are documented using the `autoprocess` directive, you'll also need to install a few other packages that contribute services::
 
     git clone git@github.com:Ouranosinc/flyingpigeon.git
     cd flyingpigeon

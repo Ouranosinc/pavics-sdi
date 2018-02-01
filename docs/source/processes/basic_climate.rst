@@ -5,23 +5,23 @@ Basic climate data analysis
 Spatial and temporal subsetting
 ===============================
 
-.. autoclass:: flyingpigeon.processes.SubsetWFSProcess
+.. autoprocess:: flyingpigeon.processes.SubsetWFSProcess
 
-.. autoclass:: flyingpigeon.processes.AveragerWFSProcess
+.. autoprocess:: flyingpigeon.processes.AveragerWFSProcess
 
-.. autoclass:: flyingpigeon.processes.ClippingProcess
+.. autoprocess:: flyingpigeon.processes.ClippingProcess
 
-.. autoclass:: flyingpigeon.processes.ClipcontinentProcess
+.. autoprocess:: flyingpigeon.processes.ClipcontinentProcess
 
-.. autoclass:: flyingpigeon.processes.ClipregionseuropeProcess
+.. autoprocess:: flyingpigeon.processes.ClipregionseuropeProcess
 
-.. autoclass:: flyingpigeon.processes.PointinspectionProcess
+.. autoprocess:: flyingpigeon.processes.PointinspectionProcess
 
-.. autoclass:: flyingpigeon.processes.LandseamaskProcess
+.. autoprocess:: flyingpigeon.processes.LandseamaskProcess
 
-.. autoclass:: pavics_datacatalog.wps_processes.Period2Indices
+.. autoprocess:: pavics_datacatalog.wps_processes.Period2Indices
 
-.. autoclass:: pavics_datacatalog.wps_processes.GetPoint
+.. autoprocess:: pavics_datacatalog.wps_processes.GetPoint
 
 
 Regridding

@@ -4,14 +4,14 @@ Impacts and adaptation
 
 Biodiversity
 ============
-.. autoclass:: flyingpigeon.processes.GBIFfetchProcess
+.. autoprocess:: flyingpigeon.processes.GBIFfetchProcess
 
-.. autoclass:: flyingpigeon.processes.SDMgetindicesProcess
+.. autoprocess:: flyingpigeon.processes.SDMgetindicesProcess
 
-.. autoclass:: flyingpigeon.processes.SDMcsvProcess
+.. autoprocess:: flyingpigeon.processes.SDMcsvProcess
 
-.. autoclass:: flyingpigeon.processes.SDMcsvindicesProcess
+.. autoprocess:: flyingpigeon.processes.SDMcsvindicesProcess
 
-.. autoclass:: flyingpigeon.processes.SDMallinoneProcess
+.. autoprocess:: flyingpigeon.processes.SDMallinoneProcess
 
-.. autoclass:: flyingpigeon.processes.SegetalfloraProcess
+.. autoprocess:: flyingpigeon.processes.SegetalfloraProcess

@@ -4,4 +4,6 @@ Geoserver administration
 
 .. todo::
 
-   Document adding and editing layers in geoserver
+   How to add new layers
+   How to modify the meta data associated with layers (how they appear in the interface)
+

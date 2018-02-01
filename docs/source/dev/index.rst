@@ -11,6 +11,7 @@ Developer Documentation
    load_balancing
    vm
    builddocs
+   permissions
    data_management
    geoserver
    integration_tests

@@ -28,7 +28,7 @@ msgstr ""
 #: ../../source/dev/builddocs.rst:9
 msgid ""
 "This is the repository storing the overall system configuration for the "
-"PAVICS platform. Because processes are documented using the `autoclass` "
+"PAVICS platform. Because processes are documented using the `autoprocess` "
 "directive, you'll also need to install a few other packages that "
 "constribute services to PAVICS::"
 msgstr ""

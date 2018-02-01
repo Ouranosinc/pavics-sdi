@@ -2,6 +2,11 @@
 Installation and Configuration
 ==============================
 
+.. todo::
+
+   Update the installation and config with security changes
+
+
 Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of `DockerHub`_. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The `resulting images <https://hub.docker.com/u/pavics/>`_ are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command::
 
    docker pull pavics/pavics-datacatalog
@@ -263,3 +268,11 @@ Set the WMS alternate server if desired.
 .. _Docker: http://docker.com
 .. _DockerHub: https://hub.docker.com/
 .. _ipython:  https://ipython.org
+
+
+Magpie
+------
+
+.. todo::
+
+   Complete

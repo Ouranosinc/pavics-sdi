@@ -2,7 +2,7 @@
 Climate indices
 ===============
 
-.. autoclass:: flyingpigeon.processes.IndicessingleProcess
+.. autoprocess:: flyingpigeon.processes.IndicessingleProcess
 
-.. autoclass:: flyingpigeon.processes.IndicespercentiledaysProcess
+.. autoprocess:: flyingpigeon.processes.IndicespercentiledaysProcess
 
