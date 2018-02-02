@@ -174,7 +174,12 @@
             
   <div class="section" id="provenance">
 <h1>Provenance<a class="headerlink" href="#provenance" title="Lien permanent vers ce titre">¶</a></h1>
-<p>The code base is divided into multiple components each having its own release schedule. Each component is stored on a individual github repository, where every change of the master branch triggers a test suite run and a build of the corresponding docker image (available on <a href="#id1"><span class="problematic" id="id2">`DockerHub`_</span></a>). Development occurs in code branches, and modifications are only merged after code reviews have been completed and all tests passed. Official releases are tagged after significant code changes and are authorized by ?. The project documentation is entirely contained within the various sections of this document.</p>
+<p>The code base is divided into multiple components each having its own release schedule. Each component is stored on a
+individual github repository, where every change of the master branch triggers a test suite run and a build of the
+corresponding docker image (available on <a class="reference external" href="https://hub.docker.com/">DockerHub</a>). Development occurs in code branches, and modifications are only
+merged after code reviews have been completed and all tests passed. Official releases are tagged after significant code
+changes and are authorized by ?. The project documentation is entirely contained within the various sections of this
+document.</p>
 <p>pavics-sdi is relying on a number of different packages developed by other teams. Minor pavics releases will be created following major releases of these critical third party packages if they do not coincide with a major internal release. Package whose upgrade whose trigger a minor pavics release include ocgis, flyingpigeon and malleefowl.</p>
 <div class="section" id="ouranos-deployment">
 <h2>Ouranos deployment<a class="headerlink" href="#ouranos-deployment" title="Lien permanent vers ce titre">¶</a></h2>

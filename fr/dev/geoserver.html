@@ -105,7 +105,15 @@
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Geoserver administration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Geoserver administration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#before-you-begin">Before you Begin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-data-to-geoserver">Adding data to GeoServer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-scp-ssh-method">The SCP/SSH Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-qgis-geoserver-explorer-method">The QGIS GeoServer Explorer Method</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
@@ -185,10 +193,67 @@
             
   <div class="section" id="geoserver-administration">
 <h1>Geoserver administration<a class="headerlink" href="#geoserver-administration" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="before-you-begin">
+<h2>Before you Begin<a class="headerlink" href="#before-you-begin" title="Lien permanent vers ce titre">¶</a></h2>
+<p>It’s advised that you create a <code class="docutils literal"><span class="pre">Workspace</span></code>. For more information on Workspaces and the data structure of GeoServer, refer to the <a class="reference external" href="http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html">GeoServer Online Documentation</a>.</p>
+</div>
+<div class="section" id="adding-data-to-geoserver">
+<h2>Adding data to GeoServer<a class="headerlink" href="#adding-data-to-geoserver" title="Lien permanent vers ce titre">¶</a></h2>
+<p>There are two possible methods for loading data sets into a store in GeoServer: using SCP/SSH or with QGIS GeoServer Explorer. Both require write access credentials to the GeoServer Administrator panel. Employing SCP/SSH is a more manual method and the ???</p>
+<div class="section" id="the-scp-ssh-method">
+<h3>The SCP/SSH Method<a class="headerlink" href="#the-scp-ssh-method" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You must have write access permissions to the server-side GeoServer filesystem.</p>
+</div>
+<p>Folders can be loaded with Vector and Raster data in many formats and can be stored in the same parent folder.</p>
+<ul>
+<li><p class="first">Begin by tunneling into the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">user</span><span class="nd">@server</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Determine where the GeoServer data folder exists on your server. Navigate to this directory and create a new folder that will contain your new data sets:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">On your local terminal, navigate to your directory containing your data and run <code class="docutils literal"><span class="pre">scp</span></code> on the folder recursively:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">pr</span> <span class="n">localdata</span> <span class="n">user</span><span class="nd">@server</span><span class="p">:</span><span class="o">/</span><span class="n">PATHTO</span><span class="o">/</span><span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span><span class="o">/</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Login to the GeoServer Administration Panel and click on <span class="guilabel">Stores</span> in the sidebar.</p>
+</li>
+<li><p class="first">Click on <span class="guilabel">Add new Store</span></p>
+</li>
+<li><p class="first">Specify the type of data you are adding (e.g. Shapefile, GeoTIFF, PostGIS DB, etc). Each option will allow you to load one such file at a time. If you already have a Workspace, you can specify to associate the data with it. If you are adding several Shapefiles, select the option for <span class="guilabel">Directory of Shapefiles</span>.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click the <span class="guilabel">Enabled</span> box or uploaded layers won’t be available!</p>
+</div>
+</div>
+<div class="section" id="the-qgis-geoserver-explorer-method">
+<h3>The QGIS GeoServer Explorer Method<a class="headerlink" href="#the-qgis-geoserver-explorer-method" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You must have a working installation of QGIS (2.14.x, 2.18.x, 3.x) and access to the QGIS Plugin Manager. QGIS is multi-OS and available at <a class="reference external" href="https://qgis.org/en/site/">QGIS.org</a>.</p>
+</div>
+<ul class="simple">
+<li>From the QGIS window menu, select <span class="guilabel">Plugins</span> then <span class="guilabel">Manage and Install Plugins</span>. From the plugin list, find «&nbsp;GeoServer Explorer&nbsp;» and click <span class="guilabel">Install Plugin</span>.</li>
+<li>Open your data layers in QGIS and name them accordingly.</li>
+<li>From the <span class="guilabel">Web</span> menu tab, select <span class="guilabel">GeoServer Explorer</span> and a new window will pop-up or appear below the processing toolbox.</li>
+</ul>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">À faire</p>
-<p class="last">How to add new layers
-How to modify the meta data associated with layers (how they appear in the interface)</p>
+<ul class="last simple">
+<li>Add images for the step-by-step processes</li>
+<li>How to modify the meta data associated with layers (how they appear in the interface)</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 

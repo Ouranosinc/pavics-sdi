@@ -103,7 +103,10 @@
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Building the docs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#translations">Translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#publishing-the-docs-online">Publishing the docs online</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#translations">Translations</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
@@ -195,11 +198,13 @@
 <p>This is the repository storing the overall system configuration for the PAVICS platform. Because processes are documented using the <cite>autoprocess</cite> directive, you’ll also need to install a few other packages that contribute services:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">flyingpigeon</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">pavics</span>
 <span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
 <span class="n">cd</span> <span class="o">..</span>
 
 <span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">malleefowl</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">malleefowl</span>
+
 <span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
 <span class="n">cd</span> <span class="o">..</span>
 
@@ -215,16 +220,41 @@
 </div>
 <p>Then if all went well, you should be able to build the docs:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">docs</span>
+<span class="n">mkdir</span> <span class="n">source</span><span class="o">/</span><span class="n">_static</span>
 <span class="n">make</span> <span class="n">html</span>
 </pre></div>
 </div>
-<p>If you have write permissions to <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>, you can also deploy the html <a class="reference external" href="https://ouranosinc.github.io/pavics-sdi/">online</a>:</p>
+<div class="section" id="publishing-the-docs-online">
+<h2>Publishing the docs online<a class="headerlink" href="#publishing-the-docs-online" title="Lien permanent vers ce titre">¶</a></h2>
+<p>If you have write permissions to <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>, you can also deploy the html <a class="reference external" href="https://ouranosinc.github.io/pavics-sdi/">online</a>.
+To do so for the first time, create a new directory next to the <code class="file docutils literal"><span class="pre">pavics-sdi</span></code> directory and clone the repo into an <code class="file docutils literal"><span class="pre">html</span></code> directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">-</span><span class="n">docs</span>
+<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">-</span><span class="n">docs</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>Then enter <code class="file docutils literal"><span class="pre">html</span></code>, checkout the <cite>gh-pages</cite> branch and enter some voodoo incantations:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">html</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
+<span class="n">git</span> <span class="n">symbolic</span><span class="o">-</span><span class="n">ref</span> <span class="n">HEAD</span> <span class="n">refs</span><span class="o">/</span><span class="n">heads</span><span class="o">/</span><span class="n">gh</span><span class="o">-</span><span class="n">pages</span>  <span class="c1"># auto-switches branches to gh-pages</span>
+<span class="n">rm</span> <span class="o">.</span><span class="n">git</span><span class="o">/</span><span class="n">index</span>
+<span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">fdx</span>
+</pre></div>
+</div>
+<p>You’ll also need to add a <code class="file docutils literal"><span class="pre">.nojekyll</span></code> file to make sure the stylesheets are loaded on github.io:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span><span class="n">nojekyll</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s1">&#39;added .nojekyll&#39;</span>
+<span class="n">git</span> <span class="n">push</span>
+</pre></div>
+</div>
+<p>You should then be able to go back to pavics-sdi/docs and run make <cite>gh-pages</cite>, which will build the html docs,
+copy them to the <code class="file docutils literal"><span class="pre">pavics-sdi-docs</span></code> just created and push them to the github gh-branch:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span>
 </pre></div>
 </div>
-<p>but this requires creating a build directory according to these <a class="reference external" href="https://daler.github.io/sphinxdoc-test/includeme.html">instructions</a>.</p>
+<p>For more details, see the original <a class="reference external" href="https://daler.github.io/sphinxdoc-test/includeme.html">instructions</a>.</p>
 <div class="section" id="translations">
-<h2>Translations<a class="headerlink" href="#translations" title="Lien permanent vers ce titre">¶</a></h2>
+<h3>Translations<a class="headerlink" href="#translations" title="Lien permanent vers ce titre">¶</a></h3>
 <p><a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a> is being translated in french, and it’s possible to add other languages. For example to add a german translation,  run <code class="docutils literal"><span class="pre">sphinx-intl</span></code> from the <code class="file docutils literal"><span class="pre">docs/</span></code> directory with the <code class="docutils literal"><span class="pre">de</span></code> locale:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">intl</span> <span class="n">update</span> <span class="o">-</span><span class="n">p</span> <span class="n">build</span><span class="o">/</span><span class="n">locale</span> <span class="o">-</span><span class="n">l</span> <span class="n">de</span>
 </pre></div>
@@ -243,6 +273,7 @@
 </pre></div>
 </div>
 <p>edit the <code class="docutils literal"><span class="pre">.po</span></code> files and rebuild the documentation.</p>
+</div>
 </div>
 </div>
 
