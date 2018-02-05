@@ -3,7 +3,7 @@ GeoServer administration
 ========================
 
 
-Before you gegin
+Before you begin
 ================
 
 It's advised that you create a ``Workspace``. For more information on Workspaces and the data structure of GeoServer, refer to the `GeoServer Online Documentation <http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html>`_.
