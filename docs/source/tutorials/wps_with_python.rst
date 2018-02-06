@@ -22,6 +22,7 @@ Execute process (async)::
     myinputs = [('some_parameter', 'some_value')]
     execution = wps.execute('some_process', myinputs, async=False)
     execution.getStatus()
+    execution.statusLocation  # useful for accessing the xml status file
     execution.processOutputs[0].data
 
 If the WPS is protected behind magpie::
