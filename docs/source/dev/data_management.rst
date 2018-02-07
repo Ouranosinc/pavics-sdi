@@ -25,6 +25,13 @@ of the platform. This list is currently not configurable and includes::
     experiment
     frequency
 
+It is highly recommended that those attributes, when applicable, be properly
+set in the added NetCDF files, as well as the variables standard_name,
+long_name and units.
+
+Furthermore, a dataset_id global attribute for each collection of files
+that consitute a timeseries is recommended.
+
 New entries in the catalog should appear in Solr::
 
     http://localhost:8983/solr/#/birdhouse/query
