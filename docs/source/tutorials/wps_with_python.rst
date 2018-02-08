@@ -25,6 +25,10 @@ Execute process (async)::
     execution.statusLocation  # useful for accessing the xml status file
     execution.processOutputs[0].data
 
+On a local flyingpigeon, the results can also be found in::
+
+    ~/birdhouse/var/lib/pywps/outputs/
+
 If the WPS is protected behind magpie::
 
     import requests
