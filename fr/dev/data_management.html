@@ -39,7 +39,7 @@
         <link rel="search" title="Recherche" href="../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="Geoserver administration" href="geoserver.html"/>
+        <link rel="next" title="GeoServer administration" href="geoserver.html"/>
         <link rel="prev" title="User management" href="permissions.html"/> 
 
   
@@ -105,11 +105,12 @@
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf-files-specifications">NetCDF files specifications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manually-adding-netcdf-files">Manually adding NetCDF files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#thredds-data-server-example">THREDDS Data Server example</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
@@ -189,6 +190,27 @@
             
   <div class="section" id="data-management">
 <h1>Data management<a class="headerlink" href="#data-management" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="netcdf-files-specifications">
+<h2>NetCDF files specifications<a class="headerlink" href="#netcdf-files-specifications" title="Lien permanent vers ce titre">¶</a></h2>
+<p>NetCDF files integrated in the PAVICS platform must follow the CF Conventions
+document: <a class="reference external" href="http://cfconventions.org/">http://cfconventions.org/</a></p>
+<p>In order to benefit from the search engine capabilities, typical global
+attributes should be set. Currently the platorms searches for:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project</span>
+<span class="n">institute</span>
+<span class="n">model</span>
+<span class="n">experiment</span>
+<span class="n">frequency</span>
+</pre></div>
+</div>
+<p>For variables, the standard_name and units should follow the CF standard name
+table: <a class="reference external" href="http://cfconventions.org/standard-names.html">http://cfconventions.org/standard-names.html</a></p>
+<p>By default, the dataset_id will be made up of the relative path on the thredds
+server. It is recommended to provide the dataset_id as a global attribute
+in each NetCDF file that is unique for each collection of files that constitute
+a timeseries.</p>
+<p>NetCDF files with multiple variables are presently not fully supported.</p>
+</div>
 <div class="section" id="manually-adding-netcdf-files">
 <h2>Manually adding NetCDF files<a class="headerlink" href="#manually-adding-netcdf-files" title="Lien permanent vers ce titre">¶</a></h2>
 <p>NetCDF files can be manually added to the THREDDS Data Server by copying
@@ -198,16 +220,6 @@ them to the directory used as a docker volume in docker-compose.yml (see
 components must be running and pavicrawler must be run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span># replace localhost and port number with your PAVICS-DataCatalog deployment address
 http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
-</pre></div>
-</div>
-<p>Note that the crawler scans for typical attributes (mostly defined by CMIP) in
-the NetCDF global attributes. This allows search by facets by other components
-of the platform. This list is currently not configurable and includes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project</span>
-<span class="n">institute</span>
-<span class="n">model</span>
-<span class="n">experiment</span>
-<span class="n">frequency</span>
 </pre></div>
 </div>
 <p>New entries in the catalog should appear in Solr:</p>
@@ -233,7 +245,7 @@ of the platform. This list is currently not configurable and includes:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="geoserver.html" class="btn btn-neutral float-right" title="Geoserver administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="geoserver.html" class="btn btn-neutral float-right" title="GeoServer administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="permissions.html" class="btn btn-neutral" title="User management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -105,7 +105,7 @@
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="geoserver.html">Geoserver administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#benchmark-development-environment">Benchmark development environment</a></li>
@@ -113,7 +113,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#launching-individual-local-components">Launching individual local components</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#public-thredds">Public THREDDS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#https-thredds">HTTPS THREDDS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#https-custom-wps-service">HTTPS CUSTOM WPS SERVICE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#https-custom-wps-service">HTTPS custom WPS service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flyingpigeon-development">Flyingpigeon development</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#malleefowl-development">Malleefowl development</a></li>
 </ul>
 </li>
 </ul>
@@ -284,7 +286,7 @@ respond after a while, try to restart everything once or twice.</p>
 <p>Play around with magpie permissions to check that the security is working</p>
 </div>
 <div class="section" id="https-custom-wps-service">
-<h3>HTTPS CUSTOM WPS SERVICE<a class="headerlink" href="#https-custom-wps-service" title="Lien permanent vers ce titre">¶</a></h3>
+<h3>HTTPS custom WPS service<a class="headerlink" href="#https-custom-wps-service" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Follow all the steps of the HTTPS THREDDS setup above up to the
 template copy, instead use:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">local_https_wps</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
@@ -324,6 +326,53 @@ service type. Then edit this new service Protected URL to
 PAVICS/birdhouse/config/magpie/providers.cfg</p>
 <p>Check that the wps is running at <a class="reference external" href="https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities">https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities</a></p>
 <p>Play around with magpie permissions to check that the security is working</p>
+</div>
+<div class="section" id="flyingpigeon-development">
+<h3>Flyingpigeon development<a class="headerlink" href="#flyingpigeon-development" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">flyingpigeon</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">pavics</span>
+</pre></div>
+</div>
+<p>Need to either add a custom.cfg or modify profiles/base.cfg with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
+<span class="n">geoserver</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">host</span><span class="p">:</span><span class="n">port</span><span class="o">/</span><span class="n">geoserver</span><span class="o">/</span><span class="n">wfs</span>
+</pre></div>
+</div>
+<p>Then proceed with installation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
+<span class="n">make</span> <span class="n">test</span>
+<span class="n">make</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>The WPS will be running at:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://localhost:8093/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
+</pre></div>
+</div>
+</div>
+<div class="section" id="malleefowl-development">
+<h3>Malleefowl development<a class="headerlink" href="#malleefowl-development" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">malleefowl</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">malleefowl</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">pavics</span>
+</pre></div>
+</div>
+<p>Need to either add a custom.cfg or modify profiles/base.cfg with:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
+<span class="n">persist</span><span class="o">-</span><span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="n">tmp</span>
+<span class="n">archive</span><span class="o">-</span><span class="n">root</span> <span class="o">=</span> <span class="o">/</span>
+</pre></div>
+</div>
+<p>Then proceed with installation:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
+<span class="n">make</span> <span class="n">test</span>
+<span class="n">make</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>The WPS will be running at:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://localhost:8091/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
+</pre></div>
+</div>
 </div>
 </div>
 </div>

@@ -196,7 +196,12 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myinputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;some_parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;some_value&#39;</span><span class="p">)]</span>
 <span class="n">execution</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;some_process&#39;</span><span class="p">,</span> <span class="n">myinputs</span><span class="p">,</span> <span class="k">async</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">execution</span><span class="o">.</span><span class="n">getStatus</span><span class="p">()</span>
+<span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span>  <span class="c1"># useful for accessing the xml status file</span>
 <span class="n">execution</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>On a local flyingpigeon, the results can also be found in:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">pywps</span><span class="o">/</span><span class="n">outputs</span><span class="o">/</span>
 </pre></div>
 </div>
 <p>If the WPS is protected behind magpie:</p>

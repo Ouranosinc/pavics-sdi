@@ -120,7 +120,7 @@ Check that thredds is running at https://localhost/twitcher/ows/proxy/thredds/
 
 Play around with magpie permissions to check that the security is working
 
-HTTPS CUSTOM WPS SERVICE
+HTTPS custom WPS service
 ------------------------
 
 Follow all the steps of the HTTPS THREDDS setup above up to the
@@ -170,3 +170,52 @@ PAVICS/birdhouse/config/magpie/providers.cfg
 Check that the wps is running at https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&version=1.0.0&request=GetCapabilities
 
 Play around with magpie permissions to check that the security is working
+
+Flyingpigeon development
+------------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/flyingpigeon.git
+    cd flyingpigeon
+    git checkout pavics
+
+Need to either add a custom.cfg or modify profiles/base.cfg with::
+
+    [settings]
+    geoserver = http://host:port/geoserver/wfs
+
+Then proceed with installation::
+
+    make clean install
+    make test
+    make start
+
+The WPS will be running at::
+
+    http://localhost:8093/wps?service=WPS&version=1.0.0&request=GetCapabilities
+
+Malleefowl development
+----------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/malleefowl.git
+    cd malleefowl
+    git checkout pavics
+
+Need to either add a custom.cfg or modify profiles/base.cfg with::
+
+    [settings]
+    persist-path = /tmp
+    archive-root = /
+
+Then proceed with installation::
+
+    make clean install
+    make test
+    make start
+
+The WPS will be running at::
+
+    http://localhost:8091/wps?service=WPS&version=1.0.0&request=GetCapabilities

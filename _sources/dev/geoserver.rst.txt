@@ -1,9 +1,9 @@
 ========================
-Geoserver administration
+GeoServer administration
 ========================
 
 
-Before you Begin
+Before you begin
 ================
 
 It's advised that you create a ``Workspace``. For more information on Workspaces and the data structure of GeoServer, refer to the `GeoServer Online Documentation <http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html>`_.
@@ -15,7 +15,7 @@ Adding data to GeoServer
 There are two possible methods for loading data sets into a store in GeoServer: using SCP/SSH or with QGIS GeoServer Explorer. Both require write access credentials to the GeoServer Administrator panel. Employing SCP/SSH is a more manual method and the ???
 
 
-The SCP/SSH Method
+The SCP/SSH method
 ------------------
 
 .. note::
@@ -45,7 +45,7 @@ Folders can be loaded with Vector and Raster data in many formats and can be sto
 	Click the :guilabel:`Enabled` box or uploaded layers won't be available!
 
 
-The QGIS GeoServer Explorer Method
+The QGIS GeoServer Explorer method
 ----------------------------------
 
 .. note::
