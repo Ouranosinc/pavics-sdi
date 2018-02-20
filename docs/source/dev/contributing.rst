@@ -39,6 +39,16 @@ Commands to run in Python console:
 Launching individual local components
 =====================================
 
+Solr
+----
+
+::
+
+    docker pull pavics/solr
+    docker run --name my_solr -d -p 8983:8983 -t pavics/solr
+
+Check that Solr is running at http://localhost:8983/solr/#/birdhouse
+
 Public THREDDS
 --------------
 
@@ -54,7 +64,7 @@ to an actual path on disk with NetCDF files.
 
     docker-compose up -d thredds
 
-Check that thredds is running at localhost:8083/thredds/
+Check that thredds is running at http://localhost:8083/thredds/
 
 HTTPS THREDDS
 -------------
@@ -170,6 +180,26 @@ PAVICS/birdhouse/config/magpie/providers.cfg
 Check that the wps is running at https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&version=1.0.0&request=GetCapabilities
 
 Play around with magpie permissions to check that the security is working
+
+PAVICS-DataCatalog development
+------------------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/PAVICS-DataCatalog.git
+    cd PAVICS-DataCatalog
+    cp catalog.cfg ~/catalog.cfg
+
+Edit ~/catalog.cfg with Solr address. Note that within docker, localhost
+is not the same as the workstation localhost, so the address must use the ip
+of the local machine (retrieve with, e.g., ifconfig). Also point to a
+valid thredds server.
+
+    sudo su  # to work with docker
+    docker build -t pavics-datacatalog .
+    docker run --name pavics-datacatalog1 -d -v ~/catalog.cfg:/home/catalog.cfg -p 8009:80 pavics-datacatalog
+
+Check that the wps is running at http://localhost:8009/pywps?service=WPS&request=GetCapabilities&version=1.0.0
 
 Flyingpigeon development
 ------------------------

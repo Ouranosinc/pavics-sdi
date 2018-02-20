@@ -52,3 +52,12 @@ THREDDS Data Server example
 
 An example of a public THREDDS Data Server can be found here:
 https://data.nodc.noaa.gov/thredds/catalog.html
+
+Birdhouse Solr
+==============
+
+The birdhouse solr uses deduplication
+(http://wiki.apache.org/solr/Deduplication) on the fields "source" and "url".
+Essentially the id is a hash of the combination of those fields. This is
+defined in solrconfig.xml
+(e.g. https://github.com/bird-house/birdhousebuilder.recipe.solr/blob/master/birdhousebuilder/recipe/solr/templates/solrconfig.xml)
