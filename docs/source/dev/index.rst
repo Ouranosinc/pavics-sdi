@@ -9,6 +9,7 @@ Developer Documentation
 
    installation
    load_balancing
+   configuration
    vm
    builddocs
    permissions
@@ -16,3 +17,4 @@ Developer Documentation
    geoserver
    integration_tests
    contributing
+
