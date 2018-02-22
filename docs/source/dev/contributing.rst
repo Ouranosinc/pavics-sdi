@@ -39,7 +39,8 @@ Commands to run in Python console:
     pip.main(['install', 'https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip'])
     pip.main(['install', '--upgrade', '--force-reinstall', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
 
-- Some packages are not happy with wheel, try uninstalling if all else fails.
+- Some packages are not happy with wheel, try uninstalling it if all else
+  fails.
 
 
 Launching individual local components
@@ -200,6 +201,8 @@ Edit ~/catalog.cfg with Solr address. Note that within docker, localhost
 is not the same as the workstation localhost, so the address must use the ip
 of the local machine (retrieve with, e.g., ifconfig). Also point to a
 valid thredds server.
+
+::
 
     sudo su  # to work with docker
     docker build -t pavics-datacatalog .
