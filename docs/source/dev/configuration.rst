@@ -1,6 +1,6 @@
-=================================
-Birdhouse Component Configuration
-=================================
+===============================
+Birdhouse service configuration
+===============================
 
 All birdhouse components are deployed and configured using the following methods:
 
