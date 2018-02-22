@@ -22,7 +22,12 @@ Execute process (async)::
     myinputs = [('some_parameter', 'some_value')]
     execution = wps.execute('some_process', myinputs, async=False)
     execution.getStatus()
+    execution.statusLocation  # useful for accessing the xml status file
     execution.processOutputs[0].data
+
+On a local flyingpigeon, the results can also be found in::
+
+    ~/birdhouse/var/lib/pywps/outputs/
 
 If the WPS is protected behind magpie::
 

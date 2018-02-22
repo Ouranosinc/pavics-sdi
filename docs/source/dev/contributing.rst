@@ -5,26 +5,30 @@ Contributing
 Benchmark development environment
 =================================
 
-Recommended VirtualBox installation:
+Recommended VirtualBox (https://www.virtualbox.org/wiki/Downloads) installation:
 
-- Install Oracle VM VirtualBox Extension Pack
-- Linux Ubuntu 16.04.3 (64-bit)
+- Install Oracle VM VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
+- Linux Ubuntu 16.04.3 (64-bit) (https://www.ubuntu.com/download/desktop)
 - >8 gb memory
 - >70 gb disk space
 - >2 CPUs
 - Network bridge access
 - Install VBoxGuestAdditions inside the Ubuntu guest for corresponding
-  VirtualBox version
+  VirtualBox version (https://download.virtualbox.org/virtualbox/). This can
+  be done by downloading the .iso file and loading it into the optical drive.
 
 Required packages for various PAVICS components:
 
-git docker.io docker-compose
+python-dev
+curl
+git
+docker.io
+docker-compose
 
 
 Setting up pycharm
 ==================
 
-- May need to uninstall wheel
 - For missing python modules: https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html
 
 Commands to run in Python console:
@@ -33,11 +37,23 @@ Commands to run in Python console:
 
     import pip
     pip.main(['install', 'https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip'])
-    pip.main(['install', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
+    pip.main(['install', '--upgrade', '--force-reinstall', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
+
+- Some packages are not happy with wheel, try uninstalling if all else fails.
 
 
 Launching individual local components
 =====================================
+
+Solr
+----
+
+::
+
+    docker pull pavics/solr
+    docker run --name my_solr -d -p 8983:8983 -t pavics/solr
+
+Check that Solr is running at http://localhost:8983/solr/#/birdhouse
 
 Public THREDDS
 --------------
@@ -54,7 +70,7 @@ to an actual path on disk with NetCDF files.
 
     docker-compose up -d thredds
 
-Check that thredds is running at localhost:8083/thredds/
+Check that thredds is running at http://localhost:8083/thredds/
 
 HTTPS THREDDS
 -------------
@@ -120,7 +136,7 @@ Check that thredds is running at https://localhost/twitcher/ows/proxy/thredds/
 
 Play around with magpie permissions to check that the security is working
 
-HTTPS CUSTOM WPS SERVICE
+HTTPS custom WPS service
 ------------------------
 
 Follow all the steps of the HTTPS THREDDS setup above up to the
@@ -170,3 +186,77 @@ PAVICS/birdhouse/config/magpie/providers.cfg
 Check that the wps is running at https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&version=1.0.0&request=GetCapabilities
 
 Play around with magpie permissions to check that the security is working
+
+PAVICS-DataCatalog development
+------------------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/PAVICS-DataCatalog.git
+    cd PAVICS-DataCatalog
+    cp catalog.cfg ~/catalog.cfg
+
+Edit ~/catalog.cfg with Solr address. Note that within docker, localhost
+is not the same as the workstation localhost, so the address must use the ip
+of the local machine (retrieve with, e.g., ifconfig). Also point to a
+valid thredds server.
+
+    sudo su  # to work with docker
+    docker build -t pavics-datacatalog .
+    docker run --name pavics-datacatalog1 -d -v ~/catalog.cfg:/home/catalog.cfg -p 8009:80 pavics-datacatalog
+
+Check that the wps is running at http://localhost:8009/pywps?service=WPS&request=GetCapabilities&version=1.0.0
+
+Flyingpigeon development
+------------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/flyingpigeon.git
+    cd flyingpigeon
+    git checkout pavics
+
+Need to either add a custom.cfg or modify profiles/base.cfg with::
+
+    [settings]
+    geoserver = http://host:port/geoserver/wfs
+
+Then proceed with installation::
+
+    make clean install
+    make test
+    make start
+
+The WPS will be running at::
+
+    http://localhost:8093/wps?service=WPS&version=1.0.0&request=GetCapabilities
+
+To restart flyingpigeon (e.g. after modifications)::
+
+    make stop
+    make start
+
+Malleefowl development
+----------------------
+
+::
+
+    git clone https://github.com/Ouranosinc/malleefowl.git
+    cd malleefowl
+    git checkout pavics
+
+Need to either add a custom.cfg or modify profiles/base.cfg with::
+
+    [settings]
+    persist-path = /tmp
+    archive-root = /
+
+Then proceed with installation::
+
+    make clean install
+    make test
+    make start
+
+The WPS will be running at::
+
+    http://localhost:8091/wps?service=WPS&version=1.0.0&request=GetCapabilities
