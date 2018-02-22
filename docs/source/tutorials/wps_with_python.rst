@@ -7,9 +7,11 @@ https://geopython.github.io/OWSLib/#wps
 
 Currently, we recommend the following branch of owslib since it allows
 for the distinction between sync/async execution:
-https://github.com/bird-house/OWSLib/tree/pingudev::
+https://github.com/bird-house/OWSLib/tree/pingudev
 
-    pip install --upgrade --force-reinstall https://github.com/bird-house/OWSLib/archive/pingudev.zip)
+::
+
+    pip install --upgrade --force-reinstall https://github.com/bird-house/OWSLib/archive/pingudev.zip
 
 Getting a list of processes::
 
