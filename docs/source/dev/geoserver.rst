@@ -6,14 +6,13 @@ GeoServer administration
 Before you begin
 ================
 
-It's advised that you create a ``Workspace``. For more information on Workspaces and the data structure of GeoServer, refer to the `GeoServer Online Documentation <http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html>`_.
+We strongly encourage that you create a ``Workspace``. For more information on Workspaces and the data structure of GeoServer, refer to the official `GeoServer Online Documentation <http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html>`_.
 
 
 Adding data to GeoServer
 ========================
 
 There are two possible methods for loading data sets into a store in GeoServer: using SCP/SSH or with QGIS GeoServer Explorer. Both require write access credentials to the GeoServer Administrator panel. Employing SCP/SSH is a more manual method and the ???
-
 
 The SCP/SSH method
 ------------------
@@ -57,8 +56,12 @@ The QGIS GeoServer Explorer method
 * From the :guilabel:`Web` menu tab, select :guilabel:`GeoServer Explorer` and a new window will pop-up or appear below the processing toolbox.
 
 
+Styling data layers
+===================
+
 .. todo::
 
    * Add images for the step-by-step processes
    * How to modify the meta data associated with layers (how they appear in the interface)
+   * Add advice on setting styles with SLD4raster and other tools/advice
 
