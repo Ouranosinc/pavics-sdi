@@ -5,26 +5,30 @@ Contributing
 Benchmark development environment
 =================================
 
-Recommended VirtualBox installation:
+Recommended VirtualBox (https://www.virtualbox.org/wiki/Downloads) installation:
 
-- Install Oracle VM VirtualBox Extension Pack
-- Linux Ubuntu 16.04.3 (64-bit)
+- Install Oracle VM VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
+- Linux Ubuntu 16.04.3 (64-bit) (https://www.ubuntu.com/download/desktop)
 - >8 gb memory
 - >70 gb disk space
 - >2 CPUs
 - Network bridge access
 - Install VBoxGuestAdditions inside the Ubuntu guest for corresponding
-  VirtualBox version
+  VirtualBox version (https://download.virtualbox.org/virtualbox/). This can
+  be done by downloading the .iso file and loading it into the optical drive.
 
 Required packages for various PAVICS components:
 
-git docker.io docker-compose
+python-dev
+curl
+git
+docker.io
+docker-compose
 
 
 Setting up pycharm
 ==================
 
-- May need to uninstall wheel
 - For missing python modules: https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html
 
 Commands to run in Python console:
@@ -33,7 +37,9 @@ Commands to run in Python console:
 
     import pip
     pip.main(['install', 'https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip'])
-    pip.main(['install', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
+    pip.main(['install', '--upgrade', '--force-reinstall', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
+
+- Some packages are not happy with wheel, try uninstalling if all else fails.
 
 
 Launching individual local components
@@ -224,6 +230,11 @@ Then proceed with installation::
 The WPS will be running at::
 
     http://localhost:8093/wps?service=WPS&version=1.0.0&request=GetCapabilities
+
+To restart flyingpigeon (e.g. after modifications)::
+
+    make stop
+    make start
 
 Malleefowl development
 ----------------------
