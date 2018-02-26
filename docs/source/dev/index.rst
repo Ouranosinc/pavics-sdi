@@ -11,10 +11,10 @@ Developer Documentation
    load_balancing
    configuration
    vm
-   builddocs
    permissions
    geoserver
    data_management
    integration_tests
+   builddocs
    contributing
 

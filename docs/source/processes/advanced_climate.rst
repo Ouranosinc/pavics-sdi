@@ -33,30 +33,25 @@ Advanced climate data analysis
 #   :noindex:
 
 
-Spatial analogs
+Spatial analogues
 ---------------
 
-Spatial analogues are maps showing which areas have a climate today that is
+Spatial analogues are maps showing which areas have a present-day climate that is
 *analogous* to the future climate of a given place. This type of map can be
-useful for climate adaptation to see which places are coping today with specific climate
-conditions. For example, officials from a city located in a temperate region could learn from
-the experience of another city where heatwaves are a common occurrence and
-intervention plans have been improved over time.
+useful for climate adaptation to see how well regions are coping today under specific climate conditions. For example, officials from a city located in a temperate region that may be expecting more heatwaves in the future can learn from the experience of another city where heatwaves are a common occurrence, leading to more proactive intervention plans to better deal with new climate conditions.
 
 Spatial analogues are estimated by comparing the distribution of climate indices
 computed at the target location over the future period with the distribution of
-the same climate indices computed over a reference period for multiple candidate regions.
-A number of methodological choices thus enter the computation:
+the same climate indices computed over a reference period for multiple candidate regions. A number of methodological choices thus enter the computation:
 
   * the climate indices,
   * the metric measuring the difference between both distributions,
   * the reference data from which to compute the indices,
   * the future climate scenario to compute the target indices.
 
-The climate indices chosen to compute the spatial analogs are usually annual values
-of indices relevant to the intended audience of these maps. For example, if the maps are
-made for the grape industry, then the climate indices used could
-be the length of the frost-free season, growing degree-days, annual winter minimum
+The climate indices chosen to compute the spatial analogues are usually annual values
+of indices relevant to the intended audience of these maps. For example, in the case of the wine grape industry, the climate indices examined could
+include the length of the frost-free season, growing degree-days, annual winter minimum
 temperature andand annual number of very cold days [Roy2017]_.
 
 The :class:`flyingpigeon.processes.SpatialAnalogProcess` offers six
