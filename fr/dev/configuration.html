@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Birdhouse service configuration &mdash; documentation PAVICS 0.1</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Recherche" href="../search.html"/>
+    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+        <link rel="up" title="Developer Documentation" href="index.html"/>
+        <link rel="next" title="VM configuration" href="vm.html"/>
+        <link rel="prev" title="Load balancing" href="load_balancing.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Birdhouse service configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#phoenix">Phoenix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ncwms">ncWMS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-setup-of-the-running-docker">Manual setup of the running docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-services">Dynamic services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thredds">THREDDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hummingbird">Hummingbird</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pavics-datacatalog">PAVICS-DataCatalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#magpie">Magpie</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flyingpigeon">FlyingPigeon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emu">Emu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-birds">Other Birds?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User and Group management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data and service management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Documentation</a> &raquo;</li>
+        
+      <li>Birdhouse service configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/dev/configuration.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="birdhouse-service-configuration">
+<h1>Birdhouse service configuration<a class="headerlink" href="#birdhouse-service-configuration" title="Lien permanent vers ce titre">¶</a></h1>
+<p>All birdhouse components are deployed and configured using the following methods:</p>
+<ul class="simple">
+<li>Run <code class="docutils literal"><span class="pre">docker-compose</span></code> on a <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> config file to launch a group of containers using their images and some options.</li>
+<li>When a container is starting a make call with the target update-config and start is done (specified by the dockerfile CMD statement)<ul>
+<li>The update-config target update the container application config using buildout and the custom.cfg config file</li>
+<li>The start target launch the application using supervisor</li>
+</ul>
+</li>
+</ul>
+<p>To customize the container application config we must also update the custom.cfg file used by the buildout recipe of each container.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Since custom.cfg is built into the docker image and thus reset each time we run an image the only way to alter it is to mount a host file inside the container using the volume option. Therefore a <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is configured on host for each birdhouse component and mounted inside the container using the volume option of the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> file. This way each time a container is started, it is configured by the host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> file which indeed persist the lifecycle of a container</li>
+<li>The <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is a buildout configuration file which extends <code class="file docutils literal"><span class="pre">buildout.cfg</span></code> providing default parameters. Each birdhouse component has it’s own buildout recipe looking for particular parameters to configure their application.</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">An exemple recipe for ncWMS configuration can be found here: <a class="reference external" href="https://github.com/bird-house/birdhousebuilder.recipe.ncwms">https://github.com/bird-house/birdhousebuilder.recipe.ncwms</a>. Look on github for other components recipe : <a class="reference external" href="https://github.com/bird-house">https://github.com/bird-house</a>.</p>
+</div>
+<div class="section" id="phoenix">
+<h2>Phoenix<a class="headerlink" href="#phoenix" title="Lien permanent vers ce titre">¶</a></h2>
+<p>For more information on Phoenix: &lt;<a class="reference external" href="https://pyramid-phoenix.readthedocs.io/en/latest/">https://pyramid-phoenix.readthedocs.io/en/latest/</a>&gt;</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/phoenix/custom.cfg</span></code></span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
+<span class="c1"># User: admin, Password: querty</span>
+phoenix-password <span class="o">=</span> sha256:...
+</pre></div>
+</div>
+</div>
+<p>To change password get into the phoenix running container and use <code class="docutils literal"><span class="pre">make</span> <span class="pre">passwd</span></code>. This will update the persistant host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> with the new password hash.
+If an error about missing <code class="docutils literal"><span class="pre">IPython.lib</span></code> occurs install <a class="reference external" href="https://ipython.org">ipython</a> like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>source $ANACONDA_HOME/bin/activate birdhouse
+pip install ipython
+</pre></div>
+</div>
+<p>Phoenix still requires manual configuration in order for Solr to correctly index the THREDDS catalog:</p>
+<ol class="arabic">
+<li><p class="first">Go to <a class="reference external" href="https:/">https:/</a>/&lt;platform_url&gt;:8443/</p>
+</li>
+<li><p class="first">Click on the login button <img alt="login" src="../_images/phoenix_login.png" /></p>
+</li>
+<li><p class="first">Use the admin phoenix access with “querty” password:</p>
+<img alt="../_images/phoenix_username.png" src="../_images/phoenix_username.png" />
+</li>
+<li><p class="first">Go to the settings page <img alt="settings" src="../_images/phoenix_setting.png" /></p>
+</li>
+<li><p class="first">Click on the <a href="#id3"><span class="problematic" id="id4">|service|</span></a> button:</p>
+<img alt="../_images/phoenix_services.png" src="../_images/phoenix_services.png" />
+</li>
+<li><p class="first">Register a new service:</p>
+<img alt="../_images/phoenix_register.png" src="../_images/phoenix_register.png" />
+</li>
+<li><p class="first">Fill the form using the thredds catalog url (use the OpenStack internal IP), a service name of your choice and be sure to check the Thredds Catalog service type :</p>
+<img alt="../_images/phoenix_register_thredds.png" src="../_images/phoenix_register_thredds.png" />
+</li>
+<li><p class="first">Click on the register button</p>
+</li>
+<li><p class="first">Go to the Solr settings page by repeating the steps 4 and 5 but this time using the Solr button.</p>
+<img alt="../_images/phoenix_solr.png" src="../_images/phoenix_solr.png" />
+</li>
+<li><p class="first">Use the Parameters tab and increase the crawling depth to match the deepest catalog depth :</p>
+</li>
+<li><p class="first">Activate the crawling in the Thredds Services tab by clicking on the toggle button near the + symbol.</p>
+<img alt="../_images/phoenix_thredds_activate.png" src="../_images/phoenix_thredds_activate.png" />
+</li>
+<li><p class="first">The status should turn to green when you click on the refresh button.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="ncwms">
+<h2>ncWMS<a class="headerlink" href="#ncwms" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/ncwms2/custom.mfg</span></code></span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
+tomcat-ncwms-password <span class="o">=</span> &lt;enter ncwms password&gt;
+
+<span class="o">[</span>ncwms<span class="o">]</span>
+<span class="nv">data_dir</span> <span class="o">=</span> /pavics-data
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="manual-setup-of-the-running-docker">
+<h2>Manual setup of the running docker<a class="headerlink" href="#manual-setup-of-the-running-docker" title="Lien permanent vers ce titre">¶</a></h2>
+<p>To access the ncWMS admin page (changes be overriden each time the container is restarted), edit the file: <code class="file docutils literal"><span class="pre">/opt/conda/envs/birdhouse/opt/apache-tomcat/conf/tomcat-users.xml</span></code> and remove the comment block around the manager-gui and ncWMS-admin role.
+The administration page allow administrators to add new datasets but again it will not persist upon container restarting.</p>
+<p>Default Tomact credentials:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;birdhouse&quot;</span>
+<span class="n">password</span><span class="o">=</span><span class="s2">&quot;4FO72WcTt7K9gYiNKApf&quot;</span>
+</pre></div>
+</div>
+<p>Default ncWMS credentials:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+<span class="n">password</span><span class="o">=</span><span class="s2">&quot;ju68hfld&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dynamic-services">
+<h2>Dynamic services<a class="headerlink" href="#dynamic-services" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">The dynamic services section allow with only one command to enable access to all the database available at <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> by configuring a file system entrypoint. The only thing to do is to use the following url: <a class="reference external" href="http:/">http:/</a>/&lt;domain&gt;:8080/ncWMS2/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities&amp;VERSION=1.3.0&amp;DATASET=outputs/&lt;path&gt; and replace <code class="docutils literal"><span class="pre">&lt;path&gt;</span></code> by the relative path to <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> to the required dataset. So thanks to this config and to the catalog service we should be able to get the entire database list from the catalog and access their WMS by using the relative path in the wms url.</p>
+</div>
+</div>
+<div class="section" id="thredds">
+<h2>THREDDS<a class="headerlink" href="#thredds" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>thredds<span class="o">]</span>
+<span class="nv">data_root</span> <span class="o">=</span> /pavics-data
+<span class="nv">allow_wcs</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">allow_wms</span> <span class="o">=</span> <span class="nb">true</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hummingbird">
+<h2>Hummingbird<a class="headerlink" href="#hummingbird" title="Lien permanent vers ce titre">¶</a></h2>
+<p>For more information on Hummingbird: &lt;<a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">https://birdhouse-hummingbird.readthedocs.io/en/latest/</a>&gt;</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. : <a class="reference external" href="http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax">http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax</a> returns «&nbsp;PyWPS Process cdo_operation successfully calculated&nbsp;». However the output points to a NetCDF file on localhost (<a class="reference external" href="http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a>). Need to substitute localhost for the ip (132.217.140.31) and keep the same port : <a class="reference external" href="http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a> Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. &gt;&gt; cdo monmax <a class="reference external" href="http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc">http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc</a> output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine… Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.</p>
+</div>
+</div>
+<div class="section" id="pavics-datacatalog">
+<h2>PAVICS-DataCatalog<a class="headerlink" href="#pavics-datacatalog" title="Lien permanent vers ce titre">¶</a></h2>
+<p>In the catalog.cfg file:
+* Provide the solr and THREDDS host.
+* Set the wps host to the server that will be exposing the catalog (this is the server where wps temporary output files will be saved).
+* Set the WMS alternate server if desired.</p>
+</div>
+<div class="section" id="magpie">
+<h2>Magpie<a class="headerlink" href="#magpie" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="flyingpigeon">
+<h2>FlyingPigeon<a class="headerlink" href="#flyingpigeon" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="emu">
+<h2>Emu<a class="headerlink" href="#emu" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="other-birds">
+<h2>Other Birds?<a class="headerlink" href="#other-birds" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">À faire</p>
+<p class="last">Examine the Birdhouse/Birdhouse-Docs to see if this section can be merged back to it and joined as a submodule here. Birds of interest are listed there.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vm.html" class="btn btn-neutral float-right" title="VM configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="load_balancing.html" class="btn btn-neutral" title="Load balancing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

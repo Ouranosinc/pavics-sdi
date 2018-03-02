@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User management &mdash; PAVICS 0.1 documentation</title>
+  <title>User and Group management &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="Data management" href="data_management.html"/>
-        <link rel="prev" title="Building the docs" href="builddocs.html"/> 
+        <link rel="next" title="GeoServer administration" href="geoserver.html"/>
+        <link rel="prev" title="VM configuration" href="vm.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,26 +99,32 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">User management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#permissions-and-authorizations">Permissions and authorizations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-external-services">Adding external services</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">User and Group management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-users-and-groups-to-pavics-server">Adding Users and Groups to PAVICS server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-and-group-management-for-bird-services">User and Group management for Bird services</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#permissions-and-authorizations">Permissions and authorizations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#twitcher">Twitcher?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#malleefowl">Malleefowl?</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data and service management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -168,7 +174,7 @@
         
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>User management</li>
+      <li>User and Group management</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -187,26 +193,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="user-management">
-<h1>User management<a class="headerlink" href="#user-management" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">How to add a new user
-How to create a group</p>
+  <div class="section" id="user-and-group-management">
+<h1>User and Group management<a class="headerlink" href="#user-and-group-management" title="Permalink to this headline">¶</a></h1>
+<p>The following guide explains the management of users, groups, and permissions for the PAVICS deployment. Permissions and group settings for users both server-side and client-side and can be configured to unique deployment specifications.</p>
+<p>As mentioned, PAVICS is built to work within POSIX and POSIX-like systems. As such, user/group management within servers running PAVICS is synonymous with conventions for user/group management in Linux and Unix systems.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Are we clarifying both within-server permissions and permissions as set within the Birds?</p>
 </div>
-<div class="section" id="permissions-and-authorizations">
-<h2>Permissions and authorizations<a class="headerlink" href="#permissions-and-authorizations" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-1">
+<div class="section" id="adding-users-and-groups-to-pavics-server">
+<h2>Adding Users and Groups to PAVICS server<a class="headerlink" href="#adding-users-and-groups-to-pavics-server" title="Permalink to this headline">¶</a></h2>
+<p>Users added to the PAVICS server for the purpose of adding data or administering Bird services may need unique access privileges. Once a user has been created with <a class="reference external" href="https://linux.die.net/man/8/useradd">useradd</a> and groups initiatialized with <a class="reference external" href="https://linux.die.net/man/8/groupadd">groupadd</a> group membership and privileges can be later specified with <code class="docutils literal"><span class="pre">usermod</span></code> and <code class="docutils literal"><span class="pre">groupmod</span></code>.</p>
+<p>Begin by tunneling into the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">user</span><span class="nd">@server</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="user-and-group-management-for-bird-services">
+<h2>User and Group management for Bird services<a class="headerlink" href="#user-and-group-management-for-bird-services" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">How authorizations for services work (the concept)
 How to grant users access to data and services</p>
 </div>
+<div class="section" id="permissions-and-authorizations">
+<h3>Permissions and authorizations<a class="headerlink" href="#permissions-and-authorizations" title="Permalink to this headline">¶</a></h3>
 </div>
-<div class="section" id="adding-external-services">
-<h2>Adding external services<a class="headerlink" href="#adding-external-services" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-2">
-<p class="first admonition-title">Todo</p>
-<p class="last">How to add WPS, WMS, WFS servers to PAVICS.</p>
+<div class="section" id="twitcher">
+<h3>Twitcher?<a class="headerlink" href="#twitcher" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="malleefowl">
+<h3>Malleefowl?<a class="headerlink" href="#malleefowl" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -221,10 +238,10 @@ How to grant users access to data and services</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="data_management.html" class="btn btn-neutral float-right" title="Data management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="geoserver.html" class="btn btn-neutral float-right" title="GeoServer administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="builddocs.html" class="btn btn-neutral" title="Building the docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="vm.html" class="btn btn-neutral" title="VM configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -40,7 +40,7 @@
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="System Architecture" href="../arch/index.html"/>
-        <link rel="prev" title="Integration tests" href="integration_tests.html"/> 
+        <link rel="prev" title="Building the docs" href="builddocs.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,21 +99,24 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User and Group management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data and service management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#benchmark-development-environment">Benchmark development environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-up-pycharm">Setting up pycharm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#launching-individual-local-components">Launching individual local components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#solr">Solr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#public-thredds">Public THREDDS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#https-thredds">HTTPS THREDDS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#https-custom-wps-service">HTTPS custom WPS service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pavics-datacatalog-development">PAVICS-DataCatalog development</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flyingpigeon-development">Flyingpigeon development</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#malleefowl-development">Malleefowl development</a></li>
 </ul>
@@ -125,8 +128,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -199,35 +202,51 @@
 <h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="benchmark-development-environment">
 <h2>Benchmark development environment<a class="headerlink" href="#benchmark-development-environment" title="Permalink to this headline">¶</a></h2>
-<p>Recommended VirtualBox installation:</p>
+<p>Recommended VirtualBox (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>) installation:</p>
 <ul class="simple">
-<li>Install Oracle VM VirtualBox Extension Pack</li>
-<li>Linux Ubuntu 16.04.3 (64-bit)</li>
+<li>Install Oracle VM VirtualBox Extension Pack (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>)</li>
+<li>Linux Ubuntu 16.04.3 (64-bit) (<a class="reference external" href="https://www.ubuntu.com/download/desktop">https://www.ubuntu.com/download/desktop</a>)</li>
 <li>&gt;8 gb memory</li>
 <li>&gt;70 gb disk space</li>
 <li>&gt;2 CPUs</li>
 <li>Network bridge access</li>
 <li>Install VBoxGuestAdditions inside the Ubuntu guest for corresponding
-VirtualBox version</li>
+VirtualBox version (<a class="reference external" href="https://download.virtualbox.org/virtualbox/">https://download.virtualbox.org/virtualbox/</a>). This can
+be done by downloading the .iso file and loading it into the optical drive.</li>
 </ul>
 <p>Required packages for various PAVICS components:</p>
-<p>git docker.io docker-compose</p>
+<p>python-dev
+curl
+git
+docker.io
+docker-compose</p>
 </div>
 <div class="section" id="setting-up-pycharm">
 <h2>Setting up pycharm<a class="headerlink" href="#setting-up-pycharm" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>May need to uninstall wheel</li>
 <li>For missing python modules: <a class="reference external" href="https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html">https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html</a></li>
 </ul>
 <p>Commands to run in Python console:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span>
 <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip&#39;</span><span class="p">])</span>
-<span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/bird-house/OWSLib/archive/pingudev.zip&#39;</span><span class="p">])</span>
+<span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;--upgrade&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-reinstall&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/bird-house/OWSLib/archive/pingudev.zip&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
+<ul class="simple">
+<li>Some packages are not happy with wheel, try uninstalling it if all else
+fails.</li>
+</ul>
 </div>
 <div class="section" id="launching-individual-local-components">
 <h2>Launching individual local components<a class="headerlink" href="#launching-individual-local-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solr">
+<h3>Solr<a class="headerlink" href="#solr" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">solr</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_solr</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8983</span><span class="p">:</span><span class="mi">8983</span> <span class="o">-</span><span class="n">t</span> <span class="n">pavics</span><span class="o">/</span><span class="n">solr</span>
+</pre></div>
+</div>
+<p>Check that Solr is running at <a class="reference external" href="http://localhost:8983/solr/#/birdhouse">http://localhost:8983/solr/#/birdhouse</a></p>
+</div>
 <div class="section" id="public-thredds">
 <h3>Public THREDDS<a class="headerlink" href="#public-thredds" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
@@ -239,7 +258,7 @@ to an actual path on disk with NetCDF files.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span>
 </pre></div>
 </div>
-<p>Check that thredds is running at localhost:8083/thredds/</p>
+<p>Check that thredds is running at <a class="reference external" href="http://localhost:8083/thredds/">http://localhost:8083/thredds/</a></p>
 </div>
 <div class="section" id="https-thredds">
 <h3>HTTPS THREDDS<a class="headerlink" href="#https-thredds" title="Permalink to this headline">¶</a></h3>
@@ -327,6 +346,24 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
 <p>Check that the wps is running at <a class="reference external" href="https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities">https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities</a></p>
 <p>Play around with magpie permissions to check that the security is working</p>
 </div>
+<div class="section" id="pavics-datacatalog-development">
+<h3>PAVICS-DataCatalog development<a class="headerlink" href="#pavics-datacatalog-development" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span>
+<span class="n">cp</span> <span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span> <span class="o">~/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span>
+</pre></div>
+</div>
+<p>Edit ~/catalog.cfg with Solr address. Note that within docker, localhost
+is not the same as the workstation localhost, so the address must use the ip
+of the local machine (retrieve with, e.g., ifconfig). Also point to a
+valid thredds server.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">su</span>  <span class="c1"># to work with docker</span>
+<span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span> <span class="o">.</span>
+<span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog1</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">~/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8009</span><span class="p">:</span><span class="mi">80</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
+</pre></div>
+</div>
+<p>Check that the wps is running at <a class="reference external" href="http://localhost:8009/pywps?service=WPS&amp;request=GetCapabilities&amp;version=1.0.0">http://localhost:8009/pywps?service=WPS&amp;request=GetCapabilities&amp;version=1.0.0</a></p>
+</div>
 <div class="section" id="flyingpigeon-development">
 <h3>Flyingpigeon development<a class="headerlink" href="#flyingpigeon-development" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
@@ -347,6 +384,11 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
 </div>
 <p>The WPS will be running at:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>http://localhost:8093/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
+</pre></div>
+</div>
+<p>To restart flyingpigeon (e.g. after modifications):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">stop</span>
+<span class="n">make</span> <span class="n">start</span>
 </pre></div>
 </div>
 </div>
@@ -390,7 +432,7 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
         <a href="../arch/index.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="integration_tests.html" class="btn btn-neutral" title="Integration tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="builddocs.html" class="btn btn-neutral" title="Building the docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data management &mdash; PAVICS 0.1 documentation</title>
+  <title>Data and service management &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
-        <link rel="next" title="GeoServer administration" href="geoserver.html"/>
-        <link rel="prev" title="User management" href="permissions.html"/> 
+        <link rel="next" title="Integration tests" href="integration_tests.html"/>
+        <link rel="prev" title="GeoServer administration" href="geoserver.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -99,27 +99,33 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Data management</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#netcdf-files-specifications">NetCDF files specifications</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#manually-adding-netcdf-files">Manually adding NetCDF files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#thredds-data-server-example">THREDDS Data Server example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User and Group management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data and service management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf-file-management-in-thredds">NetCDF file management in THREDDS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-conventions">File conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-files">Adding files</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#birdhouse-solr">Birdhouse Solr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thredds-data-server-example">THREDDS Data Server example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-external-services">Adding external services</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -169,7 +175,7 @@
         
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>Data management</li>
+      <li>Data and service management</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -188,14 +194,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-management">
-<h1>Data management<a class="headerlink" href="#data-management" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="netcdf-files-specifications">
-<h2>NetCDF files specifications<a class="headerlink" href="#netcdf-files-specifications" title="Permalink to this headline">¶</a></h2>
-<p>NetCDF files integrated in the PAVICS platform must follow the CF Conventions
-document: <a class="reference external" href="http://cfconventions.org/">http://cfconventions.org/</a></p>
-<p>In order to benefit from the search engine capabilities, typical global
-attributes should be set. Currently the platorms searches for:</p>
+  <div class="section" id="data-and-service-management">
+<h1>Data and service management<a class="headerlink" href="#data-and-service-management" title="Permalink to this headline">¶</a></h1>
+<p>The PAVICS project Data Server is built around a Thematic Real-time Environmental Distributed Data Service (THREDDS). This service allows for real-time collection and presentation of archived data and metadata using remote access protocols to bridge the gap between data providers and researchers.</p>
+<p>The THREDDS Project is an Open Source initiative maintained by UCAR’s Unidata Program. For more information on Unidata, see the <a class="reference external" href="https://www.unidata.ucar.edu/">Project Home Page</a>. To learn more about THREDDS, view the <a class="reference external" href="https://github.com/Unidata/thredds/">Project Description</a> on GitHub.</p>
+<p>To better understand the way THREDDS integrates within PAVICS, see the System Architecture <a class="reference internal" href="../arch/overview.html"><span class="doc">Overview</span></a>.</p>
+<div class="section" id="netcdf-file-management-in-thredds">
+<h2>NetCDF file management in THREDDS<a class="headerlink" href="#netcdf-file-management-in-thredds" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="file-conventions">
+<h3>File conventions<a class="headerlink" href="#file-conventions" title="Permalink to this headline">¶</a></h3>
+<p>NetCDF files integrated in the PAVICS platform must follow the CF Conventions document: <a class="reference external" href="http://cfconventions.org/">http://cfconventions.org/</a></p>
+<p>In order to benefit from the search engine capabilities, typical global attributes should be set. Currently the platorms searches the following fields:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project</span>
 <span class="n">institute</span>
 <span class="n">model</span>
@@ -209,29 +218,46 @@ table: <a class="reference external" href="http://cfconventions.org/standard-nam
 server. It is recommended to provide the dataset_id as a global attribute
 in each NetCDF file that is unique for each collection of files that constitute
 a timeseries.</p>
-<p>NetCDF files with multiple variables are presently not fully supported.</p>
+<p>NetCDF files with multiple variables are presently not fully supported</p>
 </div>
-<div class="section" id="manually-adding-netcdf-files">
-<h2>Manually adding NetCDF files<a class="headerlink" href="#manually-adding-netcdf-files" title="Permalink to this headline">¶</a></h2>
-<p>NetCDF files can be manually added to the THREDDS Data Server by copying
-them to the directory used as a docker volume in docker-compose.yml (see
-<a class="reference internal" href="installation.html"><span class="doc">Installation and Configuration</span></a>).</p>
-<p>In order for the new files to be catalogued, the Solr and PAVICS-DataCatalog
-components must be running and pavicrawler must be run:</p>
+<div class="section" id="adding-files">
+<h3>Adding files<a class="headerlink" href="#adding-files" title="Permalink to this headline">¶</a></h3>
+<p>NetCDF files can be manually added to the THREDDS Data Server by copying them to the directory used as a docker volume in <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p>
+<p>In order for new files to be catalogued, the Solr and PAVICS-DataCatalog components must be running and pavicrawler must be run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span># replace localhost and port number with your PAVICS-DataCatalog deployment address
 http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
 </pre></div>
 </div>
-<p>New entries in the catalog should appear in Solr:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform.</p>
+</div>
+<p>After running the pavicrawler, new entries in the catalog should appear in Solr:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8983</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span><span class="c1">#/birdhouse/query</span>
 <span class="c1"># must Execute Query, with relevant search criteria, or by increasing rows to get more results</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="birdhouse-solr">
+<h2>Birdhouse Solr<a class="headerlink" href="#birdhouse-solr" title="Permalink to this headline">¶</a></h2>
+<p>The birdhouse solr uses deduplication
+(<a class="reference external" href="http://wiki.apache.org/solr/Deduplication">http://wiki.apache.org/solr/Deduplication</a>) on the fields “source” and “url”.
+Essentially the id is a hash of the combination of those fields. This is
+defined in solrconfig.xml
+(e.g. <a class="reference external" href="https://github.com/bird-house/birdhousebuilder.recipe.solr/blob/master/birdhousebuilder/recipe/solr/templates/solrconfig.xml">https://github.com/bird-house/birdhousebuilder.recipe.solr/blob/master/birdhousebuilder/recipe/solr/templates/solrconfig.xml</a>)</p>
+</div>
 <div class="section" id="thredds-data-server-example">
 <h2>THREDDS Data Server example<a class="headerlink" href="#thredds-data-server-example" title="Permalink to this headline">¶</a></h2>
 <p>An example of a public THREDDS Data Server can be found here:
 <a class="reference external" href="https://data.nodc.noaa.gov/thredds/catalog.html">https://data.nodc.noaa.gov/thredds/catalog.html</a></p>
+</div>
+<div class="section" id="adding-external-services">
+<h2>Adding external services<a class="headerlink" href="#adding-external-services" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">How to add WPS, WMS, WFS servers to PAVICS.</p>
+</div>
 </div>
 </div>
 
@@ -245,10 +271,10 @@ http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&am
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="geoserver.html" class="btn btn-neutral float-right" title="GeoServer administration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="integration_tests.html" class="btn btn-neutral float-right" title="Integration tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="permissions.html" class="btn btn-neutral" title="User management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="geoserver.html" class="btn btn-neutral" title="GeoServer administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

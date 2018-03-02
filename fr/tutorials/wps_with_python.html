@@ -106,8 +106,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -180,6 +180,12 @@
 <h1>Working with Web Processing Service with python<a class="headerlink" href="#working-with-web-processing-service-with-python" title="Lien permanent vers ce titre">¶</a></h1>
 <p>Basic WPS interaction using OWSLib is described in their documentation:
 <a class="reference external" href="https://geopython.github.io/OWSLib/#wps">https://geopython.github.io/OWSLib/#wps</a></p>
+<p>Currently, we recommend the following branch of owslib since it allows
+for the distinction between sync/async execution:
+<a class="reference external" href="https://github.com/bird-house/OWSLib/tree/pingudev">https://github.com/bird-house/OWSLib/tree/pingudev</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bird</span><span class="o">-</span><span class="n">house</span><span class="o">/</span><span class="n">OWSLib</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">pingudev</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
 <p>Getting a list of processes:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span>
 <span class="n">wps</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="s1">&#39;http://localhost:8081/pywps&#39;</span><span class="p">)</span>
@@ -192,12 +198,26 @@
 <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">identifier</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Execute process (async):</p>
+<p>Execute process (synchronous):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">myinputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;some_parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;some_value&#39;</span><span class="p">)]</span>
 <span class="n">execution</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;some_process&#39;</span><span class="p">,</span> <span class="n">myinputs</span><span class="p">,</span> <span class="k">async</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">execution</span><span class="o">.</span><span class="n">getStatus</span><span class="p">()</span>
 <span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span>  <span class="c1"># useful for accessing the xml status file</span>
 <span class="n">execution</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+<p>Execute process with file inputs/outputs (asynchronous):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">ComplexDataInput</span>
+<span class="n">myinputs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;some_file_input&#39;</span><span class="p">,</span> <span class="n">ComplexDataInput</span><span class="p">(</span><span class="s1">&#39;http://localhost/file.nc&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;some_string_parameter&#39;</span><span class="p">,</span> <span class="s1">&#39;some_value&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;some_process&#39;</span><span class="p">,</span> <span class="n">myinputs</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;OUTPUT&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">execution</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="s1">&#39;ProcessSucceeded&#39;</span><span class="p">:</span>
+    <span class="n">execution</span><span class="o">.</span><span class="n">checkStatus</span><span class="p">(</span><span class="n">sleepSecs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">execution</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="s1">&#39;ProcessFailed&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+<span class="n">execution</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reference</span>
 </pre></div>
 </div>
 <p>On a local flyingpigeon, the results can also be found in:</p>

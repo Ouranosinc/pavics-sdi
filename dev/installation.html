@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation and Configuration &mdash; PAVICS 0.1 documentation</title>
+  <title>Installation &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -99,38 +99,32 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation and Configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#restarting-the-birdhouse-dockers">Restarting the birdhouse dockers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ports">Ports</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#individual-components-configuration">Individual Components Configuration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#phoenix">Phoenix</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ncwms">ncWMS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#thredds">Thredds</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#hummingbird">Hummingbird</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pavics-datacatalog">PAVICS-DataCatalog</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#magpie">Magpie</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-methods">Installation methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pavics-and-dockerhub-images">PAVICS and Dockerhub images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pavics-installation-with-docker-compose">PAVICS installation with <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#updating-containers-to-the-latest-version">Updating containers to the latest version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resetting-bird-services">Resetting Bird services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#restarting-bird-services">Restarting Bird services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#port-specification">Port specification</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User and Group management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data and service management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -180,7 +174,7 @@
         
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
         
-      <li>Installation and Configuration</li>
+      <li>Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -199,43 +193,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation-and-configuration">
-<h1>Installation and Configuration<a class="headerlink" href="#installation-and-configuration" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Update the installation and config with security changes</p>
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">PAVICS is built to work within POSIX and POSIX-like systems (e.g. Unix/Linux). For Windows users who want to administer a PAVICS data server, you may need to either install <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>, a Unux/Linux virtual machine or use a POSIX API environment like the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsytem for Linux</a> or <a class="reference external" href="https://cygwin.com/">Cygwin</a> to interface with the PAVICS server system.</p>
 </div>
-<p>Since all of the code produced for the PAVICS project is hosted on public GitHub repositories, and that the preferred methodology for packaging and deployment uses Docker images, we set out to use the automatic Docker Image building feature of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for every push to the GitHub repository for all given branches, given that these repositories have a Dockerfile. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and sharing of our work. Any docker image can be obtained using the following command:</p>
+<div class="section" id="installation-methods">
+<h2>Installation methods<a class="headerlink" href="#installation-methods" title="Permalink to this headline">¶</a></h2>
+<p>PAVICS can be installed from source on <a class="reference external" href="https://www.github.com/Ouranosinc/pavics-sdi/">GitHub</a> or by using <a class="reference external" href="https://www.docker.com/what-docker">Docker</a>. Docker is a virtualization tool for running isolated service images built with specific library environments.</p>
+<p>Begin by following the guide for installing <code class="docutils literal"><span class="pre">Docker</span> <span class="pre">Community</span> <span class="pre">Edition</span></code> on your home machine from the <a class="reference external" href="https://docs.docker.com/install/">Docker Installation Page</a>. Docker Community Edition is a set of command line tools for creating and launching container-based applications.</p>
+<p>Depending on your Linux distribution, you may need to either add a new ppa/apt/yum/dnf repository to your system or you can download and launch the installer directly.</p>
+<p>For users not using Linux, refer to the following guides for <a class="reference external" href="https://docs.docker.com/docker-for-mac/">Mac OS</a> and for <a class="reference external" href="https://docs.docker.com/docker-for-windows/">Windows</a>.</p>
+</div>
+<div class="section" id="pavics-and-dockerhub-images">
+<h2>PAVICS and Dockerhub images<a class="headerlink" href="#pavics-and-dockerhub-images" title="Permalink to this headline">¶</a></h2>
+<p>All code produced for the PAVICS project is Open Source and hosted publicly through GitHub repositories. Among our members/users, the preferred methodology for packaging and deployment relies on Docker images As such, we employ the automatic Docker Image building feature of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for every push to the GitHub repository for all given branches, for all repositories that include a <code class="docutils literal"><span class="pre">Dockerfile</span></code>. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and distribution. Any docker image can be obtained using the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
 </pre></div>
 </div>
-<p>Most of the code base has been forked from the Birdhouse project which already has multiple DockerHub <a class="reference external" href="https://hub.docker.com/u/birdhouse">build processes</a>. Using our own DockerHub builds gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to have this independent build process.</p>
-<div class="section" id="installation-using-docker-compose">
-<h2>Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code><a class="headerlink" href="#installation-using-docker-compose" title="Permalink to this headline">¶</a></h2>
-<p>Let’s assume that you have a LinuxOS with <a class="reference external" href="http://docker.com">Docker</a> (&gt;1.10) installed.
-First mount or create a symlink for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
-Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver.
-To install the suite of docker images, we use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>, so you’ll need to install it:</p>
+<p>Most of the code base for PAVICS is forked from the <a class="reference external" href="https://birdhouse.readthedocs.io/en/latest/index.html">Birdhouse Project</a> which already has multiple DockerHub <a class="reference external" href="https://hub.docker.com/u/birdhouse">build processes</a>. Using our own DockerHub build gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to maintain an independent build process.</p>
+</div>
+<div class="section" id="pavics-installation-with-docker-compose">
+<h2>PAVICS installation with <code class="docutils literal"><span class="pre">docker-compose</span></code><a class="headerlink" href="#pavics-installation-with-docker-compose" title="Permalink to this headline">¶</a></h2>
+<p>First mount or create a symlink for the datasets storage at <code class="docutils literal"><span class="pre">/data</span></code>.
+Mount or make a symlink for the geoserver data storage so that <code class="docutils literal"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver.</p>
+<p>To install the suite of docker images you must use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>. Docker-compose is a docker helper for coordinating multiple docker images at once. Run the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
 </pre></div>
 </div>
 <p>Then get the <em>build recipe</em> from <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
+<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span> <span class="c1">### TO BE REVISED</span>
 </pre></div>
 </div>
-<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <code class="docutils literal"><span class="pre">phoenix/volumes</span></code> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. The certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx “ssl_certificate_key” and “ssl_certificate” parameters.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Base PAVICS installation is incomplete. The following lines refer to Phoenix instance. Need to specify which birds are needed for a bare installation of PAVICS: Phoenix, FlyingPigeon, Malleefowl, Emu, etc.</p>
+</div>
+<p>In the file <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code>, within the <cite>phoenix/volumes</cite> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. This certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx “ssl_certificate_key” and “ssl_certificate” parameters.</p>
 <p>Then simply run the following command, taking care to select an appropriate host name:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
 </div>
 <p>This installation will run on a single server instance, but there are instructions for <a class="reference internal" href="load_balancing.html#load-balancing"><span class="std std-ref">Load balancing</span></a>.</p>
 </div>
-<div class="section" id="updating-container-to-the-latest-version">
-<h2>Updating container to the latest version<a class="headerlink" href="#updating-container-to-the-latest-version" title="Permalink to this headline">¶</a></h2>
-<p>To synchronize a deployment with the latest version of container available on dockerhub:</p>
+<div class="section" id="updating-containers-to-the-latest-version">
+<h2>Updating containers to the latest version<a class="headerlink" href="#updating-containers-to-the-latest-version" title="Permalink to this headline">¶</a></h2>
+<p>To synchronize a deployment with the latest container available on dockerhub:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Set working directory where the docker-compose.yml is located. Usually :</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span> <span class="c1">### TO BE REVISED</span>
 
 <span class="c1"># Docker required sudo access</span>
 <span class="n">sudo</span> <span class="n">su</span>
@@ -255,26 +262,28 @@ To install the suite of docker images, we use <a class="reference external" href
 <p class="last"><code class="docutils literal"><span class="pre">container_name</span></code> is the name chosen in the docker-compose.yml, not the name of the docker image.</p>
 </div>
 </div>
-<div class="section" id="resetting-the-birdhouse-dockers">
-<h2>Resetting the birdhouse dockers<a class="headerlink" href="#resetting-the-birdhouse-dockers" title="Permalink to this headline">¶</a></h2>
-<p>If the VM became unusable the docker containers can easily be reset to default:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span> <span class="c1"># Docker required sudo access</span>
- <span class="n">sudo</span> <span class="n">su</span>
+<div class="section" id="resetting-bird-services">
+<h2>Resetting Bird services<a class="headerlink" href="#resetting-bird-services" title="Permalink to this headline">¶</a></h2>
+<p>If a Bird Service becomes unusable, the docker containers can easily be reset to default settings:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Docker required sudo access</span>
+<span class="n">sudo</span> <span class="n">su</span>
 
- <span class="c1"># Stopping and removing containers (this will flush their states)</span>
- <span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;&lt;public-ip&gt;&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose down&#39;</span>
+<span class="c1"># Stopping and removing containers (this will flush their states)</span>
+<span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;&lt;public-ip&gt;&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose down&#39;</span>
 
- <span class="c1"># Start again containers (-d is for detached, avoid it to get all output to the command line)</span>
- <span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;&lt;public-ip&gt;&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
-
-<span class="n">Some</span> <span class="n">manual</span> <span class="n">tasks</span> <span class="n">are</span> <span class="n">required</span> <span class="n">after</span> <span class="n">resetting</span> <span class="n">the</span> <span class="n">birdhouse</span> <span class="n">environment</span> <span class="p">:</span> <span class="n">See</span> <span class="n">the</span> <span class="n">manual</span> <span class="n">steps</span> <span class="n">under</span> <span class="n">the</span> <span class="n">Phoenix</span> <span class="n">configuration</span>
+<span class="c1"># Start again containers (-d is for detached, avoid it to get all output to the command line)</span>
+<span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;&lt;public-ip&gt;&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some manual tasks are required after resetting the birdhouse environment : See the manual steps under the Phoenix configuration</p>
 </div>
-<div class="section" id="restarting-the-birdhouse-dockers">
-<h2>Restarting the birdhouse dockers<a class="headerlink" href="#restarting-the-birdhouse-dockers" title="Permalink to this headline">¶</a></h2>
-<p>If the dockers containers need to be stopped (including the docker service if required). These steps will preserve the docker state and thus all configurations done using the web sites:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Docker required sudo access</span>
+</div>
+<div class="section" id="restarting-bird-services">
+<h2>Restarting Bird services<a class="headerlink" href="#restarting-bird-services" title="Permalink to this headline">¶</a></h2>
+<p>If the dockers containers need to be stopped (including the docker service, if required) these steps will preserve the docker state and all configurations set via Bird Service web portals:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Docker management requires sudo access</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
 <span class="c1"># Stopping running containers</span>
@@ -284,7 +293,7 @@ To install the suite of docker images, we use <a class="reference external" href
 <span class="n">service</span> <span class="n">docker</span> <span class="n">stop</span>
 </pre></div>
 </div>
-<p>And starting dockers (required after restarting the host vm):</p>
+<p>Restarting Bird Services (required after restarting the host vm):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># Docker required sudo access</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
@@ -296,8 +305,8 @@ To install the suite of docker images, we use <a class="reference external" href
 </pre></div>
 </div>
 </div>
-<div class="section" id="ports">
-<h2>Ports<a class="headerlink" href="#ports" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="port-specification">
+<h2>Port specification<a class="headerlink" href="#port-specification" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> config file exposes ports for each docker container (left part is the public one, right part the container internal one). We try to respect the following convention:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">8</span><span class="n">xxx</span> <span class="p">:</span> <span class="n">port</span> <span class="n">usually</span> <span class="n">responding</span> <span class="k">for</span> <span class="n">the</span> <span class="n">service</span> <span class="p">(</span><span class="n">The</span> <span class="n">HTTP</span> <span class="n">port</span><span class="p">)</span>
 <span class="mi">28</span><span class="n">xxx</span><span class="p">:</span> <span class="n">https</span> <span class="n">port</span>
@@ -318,136 +327,9 @@ To install the suite of docker images, we use <a class="reference external" href
 </pre></div>
 </div>
 <p>The exception is the Pavics-frontend, which has port 3000.</p>
-</div>
-<div class="section" id="individual-components-configuration">
-<h2>Individual Components Configuration<a class="headerlink" href="#individual-components-configuration" title="Permalink to this headline">¶</a></h2>
-<p>All birdhouse components are deployed and configured using the same technique, which consists in:</p>
-<ul class="simple">
-<li>Run <code class="docutils literal"><span class="pre">docker-compose</span></code> on a <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> config file to launch a group of containers using their images and some options.</li>
-<li>When a container is starting a make call with the target update-config and start is done (specified by the dockerfile CMD statement)<ul>
-<li>The update-config target update the container application config using buildout and the custom.cfg config file</li>
-<li>The start target launch the application using supervisor</li>
-</ul>
-</li>
-<li>To customize the container application config we must update the custom.cfg file used by the buildout recipe of each container.</li>
-</ul>
-<p>Since custom.cfg is built into the docker image and thus reset each time we run an image the only way to alter it is to mount a host file inside the container using the volume option. Therefore a <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is configured on host for each birdhouse component and mounted inside the container using the volume option of the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> file. This way each time a container is started, it is configured by the host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> file which indeed persist the lifecycle of a container
-The <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is a buildout configuration file which extends <code class="file docutils literal"><span class="pre">buildout.cfg</span></code> providing default parameters. Each birdhouse component has it’s own buildout recipe looking for particular parameters to configure their application. An exemple of recipe for ncWMS can be found here:  <a class="reference external" href="https://github.com/bird-house/birdhousebuilder.recipe.ncwms">https://github.com/bird-house/birdhousebuilder.recipe.ncwms</a>. Look on github for other components recipe : <a class="reference external" href="https://github.com/bird-house">https://github.com/bird-house</a>.</p>
-<div class="section" id="phoenix">
-<h3>Phoenix<a class="headerlink" href="#phoenix" title="Permalink to this headline">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/phoenix/custom.cfg</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
-<span class="c1"># User: admin, Password: querty</span>
-phoenix-password <span class="o">=</span> sha256:...
-</pre></div>
-</div>
-</div>
-<p>To change password get into the phoenix running container and use <code class="docutils literal"><span class="pre">make</span> <span class="pre">passwd</span></code>. This will update the persistant host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> with the new password hash.
-If an error about missing <code class="docutils literal"><span class="pre">IPython.lib</span></code> occurs install <a class="reference external" href="https://ipython.org">ipython</a> like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>source $ANACONDA_HOME/bin/activate birdhouse
-pip install ipython
-</pre></div>
-</div>
-<p>Phoenix still need manual configuration so SOLR indexes correctly the TREDDS catalog. Here are the steps:</p>
-<ol class="arabic">
-<li><p class="first">Go to <a class="reference external" href="https:/">https:/</a>/&lt;platform_url&gt;:8443/</p>
-</li>
-<li><p class="first">Click on the login button <img alt="login" src="../_images/phoenix_login.png" /></p>
-</li>
-<li><p class="first">Use the admin phoenix access with ‘querty’ password:</p>
-<img alt="../_images/phoenix_username.png" src="../_images/phoenix_username.png" />
-</li>
-<li><p class="first">Go to the settings page <img alt="settings" src="../_images/phoenix_setting.png" /></p>
-</li>
-<li><p class="first">Click on the service button:</p>
-<img alt="../_images/phoenix_services.png" src="../_images/phoenix_services.png" />
-</li>
-<li><p class="first">Register a new service:</p>
-<img alt="../_images/phoenix_register.png" src="../_images/phoenix_register.png" />
-</li>
-<li><p class="first">Fill the form using the thredds catalog url (use the OpenStack internal IP), a service name of your choice and be sure to check the Thredds Catalog service type :</p>
-<img alt="../_images/phoenix_register_thredds.png" src="../_images/phoenix_register_thredds.png" />
-</li>
-<li><p class="first">Click on the register button</p>
-</li>
-<li><p class="first">Go to the Solr settings page by repeating the steps 4 and 5 but this time using the Solr button.</p>
-<img alt="../_images/phoenix_solr.png" src="../_images/phoenix_solr.png" />
-</li>
-<li><p class="first">Use the Parameters tab and increase the crawling depth to match the deepest catalog depth :</p>
-</li>
-<li><p class="first">Activate the crawling in the Thredds Services tab by clicking on the toggle button near the + symbol.</p>
-<img alt="../_images/phoenix_thredds_activate.png" src="../_images/phoenix_thredds_activate.png" />
-</li>
-<li><p class="first">The status should turn to green when you click on the refresh button.</p>
-</li>
-</ol>
-<p>You’re done !</p>
-</div>
-<div class="section" id="ncwms">
-<h3>ncWMS<a class="headerlink" href="#ncwms" title="Permalink to this headline">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/ncwms2/custom.mfg</span></code></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
-tomcat-ncwms-password <span class="o">=</span> &lt;enter ncwms password&gt;
-
-<span class="o">[</span>ncwms<span class="o">]</span>
-<span class="nv">data_dir</span> <span class="o">=</span> /pavics-data
-</pre></div>
-</div>
-</div>
-<div class="section" id="manual-setup-of-the-running-docker">
-<h4>Manual setup of the running docker<a class="headerlink" href="#manual-setup-of-the-running-docker" title="Permalink to this headline">¶</a></h4>
-<p>To access the ncWMS admin page (changes be overriden each time the container is restarted), edit the file: <code class="file docutils literal"><span class="pre">/opt/conda/envs/birdhouse/opt/apache-tomcat/conf/tomcat-users.xml</span></code> and remove the comment block around the manager-gui and ncWMS-admin role.
-The administration page allow administrators to add new datasets but again it will not persist upon container restarting.</p>
-<p>Default Tomact credentials:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;birdhouse&quot;</span>
-<span class="n">password</span><span class="o">=</span><span class="s2">&quot;4FO72WcTt7K9gYiNKApf&quot;</span>
-</pre></div>
-</div>
-<p>Default ncWMS credentials:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
-<span class="n">password</span><span class="o">=</span><span class="s2">&quot;ju68hfld&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="dynamic-services">
-<h4>Dynamic services<a class="headerlink" href="#dynamic-services" title="Permalink to this headline">¶</a></h4>
-<p>The dynamic services section allow with only one command to enable access to all the database available at <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> by configuring a file system entrypoint. The only thing to do is to use the following url: <a class="reference external" href="http:/">http:/</a>/&lt;domain&gt;:8080/ncWMS2/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities&amp;VERSION=1.3.0&amp;DATASET=outputs/&lt;path&gt;
-and replace <code class="docutils literal"><span class="pre">&lt;path&gt;</span></code> by the relative path to <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> to the required dataset. So thanks to this config and to the catalog service we should be able to get the entire database list from the catalog and access their WMS by using the relative path in the wms url.</p>
-</div>
-</div>
-<div class="section" id="thredds">
-<h3>Thredds<a class="headerlink" href="#thredds" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>thredds<span class="o">]</span>
-<span class="nv">data_root</span> <span class="o">=</span> /pavics-data
-<span class="nv">allow_wcs</span> <span class="o">=</span> <span class="nb">true</span>
-<span class="nv">allow_wms</span> <span class="o">=</span> <span class="nb">true</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="hummingbird">
-<h3>Hummingbird<a class="headerlink" href="#hummingbird" title="Permalink to this headline">¶</a></h3>
-<p>First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. :
-<a class="reference external" href="http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax">http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax</a>
-returns “PyWPS Process cdo_operation successfully calculated”. However the output points to a NetCDF file on localhost (<a class="reference external" href="http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a>).
-Need to substitute localhost for the ip (132.217.140.31) and keep the same port : <a class="reference external" href="http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a>
-Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. &gt;&gt; cdo monmax <a class="reference external" href="http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc">http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc</a> output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine…
-Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.</p>
-</div>
-<div class="section" id="pavics-datacatalog">
-<h3>PAVICS-DataCatalog<a class="headerlink" href="#pavics-datacatalog" title="Permalink to this headline">¶</a></h3>
-<p>In the catalog.cfg file:
-Provide the solr and thredds host.
-Set the wps host to the server that will be exposing the catalog (this is the server where wps temporary output files will be saved).
-Set the WMS alternate server if desired.</p>
-</div>
-<div class="section" id="magpie">
-<h3>Magpie<a class="headerlink" href="#magpie" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
-<p class="last">Complete</p>
-</div>
+<p class="last">Update the installation and config with security changes</p>
 </div>
 </div>
 </div>

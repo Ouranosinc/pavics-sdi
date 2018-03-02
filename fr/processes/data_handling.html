@@ -112,8 +112,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -224,14 +224,14 @@ COWS has done somthing like this with an xml output.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – URL of ESGF Search Index. Example: <a class="reference external" href="http://esgf-data.dkrz.de/esg-search">http://esgf-data.dkrz.de/esg-search</a></li>
+<li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a>) – URL of ESGF Search Index. Example: <a class="reference external" href="http://esgf-data.dkrz.de/esg-search">http://esgf-data.dkrz.de/esg-search</a></li>
 <li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then a distributed search will be run.</li>
 <li><strong>replica</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include replicated datasets.</li>
 <li><strong>latest</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include only latest datasets.</li>
 <li><strong>temporal</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will use temporal filter.</li>
 <li><strong>search_type</strong> (<em>{'Dataset'</em><em>, </em><em>'File'</em><em>, </em><em>'Aggregation'}</em><em>, </em><em>optional</em>) – Search on Datasets, Files or Aggregations.</li>
-<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – Constraints as list of key/value pairs.Example: project:CORDEX, time_frequency:mon, variable:tas</li>
-<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a><em>, </em><em>optional</em>) – Freetext query. For Example: temperatue</li>
+<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a>) – Constraints as list of key/value pairs.Example: project:CORDEX, time_frequency:mon, variable:tas</li>
+<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Freetext query. For Example: temperatue</li>
 <li><strong>start</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Startime: 2000-01-11T12:00:00Z</li>
 <li><strong>end</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Endtime: 2005-12-31T12:00:00Z</li>
 <li><strong>limit</strong> (<em>{'0'</em><em>, </em><em>'1'</em><em>, </em><em>'2'</em><em>, </em><em>'5'</em><em>, </em><em>'10'</em><em>, </em><em>'20'</em><em>, </em><em>'50'</em><em>, </em><em>'100'</em><em>, </em><em>'200'}</em><em>, </em><em>optional</em>) – Maximum number of datasets in search result</li>
@@ -267,7 +267,7 @@ COWS has done somthing like this with an xml output.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>resource</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – URL of your resource.</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>resource</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a>) – URL of your resource.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><strong>output</strong> – Json document with list of downloaded files with file url.</td>
 </tr>
@@ -291,7 +291,7 @@ COWS has done somthing like this with an xml output.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>url</strong> (<a class="reference external" href="https://docs.python.org/2/library/string.html#module-string" title="(disponible dans Python v2.7)"><em>string</em></a>) – URL of the catalog.</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>url</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a>) – URL of the catalog.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><strong>output</strong> – JSON document with list of downloaded files with file url.</td>
 </tr>

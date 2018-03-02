@@ -38,7 +38,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
     <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
-        <link rel="next" title="Installation and Configuration" href="installation.html"/>
+        <link rel="next" title="Installation" href="installation.html"/>
         <link rel="prev" title="Working with Web Processing Service with python" href="../tutorials/wps_with_python.html"/> 
 
   
@@ -98,22 +98,23 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Documentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation and Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="vm.html">VM configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html">User management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html">User and Group management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html">Data and service management</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html">Contributing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/index.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
@@ -184,17 +185,32 @@
 <h1>Developer Documentation<a class="headerlink" href="#developer-documentation" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation and Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-using-docker-compose">Installation using <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#updating-container-to-the-latest-version">Updating container to the latest version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#resetting-the-birdhouse-dockers">Resetting the birdhouse dockers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#restarting-the-birdhouse-dockers">Restarting the birdhouse dockers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#ports">Ports</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#individual-components-configuration">Individual Components Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#pavics-and-dockerhub-images">PAVICS and Dockerhub images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#pavics-installation-with-docker-compose">PAVICS installation with <code class="docutils literal"><span class="pre">docker-compose</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#updating-containers-to-the-latest-version">Updating containers to the latest version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#resetting-bird-services">Resetting Bird services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#restarting-bird-services">Restarting Bird services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#port-specification">Port specification</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="load_balancing.html">Load balancing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html#modifying-the-docker-compose-yml">Modifying the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Birdhouse service configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#phoenix">Phoenix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#ncwms">ncWMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#manual-setup-of-the-running-docker">Manual setup of the running docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#dynamic-services">Dynamic services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#thredds">THREDDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#hummingbird">Hummingbird</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#pavics-datacatalog">PAVICS-DataCatalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#magpie">Magpie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#flyingpigeon">FlyingPigeon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#emu">Emu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#other-birds">Other Birds?</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="vm.html">VM configuration</a><ul>
@@ -204,27 +220,29 @@
 <li class="toctree-l2"><a class="reference internal" href="vm.html#hostname-resolution">Hostname resolution</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="builddocs.html">Building the docs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="builddocs.html#publishing-the-docs-online">Publishing the docs online</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="permissions.html">User management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html#permissions-and-authorizations">Permissions and authorizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="permissions.html#adding-external-services">Adding external services</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="data_management.html">Data management</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html#netcdf-files-specifications">NetCDF files specifications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html#manually-adding-netcdf-files">Manually adding NetCDF files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management.html#thredds-data-server-example">THREDDS Data Server example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permissions.html">User and Group management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html#adding-users-and-groups-to-pavics-server">Adding Users and Groups to PAVICS server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="permissions.html#user-and-group-management-for-bird-services">User and Group management for Bird services</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="geoserver.html">GeoServer administration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html#before-you-begin">Before you begin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html#adding-data-to-geoserver">Adding data to GeoServer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geoserver.html#styling-data-layers">Styling data layers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_management.html">Data and service management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html#netcdf-file-management-in-thredds">NetCDF file management in THREDDS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html#birdhouse-solr">Birdhouse Solr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html#thredds-data-server-example">THREDDS Data Server example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_management.html#adding-external-services">Adding external services</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builddocs.html">Building the docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="builddocs.html#publishing-the-docs-online">Publishing the docs online</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#benchmark-development-environment">Benchmark development environment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#setting-up-pycharm">Setting up pycharm</a></li>
@@ -245,7 +263,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation.html" class="btn btn-neutral float-right" title="Installation and Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../tutorials/wps_with_python.html" class="btn btn-neutral" title="Working with Web Processing Service with python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
