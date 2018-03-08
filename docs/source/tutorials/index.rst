@@ -3,6 +3,7 @@ Tutorials
 =========
 
 .. toctree::
+   data_preparation
    searching
    wps_with_python
 

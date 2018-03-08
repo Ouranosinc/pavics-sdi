@@ -210,6 +210,12 @@ valid thredds server.
 
 Check that the wps is running at http://localhost:8009/pywps?service=WPS&request=GetCapabilities&version=1.0.0
 
+Note that when running with magpie, the root directory of thredds does not
+properly redirect to the proxy. To crawl a thredds server with threddsclient,
+provide the birdhouse root directory of thredds (e.g. in catalog.cfg)::
+
+    https://localhost/twitcher/ows/proxy/thredds/catalog/birdhouse
+
 Flyingpigeon development
 ------------------------
 
