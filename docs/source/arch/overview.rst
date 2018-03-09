@@ -3,10 +3,6 @@ Overview
 
 PAVICS is a Spatial Data Infrastructure (SDI) for climate data. It is composed of modular components that together provide access to data and a library of climate services. It is meant to facilitate climate data analysis for both researchers and climate service providers. PAVICS is not intended to be installed on individual computers, but rather on servers located close to data archives.
 
-
-
-
-
 There are multiple building blocks composing the PAVICS SDI:
 
 PAVICS-frontend
@@ -30,7 +26,7 @@ Birdhouse/Hummingbird
 Magpie
    Authentication and authorization services.
 
-THREEDS
+THREDDS
    netCDF data server.
 
 GeoServer
@@ -40,13 +36,7 @@ GeoServer
 These components work together to offer users a seamless access to data and a suite of services that can convert raw climate data into useful information, graphics and tables.
 
 
-
-
-
-
 Credits
 -------
-PAVICS is led by Ouranos, a regional climate consortium, and CRIM, a software research institute, both located in Montreal.
-
-a project led by Ouranos to provide climate scientists with a
+PAVICS is led by `Ouranos <https://www.ouranos.ca/en/>'_, a regional climatology research consortium, and `CRIM <http://www.crim.ca/fr>`_, an informatics and software research institute, (both located in Montreal, Quebec, Canada) to provide climate scientists with a
 set of tools to acquire and analyze climate data. 

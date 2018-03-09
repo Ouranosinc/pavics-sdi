@@ -8,29 +8,29 @@ Advanced climate data analysis
    :depth: 3
 
 
-#Uncertainty analysis
-#--------------------
+Uncertainty analysis
+--------------------
 
-#.. autoprocess:: flyingpigeon.processes.RobustnessProcess
+.. autoprocess:: flyingpigeon.processes.RobustnessProcess
 
 
-#Weather analogs
-#---------------
+Weather analogs
+---------------
 
-#.. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess
+.. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess
 
-#.. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess
+.. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess
 
-#.. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess
+.. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess
 
-#.. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess
+.. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess
 
-#.. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess
+.. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess
 
-#.. autoprocess:: flyingpigeon.processes.AnalogscompareProcess
+.. autoprocess:: flyingpigeon.processes.AnalogscompareProcess
 
-#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
-#   :noindex:
+.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
+   :noindex:
 
 
 Spatial analogues
