@@ -44,10 +44,10 @@ Spatial analogues are estimated by comparing the distribution of climate indices
 computed at the target location over the future period with the distribution of
 the same climate indices computed over a reference period for multiple candidate regions. A number of methodological choices thus enter the computation:
 
-  * the climate indices,
-  * the metric measuring the difference between both distributions,
-  * the reference data from which to compute the indices,
-  * the future climate scenario to compute the target indices.
+  * Climate indices of interest,
+  * Metrics measuring the difference between both distributions,
+  * Reference data from which to compute the base indices,
+  * A future climate scenario to compute the target indices.
 
 The climate indices chosen to compute the spatial analogues are usually annual values
 of indices relevant to the intended audience of these maps. For example, in the case of the wine grape industry, the climate indices examined could

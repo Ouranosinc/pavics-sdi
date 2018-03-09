@@ -19,10 +19,19 @@ To customize the container application config we must also update the custom.cfg
 .. note:: 
 	An exemple recipe for ncWMS configuration can be found here: https://github.com/bird-house/birdhousebuilder.recipe.ncwms. Look on github for other components recipe : https://github.com/bird-house.
 
+Hummingbird
+-----------
+
+For more information on Hummingbird, see the `Hummingbird-Birdhouse documentation <https://birdhouse-hummingbird.readthedocs.io/en/latest/>`_.
+
+.. warning::
+	First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. : http://132.217.140.31:8092/wps?service=WPS&version=1.0.0&request=Execute&identifier=cdo_operation&DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax returns "PyWPS Process cdo_operation successfully calculated". However the output points to a NetCDF file on localhost (http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc). Need to substitute localhost for the ip (132.217.140.31) and keep the same port : http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. >> cdo monmax http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine... Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.
+
+
 Phoenix
 -------
 
-For more information on Phoenix: <https://pyramid-phoenix.readthedocs.io/en/latest/>
+For more information on Phoenix, see the `Pyramid-Phoenix documentation <https://pyramid-phoenix.readthedocs.io/en/latest/>`_.
 
 .. code-block:: bash
    :caption: :file:`/config/phoenix/custom.cfg`
@@ -115,14 +124,6 @@ THREDDS
    allow_wcs = true
    allow_wms = true
 
-
-Hummingbird
------------
-
-For more information on Hummingbird, see the `Birdhouse dcoumentation <https://birdhouse-hummingbird.readthedocs.io/en/latest/>`_.
-
-.. warning::
-	First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. : http://132.217.140.31:8092/wps?service=WPS&version=1.0.0&request=Execute&identifier=cdo_operation&DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax returns "PyWPS Process cdo_operation successfully calculated". However the output points to a NetCDF file on localhost (http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc). Need to substitute localhost for the ip (132.217.140.31) and keep the same port : http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. >> cdo monmax http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine... Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.
 
 PAVICS-DataCatalog
 ------------------

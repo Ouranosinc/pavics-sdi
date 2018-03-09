@@ -67,7 +67,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'PAVICS'
-copyright = '2016, Ouranos & CRIM'
+copyright = '2018, Ouranos & CRIM'
 author = 'Ouranos & CRIM'
 
 # The version info for the project you're documenting, acts as replacement for

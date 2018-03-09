@@ -32,6 +32,9 @@ THREDDS
 GeoServer
    Geospatial data server.
 
+.. todo::
+	Add any relevant birds to the architecture overview, as appropriate.
+
 
 These components work together to offer users a seamless access to data and a suite of services that can convert raw climate data into useful information, graphics and tables.
 

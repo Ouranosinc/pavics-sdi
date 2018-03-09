@@ -2,7 +2,9 @@
 Basic climate data analysis
 ===========================
 
-Spatial subsetting and regridding is a method of deriving a new set of data from another set of data using interpolation techniques to generate different spatial or temporal resolutions.
+The following processes concern basic climate data analysis, methods for formatting data to examine a specific region or time interval.
+
+Spatial subsetting and regridding are methods of deriving a new set of data from another set of data using interpolation techniques to generate different spatial or temporal resolutions.
 
 For more information on these processes, see the `NCAR description of regridding page <https://climatedataguide.ucar.edu/climate-data-tools-and-analysis/regridding-overview>`_. 
 
