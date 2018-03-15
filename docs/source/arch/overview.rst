@@ -2,7 +2,6 @@ Overview
 ========
 
 .. image:: images/PAVICS_overview.png
-	:scale: 50 %
 
 PAVICS is a Spatial Data Infrastructure (SDI) for climate data. It is composed of modular components that together provide access to data and a library of climate services. It is meant to facilitate climate data analysis for both researchers and climate service providers. PAVICS is not intended to be installed on individual computers, but rather on servers located close to data archives.
 

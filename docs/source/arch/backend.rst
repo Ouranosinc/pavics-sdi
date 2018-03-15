@@ -48,7 +48,7 @@ CRIM and Ouranos have also been actively involved in the planning and developmen
 
 PAVICS-DataCatalog
     A database system for storing and serving information about available climate data.
-    `Pavics-DataCatalog GitHub Repository <https://github.com/Ouranosinc/PAVICS-DataCatalog>`_ 
+    `PAVICS-DataCatalog GitHub Repository <https://github.com/Ouranosinc/PAVICS-DataCatalog>`_ 
 
 Magpie
     Authentication and authorization services using RestAPI.
