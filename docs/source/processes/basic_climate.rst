@@ -2,29 +2,38 @@
 Basic climate data analysis
 ===========================
 
+The following processes concern basic climate data analysis, methods for formatting data to examine a specific region or time interval.
+
+Spatial subsetting and regridding are methods of deriving a new set of data from another set of data using interpolation techniques to generate different spatial or temporal resolutions.
+
+For more information on these processes, see the `NCAR description of regridding page <https://climatedataguide.ucar.edu/climate-data-tools-and-analysis/regridding-overview>`_. 
+
+
 Spatial and temporal subsetting
-===============================
+-------------------------------
 
-.. autoclass:: flyingpigeon.processes.SubsetWFSProcess
+.. autoprocess:: flyingpigeon.processes.SubsetWFSProcess
 
-.. autoclass:: flyingpigeon.processes.AveragerWFSProcess
+.. autoprocess:: flyingpigeon.processes.AveragerWFSProcess
 
-.. autoclass:: flyingpigeon.processes.ClippingProcess
+.. autoprocess:: flyingpigeon.processes.ClippingProcess
 
-.. autoclass:: flyingpigeon.processes.ClipcontinentProcess
+.. autoprocess:: flyingpigeon.processes.ClipcontinentProcess
 
-.. autoclass:: flyingpigeon.processes.ClipregionseuropeProcess
+.. autoprocess:: flyingpigeon.processes.ClipregionseuropeProcess
 
-.. autoclass:: flyingpigeon.processes.PointinspectionProcess
+.. autoprocess:: flyingpigeon.processes.PointinspectionProcess
 
-.. autoclass:: flyingpigeon.processes.LandseamaskProcess
+.. autoprocess:: flyingpigeon.processes.LandseamaskProcess
 
-.. autoclass:: pavics_datacatalog.wps_processes.Period2Indices
+.. autoprocess:: pavics_datacatalog.wps_processes.Period2Indices
 
-.. autoclass:: pavics_datacatalog.wps_processes.GetPoint
+.. autoprocess:: pavics_datacatalog.wps_processes.GetPoint
 
 
-Regridding
-==========
-TODO
+Spatial regridding
+----------
+
+.. todo::
+	Add content to the basic climate data analysis section
 

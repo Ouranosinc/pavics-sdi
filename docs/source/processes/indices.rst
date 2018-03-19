@@ -2,7 +2,18 @@
 Climate indices
 ===============
 
-.. autoclass:: flyingpigeon.processes.IndicessingleProcess
+The following processes return general climate indicators based on spatial and temporal grid resolutions.
 
-.. autoclass:: flyingpigeon.processes.IndicespercentiledaysProcess
+Climate Extreme indices
+-----------------------
+
+Averaged Climate indices
+----------------
+
+Temporal Indices
+----------------
+
+.. autoprocess:: flyingpigeon.processes.IndicessingleProcess
+
+.. autoprocess:: flyingpigeon.processes.IndicespercentiledaysProcess
 

@@ -3,13 +3,13 @@ Data handling
 =============
 
 
-.. autoclass:: flyingpigeon.processes.FetchProcess
+.. autoprocess:: flyingpigeon.processes.FetchProcess
 
-.. autoclass:: malleefowl.processes.ESGSearchProcess
+.. autoprocess:: malleefowl.processes.ESGSearchProcess
 
-.. autoclass:: malleefowl.processes.Download
+.. autoprocess:: malleefowl.processes.Download
 
-.. autoclass:: malleefowl.processes.ThreddsDownload
+.. autoprocess:: malleefowl.processes.ThreddsDownload
 
 
 

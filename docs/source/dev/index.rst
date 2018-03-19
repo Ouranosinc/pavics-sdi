@@ -6,11 +6,15 @@ Developer Documentation
 
 .. toctree::
    :maxdepth: 2
-
+   
    installation
    load_balancing
+   configuration
    vm
-   builddocs
-   data_management
+   permissions
    geoserver
+   data_management
    integration_tests
+   builddocs
+   contributing
+
