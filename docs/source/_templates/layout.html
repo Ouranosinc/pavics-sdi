@@ -1,0 +1,15 @@
+{% extends "!layout.html" %}
+{% block extrahead %}
+{% endblock %}
+{% block extrabody %}
+{% endblock %}
+{% block sidebartitle %}
+  {{ super() }}
+  <a href="/{{server_root}}/fr/{{pagename}}.html">
+  <i class="fa fa-language" aria-hidden="true"></i> Français
+  </a>
+  |
+  <a href="/{{server_root}}/en/{{pagename}}.html">
+  <i class="fa fa-language" aria-hidden="true"></i> English
+  </a>
+{% endblock %}
