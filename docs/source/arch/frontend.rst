@@ -43,18 +43,6 @@ Each panel element can be used to view/inspect different types and display addit
 Data and Process Manager
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-
-  
-
-
-
-
-
-
-
-
-
-
 .. todo::
 
    Write frontend docs.

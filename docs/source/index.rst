@@ -13,13 +13,13 @@ We plan to build extensive documentation for PAVICS. We're just getting started,
 
 * :doc:`Tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
 
-* :doc:`Installation </dev/index>` explains how to install the various components and run system tests.
+* :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
 * :doc:`System Architecture <arch/index>` describes the individual components of the system and how they work together.
 
 * :doc:`Processes </processes/index>` documents all available processes on the PAVICS platform.
 
-.. _issue tracker: https://github.com/Ouranosinc/PAVICS/issues
+.. _issue tracker: https://github.com/Ouranosinc/pavics-sdi/issues
 
 Contents
 --------
