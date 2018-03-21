@@ -39,7 +39,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="System Architecture" href="index.html"/>
-        <link rel="next" title="Data Catalog" href="data_catalog.html"/>
+        <link rel="next" title="Pavics-DataCatalog" href="data_catalog.html"/>
         <link rel="prev" title="Frontend" href="frontend.html"/> 
 
   
@@ -102,8 +102,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Backend</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Data Catalog</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Backend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#birdhouse">Birdhouse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-projects">Other Projects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#in-house-projects">In-House Projects</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Pavics-DataCatalog</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
@@ -180,9 +185,55 @@
             
   <div class="section" id="backend">
 <h1>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/PAVICS_architecture.png" src="../_images/PAVICS_architecture.png" />
+<p>The Backend of PAVICS-SDI is built entirely with Free and Open Source Software. All of the backend projects (source code and documentation) are open to be inspected, built upon, or contributed to.</p>
+<div class="section" id="birdhouse">
+<h2>Birdhouse<a class="headerlink" href="#birdhouse" title="Permalink to this headline">¶</a></h2>
+<p>PAVICS is largely built upon the many components developed as part of the <a class="reference external" href="https://github.com/bird-house/birdhouse-docs/blob/master/slides/birdhouse-architecture/birdhouse-architecture.pdf">Birdhouse Project</a>.</p>
+<p>The goal of Birdhouse is to develop an easy-to-use Web Processing Service to support remote analyses of climate data using python. The library components of Birdhouse are called ‘Birds’ while each ‘bird’ is built to perform a specific set of functions within the Birdhouse ecosystem. PAVICS components that are borrowed from within the official Birdhouse structure are the following:</p>
+<dl class="docutils">
+<dt>Birdhouse/Malleefowl</dt>
+<dd>Access to ESGF data nodes and THREDDS catalogs, workflow engine.
+<a class="reference external" href="https://malleefowl.readthedocs.io/en/latest/">Malleefowl Official Documentation</a></dd>
+<dt>Birdhouse/Flyingpigeon</dt>
+<dd>Climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc.
+<a class="reference external" href="https://flyingpigeon.readthedocs.io/en/latest/">Flyingpigeon Official Documentation</a></dd>
+<dt>Birdhouse/Hummingbird</dt>
+<dd>Climate Data Operators (CDO) and compliance-checker for netCDF files.
+<a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">Hummingbird Official Documentation</a></dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Are there any other birds worth mentioning here?</p>
+</div>
+</div>
+<div class="section" id="other-projects">
+<h2>Other Projects<a class="headerlink" href="#other-projects" title="Permalink to this headline">¶</a></h2>
+<p>PAVICS-SDI relies upon several other projects specialized for spatial and climate data management and presentation.</p>
+<dl class="docutils">
+<dt>THREDDS</dt>
+<dd>A server system for providing scientific data and metadata access through various online protocols.
+<a class="reference external" href="https://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS Data Server Official Website</a> and <a class="reference external" href="https://github.com/Unidata/thredds">GitHub Repository</a></dd>
+<dt>GeoServer</dt>
+<dd>A server system built for viewing, editing, and presenting geospatial data.
+<a class="reference external" href="http://geoserver.org/about/">GeoServer Official Website</a> and <a class="reference external" href="http://docs.geoserver.org/">Documentation</a></dd>
+</dl>
+</div>
+<div class="section" id="in-house-projects">
+<h2>In-House Projects<a class="headerlink" href="#in-house-projects" title="Permalink to this headline">¶</a></h2>
+<p>CRIM and Ouranos have also been actively involved in the planning and development of new and existing ‘birds’ to better perform very specific functions:</p>
+<dl class="docutils">
+<dt>PAVICS-DataCatalog</dt>
+<dd>A database system for storing and serving information about available climate data.
+<a class="reference external" href="https://github.com/Ouranosinc/PAVICS-DataCatalog">PAVICS-DataCatalog GitHub Repository</a></dd>
+<dt>Magpie</dt>
+<dd>Authentication and authorization services using RestAPI.
+<a class="reference external" href="https://github.com/Ouranosinc/Magpie">Magpie GitHub Repository</a></dd>
+</dl>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
-<p class="last">Write backend docs.</p>
+<p class="last">Ask CRIM to review architecture backend</p>
+</div>
 </div>
 </div>
 
@@ -196,7 +247,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="data_catalog.html" class="btn btn-neutral float-right" title="Data Catalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="data_catalog.html" class="btn btn-neutral float-right" title="Pavics-DataCatalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="frontend.html" class="btn btn-neutral" title="Frontend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -208,7 +259,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

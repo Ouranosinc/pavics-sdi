@@ -1,0 +1,691 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_weatherregimes_reanalyse &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_weatherregimes_reanalyse</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flyingpigeon.processes.wps_weatherregimes_reanalyse</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Processes for Weather Classification</span>
+<span class="sd">Author: Nils Hempelmann (nils.hempelmann@lsce.ipsl.fr)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.datafetch</span> <span class="k">import</span> <span class="n">_PRESSUREDATA_</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.weatherregimes</span> <span class="k">import</span> <span class="n">_TIMEREGIONS_</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.ocgis_module</span> <span class="k">import</span> <span class="n">call</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">basename</span><span class="p">,</span> <span class="n">splitext</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">ocgis_call_wrap</span><span class="p">(</span><span class="n">tmargs</span><span class="p">):</span>
+    <span class="n">_z</span><span class="o">=</span><span class="n">tmargs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">_origvar</span><span class="o">=</span><span class="n">tmargs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">_level</span><span class="o">=</span><span class="n">tmargs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">_bbox</span><span class="o">=</span><span class="n">tmargs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">_plev</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">_level</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">_level</span><span class="p">)]</span>
+    <span class="n">_pref</span><span class="o">=</span><span class="s1">&#39;levdom_&#39;</span><span class="o">+</span><span class="n">basename</span><span class="p">(</span><span class="n">_z</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">_tmpf</span><span class="o">=</span><span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">_z</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">_origvar</span><span class="p">,</span> <span class="n">level_range</span><span class="o">=</span><span class="n">_plev</span><span class="p">,</span> <span class="n">geom</span><span class="o">=</span><span class="n">_bbox</span><span class="p">,</span>
+                <span class="n">spatial_wrapping</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">_pref</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_tmpf</span>
+
+<div class="viewcode-block" id="WeatherregimesreanalyseProcess"><a class="viewcode-back" href="../../../processes/advanced_climate.html#flyingpigeon.processes.WeatherregimesreanalyseProcess">[docs]</a><span class="k">class</span> <span class="nc">WeatherregimesreanalyseProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+
+            <span class="c1"># self.BBox = self.addBBoxInput(</span>
+            <span class="c1">#     identifier=&quot;BBox&quot;,</span>
+            <span class="c1">#     title=&quot;Bounding Box&quot;,</span>
+            <span class="c1">#     abstract=&quot;coordinates to define the region for weather classification (&#39;EPSG:4326&#39;)&quot;,</span>
+            <span class="c1">#     minOccurs=1,</span>
+            <span class="c1">#     maxOccurs=1,</span>
+            <span class="c1">#     crss=[&#39;EPSG:4326&#39;]</span>
+            <span class="c1">#     )</span>
+
+            <span class="c1"># Literal Input Data</span>
+            <span class="c1"># ------------------</span>
+
+            <span class="c1"># self.BBox = self.addLiteralInput(</span>
+            <span class="c1">#     identifier=&quot;BBox&quot;,</span>
+            <span class="c1">#     title=&quot;Region&quot;,</span>
+            <span class="c1">#     abstract=&quot;coordinates to define the region: (minlon,maxlon,minlat,maxlat)&quot;,</span>
+            <span class="c1">#     default=&#39;-80,22.5,50,70&#39;, #  cdo syntax: &#39;minlon,maxlon,minlat,maxlat&#39; ;</span>
+            <span class="c1">#  ocgis syntax (minlon,minlat,maxlon,maxlat)</span>
+            <span class="c1">#     type=type(&#39;&#39;),</span>
+            <span class="c1">#     minOccurs=1,</span>
+            <span class="c1">#     maxOccurs=1,</span>
+            <span class="c1">#     )</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;season&quot;</span><span class="p">,</span> <span class="s2">&quot;Time region&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Select the months to define the time region (all == whole year will be analysed)&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;DJF&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="n">_TIMEREGIONS_</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;BBox&#39;</span><span class="p">,</span> <span class="s1">&#39;Bounding Box&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Enter a bbox: min_lon, max_lon, min_lat, max_lat.&quot;</span>
+                            <span class="s2">&quot; min_lon=Western longitude,&quot;</span>
+                            <span class="s2">&quot; max_lon=Eastern longitude,&quot;</span>
+                            <span class="s2">&quot; min_lat=Southern or northern latitude,&quot;</span>
+                            <span class="s2">&quot; max_lat=Northern or southern latitude.&quot;</span>
+                            <span class="s2">&quot; For example: -80,50,20,70&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;-80,50,20,70&#39;</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;period&quot;</span><span class="p">,</span> <span class="s2">&quot;Period for weatherregime calculation&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Period for analysing the dataset&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;19700101-20101231&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;anualcycle&quot;</span><span class="p">,</span> <span class="s2">&quot;Period for anualcycle calculation&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Period for anual cycle calculation&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;19700101-19991231&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;reanalyses&quot;</span><span class="p">,</span> <span class="s2">&quot;Reanalyses Data&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Choose a reanalyses dataset for comparison&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;NCEP_slp&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="n">_PRESSUREDATA_</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;Method of annual cycle calculation&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Method of annual cycle calculation&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;ocgis&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ocgis&#39;</span><span class="p">,</span> <span class="s1">&#39;cdo&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;sseas&quot;</span><span class="p">,</span> <span class="s2">&quot;Serial or multiprocessing for annual cycle&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Serial or multiprocessing for annual cycle&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;multi&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;serial&#39;</span><span class="p">,</span> <span class="s1">&#39;multi&#39;</span><span class="p">]</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;kappa&quot;</span><span class="p">,</span> <span class="s2">&quot;Nr of Weather regimes&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Set the number of clusters to be detected&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+                         <span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;Routput_graphic&quot;</span><span class="p">,</span> <span class="s2">&quot;Weather Regime Pressure map&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Weather Classification&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;image/pdf&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_pca&quot;</span><span class="p">,</span> <span class="s2">&quot;R - datafile&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Principal components (PCA)&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s2">&quot;output_classification&quot;</span><span class="p">,</span> <span class="s2">&quot;R - workspace&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Weather regime classification&quot;</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s2">&quot;application/octet-stream&quot;</span><span class="p">)],</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">,</span> <span class="s1">&#39;Subsets for one dataset&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Prepared netCDF file as input for weatherregime calculation&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">WeatherregimesreanalyseProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;weatherregimes_reanalyse&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Weather Regimes (based on reanalyses data)&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes&#39;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;LSCE&#39;</span><span class="p">,</span> <span class="s1">&#39;http://www.lsce.ipsl.fr/en/index.php&#39;</span><span class="p">),</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Doc&#39;</span><span class="p">,</span> <span class="s1">&#39;http://flyingpigeon.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start process&#39;</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span> <span class="k">as</span> <span class="n">dt</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">weatherregimes</span> <span class="k">as</span> <span class="n">wr</span>
+        <span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">mkstemp</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;execution started at : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()),</span> <span class="mi">5</span><span class="p">)</span>
+
+        <span class="c1">################################</span>
+        <span class="c1"># reading in the input arguments</span>
+        <span class="c1">################################</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;read in the arguments&#39;</span><span class="p">)</span>
+        <span class="c1"># resources = self.getInputValues(identifier=&#39;resources&#39;)</span>
+        <span class="n">season</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;season&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;season </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">season</span><span class="p">)</span>
+
+        <span class="c1">#bbox = [-80, 20, 50, 70]</span>
+        <span class="c1"># TODO: Add checking for wrong cordinates and apply default if nesessary</span>
+        <span class="n">bbox</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">bboxStr</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;BBox&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">bboxStr</span> <span class="o">=</span> <span class="n">bboxStr</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="n">bbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">bboxStr</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">bbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">bboxStr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="n">bbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">bboxStr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="n">bbox</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">bboxStr</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;BBOX for ocgis: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bbox</span><span class="p">))</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;BBOX original: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">bboxStr</span><span class="p">))</span>
+
+        <span class="n">model_var</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;reanalyses&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">model</span><span class="p">,</span> <span class="n">variable</span> <span class="o">=</span> <span class="n">model_var</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+
+        <span class="n">period</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;period&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;period </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">period</span><span class="p">)</span>
+        <span class="n">anualcycle</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;anualcycle&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">kappa</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;kappa&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;kappa </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">kappa</span><span class="p">)</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Calc annual cycle with </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+
+        <span class="n">sseas</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;sseas&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Annual cycle calc with </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">sseas</span><span class="p">)</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">period</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">period</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;start: </span><span class="si">%s</span><span class="s1"> , end: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+
+        <span class="c1">###########################</span>
+        <span class="c1"># set the environment</span>
+        <span class="c1">###########################</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;fetching data from archive&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">model</span> <span class="o">==</span> <span class="s1">&#39;NCEP&#39;</span><span class="p">:</span>
+                <span class="n">getlevel</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">variable</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+                    <span class="n">conform_units_to</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">conform_units_to</span> <span class="o">=</span> <span class="s1">&#39;hPa&#39;</span>
+            <span class="k">elif</span> <span class="s1">&#39;20CRV2&#39;</span> <span class="ow">in</span> <span class="n">model</span><span class="p">:</span>
+                <span class="n">getlevel</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">variable</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="n">variable</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+                    <span class="n">conform_units_to</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">level</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">conform_units_to</span> <span class="o">=</span> <span class="s1">&#39;hPa&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Reanalyses dataset not known&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;environment set for model: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">model</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to set environment&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1">##########################################</span>
+        <span class="c1"># fetch Data from original data archive</span>
+        <span class="c1">##########################################</span>
+
+        <span class="kn">from</span> <span class="nn">flyingpigeon.datafetch</span> <span class="k">import</span> <span class="n">reanalyses</span> <span class="k">as</span> <span class="n">rl</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">get_variable</span>
+        <span class="c1"># from os.path import basename, splitext</span>
+        <span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">system</span>
+        <span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span>
+        <span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">squeeze</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">model_nc</span> <span class="o">=</span> <span class="n">rl</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                          <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                          <span class="n">dataset</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                          <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
+                          <span class="n">getlevel</span><span class="o">=</span><span class="n">getlevel</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;reanalyses data fetched&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to get reanalyses data&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;fetching data done&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="c1">############################################################</span>
+        <span class="c1"># get the required bbox and time region from resource data</span>
+        <span class="c1">############################################################</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;subsetting region of interest&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+        <span class="c1"># from flyingpigeon.weatherregimes import get_level</span>
+        <span class="c1"># from flyingpigeon.ocgis_module import call</span>
+
+        <span class="n">time_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">]</span>
+
+        <span class="c1">############################################################</span>
+        <span class="c1"># Block of level and domain selection for geop huge dataset</span>
+        <span class="c1">############################################################</span>
+
+        <span class="n">LevMulti</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># ===========================================================================================</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;z&#39;</span> <span class="ow">in</span> <span class="n">variable</span><span class="p">):</span>  
+            <span class="n">tmp_total</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">origvar</span> <span class="o">=</span> <span class="n">get_variable</span><span class="p">(</span><span class="n">model_nc</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">LevMulti</span> <span class="o">==</span> <span class="kc">False</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">z</span> <span class="ow">in</span> <span class="n">model_nc</span><span class="p">:</span>
+                    <span class="n">b0</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">origvar</span><span class="p">,</span> <span class="n">level_range</span><span class="o">=</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">level</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">level</span><span class="p">)],</span> <span class="n">geom</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                    <span class="n">spatial_wrapping</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;levdom_&#39;</span><span class="o">+</span><span class="n">basename</span><span class="p">(</span><span class="n">z</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+                    <span class="n">tmp_total</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># multiproc - no inprovements yet, need to check in hi perf machine...</span>
+                <span class="c1">#-----------------------</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="kn">import</span> <span class="nn">ctypes</span>
+                    <span class="kn">import</span> <span class="nn">os</span>
+                    <span class="c1"># TODO: This lib is for linux</span>
+                    <span class="n">mkl_rt</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="s1">&#39;libmkl_rt.so&#39;</span><span class="p">)</span>
+                    <span class="n">nth</span> <span class="o">=</span> <span class="n">mkl_rt</span><span class="o">.</span><span class="n">mkl_get_max_threads</span><span class="p">()</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Current number of threads: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">nth</span><span class="p">))</span>
+                    <span class="n">mkl_rt</span><span class="o">.</span><span class="n">mkl_set_num_threads</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">byref</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="mi">64</span><span class="p">)))</span>
+                    <span class="n">nth</span> <span class="o">=</span> <span class="n">mkl_rt</span><span class="o">.</span><span class="n">mkl_get_max_threads</span><span class="p">()</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;NEW number of threads: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">nth</span><span class="p">))</span>
+                    <span class="c1"># TODO: Does it \/\/\/ work with default shell=False in subprocess... (?)</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MKL_NUM_THREADS&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">nth</span><span class="p">)</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;OMP_NUM_THREADS&#39;</span><span class="p">]</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">nth</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Failed to set THREADS </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">e</span>
+                    <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="c1">#-----------------------</span>
+
+                <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">Pool</span>
+                <span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">()</span>
+                <span class="c1"># from multiprocessing.dummy import Pool as ThreadPool</span>
+                <span class="c1">#pool = ThreadPool()</span>
+                <span class="n">tup_var</span> <span class="o">=</span> <span class="p">[</span><span class="n">origvar</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_nc</span><span class="p">)</span>
+                <span class="n">tup_lev</span> <span class="o">=</span> <span class="p">[</span><span class="n">level</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_nc</span><span class="p">)</span>
+                <span class="n">tup_bbox</span> <span class="o">=</span> <span class="p">[</span><span class="n">bbox</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_nc</span><span class="p">)</span>
+                <span class="n">tup_args</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">model_nc</span><span class="p">,</span> <span class="n">tup_var</span><span class="p">,</span> <span class="n">tup_lev</span><span class="p">,</span> <span class="n">tup_bbox</span><span class="p">)</span>
+
+                <span class="n">tmp_total</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">ocgis_call_wrap</span><span class="p">,</span> <span class="n">tup_args</span><span class="p">)</span>
+                <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="n">pool</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Temporal subset files: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">tmp_total</span><span class="p">))</span>
+
+            <span class="n">tmp_total</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tmp_total</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">(</span><span class="n">i</span><span class="p">))[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">inter_subset_tmp</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">tmp_total</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">origvar</span><span class="p">,</span> <span class="n">time_range</span><span class="o">=</span><span class="n">time_range</span><span class="p">)</span>
+
+            <span class="c1"># Clean</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tmp_total</span><span class="p">:</span>
+                <span class="n">tbr</span> <span class="o">=</span> <span class="s1">&#39;rm -f </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="n">system</span><span class="p">(</span><span class="n">tbr</span><span class="p">)</span>
+
+            <span class="c1"># Create new variable</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">inter_subset_tmp</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+            <span class="n">z_var</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">origvar</span><span class="p">)</span>
+            <span class="n">dims</span> <span class="o">=</span> <span class="n">z_var</span><span class="o">.</span><span class="n">dimensions</span>
+            <span class="n">new_var</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">createVariable</span><span class="p">(</span><span class="s1">&#39;z</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">level</span><span class="p">,</span> <span class="n">z_var</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">(</span><span class="n">dims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">dims</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+            <span class="n">new_var</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">squeeze</span><span class="p">(</span><span class="n">z_var</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:])</span>
+            <span class="c1"># new_var.setncatts({k: z_var.getncattr(k) for k in z_var.ncattrs()})</span>
+            <span class="n">ds</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">model_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">inter_subset_tmp</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="s1">&#39;z</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">level</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">model_subset</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">model_nc</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span>
+                                <span class="n">geom</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span> <span class="n">spatial_wrapping</span><span class="o">=</span><span class="s1">&#39;wrap&#39;</span><span class="p">,</span> <span class="n">time_range</span><span class="o">=</span><span class="n">time_range</span><span class="p">,</span>
+                                <span class="c1"># conform_units_to=conform_units_to</span>
+                                <span class="p">)</span>
+        <span class="c1"># =============================================================================================</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Dataset subset done: </span><span class="si">%s</span><span class="s1"> &#39;</span><span class="p">,</span> <span class="n">model_subset</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;dataset subsetted&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+        <span class="c1">##############################################</span>
+        <span class="c1"># computing anomalies</span>
+        <span class="c1">##############################################</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;computing anomalies &#39;</span><span class="p">,</span> <span class="mi">19</span><span class="p">)</span>
+
+        <span class="n">cycst</span> <span class="o">=</span> <span class="n">anualcycle</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cycen</span> <span class="o">=</span> <span class="n">anualcycle</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">reference</span> <span class="o">=</span> <span class="p">[</span><span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">cycst</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">dt</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">cycen</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)]</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;reference time: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">reference</span><span class="p">)</span>
+
+        <span class="n">model_anomal</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">get_anomalies</span><span class="p">(</span><span class="n">model_subset</span><span class="p">,</span> <span class="n">reference</span><span class="o">=</span><span class="n">reference</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">sseas</span><span class="o">=</span><span class="n">sseas</span><span class="p">)</span> <span class="c1">#, variable=variable)</span>
+
+        <span class="c1">#####################</span>
+        <span class="c1"># extracting season</span>
+        <span class="c1">#####################</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;normalizing data&#39;</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+        <span class="n">model_season</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">get_season</span><span class="p">(</span><span class="n">model_anomal</span><span class="p">,</span> <span class="n">season</span><span class="o">=</span><span class="n">season</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;anomalies computed and  normalized&#39;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+        <span class="c1">#######################</span>
+        <span class="c1"># call the R scripts</span>
+        <span class="c1">#######################</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Start weather regime clustering &#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">shlex</span>
+        <span class="kn">import</span> <span class="nn">subprocess</span>
+        <span class="kn">from</span> <span class="nn">flyingpigeon</span> <span class="k">import</span> <span class="n">config</span>
+        <span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">curdir</span><span class="p">,</span> <span class="n">exists</span><span class="p">,</span> <span class="n">join</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rworkspace</span> <span class="o">=</span> <span class="n">curdir</span>
+            <span class="n">Rsrc</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">Rsrc_dir</span><span class="p">()</span>
+            <span class="n">Rfile</span> <span class="o">=</span> <span class="s1">&#39;weatherregimes_model.R&#39;</span>
+
+            <span class="n">infile</span> <span class="o">=</span> <span class="n">model_season</span>  <span class="c1"># model_subset #model_ponderate</span>
+            <span class="n">modelname</span> <span class="o">=</span> <span class="n">model</span>
+            <span class="n">yr1</span> <span class="o">=</span> <span class="n">start</span><span class="o">.</span><span class="n">year</span>
+            <span class="n">yr2</span> <span class="o">=</span> <span class="n">end</span><span class="o">.</span><span class="n">year</span>
+            <span class="n">ip</span><span class="p">,</span> <span class="n">output_graphics</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">curdir</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.pdf&#39;</span><span class="p">)</span>
+            <span class="n">ip</span><span class="p">,</span> <span class="n">file_pca</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">curdir</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.txt&#39;</span><span class="p">)</span>
+            <span class="n">ip</span><span class="p">,</span> <span class="n">file_class</span> <span class="o">=</span> <span class="n">mkstemp</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="n">curdir</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;.Rdat&#39;</span><span class="p">)</span>
+
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Rscript&#39;</span><span class="p">,</span> <span class="n">join</span><span class="p">(</span><span class="n">Rsrc</span><span class="p">,</span> <span class="n">Rfile</span><span class="p">),</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="n">curdir</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="n">Rsrc</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">infile</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">variable</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">output_graphics</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file_pca</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file_class</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">season</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">start</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">end</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">model_var</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kappa</span><span class="p">]</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Rcall builded&#39;</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;ARGS: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;failed to build the R command&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">output</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;R outlog info:</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">output</span><span class="p">)</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;R outlog errors:</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">error</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;**** weatherregime in R suceeded&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;NO! output returned from R call&#39;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;weatherregime in R&#39;</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Weather regime clustering done &#39;</span><span class="p">,</span> <span class="mi">93</span><span class="p">)</span>
+        <span class="c1">############################################</span>
+        <span class="c1"># set the outputs</span>
+        <span class="c1">############################################</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Set the process outputs &#39;</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;Routput_graphic&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_graphics</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_pca&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file_pca</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_classification&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file_class</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">model_subset</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;done&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -237,13 +237,13 @@
             <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
                 <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Doc&#39;</span><span class="p">,</span> <span class="s1">&#39;http://flyingpigeon.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
-                    <span class="p">],</span>
+            <span class="p">],</span>
             <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Outputs some timeseries of the file field means. Spaghetti and uncertainty plot&quot;</span><span class="p">,</span>
             <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
             <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
             <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="p">)</span>
+        <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
@@ -267,8 +267,9 @@
                                                  <span class="p">)</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;spagetti plot done&quot;</span><span class="p">)</span>
             <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Spagetti plot for </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> files done&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ncfiles</span><span class="p">),</span> <span class="n">var</span><span class="p">),</span> <span class="mi">50</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;spagetti plot failed&quot;</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;plotout_spagetti&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">plotout_spagetti_file</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;spagetti plot failed&quot;</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">plotout_uncertainty_file</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">uncertainty</span><span class="p">(</span><span class="n">ncfiles</span><span class="p">,</span>
@@ -277,14 +278,13 @@
                                                       <span class="p">)</span>
 
             <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Uncertainty plot for </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1"> files done&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ncfiles</span><span class="p">),</span> <span class="n">var</span><span class="p">),</span> <span class="mi">90</span><span class="p">)</span>
+            <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;plotout_uncertainty&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">plotout_uncertainty_file</span>
             <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;uncertainty plot done&quot;</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="n">LOGGER</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;uncertainty plot failed&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;uncertainty plot failed </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 
-        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;plotout_spagetti&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">plotout_spagetti_file</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;plotout_uncertainty&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">plotout_uncertainty_file</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;visualisation done&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;visualisation done&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">response</span>
 </pre></div>
 
            </div>
@@ -299,7 +299,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

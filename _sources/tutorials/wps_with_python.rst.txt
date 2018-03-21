@@ -1,12 +1,11 @@
 ===============================================
-Working with Web Processing Service with python
+Working with Web Processing Service with Python
 ===============================================
 
 Basic WPS interaction using OWSLib is described in their documentation:
 https://geopython.github.io/OWSLib/#wps
 
-Currently, we recommend the following branch of owslib since it allows
-for the distinction between sync/async execution:
+Currently, we recommend the following branch of owslib since it allows for the distinction between sync/async execution:
 https://github.com/bird-house/OWSLib/tree/pingudev
 
 ::

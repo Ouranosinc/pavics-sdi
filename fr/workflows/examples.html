@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Examples &mdash; documentation PAVICS 0.1</title>
+  <title>Examples &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Using workflows" href="index.html"/>
         <link rel="next" title="Workflow schema" href="schema.html"/>
         <link rel="prev" title="Workflow vocabulary" href="vocabulary.html"/> 
@@ -184,8 +184,8 @@
 <h1>Examples<a class="headerlink" href="#examples" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="running-sequential-tasks">
 <h2>Running sequential tasks<a class="headerlink" href="#running-sequential-tasks" title="Lien permanent vers ce titre">¶</a></h2>
-<p>This is the simplest workflow one can think of, it simply consists in running process A and using its output to feed process B. To make the examples more concrete, let’s imagine a <code class="docutils literal"><span class="pre">random_word</span></code> process that takes as input <code class="docutils literal"><span class="pre">n</span></code> the number of random words to return, and returns <code class="docutils literal"><span class="pre">text</span></code>, a string joining all these words separated by a space. Our second process <code class="docutils literal"><span class="pre">count_characters</span></code> will return <code class="docutils literal"><span class="pre">n</span></code> the number of a given character (a, b, c) in input <code class="docutils literal"><span class="pre">text</span></code>. A workflow to generate 10 random words and count the number of <em>e</em> would then look like this:</p>
-<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<p>This is the simplest workflow one can think of, it simply consists in running process A and using its output to feed process B. To make the examples more concrete, let’s imagine a <code class="docutils literal notranslate"><span class="pre">random_word</span></code> process that takes as input <code class="docutils literal notranslate"><span class="pre">n</span></code> the number of random words to return, and returns <code class="docutils literal notranslate"><span class="pre">text</span></code>, a string joining all these words separated by a space. Our second process <code class="docutils literal notranslate"><span class="pre">count_characters</span></code> will return <code class="docutils literal notranslate"><span class="pre">n</span></code> the number of a given character (a, b, c) in input <code class="docutils literal notranslate"><span class="pre">text</span></code>. A workflow to generate 10 random words and count the number of <em>e</em> would then look like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
      <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;count_e&quot;</span><span class="p">,</span>
      <span class="nt">&quot;tasks&quot;</span><span class="p">:</span> <span class="p">[</span>
          <span class="p">{</span>
@@ -215,7 +215,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>When the <code class="docutils literal"><span class="pre">count_e</span></code> workflow is launched, the first task is executed using <code class="docutils literal"><span class="pre">n=10</span></code>. Then the second task is executed using <code class="docutils literal"><span class="pre">char=e</span></code>, and the <code class="docutils literal"><span class="pre">text</span></code> value taken from the <code class="docutils literal"><span class="pre">text</span></code> output of the <code class="docutils literal"><span class="pre">create_sentence</span></code> task, defined in <code class="docutils literal"><span class="pre">linked_inputs</span></code> by an <a class="reference internal" href="vocabulary.html#input_description"><code class="xref json json-object docutils literal"><span class="pre">Input_description</span></code></a> object.</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">count_e</span></code> workflow is launched, the first task is executed using <code class="docutils literal notranslate"><span class="pre">n=10</span></code>. Then the second task is executed using <code class="docutils literal notranslate"><span class="pre">char=e</span></code>, and the <code class="docutils literal notranslate"><span class="pre">text</span></code> value taken from the <code class="docutils literal notranslate"><span class="pre">text</span></code> output of the <code class="docutils literal notranslate"><span class="pre">create_sentence</span></code> task, defined in <code class="docutils literal notranslate"><span class="pre">linked_inputs</span></code> by an <a class="reference internal" href="vocabulary.html#input_description"><code class="xref json json-object docutils literal notranslate"><span class="pre">Input_description</span></code></a> object.</p>
 </div>
 </div>
 
@@ -241,7 +241,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

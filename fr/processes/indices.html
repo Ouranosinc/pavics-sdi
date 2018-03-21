@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Climate indices &mdash; documentation PAVICS 0.1</title>
+  <title>Climate indices &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Impacts and adaptation" href="impacts.html"/>
         <link rel="prev" title="Basic climate data analysis" href="basic_climate.html"/> 
@@ -102,7 +102,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Climate indices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Climate indices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#climate-extreme-indices">Climate Extreme indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#averaged-climate-indices">Averaged Climate indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temporal-indices">Temporal Indices</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="impacts.html">Impacts and adaptation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced_climate.html">Advanced climate data analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
@@ -184,6 +189,15 @@
             
   <div class="section" id="climate-indices">
 <h1>Climate indices<a class="headerlink" href="#climate-indices" title="Lien permanent vers ce titre">¶</a></h1>
+<p>The following processes return general climate indicators based on spatial and temporal grid resolutions.</p>
+<div class="section" id="climate-extreme-indices">
+<h2>Climate Extreme indices<a class="headerlink" href="#climate-extreme-indices" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="averaged-climate-indices">
+<h2>Averaged Climate indices<a class="headerlink" href="#averaged-climate-indices" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="temporal-indices">
+<h2>Temporal Indices<a class="headerlink" href="#temporal-indices" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="class">
 <dt id="flyingpigeon.processes.IndicessingleProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">IndicessingleProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_indices_single.html#IndicessingleProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.IndicessingleProcess" title="Lien permanent vers cette définition">¶</a></dt>
@@ -202,7 +216,7 @@
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
 <li><strong>output_archive</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the netCDF files storing the index values.</li>
 <li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file storing the index computed over one dataset.</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
@@ -239,7 +253,7 @@ TODO: additional ows:metadata to display indices and regions.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
 <li><strong>output_archive</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the netCDF files storing the percentile values.</li>
 <li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file storing the percentiles computed over one dataset.</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
@@ -259,6 +273,7 @@ TODO: additional ows:metadata to display indices and regions.</p>
 TODO: data input might need a data selection filter? metadata attributes could be used for this.</p>
 </dd></dl>
 
+</div>
 </div>
 
 
@@ -283,7 +298,7 @@ TODO: data input might need a data selection filter? metadata attributes could b
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

@@ -200,8 +200,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_files</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Only those file names will be crawled.</li>
-<li><strong>target_thredds</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Thredds server to scan.</li>
+<li><strong>target_files</strong> (<em>string</em><em>, </em><em>optional</em>) – Only those file names will be crawled.</li>
+<li><strong>target_thredds</strong> (<em>string</em><em>, </em><em>optional</em>) – Thredds server to scan.</li>
 </ul>
 </td>
 </tr>
@@ -225,16 +225,16 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
-<li><strong>shards</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Shards to be queried</li>
+<li><strong>facets</strong> (<em>string</em><em>, </em><em>optional</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
+<li><strong>shards</strong> (<em>string</em><em>, </em><em>optional</em>) – Shards to be queried</li>
 <li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Where to start in the document count of the database search.</li>
 <li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional</em>) – Maximum number of documents to return.</li>
-<li><strong>fields</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Comme separated list of fields to return.</li>
-<li><strong>format</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Output format.</li>
-<li><strong>query</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Direct query to the database.</li>
+<li><strong>fields</strong> (<em>string</em><em>, </em><em>optional</em>) – Comme separated list of fields to return.</li>
+<li><strong>format</strong> (<em>string</em><em>, </em><em>optional</em>) – Output format.</li>
+<li><strong>query</strong> (<em>string</em><em>, </em><em>optional</em>) – Direct query to the database.</li>
 <li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Distributed query</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
-<li><strong>constraints</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Format is facet1:value1,facet2:value2,…</li>
+<li><strong>type</strong> (<em>string</em><em>, </em><em>optional</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
+<li><strong>constraints</strong> (<em>string</em><em>, </em><em>optional</em>) – Format is facet1:value1,facet2:value2,…</li>
 </ul>
 </td>
 </tr>
@@ -259,9 +259,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – id field of the dataset or file.</li>
-<li><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
-<li><strong>updates</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – Format is key1:value1,key2:value2,…</li>
+<li><strong>id</strong> (<em>string</em>) – id field of the dataset or file.</li>
+<li><strong>type</strong> (<em>string</em><em>, </em><em>optional</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
+<li><strong>updates</strong> (<em>string</em>) – Format is key1:value1,key2:value2,…</li>
 </ul>
 </td>
 </tr>
@@ -285,9 +285,9 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>facets</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a>) – Facets that are required to be present in each database entry.</li>
-<li><strong>paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Limit validation to certain paths relative to thredds main directory.</li>
-<li><strong>files</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(in Python v3.6)"><em>string</em></a><em>, </em><em>optional</em>) – Limit validation according to file names.</li>
+<li><strong>facets</strong> (<em>string</em>) – Facets that are required to be present in each database entry.</li>
+<li><strong>paths</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation to certain paths relative to thredds main directory.</li>
+<li><strong>files</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation according to file names.</li>
 </ul>
 </td>
 </tr>
@@ -326,7 +326,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

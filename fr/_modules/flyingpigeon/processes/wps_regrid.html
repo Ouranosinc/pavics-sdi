@@ -1,0 +1,435 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_regrid &mdash; Documentation PAVICS 0.1</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Recherche" href="../../../search.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../../../index.html"/>
+        <link rel="up" title="Code du module" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PAVICS</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Code du module</a> &raquo;</li>
+        
+      <li>flyingpigeon.processes.wps_regrid</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Code source de flyingpigeon.processes.wps_regrid</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archiveextract</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
+<span class="kn">import</span> <span class="nn">ocgis</span>
+<span class="kn">import</span> <span class="nn">ESMF</span>
+
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">get_format</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+<span class="n">json_format</span> <span class="o">=</span> <span class="n">get_format</span><span class="p">(</span><span class="s1">&#39;JSON&#39;</span><span class="p">)</span>
+
+<span class="c1"># Supported interpolation methods</span>
+<span class="n">methods</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">ESMF</span><span class="o">.</span><span class="n">RegridMethod</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+
+<span class="k">def</span> <span class="nf">extract_doc</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Format the documentation about the ESMF regridding methods.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">inspect</span>
+    <span class="kn">import</span> <span class="nn">re</span>
+
+    <span class="n">source</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">ESMF</span><span class="o">.</span><span class="n">RegridMethod</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
+        <span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    &#39;</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="s1">&#39;~&#39;</span>
+
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(\w+) = \d&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">3</span><span class="p">:]</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;    Notes&#39;</span><span class="p">)</span>
+    <span class="n">lines</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;    -----&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">actual_output_path</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the path to an output file, adjusting for whether or not the server is active or not.</span>
+
+<span class="sd">    Example</span>
+<span class="sd">    -------</span>
+<span class="sd">    On a local server it would yield something like::</span>
+
+<span class="sd">       http://localhost:8090/wpsoutputs/flyingpigeon/af06fb/af06fb.nc</span>
+
+<span class="sd">    While in test mode it would yield::</span>
+
+<span class="sd">       file:///tmp/af06fb/af06fb.nc</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">outputurl</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_config_value</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="s1">&#39;outputurl&#39;</span><span class="p">)</span>
+    <span class="n">outputpath</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_config_value</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="s1">&#39;outputpath&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">outputurl</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">outputpath</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="ESMFRegridProcess"><a class="viewcode-back" href="../../../processes/basic_climate.html#flyingpigeon.processes.ESMFRegridProcess">[docs]</a><span class="k">class</span> <span class="nc">ESMFRegridProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">extract_doc</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;NetCDF Files or archive (tar/zip) containing NetCDF files.&#39;</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                         <span class="p">]),</span>
+
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;dest&#39;</span><span class="p">,</span> <span class="s1">&#39;Grid destination&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;NetCDF file whose grid defines the interpolation target.&#39;</span><span class="p">,</span>
+                         <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                         <span class="p">]),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;method&quot;</span><span class="p">,</span> <span class="s2">&quot;Regridding method&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Regridding method. Note that `conserve` requires grid corners to be defined.&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">,</span>
+                         <span class="n">allowed_values</span><span class="o">=</span><span class="n">methods</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="p">),</span>
+
+            <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;snippet&quot;</span><span class="p">,</span> <span class="s2">&quot;Snippet&quot;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Run process only for first time step.&quot;</span><span class="p">,</span>
+                         <span class="n">default</span><span class="o">=</span><span class="s2">&quot;False&quot;</span><span class="p">,</span>
+                         <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                         <span class="p">]</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="s1">&#39;Links to regridded dataset&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;JSON file listing the regridded netCDF URLs.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">json_format</span><span class="p">]</span>
+                          <span class="p">),</span>
+
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">,</span> <span class="s1">&#39;NetCDF file&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;First NetCDF file generated by process.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">)]</span>
+                          <span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ESMFRegridProcess</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;esmf_regrid&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ESMF regridding&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s1">&#39;Regrid netCDF files to a destination grid.&#39;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.10&quot;</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Doc&#39;</span><span class="p">,</span> <span class="s1">&#39;http://flyingpigeon.readthedocs.io/en/latest/&#39;</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">uuid</span>
+        <span class="kn">import</span> <span class="nn">time</span>
+        <span class="kn">import</span> <span class="nn">json</span>
+        <span class="n">outputpath</span> <span class="o">=</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_config_value</span><span class="p">(</span><span class="s1">&#39;server&#39;</span><span class="p">,</span> <span class="s1">&#39;outputpath&#39;</span><span class="p">)</span>
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="c1"># -------------- #</span>
+        <span class="c1"># Input handling #</span>
+        <span class="c1"># -------------- #</span>
+        <span class="n">resource</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span>
+            <span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]))</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;resource: </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">resource</span><span class="p">)</span>
+
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span>
+            <span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;dest&#39;</span><span class="p">]))</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;dest: </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">dest</span><span class="p">)</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;method: </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">method</span><span class="p">)</span>
+
+        <span class="n">snippet</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;snippet&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;snippet: </span><span class="si">%s</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="n">snippet</span><span class="p">)</span>
+
+        <span class="c1"># -------------------- #</span>
+        <span class="c1"># Regridding operation #</span>
+        <span class="c1"># -------------------- #</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">ocgis</span><span class="o">.</span><span class="n">RequestDataset</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ESMF</span><span class="o">.</span><span class="n">RegridMethod</span><span class="p">,</span> <span class="n">method</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start ocgis module call function&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Prepare the environment</span>
+        <span class="n">ocgis</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">OVERWRITE</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span>
+        <span class="n">ocgis</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">PREFIX</span> <span class="o">=</span> <span class="n">prefix</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">resource</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">ocgis</span><span class="o">.</span><span class="n">RequestDataset</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+            <span class="n">ops</span> <span class="o">=</span> <span class="n">ocgis</span><span class="o">.</span><span class="n">OcgOperations</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">regrid_destination</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">regrid_options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;regrid_method&#39;</span><span class="p">:</span> <span class="n">m</span><span class="p">},</span>
+                                      <span class="n">snippet</span><span class="o">=</span><span class="n">snippet</span><span class="p">,</span>
+                                      <span class="n">dir_output</span><span class="o">=</span><span class="n">outputpath</span><span class="p">,</span> <span class="n">output_format</span><span class="o">=</span><span class="s1">&#39;nc&#39;</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span>
+                                      <span class="p">)</span>
+            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ops</span><span class="o">.</span><span class="n">execute</span><span class="p">())</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">time_str</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%SZ&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">())</span>
+        <span class="n">output_json</span> <span class="o">=</span> <span class="s2">&quot;esmf_regrid_results_</span><span class="si">{}</span><span class="s2">.json&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time_str</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_json</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="n">actual_output_path</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">]))</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_json</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span></div>
+        <span class="k">return</span> <span class="n">response</span>
+</pre></div>
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

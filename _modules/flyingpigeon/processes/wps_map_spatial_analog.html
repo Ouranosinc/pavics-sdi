@@ -187,12 +187,12 @@
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="MapSpatialAnalogProcess"><a class="viewcode-back" href="../../../processes/visualization.html#flyingpigeon.processes.MapSpatialAnalogProcess">[docs]</a><span class="k">class</span> <span class="nc">MapSpatialAnalogProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+<div class="viewcode-block" id="MapSpatialAnalogProcess"><a class="viewcode-back" href="../../../processes/advanced_climate.html#flyingpigeon.processes.MapSpatialAnalogProcess">[docs]</a><span class="k">class</span> <span class="nc">MapSpatialAnalogProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;netCDF dataset&#39;</span><span class="p">,</span>
                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Dissimilarity between target at selected &quot;</span>
-                                   <span class="s2">&quot;location and candidate distributions over the entire grid.&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;location and candidate distributions over the entire grid.&quot;</span><span class="p">,</span>
                          <span class="n">metadata</span><span class="o">=</span><span class="p">[</span><span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Info&#39;</span><span class="p">)],</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -225,7 +225,7 @@
                           <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;image/png&#39;</span><span class="p">),</span>
                                              <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/pdf&#39;</span><span class="p">),</span>
                                              <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;image/svg+xml&#39;</span><span class="p">),</span>
-                                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/postscript&#39;</span><span class="p">),],</span>
+                                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/postscript&#39;</span><span class="p">),</span> <span class="p">],</span>
                           <span class="p">),</span>
 
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
@@ -239,7 +239,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
             <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;map_spatial_analog&quot;</span><span class="p">,</span>
             <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Map of dissimilarity values calculated by the spatial_analog process.&quot;</span><span class="p">,</span>
-            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Produce map showing the dissimilarity values computed by the &quot;</span>
+                     <span class="s2">&quot;spatial_analog process as well as indicating by a marker the location of the target site.&quot;</span><span class="p">,</span>
             <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="p">,</span>
             <span class="n">metadata</span><span class="o">=</span><span class="p">[</span>
                 <span class="n">Metadata</span><span class="p">(</span><span class="s1">&#39;Doc&#39;</span><span class="p">,</span>
@@ -252,7 +253,6 @@
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
-        <span class="kn">from</span> <span class="nn">tempfile</span> <span class="k">import</span> <span class="n">mkstemp</span>
 
         <span class="n">tic</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
         <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
@@ -298,8 +298,8 @@
             <span class="n">output</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
 
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_figure&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">response</span>
 </pre></div>
 
            </div>
@@ -314,7 +314,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

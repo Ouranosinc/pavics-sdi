@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data and service management &mdash; documentation PAVICS 0.1</title>
+  <title>Data and service management &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="Integration tests" href="integration_tests.html"/>
         <link rel="prev" title="GeoServer administration" href="geoserver.html"/> 
@@ -107,7 +107,6 @@
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data and service management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#netcdf-file-management-in-thredds">NetCDF file management in THREDDS</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#file-conventions">File conventions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adding-files">Adding files</a></li>
 </ul>
 </li>
@@ -201,30 +200,11 @@
 <p>To better understand the way THREDDS integrates within PAVICS, see the System Architecture <a class="reference internal" href="../arch/overview.html"><span class="doc">Overview</span></a>.</p>
 <div class="section" id="netcdf-file-management-in-thredds">
 <h2>NetCDF file management in THREDDS<a class="headerlink" href="#netcdf-file-management-in-thredds" title="Lien permanent vers ce titre">¶</a></h2>
-<div class="section" id="file-conventions">
-<h3>File conventions<a class="headerlink" href="#file-conventions" title="Lien permanent vers ce titre">¶</a></h3>
-<p>NetCDF files integrated in the PAVICS platform must follow the CF Conventions document: <a class="reference external" href="http://cfconventions.org/">http://cfconventions.org/</a></p>
-<p>In order to benefit from the search engine capabilities, typical global attributes should be set. Currently the platorms searches the following fields:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">project</span>
-<span class="n">institute</span>
-<span class="n">model</span>
-<span class="n">experiment</span>
-<span class="n">frequency</span>
-</pre></div>
-</div>
-<p>For variables, the standard_name and units should follow the CF standard name
-table: <a class="reference external" href="http://cfconventions.org/standard-names.html">http://cfconventions.org/standard-names.html</a></p>
-<p>By default, the dataset_id will be made up of the relative path on the thredds
-server. It is recommended to provide the dataset_id as a global attribute
-in each NetCDF file that is unique for each collection of files that constitute
-a timeseries.</p>
-<p>NetCDF files with multiple variables are presently not fully supported</p>
-</div>
 <div class="section" id="adding-files">
 <h3>Adding files<a class="headerlink" href="#adding-files" title="Lien permanent vers ce titre">¶</a></h3>
-<p>NetCDF files can be manually added to the THREDDS Data Server by copying them to the directory used as a docker volume in <code class="docutils literal"><span class="pre">docker-compose.yml</span></code> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p>
+<p>NetCDF files can be manually added to the THREDDS Data Server by copying them to the directory used as a docker volume in <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p>
 <p>In order for new files to be catalogued, the Solr and PAVICS-DataCatalog components must be running and pavicrawler must be run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span># replace localhost and port number with your PAVICS-DataCatalog deployment address
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># replace localhost and port number with your PAVICS-DataCatalog deployment address
 http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
 </pre></div>
 </div>
@@ -233,10 +213,12 @@ http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&am
 <p class="last">The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform.</p>
 </div>
 <p>After running the pavicrawler, new entries in the catalog should appear in Solr:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8983</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span><span class="c1">#/birdhouse/query</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">8983</span><span class="o">/</span><span class="n">solr</span><span class="o">/</span><span class="c1">#/birdhouse/query</span>
 <span class="c1"># must Execute Query, with relevant search criteria, or by increasing rows to get more results</span>
 </pre></div>
 </div>
+<p>By default, the dataset_id will be made up of the relative path on the thredds
+server.</p>
 </div>
 </div>
 <div class="section" id="birdhouse-solr">
@@ -283,7 +265,7 @@ defined in solrconfig.xml
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

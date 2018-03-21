@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Workflow vocabulary &mdash; documentation PAVICS 0.1</title>
+  <title>Workflow vocabulary &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Using workflows" href="index.html"/>
         <link rel="next" title="Examples" href="examples.html"/>
         <link rel="prev" title="Using workflows" href="index.html"/> 
@@ -187,8 +187,8 @@
 <li>Computing climate indices</li>
 <li>Create graphs or tables from the results</li>
 </ol>
-<p>Typically each step would involve calling one or many individual processes, and it’s convenient to combine these steps into a <em>workflow</em>. Here we use <em>workflow</em> to mean a formal description of the logical organization and ordering of individual processes. The workflow logic is encapsulated in a <code class="docutils literal"><span class="pre">json</span></code> file using a vocabulary (called a <a class="reference external" href="http://json-schema.org">schema</a>) that we describe below.</p>
-<p>Workflows are built by combining <code class="docutils literal"><span class="pre">Workflow_task</span></code> into <code class="docutils literal"><span class="pre">Group_of_task</span></code>. These groups are then executed sequentially or in parallel, as indicated in the <code class="docutils literal"><span class="pre">Workflow</span></code> field (see the <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Workflow schema</span></a>).</p>
+<p>Typically each step would involve calling one or many individual processes, and it’s convenient to combine these steps into a <em>workflow</em>. Here we use <em>workflow</em> to mean a formal description of the logical organization and ordering of individual processes. The workflow logic is encapsulated in a <code class="docutils literal notranslate"><span class="pre">json</span></code> file using a vocabulary (called a <a class="reference external" href="http://json-schema.org">schema</a>) that we describe below.</p>
+<p>Workflows are built by combining <code class="docutils literal notranslate"><span class="pre">Workflow_task</span></code> into <code class="docutils literal notranslate"><span class="pre">Group_of_task</span></code>. These groups are then executed sequentially or in parallel, as indicated in the <code class="docutils literal notranslate"><span class="pre">Workflow</span></code> field (see the <a class="reference internal" href="schema.html#schema"><span class="std std-ref">Workflow schema</span></a>).</p>
 <dl class="object">
 <dt id="workflow">
 <!--[workflow]--><code class="descname">Workflow</code><a class="headerlink" href="#workflow" title="Lien permanent vers cette définition">¶</a></dt>
@@ -201,8 +201,8 @@
 <tr class="field-odd field"><th class="field-name" colspan="2">Object Properties:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Workflow name</li>
-<li><strong>tasks</strong> (<em>list</em>) – Array of <a class="reference internal" href="#workflow_task"><code class="xref json json-object docutils literal"><span class="pre">Workflow_task</span></code></a>. [optional*]</li>
-<li><strong>parallel_groups</strong> (<em>list</em>) – Array of <code class="xref json json-object docutils literal"><span class="pre">Group_of_tasks</span></code> being executed on multiple processes. [optional*]</li>
+<li><strong>tasks</strong> (<em>list</em>) – Array of <a class="reference internal" href="#workflow_task"><code class="xref json json-object docutils literal notranslate"><span class="pre">Workflow_task</span></code></a>. [optional*]</li>
+<li><strong>parallel_groups</strong> (<em>list</em>) – Array of <code class="xref json json-object docutils literal notranslate"><span class="pre">Group_of_tasks</span></code> being executed on multiple processes. [optional*]</li>
 </ul>
 </td>
 </tr>
@@ -212,7 +212,7 @@
 
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Either <code class="docutils literal"><span class="pre">tasks</span></code> or <code class="docutils literal"><span class="pre">parallel_groups</span></code> must be specified.</p>
+<p class="last">Either <code class="docutils literal notranslate"><span class="pre">tasks</span></code> or <code class="docutils literal notranslate"><span class="pre">parallel_groups</span></code> must be specified.</p>
 </div>
 <dl class="object">
 <dt id="workflow_task">
@@ -228,7 +228,7 @@
 <li><strong>url</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Url of the WPS provider</li>
 <li><strong>identifier</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Identifier of a WPS process</li>
 <li><strong>inputs</strong> (<em>dict</em>) – Dictionary of inputs that must be fed to the WPS process. The key is the input name and the value is either the input data or an array of data if multiple values are allowed for this input. [optional]</li>
-<li><strong>linked_inputs</strong> (<em>dict</em>) – Dictionary of dynamic inputs that must be fed to the WPS process and obtained by the output of other tasks. The key is the input name (or None) and the value is an <a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal"><span class="pre">Input_description</span></code></a> dictionary or an array of them if multiple values are allowed for this input. [optional]</li>
+<li><strong>linked_inputs</strong> (<em>dict</em>) – Dictionary of dynamic inputs that must be fed to the WPS process and obtained by the output of other tasks. The key is the input name (or None) and the value is an <a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal notranslate"><span class="pre">Input_description</span></code></a> dictionary or an array of them if multiple values are allowed for this input. [optional]</li>
 <li><strong>progress_range</strong> (<em>list</em>) – [optiona] Array [start, end] defining the overall progress range of this task. Default value is [0, 100].</li>
 </ul>
 </td>
@@ -254,9 +254,9 @@
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
 <li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Group of task name.</li>
 <li><strong>max_processes</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#int" title="Python Integer"><em>int</em></a>) – Number of processes to run concurrently to process the data.</li>
-<li><strong>map</strong> (<a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal"><span class="pre">Input_description</span></code></a>) – Object describing what has to be mapped inside the group or an array of data that has to be mapped directly.</li>
-<li><strong>reduce</strong> (<a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal"><span class="pre">Input_description</span></code></a>) – Object describing what has to be reduced before leaving the group.</li>
-<li><strong>tasks</strong> (<em>list</em>) – Array of <a class="reference internal" href="#workflow_task"><code class="xref json json-object docutils literal"><span class="pre">Workflow_task</span></code></a> to run concurrently inside the group.</li>
+<li><strong>map</strong> (<a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal notranslate"><span class="pre">Input_description</span></code></a>) – Object describing what has to be mapped inside the group or an array of data that has to be mapped directly.</li>
+<li><strong>reduce</strong> (<a class="reference internal" href="#input_description"><code class="xref json json-object docutils literal notranslate"><span class="pre">Input_description</span></code></a>) – Object describing what has to be reduced before leaving the group.</li>
+<li><strong>tasks</strong> (<em>list</em>) – Array of <a class="reference internal" href="#workflow_task"><code class="xref json json-object docutils literal notranslate"><span class="pre">Workflow_task</span></code></a> to run concurrently inside the group.</li>
 </ul>
 </td>
 </tr>
@@ -275,7 +275,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Object Properties:</th></tr>
 <tr class="field-odd field"><td>&#160;</td><td class="field-body"><ul class="first last simple">
-<li><strong>task</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Name of the task from which the input should be taken (if from a <a class="reference internal" href="#group_of_task"><code class="xref json json-object docutils literal"><span class="pre">Group_of_task</span></code></a>, this is from its map element).</li>
+<li><strong>task</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Name of the task from which the input should be taken (if from a <a class="reference internal" href="#group_of_task"><code class="xref json json-object docutils literal notranslate"><span class="pre">Group_of_task</span></code></a>, this is from its map element).</li>
 <li><strong>output</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#str" title="Python String"><em>str</em></a>) – Output name in the task provided above. Not required if the task has only one output or when referring to the map/reduce tasks of a group. [optional]</li>
 <li><strong>as_reference</strong> (<a class="reference external" href="https://docs.python.org/library/stdtypes.html#boolean-values" title="Python Boolean"><em>boolean</em></a>) – Specify if the task output should be obtained as a reference (URL) or not (data directly). False is the default value if ommited. [optional]</li>
 </ul>
@@ -313,7 +313,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

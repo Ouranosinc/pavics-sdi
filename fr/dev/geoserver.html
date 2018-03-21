@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>GeoServer administration &mdash; documentation PAVICS 0.1</title>
+  <title>GeoServer administration &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="Data and service management" href="data_management.html"/>
         <link rel="prev" title="User and Group management" href="permissions.html"/> 
@@ -197,7 +197,7 @@
 <h1>GeoServer administration<a class="headerlink" href="#geoserver-administration" title="Lien permanent vers ce titre">¶</a></h1>
 <div class="section" id="before-you-begin">
 <h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Lien permanent vers ce titre">¶</a></h2>
-<p>We strongly encourage that you create a <code class="docutils literal"><span class="pre">Workspace</span></code>. For more information on Workspaces and the data structure of GeoServer, refer to the official <a class="reference external" href="http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html">GeoServer Online Documentation</a>.</p>
+<p>We strongly encourage that you create a <code class="docutils literal notranslate"><span class="pre">Workspace</span></code>. For more information on Workspaces and the data structure of GeoServer, refer to the official <a class="reference external" href="http://docs.geoserver.org/stable/en/user/data/webadmin/workspaces.html">GeoServer Online Documentation</a>.</p>
 </div>
 <div class="section" id="adding-data-to-geoserver">
 <h2>Adding data to GeoServer<a class="headerlink" href="#adding-data-to-geoserver" title="Lien permanent vers ce titre">¶</a></h2>
@@ -211,17 +211,17 @@
 <p>Folders can be loaded with Vector and Raster data in many formats and can be stored in the same parent folder.</p>
 <ul>
 <li><p class="first">Begin by tunneling into the server:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">user</span><span class="nd">@server</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">user</span><span class="nd">@server</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Determine where the GeoServer data folder exists on your server. Navigate to this directory and create a new folder that will contain your new data sets:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">On your local terminal, navigate to your directory containing your data and run <code class="docutils literal"><span class="pre">scp</span></code> on the folder recursively:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">pr</span> <span class="n">localdata</span> <span class="n">user</span><span class="nd">@server</span><span class="p">:</span><span class="o">/</span><span class="n">PATHTO</span><span class="o">/</span><span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span><span class="o">/</span>
+<li><p class="first">On your local terminal, navigate to your directory containing your data and run <code class="docutils literal notranslate"><span class="pre">scp</span></code> on the folder recursively:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">pr</span> <span class="n">localdata</span> <span class="n">user</span><span class="nd">@server</span><span class="p">:</span><span class="o">/</span><span class="n">PATHTO</span><span class="o">/</span><span class="n">GeoServer</span><span class="o">/</span><span class="n">DATASETS</span><span class="o">/</span>
 </pre></div>
 </div>
 </li>
@@ -290,7 +290,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

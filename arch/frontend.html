@@ -101,9 +101,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Frontend</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Frontend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#justification">Justification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#elements">Elements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#panels">Panels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-and-process-manager">Data and Process Manager</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Data Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Pavics-DataCatalog</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
@@ -180,9 +191,43 @@
             
   <div class="section" id="frontend">
 <h1>Frontend<a class="headerlink" href="#frontend" title="Permalink to this headline">¶</a></h1>
+<img alt="An example of the PAVICS-frontend in action" src="../_images/PAVICS_data_overlay.png" />
+<div class="section" id="justification">
+<h2>Justification<a class="headerlink" href="#justification" title="Permalink to this headline">¶</a></h2>
+<p>The PAVICS-frontend (<a class="reference external" href="https://github.com/Ouranosinc/PAVICS-frontend">GitHub Repository</a>) is the main interface for users to perform analyses such as:</p>
+<ul class="simple">
+<li>Creation of standard and custom climate change scenarios for impact and adaptation studies,</li>
+<li>Spatial and temporal exploration of climate data sets,</li>
+<li>Analysis and validation of climate model simulations, and</li>
+<li>Visualization of climate change scenarios at the watershed scale.</li>
+</ul>
+<p>These tasks conventionally require downloading terabytes of data and heavy data processing that convert raw data into useful products: statistics, graphics, time series, or maps. PAVICS-frontend turns these time-consuming tasks into a streamlined click, drag and drop exercise. Over 20 collaborators have pledged their support to this vision of an hardware and software interface that gives both experienced researchers and non-specialists access to a highly advanced and powerful toolset.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>For an example of a climate analysis process using the PAVICS-frontend, see this short <a class="reference download internal" href="../_downloads/PAVICS_process.mp4" download=""><code class="xref download docutils literal notranslate"><span class="pre">hands-on</span> <span class="pre">video</span></code></a>.</p>
+</div>
+</div>
+<div class="section" id="elements">
+<h2>Elements<a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="panels">
+<h3>Panels<a class="headerlink" href="#panels" title="Permalink to this headline">¶</a></h3>
+<p>Panels provide methods for interacting with any preconfigured or calculated data sets within the PAVICS-SDI. The bottom-left corner of PAVICS-frontend toggles visibility for five different panels:</p>
+<ul class="simple">
+<li>Clicked Point Information,</li>
+<li>A Time Series Chart,</li>
+<li>A Data Layer Visibility Switcher,</li>
+<li>A Temporal Slider, and</li>
+<li>Other Map Controls</li>
+</ul>
+<p>Each panel element can be used to view/inspect different types and display additional information of the active data.</p>
+</div>
+<div class="section" id="data-and-process-manager">
+<h3>Data and Process Manager<a class="headerlink" href="#data-and-process-manager" title="Permalink to this headline">¶</a></h3>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Write frontend docs.</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -208,7 +253,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

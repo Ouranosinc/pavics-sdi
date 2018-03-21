@@ -5,7 +5,7 @@ Visualization
 
 .. autoprocess:: flyingpigeon.processes.PlottimeseriesProcess
 
-.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
+#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess (moved to blackswan)
 
 .. autoprocess:: flyingpigeon.processes.MapSpatialAnalogProcess
 

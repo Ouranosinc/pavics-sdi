@@ -56,7 +56,7 @@ This installation will run on a single server instance, but there are instructio
 
 
 Updating containers to the latest version
-========================================
+=========================================
 
 To synchronize a deployment with the latest container available on dockerhub::
 
@@ -97,7 +97,7 @@ If a Bird Service becomes unusable, the docker containers can easily be reset to
 	Some manual tasks are required after resetting the birdhouse environment : See the manual steps under the Phoenix configuration
 
 Restarting Bird services
-=======================
+========================
 
 If the dockers containers need to be stopped (including the docker service, if required) these steps will preserve the docker state and all configurations set via Bird Service web portals::
 

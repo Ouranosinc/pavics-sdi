@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Impacts and adaptation &mdash; documentation PAVICS 0.1</title>
+  <title>Impacts and adaptation &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Advanced climate data analysis" href="advanced_climate.html"/>
         <link rel="prev" title="Climate indices" href="indices.html"/> 
@@ -187,6 +187,7 @@
             
   <div class="section" id="impacts-and-adaptation">
 <h1>Impacts and adaptation<a class="headerlink" href="#impacts-and-adaptation" title="Lien permanent vers ce titre">¶</a></h1>
+<p>The following are processes for analyzing impact and adaptation metrics for the purpose of tracking biodiversity health.</p>
 <div class="section" id="biodiversity">
 <h2>Biodiversity<a class="headerlink" href="#biodiversity" title="Lien permanent vers ce titre">¶</a></h2>
 <dl class="class">
@@ -198,9 +199,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>taxon_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/string.html#module-string" title="(disponible dans Python v3.6)"><em>string</em></a>) – Taxonomic name of tree species (e. g. Fagus sylvatica)</td>
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><strong>taxon_name</strong> (<em>string</em>) – Taxonomic name of tree species (e. g. Fagus sylvatica)</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><ul class="simple">
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><ul class="simple">
 <li><strong>output_map</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing the presence of tree species                                according to GBIF data fetch</li>
 <li><strong>output_csv</strong> (<em class="mimetype">text/csv</em>) – Extracted CSV file containing the tree species table</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
@@ -216,10 +217,165 @@
 </ul>
 </dd></dl>
 
-<p>#.. autoprocess:: flyingpigeon.processes.SDMgetindicesProcess</p>
-<p>#.. autoprocess:: flyingpigeon.processes.SDMcsvProcess</p>
-<p>#.. autoprocess:: flyingpigeon.processes.SDMcsvindicesProcess</p>
-<p>#.. autoprocess:: flyingpigeon.processes.SDMallinoneProcess</p>
+<dl class="class">
+<dt id="flyingpigeon.processes.SDMgetindicesProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SDMgetindicesProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_sdm_getindices.html#SDMgetindicesProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SDMgetindicesProcess" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p><strong class="program">sdm_getindices</strong> Species distribution Model (only indices calculation ) (v0.10)</p>
+<p>Indices preparation for SDM process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</li>
+<li><strong>indices</strong> (<em>{'CDD_AMJJAS'</em><em>, </em><em>'CFD_ONDJFM'</em><em>, </em><em>'FD_ONDJFM'</em><em>, </em><em>'FD_Apr'</em><em>, </em><em>'FD_May'</em><em>, </em><em>'FD_Jun'</em><em>, </em><em>'GD4_yr'</em><em>, </em><em>'ID_yr'</em><em>, </em><em>'PRCPTOT_yr'</em><em>, </em><em>'PRCPTOT_ONDJFM'</em><em>, </em><em>..}</em>) – Climate indices related to growth conditions                                     of tree species</li>
+<li><strong>archive_format</strong> (<em>{'zip'</em><em>, </em><em>'tar'}</em>) – Result files will be compressed into archives.                                    Choose an appropriate format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_indices</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file with subsets of one resource.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.lwf.bayern.de/">LWF</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#species-distribution-model">Doc</a></li>
+<li><a class="reference external" href="http://www.hindawi.com/journals/jcli/2013/787250/">paper</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html">Tutorial</a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.SDMcsvProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SDMcsvProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_sdm_csv.html#SDMcsvProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SDMcsvProcess" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p><strong class="program">sdm_csv</strong> Species distribution Model (GBIF-CSV table as input) (v0.10)</p>
+<p>Indices preparation for SDM process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>gbif</strong> (<em>string</em>) – GBIF table (csv) with tree occurence                          (output of “GBIF data fetch” process )</li>
+<li><strong>indices</strong> (<em>{'CDD_AMJJAS'</em><em>, </em><em>'CFD_ONDJFM'</em><em>, </em><em>'FD_ONDJFM'</em><em>, </em><em>'FD_Apr'</em><em>, </em><em>'FD_May'</em><em>, </em><em>'FD_Jun'</em><em>, </em><em>'GD4_yr'</em><em>, </em><em>'ID_yr'</em><em>, </em><em>'PRCPTOT_yr'</em><em>, </em><em>'PRCPTOT_ONDJFM'</em><em>, </em><em>..}</em>) – Climate indices related to growth conditions                                     of tree species</li>
+<li><strong>period</strong> (<em>{'all'</em><em>, </em><em>'1951-1980'</em><em>, </em><em>'1961-1990'</em><em>, </em><em>'1971-2000'</em><em>, </em><em>'1981-2010'}</em>) – Reference period for climate conditions                         (all = entire timeseries)</li>
+<li><strong>archive_format</strong> (<em>{'zip'</em><em>, </em><em>'tar'}</em>) – Result files will be compressed into archives.                                  Choose an appropriate format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_gbif</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing the presence of tree species                                    according to the CSV file</li>
+<li><strong>output_PA</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing PA mask generated based on                                    netCDF spatial increment</li>
+<li><strong>output_indices</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>output_reference</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>output_prediction</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive containing files of the predicted                                     growth conditions</li>
+<li><strong>output_info</strong> (<em class="mimetype">application/pdf</em>) – Graphics and information of the learning statistics</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.lwf.bayern.de/">LWF</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#species-distribution-model">Doc</a></li>
+<li><a class="reference external" href="http://www.hindawi.com/journals/jcli/2013/787250/">paper</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html">Tutorial</a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.SDMcsvindicesProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SDMcsvindicesProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_sdm_csvindices.html#SDMcsvindicesProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SDMcsvindicesProcess" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p><strong class="program">sdm_csvindices</strong> Species distribution Model (GBIF-CSV Table and Indices as calculation basis) (v0.10)</p>
+<p>Indices preparation for SDM process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
+<li><strong>resources</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Precalculated Indices as basis for the SDM calculation (list of netCDF files or tar/zip archive)</li>
+<li><strong>gbif</strong> (<em>string</em>) – GBIF table (csv) with tree occurence                          (output of “GBIF data fetch” process )</li>
+<li><strong>period</strong> (<em>{'all'</em><em>, </em><em>'1951-1980'</em><em>, </em><em>'1961-1990'</em><em>, </em><em>'1971-2000'</em><em>, </em><em>'1981-2010'}</em>) – Reference period for climate conditions                         (all = entire timeseries)</li>
+<li><strong>archive_format</strong> (<em>{'zip'</em><em>, </em><em>'tar'}</em>) – Result files will be compressed into archives.                                  Choose an appropriate format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_gbif</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing the presence of tree species                                    according to the CSV file</li>
+<li><strong>output_PA</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing PA mask generated based on                                    netCDF spatial increment</li>
+<li><strong>output_reference</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>output_prediction</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive containing files of the predicted                                     growth conditions</li>
+<li><strong>output_info</strong> (<em class="mimetype">application/pdf</em>) – Graphics and information of the learning statistics</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.lwf.bayern.de/">LWF</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#species-distribution-model">Doc</a></li>
+<li><a class="reference external" href="http://www.hindawi.com/journals/jcli/2013/787250/">paper</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html">Tutorial</a></li>
+</ul>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.SDMallinoneProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SDMallinoneProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_sdm_allinone.html#SDMallinoneProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SDMallinoneProcess" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p><strong class="program">sdm_allinone</strong> Species distribution Model (all in one) (v0.10)</p>
+<p>Indices preparation for SDM process</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>taxon_name</strong> (<em>string</em>) – Taxonomic name of tree species (e. g. Fagus sylvatica)</li>
+<li><strong>indices</strong> (<em>{'CDD_AMJJAS'</em><em>, </em><em>'CFD_ONDJFM'</em><em>, </em><em>'FD_ONDJFM'</em><em>, </em><em>'FD_Apr'</em><em>, </em><em>'FD_May'</em><em>, </em><em>'FD_Jun'</em><em>, </em><em>'GD4_yr'</em><em>, </em><em>'ID_yr'</em><em>, </em><em>'PRCPTOT_yr'</em><em>, </em><em>'PRCPTOT_ONDJFM'</em><em>, </em><em>..}</em>) – Climate indices related to growth conditions                                     of tree species</li>
+<li><strong>period</strong> (<em>{'all'</em><em>, </em><em>'1951-1980'</em><em>, </em><em>'1961-1990'</em><em>, </em><em>'1971-2000'</em><em>, </em><em>'1981-2010'}</em>) – Reference period for climate conditions                         (all = entire timeseries)</li>
+<li><strong>archive_format</strong> (<em>{'zip'</em><em>, </em><em>'tar'}</em>) – Result files will be compressed into archives.                                  Choose an appropriate format</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_csv</strong> (<em class="mimetype">text/csv</em>) – Extracted CSV file containing the tree species table</li>
+<li><strong>output_gbif</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing the presence of tree species                                    according to the CSV file</li>
+<li><strong>output_PA</strong> (<em class="mimetype">image/png</em>) – PNG graphic file showing PA mask generated based on                                    netCDF spatial increment</li>
+<li><strong>output_indices</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>output_reference</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive (tar/zip) containing calculated climate indices</li>
+<li><strong>output_prediction</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – Archive containing files of the predicted                                     growth conditions</li>
+<li><strong>output_info</strong> (<em class="mimetype">application/pdf</em>) – Graphics and information of the learning statistics</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.lwf.bayern.de/">LWF</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#species-distribution-model">Doc</a></li>
+<li><a class="reference external" href="http://www.hindawi.com/journals/jcli/2013/787250/">paper</a></li>
+<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/tutorials/sdm.html">Tutorial</a></li>
+</ul>
+</dd></dl>
+
 <dl class="class">
 <dt id="flyingpigeon.processes.SegetalfloraProcess">
 <em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">SegetalfloraProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_segetalflora.html#SegetalfloraProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.SegetalfloraProcess" title="Lien permanent vers cette définition">¶</a></dt>
@@ -230,13 +386,14 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
 <li><strong>climate_type</strong> (<em>{'1'</em><em>, </em><em>'2'</em><em>, </em><em>'3'</em><em>, </em><em>'4'</em><em>, </em><em>'5'</em><em>, </em><em>'6'</em><em>, </em><em>'7'</em><em>, </em><em>'all'}</em>) – Select climate type</li>
 <li><strong>culture_type</strong> (<em>{'fallow'</em><em>, </em><em>'intensive'</em><em>, </em><em>'extensive'}</em>) – Select culture type</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Retourne:</th><td class="field-body"><p class="first last"><ul class="simple">
+<tr class="field-even field"><th class="field-name">Renvoie:</th><td class="field-body"><p class="first last"><ul class="simple">
 <li><strong>out_tasmean</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/x-netcdf</em>) – Tar archive containing the netCDF EUR tas mean files</li>
 <li><strong>out_segetalflora</strong> (<em class="mimetype">application/x-tar</em>, <em class="mimetype">application/x-netcdf</em>) – Tar archive containing the segetalflora data</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
@@ -278,7 +435,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

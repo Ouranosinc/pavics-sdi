@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>VM configuration &mdash; documentation PAVICS 0.1</title>
+  <title>VM configuration &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="User and Group management" href="permissions.html"/>
         <link rel="prev" title="Birdhouse service configuration" href="configuration.html"/> 
@@ -196,10 +196,10 @@
 <div class="section" id="data-volumes">
 <h2>Data volumes<a class="headerlink" href="#data-volumes" title="Lien permanent vers ce titre">¶</a></h2>
 <ul>
-<li><p class="first">Attach 2 openstack volumes to the vm (take note of its name looking like <code class="docutils literal"><span class="pre">/dev/vdx</span></code>)</p>
+<li><p class="first">Attach 2 openstack volumes to the vm (take note of its name looking like <code class="docutils literal notranslate"><span class="pre">/dev/vdx</span></code>)</p>
 </li>
-<li><p class="first">Mount them at <code class="docutils literal"><span class="pre">/data</span></code> and <code class="docutils literal"><span class="pre">/geoserver_data</span></code> using the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vdx</span> <span class="o">/</span><span class="p">[</span><span class="n">geoserver_</span><span class="p">]</span><span class="n">data</span>
+<li><p class="first">Mount them at <code class="docutils literal notranslate"><span class="pre">/data</span></code> and <code class="docutils literal notranslate"><span class="pre">/geoserver_data</span></code> using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vdx</span> <span class="o">/</span><span class="p">[</span><span class="n">geoserver_</span><span class="p">]</span><span class="n">data</span>
 </pre></div>
 </div>
 </li>
@@ -209,14 +209,14 @@
 </div>
 <div class="section" id="docker-volume">
 <h2>Docker volume<a class="headerlink" href="#docker-volume" title="Lien permanent vers ce titre">¶</a></h2>
-<p>Docker can take a lot of space to maintain all containers and the default directory <code class="docutils literal"><span class="pre">/var/lib/docker</span></code> on the host can rapidly run out of disk space. The easy solution is to mount a bigger volume at this position:</p>
+<p>Docker can take a lot of space to maintain all containers and the default directory <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> on the host can rapidly run out of disk space. The easy solution is to mount a bigger volume at this position:</p>
 <ol class="arabic">
-<li><p class="first">Attach an openstack volume to the vm (take note of its name looking like <code class="docutils literal"><span class="pre">/dev/vdx</span></code>)</p>
+<li><p class="first">Attach an openstack volume to the vm (take note of its name looking like <code class="docutils literal notranslate"><span class="pre">/dev/vdx</span></code>)</p>
 </li>
 <li><p class="first">Stop the docker service : <strong class="command">service docker stop</strong></p>
 </li>
-<li><p class="first">Mount the new volume at <code class="file docutils literal"><span class="pre">/var/lib/docker</span></code> using the following command:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vdx</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span>
+<li><p class="first">Mount the new volume at <code class="file docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">vdx</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span>
 </pre></div>
 </div>
 </li>
@@ -226,10 +226,10 @@
 </div>
 <div class="section" id="automount">
 <h2>Automount<a class="headerlink" href="#automount" title="Lien permanent vers ce titre">¶</a></h2>
-<p>To automatically mount volumes at reboot we modified the <code class="file docutils literal"><span class="pre">/etc/fstab</span></code> file to include the attached <a class="reference external" href="https://www.openstack.org/">OpenStack</a> volumes. For example (mind the tabspaces):</p>
+<p>To automatically mount volumes at reboot we modified the <code class="file docutils literal notranslate"><span class="pre">/etc/fstab</span></code> file to include the attached <a class="reference external" href="https://www.openstack.org/">OpenStack</a> volumes. For example (mind the tabspaces):</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/etc/fstab</span></code></span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nv">LABEL</span><span class="o">=</span>cloudimg-rootfs   /        ext4   defaults        <span class="m">0</span> <span class="m">0</span>
+<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal notranslate"><span class="pre">/etc/fstab</span></code></span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">LABEL</span><span class="o">=</span>cloudimg-rootfs   /        ext4   defaults        <span class="m">0</span> <span class="m">0</span>
 /dev/vdb        none            swap    sw,comment<span class="o">=</span>cloudconfig  <span class="m">0</span>       <span class="m">0</span>
 /dev/vdd        /data           ext4    defaults        <span class="m">0</span> <span class="m">0</span>
 /dev/vdc        /var/lib/docker ext4    defaults        <span class="m">0</span> <span class="m">0</span>
@@ -239,8 +239,8 @@
 </div>
 <div class="section" id="hostname-resolution">
 <h2>Hostname resolution<a class="headerlink" href="#hostname-resolution" title="Lien permanent vers ce titre">¶</a></h2>
-<p>The virtual machine is publicly visible by using the <a class="reference external" href="https://www.openstack.org/">OpenStack</a> external IP. But this IP is not visible from inside, the internal IP must be used. To resolve this issue, create a DNS entry mapping a hostname to the external IP and edit <code class="file docutils literal"><span class="pre">/etc/hosts</span></code> from inside the VM so that the same hostname maps the internal IP.</p>
-<p>For example, <code class="docutils literal"><span class="pre">outarde.crim.ca</span></code> is resolved as 132.217.140.52 (OpenStack external IP) everywhere but from the inside of this vm the <code class="file docutils literal"><span class="pre">/etc/hosts</span></code> config resolve this hostname to 192.168.101.91 (OpenStack internal IP).</p>
+<p>The virtual machine is publicly visible by using the <a class="reference external" href="https://www.openstack.org/">OpenStack</a> external IP. But this IP is not visible from inside, the internal IP must be used. To resolve this issue, create a DNS entry mapping a hostname to the external IP and edit <code class="file docutils literal notranslate"><span class="pre">/etc/hosts</span></code> from inside the VM so that the same hostname maps the internal IP.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">outarde.crim.ca</span></code> is resolved as 132.217.140.52 (OpenStack external IP) everywhere but from the inside of this vm the <code class="file docutils literal notranslate"><span class="pre">/etc/hosts</span></code> config resolve this hostname to 192.168.101.91 (OpenStack internal IP).</p>
 </div>
 </div>
 
@@ -266,7 +266,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

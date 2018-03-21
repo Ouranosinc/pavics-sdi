@@ -39,8 +39,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials" href="index.html"/>
-        <link rel="next" title="Working with Web Processing Service with python" href="wps_with_python.html"/>
-        <link rel="prev" title="Tutorials" href="index.html"/> 
+        <link rel="next" title="Working with Web Processing Service with Python" href="wps_with_python.html"/>
+        <link rel="prev" title="Data preparation for inclusion in the platform" href="data_preparation.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -98,8 +98,15 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Searching for data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wps_with_python.html">Working with Web Processing Service with python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_preparation.html">Data preparation for inclusion in the platform</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Searching for data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#apis">APIs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#discovering-facets">Discovering facets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="wps_with_python.html">Working with Web Processing Service with Python</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
@@ -183,6 +190,19 @@
 <p class="first admonition-title">Todo</p>
 <p class="last">Describe how to use the UI to add data to the workspace.</p>
 </div>
+<div class="section" id="apis">
+<h2>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h2>
+<p>Data on ESGF nodes can be searched using the ESGF Search API:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ESGF</span><span class="o">/</span><span class="n">esgf</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">ESGF_Search_REST_API</span>
+</pre></div>
+</div>
+<p>PAVICS has its own data catalog that mimics the ESGF catalog and a WPS
+is provided for combining PAVICS search with ESGF search.</p>
+<div class="section" id="discovering-facets">
+<h3>Discovering facets<a class="headerlink" href="#discovering-facets" title="Permalink to this headline">¶</a></h3>
+<p>pending</p>
+</div>
+</div>
 </div>
 
 
@@ -195,10 +215,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="wps_with_python.html" class="btn btn-neutral float-right" title="Working with Web Processing Service with python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wps_with_python.html" class="btn btn-neutral float-right" title="Working with Web Processing Service with Python" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="data_preparation.html" class="btn btn-neutral" title="Data preparation for inclusion in the platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -207,7 +227,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

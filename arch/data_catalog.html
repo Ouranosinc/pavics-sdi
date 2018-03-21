@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Data Catalog &mdash; PAVICS 0.1 documentation</title>
+  <title>Pavics-DataCatalog &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -103,11 +103,12 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Data Catalog</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pavics-DataCatalog</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#credits">Credits</a></li>
 </ul>
 </li>
 </ul>
@@ -165,7 +166,7 @@
         
           <li><a href="index.html">System Architecture</a> &raquo;</li>
         
-      <li>Data Catalog</li>
+      <li>Pavics-DataCatalog</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -184,23 +185,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-catalog">
-<h1>Data Catalog<a class="headerlink" href="#data-catalog" title="Permalink to this headline">¶</a></h1>
-<p>Pavics bundles a number of cataloguing services that allow you to search
-for data and add data to the catalog.</p>
+  <div class="section" id="pavics-datacatalog">
+<h1>Pavics-DataCatalog<a class="headerlink" href="#pavics-datacatalog" title="Permalink to this headline">¶</a></h1>
+<p>PAVICS-SDI bundles a number of cataloguing services that allow users to search for and add data to its backend catalog service.</p>
+<p>The main cataloguing component within the PAVICS-SDI architecture is <a class="reference external" href="https://www.github.com/ouranosinc/PAVICS-DataCatalog/">PAVICS-DataCatalog</a>, a service that identifies and enables querying of <a class="reference external" href="http://cfconventions.org/">CF-compliant</a> climate data organized within THREDDS Data Servers. PAVICS-DataCatalog is built with the <a class="reference external" href="https://lucene.apache.org/solr/">Apache Solr</a> search platform.</p>
 <div class="section" id="pavics-catalogue-search">
 <h2>PAVICS Catalogue Search<a class="headerlink" href="#pavics-catalogue-search" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">pavicssearch</span></code> service closely mimics the API for the Earth
-System Grid Federation (ESGF) search. The search fields (or <em>facets</em>)
-include author, category, cf_standard_name, experiment, frequency,
-institute, model, project, source, subject, title, units, variable and
-variable_long_name. The search results are returned in a <code class="docutils literal"><span class="pre">json</span></code> file and
-include the URL to download the file or access it through DAP.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pavicssearch</span></code> service closely mimics the API for the Earth System Grid Federation (ESGF) search. The search fields (or <em>facets</em>) include author, category, cf_standard_name, experiment, frequency, institute, model, project, source, subject, title, units, variable and variable_long_name. The search results are returned in a <code class="docutils literal notranslate"><span class="pre">json</span></code> file and include the URL to download the file or access it through DAP.</p>
 <div class="section" id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<p>The request <a class="reference external" href="http://132.217.140.45:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85">pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85</a>
-will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model.</p>
+<p>The following request will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85 &lt;http://132.217.140.45:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85&gt;`_
+</pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
+<p>PAVICS-DataCatalog is developed by researchers at CRIM and Ouranos.</p>
 </div>
 </div>
 
@@ -226,7 +228,7 @@ will search for all files that are part of the RCP8.5 experiment and based on th
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contributing &mdash; documentation PAVICS 0.1</title>
+  <title>Contributing &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="System Architecture" href="../arch/index.html"/>
         <link rel="prev" title="Building the docs" href="builddocs.html"/> 
@@ -227,7 +227,7 @@ docker-compose</p>
 <li>For missing python modules: <a class="reference external" href="https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html">https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html</a></li>
 </ul>
 <p>Commands to run in Python console:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span>
 <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip&#39;</span><span class="p">])</span>
 <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;--upgrade&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-reinstall&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/bird-house/OWSLib/archive/pingudev.zip&#39;</span><span class="p">])</span>
 </pre></div>
@@ -241,7 +241,7 @@ fails.</li>
 <h2>Launching individual local components<a class="headerlink" href="#launching-individual-local-components" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="section" id="solr">
 <h3>Solr<a class="headerlink" href="#solr" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">solr</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">solr</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">my_solr</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8983</span><span class="p">:</span><span class="mi">8983</span> <span class="o">-</span><span class="n">t</span> <span class="n">pavics</span><span class="o">/</span><span class="n">solr</span>
 </pre></div>
 </div>
@@ -249,13 +249,13 @@ fails.</li>
 </div>
 <div class="section" id="public-thredds">
 <h3>Public THREDDS<a class="headerlink" href="#public-thredds" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">public_thredds</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
 <p>In this new docker-compose.override.yml change ${PATH_TO_LOCAL_NETCDF_FILES}
 to an actual path on disk with NetCDF files.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span>
 </pre></div>
 </div>
 <p>Check that thredds is running at <a class="reference external" href="http://localhost:8083/thredds/">http://localhost:8083/thredds/</a></p>
@@ -263,39 +263,39 @@ to an actual path on disk with NetCDF files.</p>
 <div class="section" id="https-thredds">
 <h3>HTTPS THREDDS<a class="headerlink" href="#https-thredds" title="Lien permanent vers ce titre">¶</a></h3>
 <p>First you will need a self-signed certificate:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span>
 </pre></div>
 </div>
 <p>This will ask for various inputs that may be left blank.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">&gt;&gt;</span> <span class="n">cert</span><span class="o">.</span><span class="n">pem</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">&gt;&gt;</span> <span class="n">cert</span><span class="o">.</span><span class="n">pem</span>
 </pre></div>
 </div>
 <p>cert.pm is your self-signed certificate.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
 <p>Switch to PAVICS/birdhouse directory.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">set_hostname</span><span class="o">.</span><span class="n">sh</span> <span class="n">dummy</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">set_hostname</span><span class="o">.</span><span class="n">sh</span> <span class="n">dummy</span>
 </pre></div>
 </div>
 <p>Add this dummy hostname to /etc/hosts</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>       <span class="n">dummy</span><span class="o">.</span><span class="n">crim</span><span class="o">.</span><span class="n">ca</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span>       <span class="n">dummy</span><span class="o">.</span><span class="n">crim</span><span class="o">.</span><span class="n">ca</span>
 </pre></div>
 </div>
 <p>Either set SSL_CERTIFICATE to the location of cert.pem and HOSTNAME to
 dummy.crim.ca or use the template docker-compose_shorcut.sh and set those
 values in it (here renamed to mycompose.sh).</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">local_https_thredds</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">local_https_thredds</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
 <p>In this override file specify the path to local netcdf files and set
 localhost IP.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span>
 </pre></div>
 </div>
 <p>It may take a minute for twitcher to get online. If it does not
 respond after a while, try to restart everything once or twice.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span> <span class="n">down</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span> <span class="n">down</span>
 <span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span>
 </pre></div>
 </div>
@@ -308,7 +308,7 @@ respond after a while, try to restart everything once or twice.</p>
 <h3>HTTPS custom WPS service<a class="headerlink" href="#https-custom-wps-service" title="Lien permanent vers ce titre">¶</a></h3>
 <p>Follow all the steps of the HTTPS THREDDS setup above up to the
 template copy, instead use:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">local_https_wps</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cp</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">templates</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">local_https_wps</span><span class="o">.</span><span class="n">yml</span> <span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">override</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
 <p>In this override file, set the localhost IP, then you can switch the
@@ -317,7 +317,7 @@ an available port of your choice. Then assign a corresponding port to
 the proxy. A new proxy configuration file need to be added to
 PAVICS/birdhouse/config/proxy/conf.d/wpsandbox.conf for this service,
 e.g.:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
     <span class="n">listen</span> <span class="mi">8081</span><span class="p">;</span>
     <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
         <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">wpsandbox</span><span class="p">;</span>
@@ -325,12 +325,12 @@ e.g.:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span> <span class="n">wpsandbox</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span> <span class="n">wpsandbox</span>
 </pre></div>
 </div>
 <p>It may take a minute for twitcher to get online. If it does not
 respond after a while, try to restart everything once or twice.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span> <span class="n">down</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">mycompose</span> <span class="n">down</span>
 <span class="o">./</span><span class="n">mycompose</span><span class="o">.</span><span class="n">sh</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span> <span class="n">thredds</span> <span class="n">proxy</span> <span class="n">magpie</span> <span class="n">twitcher</span>
 </pre></div>
 </div>
@@ -348,7 +348,7 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
 </div>
 <div class="section" id="pavics-datacatalog-development">
 <h3>PAVICS-DataCatalog development<a class="headerlink" href="#pavics-datacatalog-development" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">PAVICS</span><span class="o">-</span><span class="n">DataCatalog</span>
 <span class="n">cp</span> <span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span> <span class="o">~/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span>
 </pre></div>
@@ -357,62 +357,68 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
 is not the same as the workstation localhost, so the address must use the ip
 of the local machine (retrieve with, e.g., ifconfig). Also point to a
 valid thredds server.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">su</span>  <span class="c1"># to work with docker</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">su</span>  <span class="c1"># to work with docker</span>
 <span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span> <span class="o">.</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog1</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">~/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8009</span><span class="p">:</span><span class="mi">80</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
 </pre></div>
 </div>
 <p>Check that the wps is running at <a class="reference external" href="http://localhost:8009/pywps?service=WPS&amp;request=GetCapabilities&amp;version=1.0.0">http://localhost:8009/pywps?service=WPS&amp;request=GetCapabilities&amp;version=1.0.0</a></p>
+<p>Note that when running with magpie, the root directory of thredds does not
+properly redirect to the proxy. To crawl a thredds server with threddsclient,
+provide the birdhouse root directory of thredds (e.g. in catalog.cfg):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">/</span><span class="n">twitcher</span><span class="o">/</span><span class="n">ows</span><span class="o">/</span><span class="n">proxy</span><span class="o">/</span><span class="n">thredds</span><span class="o">/</span><span class="n">catalog</span><span class="o">/</span><span class="n">birdhouse</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="flyingpigeon-development">
 <h3>Flyingpigeon development<a class="headerlink" href="#flyingpigeon-development" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">flyingpigeon</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">pavics</span>
 </pre></div>
 </div>
 <p>Need to either add a custom.cfg or modify profiles/base.cfg with:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
 <span class="n">geoserver</span> <span class="o">=</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">host</span><span class="p">:</span><span class="n">port</span><span class="o">/</span><span class="n">geoserver</span><span class="o">/</span><span class="n">wfs</span>
 </pre></div>
 </div>
 <p>Then proceed with installation:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
 <span class="n">make</span> <span class="n">test</span>
 <span class="n">make</span> <span class="n">start</span>
 </pre></div>
 </div>
 <p>The WPS will be running at:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://localhost:8093/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8093/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
 </pre></div>
 </div>
 <p>To restart flyingpigeon (e.g. after modifications):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">stop</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">stop</span>
 <span class="n">make</span> <span class="n">start</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="malleefowl-development">
 <h3>Malleefowl development<a class="headerlink" href="#malleefowl-development" title="Lien permanent vers ce titre">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">malleefowl</span><span class="o">.</span><span class="n">git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">malleefowl</span><span class="o">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">malleefowl</span>
 <span class="n">git</span> <span class="n">checkout</span> <span class="n">pavics</span>
 </pre></div>
 </div>
 <p>Need to either add a custom.cfg or modify profiles/base.cfg with:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">settings</span><span class="p">]</span>
 <span class="n">persist</span><span class="o">-</span><span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="n">tmp</span>
 <span class="n">archive</span><span class="o">-</span><span class="n">root</span> <span class="o">=</span> <span class="o">/</span>
 </pre></div>
 </div>
 <p>Then proceed with installation:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">clean</span> <span class="n">install</span>
 <span class="n">make</span> <span class="n">test</span>
 <span class="n">make</span> <span class="n">start</span>
 </pre></div>
 </div>
 <p>The WPS will be running at:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://localhost:8091/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8091/wps?service=WPS&amp;version=1.0.0&amp;request=GetCapabilities
 </pre></div>
 </div>
 </div>
@@ -441,7 +447,7 @@ valid thredds server.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>

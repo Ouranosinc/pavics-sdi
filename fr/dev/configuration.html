@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Birdhouse service configuration &mdash; documentation PAVICS 0.1</title>
+  <title>Birdhouse service configuration &mdash; Documentation PAVICS 0.1</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Recherche" href="../search.html"/>
-    <link rel="top" title="documentation PAVICS 0.1" href="../index.html"/>
+    <link rel="top" title="Documentation PAVICS 0.1" href="../index.html"/>
         <link rel="up" title="Developer Documentation" href="index.html"/>
         <link rel="next" title="VM configuration" href="vm.html"/>
         <link rel="prev" title="Load balancing" href="load_balancing.html"/> 
@@ -102,12 +102,12 @@
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="load_balancing.html">Load balancing</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Birdhouse service configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hummingbird">Hummingbird</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#phoenix">Phoenix</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ncwms">ncWMS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#manual-setup-of-the-running-docker">Manual setup of the running docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#dynamic-services">Dynamic services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#thredds">THREDDS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hummingbird">Hummingbird</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pavics-datacatalog">PAVICS-DataCatalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#magpie">Magpie</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#flyingpigeon">FlyingPigeon</a></li>
@@ -201,7 +201,7 @@
 <h1>Birdhouse service configuration<a class="headerlink" href="#birdhouse-service-configuration" title="Lien permanent vers ce titre">¶</a></h1>
 <p>All birdhouse components are deployed and configured using the following methods:</p>
 <ul class="simple">
-<li>Run <code class="docutils literal"><span class="pre">docker-compose</span></code> on a <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> config file to launch a group of containers using their images and some options.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> on a <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> config file to launch a group of containers using their images and some options.</li>
 <li>When a container is starting a make call with the target update-config and start is done (specified by the dockerfile CMD statement)<ul>
 <li>The update-config target update the container application config using buildout and the custom.cfg config file</li>
 <li>The start target launch the application using supervisor</li>
@@ -211,28 +211,36 @@
 <p>To customize the container application config we must also update the custom.cfg file used by the buildout recipe of each container.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Since custom.cfg is built into the docker image and thus reset each time we run an image the only way to alter it is to mount a host file inside the container using the volume option. Therefore a <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is configured on host for each birdhouse component and mounted inside the container using the volume option of the <code class="file docutils literal"><span class="pre">docker-compose.yml</span></code> file. This way each time a container is started, it is configured by the host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> file which indeed persist the lifecycle of a container</li>
-<li>The <code class="file docutils literal"><span class="pre">custom.cfg</span></code> is a buildout configuration file which extends <code class="file docutils literal"><span class="pre">buildout.cfg</span></code> providing default parameters. Each birdhouse component has it’s own buildout recipe looking for particular parameters to configure their application.</li>
+<li>Since custom.cfg is built into the docker image and thus reset each time we run an image the only way to alter it is to mount a host file inside the container using the volume option. Therefore a <code class="file docutils literal notranslate"><span class="pre">custom.cfg</span></code> is configured on host for each birdhouse component and mounted inside the container using the volume option of the <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file. This way each time a container is started, it is configured by the host <code class="file docutils literal notranslate"><span class="pre">custom.cfg</span></code> file which indeed persist the lifecycle of a container</li>
+<li>The <code class="file docutils literal notranslate"><span class="pre">custom.cfg</span></code> is a buildout configuration file which extends <code class="file docutils literal notranslate"><span class="pre">buildout.cfg</span></code> providing default parameters. Each birdhouse component has it’s own buildout recipe looking for particular parameters to configure their application.</li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">An exemple recipe for ncWMS configuration can be found here: <a class="reference external" href="https://github.com/bird-house/birdhousebuilder.recipe.ncwms">https://github.com/bird-house/birdhousebuilder.recipe.ncwms</a>. Look on github for other components recipe : <a class="reference external" href="https://github.com/bird-house">https://github.com/bird-house</a>.</p>
 </div>
+<div class="section" id="hummingbird">
+<h2>Hummingbird<a class="headerlink" href="#hummingbird" title="Lien permanent vers ce titre">¶</a></h2>
+<p>For more information on Hummingbird, see the <a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">Hummingbird-Birdhouse documentation</a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Avertissement</p>
+<p class="last">First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. : <a class="reference external" href="http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax">http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax</a> returns «&nbsp;PyWPS Process cdo_operation successfully calculated&nbsp;». However the output points to a NetCDF file on localhost (<a class="reference external" href="http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a>). Need to substitute localhost for the ip (132.217.140.31) and keep the same port : <a class="reference external" href="http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a> Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. &gt;&gt; cdo monmax <a class="reference external" href="http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc">http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc</a> output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine… Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.</p>
+</div>
+</div>
 <div class="section" id="phoenix">
 <h2>Phoenix<a class="headerlink" href="#phoenix" title="Lien permanent vers ce titre">¶</a></h2>
-<p>For more information on Phoenix: &lt;<a class="reference external" href="https://pyramid-phoenix.readthedocs.io/en/latest/">https://pyramid-phoenix.readthedocs.io/en/latest/</a>&gt;</p>
+<p>For more information on Phoenix, see the <a class="reference external" href="https://pyramid-phoenix.readthedocs.io/en/latest/">Pyramid-Phoenix documentation</a>.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/phoenix/custom.cfg</span></code></span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
+<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal notranslate"><span class="pre">/config/phoenix/custom.cfg</span></code></span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
 <span class="c1"># User: admin, Password: querty</span>
 phoenix-password <span class="o">=</span> sha256:...
 </pre></div>
 </div>
 </div>
-<p>To change password get into the phoenix running container and use <code class="docutils literal"><span class="pre">make</span> <span class="pre">passwd</span></code>. This will update the persistant host <code class="file docutils literal"><span class="pre">custom.cfg</span></code> with the new password hash.
-If an error about missing <code class="docutils literal"><span class="pre">IPython.lib</span></code> occurs install <a class="reference external" href="https://ipython.org">ipython</a> like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>source $ANACONDA_HOME/bin/activate birdhouse
+<p>To change password get into the phoenix running container and use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">passwd</span></code>. This will update the persistant host <code class="file docutils literal notranslate"><span class="pre">custom.cfg</span></code> with the new password hash.
+If an error about missing <code class="docutils literal notranslate"><span class="pre">IPython.lib</span></code> occurs install <a class="reference external" href="https://ipython.org">ipython</a> like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source $ANACONDA_HOME/bin/activate birdhouse
 pip install ipython
 </pre></div>
 </div>
@@ -273,8 +281,8 @@ pip install ipython
 <div class="section" id="ncwms">
 <h2>ncWMS<a class="headerlink" href="#ncwms" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal"><span class="pre">/config/ncwms2/custom.mfg</span></code></span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
+<div class="code-block-caption"><span class="caption-text"><code class="file docutils literal notranslate"><span class="pre">/config/ncwms2/custom.mfg</span></code></span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>settings<span class="o">]</span>
 tomcat-ncwms-password <span class="o">=</span> &lt;enter ncwms password&gt;
 
 <span class="o">[</span>ncwms<span class="o">]</span>
@@ -285,15 +293,15 @@ tomcat-ncwms-password <span class="o">=</span> &lt;enter ncwms password&gt;
 </div>
 <div class="section" id="manual-setup-of-the-running-docker">
 <h2>Manual setup of the running docker<a class="headerlink" href="#manual-setup-of-the-running-docker" title="Lien permanent vers ce titre">¶</a></h2>
-<p>To access the ncWMS admin page (changes be overriden each time the container is restarted), edit the file: <code class="file docutils literal"><span class="pre">/opt/conda/envs/birdhouse/opt/apache-tomcat/conf/tomcat-users.xml</span></code> and remove the comment block around the manager-gui and ncWMS-admin role.
+<p>To access the ncWMS admin page (changes be overriden each time the container is restarted), edit the file: <code class="file docutils literal notranslate"><span class="pre">/opt/conda/envs/birdhouse/opt/apache-tomcat/conf/tomcat-users.xml</span></code> and remove the comment block around the manager-gui and ncWMS-admin role.
 The administration page allow administrators to add new datasets but again it will not persist upon container restarting.</p>
 <p>Default Tomact credentials:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;birdhouse&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;birdhouse&quot;</span>
 <span class="n">password</span><span class="o">=</span><span class="s2">&quot;4FO72WcTt7K9gYiNKApf&quot;</span>
 </pre></div>
 </div>
 <p>Default ncWMS credentials:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
 <span class="n">password</span><span class="o">=</span><span class="s2">&quot;ju68hfld&quot;</span>
 </pre></div>
 </div>
@@ -302,24 +310,16 @@ The administration page allow administrators to add new datasets but again it wi
 <h2>Dynamic services<a class="headerlink" href="#dynamic-services" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="admonition warning">
 <p class="first admonition-title">Avertissement</p>
-<p class="last">The dynamic services section allow with only one command to enable access to all the database available at <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> by configuring a file system entrypoint. The only thing to do is to use the following url: <a class="reference external" href="http:/">http:/</a>/&lt;domain&gt;:8080/ncWMS2/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities&amp;VERSION=1.3.0&amp;DATASET=outputs/&lt;path&gt; and replace <code class="docutils literal"><span class="pre">&lt;path&gt;</span></code> by the relative path to <code class="file docutils literal"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> to the required dataset. So thanks to this config and to the catalog service we should be able to get the entire database list from the catalog and access their WMS by using the relative path in the wms url.</p>
+<p class="last">The dynamic services section allow with only one command to enable access to all the database available at <code class="file docutils literal notranslate"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> by configuring a file system entrypoint. The only thing to do is to use the following url: <a class="reference external" href="http:/">http:/</a>/&lt;domain&gt;:8080/ncWMS2/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities&amp;VERSION=1.3.0&amp;DATASET=outputs/&lt;path&gt; and replace <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code> by the relative path to <code class="file docutils literal notranslate"><span class="pre">M:data16projetsmultiPAVICSdata</span></code> to the required dataset. So thanks to this config and to the catalog service we should be able to get the entire database list from the catalog and access their WMS by using the relative path in the wms url.</p>
 </div>
 </div>
 <div class="section" id="thredds">
 <h2>THREDDS<a class="headerlink" href="#thredds" title="Lien permanent vers ce titre">¶</a></h2>
-<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="o">[</span>thredds<span class="o">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>thredds<span class="o">]</span>
 <span class="nv">data_root</span> <span class="o">=</span> /pavics-data
 <span class="nv">allow_wcs</span> <span class="o">=</span> <span class="nb">true</span>
 <span class="nv">allow_wms</span> <span class="o">=</span> <span class="nb">true</span>
 </pre></div>
-</div>
-</div>
-<div class="section" id="hummingbird">
-<h2>Hummingbird<a class="headerlink" href="#hummingbird" title="Lien permanent vers ce titre">¶</a></h2>
-<p>For more information on Hummingbird: &lt;<a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">https://birdhouse-hummingbird.readthedocs.io/en/latest/</a>&gt;</p>
-<div class="admonition warning">
-<p class="first admonition-title">Avertissement</p>
-<p class="last">First try at running CDO operation using the Hummingbird WPS (with url for input NetCDF file, only seems to work with the fileserver, not OPeNDAP), e.g. : <a class="reference external" href="http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax">http://132.217.140.31:8092/wps?service=WPS&amp;version=1.0.0&amp;request=Execute&amp;identifier=cdo_operation&amp;DataInputs=dataset=http://192.168.101.175:8083/thredds/fileServer/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc;operator=monmax</a> returns «&nbsp;PyWPS Process cdo_operation successfully calculated&nbsp;». However the output points to a NetCDF file on localhost (<a class="reference external" href="http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://localhost:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a>). Need to substitute localhost for the ip (132.217.140.31) and keep the same port : <a class="reference external" href="http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc">http://132.217.140.31:38092/wpsoutputs/hummingbird/output-4f80cb02-58db-11e6-8a37-533b457038a6.nc</a> Previous note: the same operation with the command-line, and using the OPeNDAP link (i.e. &gt;&gt; cdo monmax <a class="reference external" href="http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc">http://132.217.140.31:8083/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/nrcan_canada_daily_pr_1960.nc</a> output.nc) succeeds, in ~3 minutes. It is much faster if the file is local. This brings up the question of whether we should pass the catalogue url when we know the file is actually on a local machine… Trying to execute the same process via our Phoenix installation is not possible. The execute button remains greyed out after entering an url and selecting an operator.</p>
 </div>
 </div>
 <div class="section" id="pavics-datacatalog">
@@ -369,7 +369,7 @@ The administration page allow administrators to add new datasets but again it wi
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Ouranos &amp; CRIM.
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
 
     </p>
   </div>
