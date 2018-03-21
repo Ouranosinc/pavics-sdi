@@ -14,7 +14,11 @@ Spatial and temporal subsetting
 
 .. autoprocess:: flyingpigeon.processes.SubsetWFSProcess
 
+.. autoprocess:: flyingpigeon.processes.SubsetBboxProcess
+
 .. autoprocess:: flyingpigeon.processes.AveragerWFSProcess
+
+.. autoprocess:: flyingpigeon.processes.AveragerBboxProcess
 
 .. autoprocess:: flyingpigeon.processes.ClippingProcess
 
@@ -32,7 +36,9 @@ Spatial and temporal subsetting
 
 
 Spatial regridding
-----------
+------------------
+
+.. autoprocess:: flyingpigeon.processes.ESMFRegridProcess
 
 .. todo::
 	Add content to the basic climate data analysis section

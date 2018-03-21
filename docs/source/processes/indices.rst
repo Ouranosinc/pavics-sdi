@@ -8,7 +8,7 @@ Climate Extreme indices
 -----------------------
 
 Averaged Climate indices
-----------------
+------------------------
 
 Temporal Indices
 ----------------

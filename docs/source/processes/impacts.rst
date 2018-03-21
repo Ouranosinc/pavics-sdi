@@ -6,6 +6,7 @@ The following are processes for analyzing impact and adaptation metrics for the 
 
 Biodiversity
 ------------
+
 .. autoprocess:: flyingpigeon.processes.GBIFfetchProcess
 
 .. autoprocess:: flyingpigeon.processes.SDMgetindicesProcess
