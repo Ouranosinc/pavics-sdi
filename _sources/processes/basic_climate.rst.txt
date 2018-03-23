@@ -39,6 +39,7 @@ Spatial regridding
 ------------------
 
 .. autoprocess:: flyingpigeon.processes.ESMFRegridProcess
+   :docstring:
 
 .. todo::
 	Add content to the basic climate data analysis section
