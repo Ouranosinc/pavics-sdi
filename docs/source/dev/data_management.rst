@@ -21,6 +21,12 @@ In order for new files to be catalogued, the Solr and PAVICS-DataCatalog compone
     # replace localhost and port number with your PAVICS-DataCatalog deployment address
     http://localhost:8086/pywps?service=WPS&request=execute&version=1.0.0&identifier=pavicrawler&storeExecuteResponse=true&status=true&DataInputs=
 
+Note that this crawls the whole THREDDS server and can take a very long time. In order to partially crawl the THREDDS server, use::
+
+    http://localhost:8086/pywps?service=WPS&request=execute&version=1.0.0&identifier=pavicrawler&storeExecuteResponse=true&status=true&DataInputs=target_thredds=https://thredds_host.com/twitcher/ows/proxy/thredds/catalog/birdhouse/subpath/to/crawl
+
+It is possible to restrict the crawling even more from the specified THREDDS path with the target_files argument to pavicrawler.
+
 .. note:: 
 	The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform. 
 
