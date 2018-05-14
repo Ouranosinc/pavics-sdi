@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -47,7 +45,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -91,10 +88,7 @@
           
             
             
-              
-            
-            
-              <ul>
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
@@ -117,10 +111,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PAVICS</a>
       </nav>
 
 
@@ -133,36 +125,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>flyingpigeon.processes.wps_pointinspection</li>
-    
-    
+      
+    <li>flyingpigeon.processes.wps_pointinspection</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -221,7 +196,7 @@
                           <span class="p">),</span>
 
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;tarout&#39;</span><span class="p">,</span> <span class="s1">&#39;Subsets&#39;</span><span class="p">,</span>
-                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Tar archive containing the netCDF files&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Tar archive containing one CSV file per input file, each one storing time series column-wise for all point coordinates.&quot;</span><span class="p">,</span>
                           <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">)]</span>
                           <span class="p">),</span>
@@ -294,13 +269,10 @@
     <span class="c1"># set the outputs</span>
         <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;*** creating output tar archive ****&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
         <span class="n">tarout_file</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;tarout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">tarout_file</span></div>
-        <span class="k">return</span> <span class="n">response</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;tarout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">tarout_file</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 </pre></div>
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
@@ -335,8 +307,7 @@
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

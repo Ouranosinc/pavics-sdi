@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,10 +90,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -108,11 +102,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data and service management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#netcdf-file-management-in-thredds">NetCDF file management in THREDDS</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#adding-files">Adding files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inspecting-metadata">Inspecting metadata</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#birdhouse-solr">Birdhouse Solr</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#thredds-data-server-example">THREDDS Data Server example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-external-services">Adding external services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-thredds-crawler">Using thredds_crawler</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="integration_tests.html">Integration tests</a></li>
@@ -140,10 +136,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -152,42 +146,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
-        
-      <li>Data and service management</li>
-    
-    
+      
+    <li>Data and service management</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/dev/data_management.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -208,6 +185,11 @@
 http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
 </pre></div>
 </div>
+<p>Note that this crawls the whole THREDDS server and can take a very long time. In order to partially crawl the THREDDS server, use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=target_thredds=https://thredds_host.com/twitcher/ows/proxy/thredds/catalog/birdhouse/subpath/to/crawl
+</pre></div>
+</div>
+<p>It is possible to restrict the crawling even more from the specified THREDDS path with the target_files argument to pavicrawler.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform.</p>
@@ -219,6 +201,18 @@ http://localhost:8086/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&am
 </div>
 <p>By default, the dataset_id will be made up of the relative path on the thredds
 server.</p>
+</div>
+<div class="section" id="inspecting-metadata">
+<h3>Inspecting metadata<a class="headerlink" href="#inspecting-metadata" title="Permalink to this headline">¶</a></h3>
+<p>An essential requirement for a functional platform is that netCDF data stored in THREDDS has complete and uniform
+metadata. To do so, the <a href="#id1"><span class="problematic" id="id2">:function:`pavics.catalog.thredds_crawler`</span></a> function can be used to extract the metadata from the
+netCDF files and see if there are missing entries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pavics.catalog</span> <span class="k">import</span> <span class="n">thredds_crawler</span> <span class="k">as</span> <span class="n">crawler</span>
+<span class="n">crawler</span><span class="p">(</span><span class="s1">&#39;http://pavics.ouranos.ca/thredds&#39;</span><span class="p">,</span> <span class="n">index_facets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;project&#39;</span><span class="p">],</span> <span class="n">exclude_files</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;birdhouse/wps_outputs&#39;</span><span class="p">,</span> <span class="s1">&#39;birdhouse/workspaces&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Note that running this command can take a long while, so the <cite>include_files</cite> argument can be passed to restrict the
+crawler to certain directories, such as <code class="file docutils literal notranslate"><span class="pre">birdhouse/ouranos/climex/</span></code>.</p>
 </div>
 </div>
 <div class="section" id="birdhouse-solr">
@@ -241,22 +235,28 @@ defined in solrconfig.xml
 <p class="last">How to add WPS, WMS, WFS servers to PAVICS.</p>
 </div>
 </div>
+<div class="section" id="using-thredds-crawler">
+<h2>Using thredds_crawler<a class="headerlink" href="#using-thredds-crawler" title="Permalink to this headline">¶</a></h2>
+<p>Test code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">thredds_crawler.crawl</span> <span class="k">import</span> <span class="n">Crawl</span>
+<span class="n">Crawl</span><span class="p">(</span><span class="s1">&#39;https://pavics.ouranos.ca/thredds/birdhouse/ouranos/climex/catalog.xml&#39;</span><span class="p">)</span>
+<span class="n">Crawl</span><span class="p">(</span><span class="s1">&#39;https://pavics.ouranos.ca/thredds/catalog/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r1i1p1/tasmin/catalog.xml&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="integration_tests.html" class="btn btn-neutral float-right" title="Integration tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="integration_tests.html" class="btn btn-neutral float-right" title="Integration tests" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="geoserver.html" class="btn btn-neutral" title="GeoServer administration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="geoserver.html" class="btn btn-neutral" title="GeoServer administration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -290,8 +290,7 @@ defined in solrconfig.xml
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

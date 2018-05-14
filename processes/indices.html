@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -40,7 +38,7 @@
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
         <link rel="next" title="Impacts and adaptation" href="impacts.html"/>
-        <link rel="prev" title="Basic climate data analysis" href="basic_climate.html"/> 
+        <link rel="prev" title="Bias correction" href="bias_correction.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,19 +90,15 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Climate indices</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#climate-extreme-indices">Climate Extreme indices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#averaged-climate-indices">Averaged Climate indices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#temporal-indices">Temporal Indices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#icclim-indices">ICCLIM indices</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="impacts.html">Impacts and adaptation</a></li>
@@ -134,10 +127,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -146,42 +137,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">Processes</a> &raquo;</li>
-        
-      <li>Climate indices</li>
-    
-    
+      
+    <li>Climate indices</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/processes/indices.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -190,35 +164,24 @@
   <div class="section" id="climate-indices">
 <h1>Climate indices<a class="headerlink" href="#climate-indices" title="Permalink to this headline">¶</a></h1>
 <p>The following processes return general climate indicators based on spatial and temporal grid resolutions.</p>
-<div class="section" id="climate-extreme-indices">
-<h2>Climate Extreme indices<a class="headerlink" href="#climate-extreme-indices" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="averaged-climate-indices">
-<h2>Averaged Climate indices<a class="headerlink" href="#averaged-climate-indices" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="temporal-indices">
-<h2>Temporal Indices<a class="headerlink" href="#temporal-indices" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="flyingpigeon.processes.IndicessingleProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">IndicessingleProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_indices_single.html#IndicessingleProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.IndicessingleProcess" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong class="program">indices_single</strong> Climate indices (Single variable) (v0.10)</p>
-<p>Climate index calculated from one daily input variable.</p>
+<dt id="flyingpigeon.processes.FreezeThawProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">FreezeThawProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#FreezeThawProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.FreezeThawProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">freezethaw</strong> Number of freeze-thaw events (v2.1.0.dev1)</p>
+<p>Number of freeze-thaw events, where freezing and thawing occurs once a threshold of degree days below or above 0C is reached. A complete cycle (freeze-thaw-freeze) will return a value of 2.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>indices</strong> (<em>{'CDD'</em><em>, </em><em>'CFD'</em><em>, </em><em>'CSU'</em><em>, </em><em>'CWD'</em><em>, </em><em>'FD'</em><em>, </em><em>'GD4'</em><em>, </em><em>'HD17'</em><em>, </em><em>'ID'</em><em>, </em><em>'PRCPTOT'</em><em>, </em><em>'R10mm'</em><em>, </em><em>..}</em>) – Climate index code.</li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
-<li><strong>region</strong> (<em>{'ABW'</em><em>, </em><em>'AFG'</em><em>, </em><em>'AGO'</em><em>, </em><em>'ALB'</em><em>, </em><em>'ALD'</em><em>, </em><em>'AND'</em><em>, </em><em>'ARE'</em><em>, </em><em>'ARG'</em><em>, </em><em>'ARM'</em><em>, </em><em>'ASM'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Country code, see ISO-3166-3:                          <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If Mosaic is checked, selected polygons be clipped as a mosaic for each input file</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a><em>, </em><em>optional</em>) – The number of degree-days above or below the freezing point after which theground is considered frozen or thawed.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_archive</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the netCDF files storing the index values.</li>
-<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file storing the index computed over one dataset.</li>
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
@@ -226,34 +189,29 @@
 </tr>
 </tbody>
 </table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#climate-indices">Doc</a></li>
-<li><a class="reference external" href="http://icclim.readthedocs.io/en/latest/">ICCLIM</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/indices.html#percentile-based-indices">Percentile-based indices</a></li>
-</ul>
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.IndicespercentiledaysProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">IndicespercentiledaysProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_indices_percentiledays.html#IndicespercentiledaysProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.IndicespercentiledaysProcess" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong class="program">indices_percentiledays</strong> Climate indices (Daily percentiles) (v0.10)</p>
-<p>Climatological percentile for each day of the year computed over the entire dataset.</p>
+<dt id="flyingpigeon.processes.Duration">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">Duration</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#Duration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.Duration" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">duration</strong> Duration (v2.1.0.dev1)</p>
+<p>Summarizes consecutive occurrences in a sequence where the logical operation returns TRUE. The summary operation is applied to the sequences within a temporal aggregation.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files.</li>
-<li><strong>percentile</strong> (<em>{'1'</em><em>, </em><em>'2'</em><em>, </em><em>'3'</em><em>, </em><em>'4'</em><em>, </em><em>'5'</em><em>, </em><em>'6'</em><em>, </em><em>'7'</em><em>, </em><em>'8'</em><em>, </em><em>'9'</em><em>, </em><em>'10'</em><em>, </em><em>..}</em>) – Percentile value [1-100].</li>
-<li><strong>region</strong> (<em>{'ABW'</em><em>, </em><em>'AFG'</em><em>, </em><em>'AGO'</em><em>, </em><em>'ALB'</em><em>, </em><em>'ALD'</em><em>, </em><em>'AND'</em><em>, </em><em>'ARE'</em><em>, </em><em>'ARG'</em><em>, </em><em>'ARM'</em><em>, </em><em>'ASM'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Country code, see ISO-3166-3:                          <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If Mosaic is checked, selected polygons be clipped as a mosaic for each input file.</li>
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.6)"><em>float</em></a>) – The threshold value to use for the logical operation.</li>
+<li><strong>operation</strong> (<em>string</em>) – The logical operation. One of ‘gt’,’gte’,’lt’, or ‘lte’.</li>
+<li><strong>summary</strong> (<em>string</em><em>, </em><em>optional</em>) – The summary operation to apply the durations. One of ‘mean’,’median’,’std’,’max’, or ‘min’.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_archive</strong> (<em class="mimetype">application/x-tar</em>) – Tar archive of the netCDF files storing the percentile values.</li>
-<li><strong>ncout</strong> (<em class="mimetype">application/x-netcdf</em>) – NetCDF file storing the percentiles computed over one dataset.</li>
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
@@ -261,31 +219,1245 @@
 </tr>
 </tbody>
 </table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/index.html#climate-indices">Doc</a></li>
-<li><a class="reference external" href="http://icclim.readthedocs.io/en/latest/">ICCLIM</a></li>
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/descriptions/indices.html#percentile-based-indices">Percentile-based indices</a></li>
+</dd></dl>
+
+<div class="section" id="icclim-indices">
+<h2>ICCLIM indices<a class="headerlink" href="#icclim-indices" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TXXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TXXProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TXXProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TXx</strong> TXx (v2.1.0.dev1)</p>
+<p>Calculates the TXx indice: maximum of daily maximum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SD</strong> SD (v2.1.0.dev1)</p>
+<p>Calculates the SD indice: mean of daily snow depth [cm]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R95PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R95PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R95PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R95p</strong> R95p (v2.1.0.dev1)</p>
+<p>Calculate the R95p indice: number of very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TX90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TX90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TX90PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TX90p</strong> TX90p (v2.1.0.dev1)</p>
+<p>Calculate the TX90p indice: number of warm days-times (i.e. days with daily max temperature &gt; 90th percentile of daily max temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TG90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TG90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TG90PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TG90p</strong> TG90p (v2.1.0.dev1)</p>
+<p>Calculate the TG90p indice: number of warm days (i.e. days with daily mean temperature &gt; 90th percentile of daily mean temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TXNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TXNProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TXNProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TXn</strong> TXn (v2.1.0.dev1)</p>
+<p>Calculates the TXn indice: minimum of daily maximum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_CDDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_CDDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_CDDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_CDD</strong> CDD (v2.1.0.dev1)</p>
+<p>Calculates the CDD indice: maximum number of consecutive dry days (i.e. days with daily precipitation amount &lt; 1 mm) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R99PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R99PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R99PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R99pTOT</strong> R99pTOT (v2.1.0.dev1)</p>
+<p>Calculate the R99pTOT indice: precipitation fraction due to extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period) [%]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SUProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SUProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SUProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SU</strong> SU (v2.1.0.dev1)</p>
+<p>Calculates the SU indice: number of summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_CFDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_CFDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_CFDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_CFD</strong> CFD (v2.1.0.dev1)</p>
+<p>Calculates the CFD indice: maximum number of consecutive frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TN10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TN10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TN10PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TN10p</strong> TN10p (v2.1.0.dev1)</p>
+<p>Calculate the TN10p indice: number of cold nights (i.e. days with daily min temperature &lt; 10th percentile of daily min temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TGProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TGProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TGProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TG</strong> TG (v2.1.0.dev1)</p>
+<p>Calculates the TG indice: mean of daily mean temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TRProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TRProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TR</strong> TR (v2.1.0.dev1)</p>
+<p>Calculates the TR indice: number of tropical nights (i.e. days with daily minimum temperature &gt; 20 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_RX5DAYProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_RX5DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_RX5DAYProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_RX5day</strong> RX5day (v2.1.0.dev1)</p>
+<p>Calculates the RX5day indice: maximum consecutive 5-day precipitation amount [mm]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_VDTRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_VDTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_VDTRProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_vDTR</strong> vDTR (v2.1.0.dev1)</p>
+<p>Calculates the vDTR indice: mean absolute day-to-day difference in DTR.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tasmin</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SD50CMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SD50CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SD50CMProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SD50cm</strong> SD50cm (v2.1.0.dev1)</p>
+<p>Calculates the SD50cm indice: number of days with snow depth &gt;= 50 cm [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_CWDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_CWDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_CWDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_CWD</strong> CWD (v2.1.0.dev1)</p>
+<p>Calculates the CWD indice: maximum number of consecutive wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TN90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TN90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TN90PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TN90p</strong> TN90p (v2.1.0.dev1)</p>
+<p>Calculate the TN90p indice: number of warm nights (i.e. days with daily min temperature &gt; 90th percentile of daily min temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R20MMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R20MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R20MMProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R20mm</strong> R20mm (v2.1.0.dev1)</p>
+<p>Calculates the R20mm indice: number of very heavy precipitation days (i.e. days with daily precipitation amount &gt; = 20 mm) [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_CSUProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_CSUProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_CSUProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_CSU</strong> CSU (v2.1.0.dev1)</p>
+<p>Calculates the CSU indice: maximum number of consecutive summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_RX1DAYProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_RX1DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_RX1DAYProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_RX1day</strong> RX1day (v2.1.0.dev1)</p>
+<p>Calculates the RX1day indice: maximum 1-day precipitation amount [mm]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_WSDIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_WSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_WSDIProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_WSDI</strong> WSDI (v2.1.0.dev1)</p>
+<p>Calculate the WSDI indice (warm-spell duration index): number of days where, in intervals of at least 6 consecutive days,</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_RR1Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_RR1Process</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_RR1Process" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_RR1</strong> RR1 (v2.1.0.dev1)</p>
+<p>Calculates the RR1 indice: number of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_CSDIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_CSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_CSDIProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_CSDI</strong> CSDI (v2.1.0.dev1)</p>
+<p>Calculate the CSDI indice (cold-spell duration index): number of days where, in intervals of at least 6 consecutive days,</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R75PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R75PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R75PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R75pTOT</strong> R75pTOT (v2.1.0.dev1)</p>
+<p>Calculate the R75pTOT indice: precipitation fraction due to moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period) [%]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R95PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R95PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R95PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R95pTOT</strong> R95pTOT (v2.1.0.dev1)</p>
+<p>Calculate the R95pTOT indice: precipitation fraction due to very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period) [%]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R10MMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R10MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R10MMProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R10mm</strong> R10mm (v2.1.0.dev1)</p>
+<p>Calculates the R10mm indice: number of heavy precipitation days (i.e. days with daily precipitation amount &gt; = 10 mm) [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SDIIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SDIIProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SDIIProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SDII</strong> SDII (v2.1.0.dev1)</p>
+<p>Calculates the SDII (simple daily intensity index) indice:  mean precipitation amount of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [mm]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_DTRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_DTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_DTRProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_DTR</strong> DTR (v2.1.0.dev1)</p>
+<p>Calculates the DTR indice: mean of daily temperature range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tasmin</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TG10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TG10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TG10PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TG10p</strong> TG10p (v2.1.0.dev1)</p>
+<p>Calculate the TG10p indice: number of cold days (i.e. days with daily mean temperature &lt; 10th percentile of daily mean temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TXProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TXProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TX</strong> TX (v2.1.0.dev1)</p>
+<p>Calculates the TX indice: mean of daily maximum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_PRCPTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_PRCPTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_PRCPTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_PRCPTOT</strong> PRCPTOT (v2.1.0.dev1)</p>
+<p>Calculates the PRCPTOT indice: total precipitation in wet days [mm]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TNProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TNProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TN</strong> TN (v2.1.0.dev1)</p>
+<p>Calculates the TN indice: mean of daily minimum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R75PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R75PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R75PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R75p</strong> R75p (v2.1.0.dev1)</p>
+<p>Calculate the R75p indice: number of moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TNXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TNXProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TNXProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TNx</strong> TNx (v2.1.0.dev1)</p>
+<p>Calculates the TNx indice: maximum of daily minimum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SD5CMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SD5CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SD5CMProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SD5cm</strong> SD5cm (v2.1.0.dev1)</p>
+<p>Calculates the SD5cm indice: number of days with snow depth &gt;= 5 cm [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_FDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_FDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_FDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_FD</strong> FD (v2.1.0.dev1)</p>
+<p>Calculates the FD indice: number of frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_R99PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_R99PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_R99PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_R99p</strong> R99p (v2.1.0.dev1)</p>
+<p>Calculate the R99p indice: number of extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_IDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_IDProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_IDProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_ID</strong> ID (v2.1.0.dev1)</p>
+<p>Calculates the ID indice: number of ice days (i.e. days with daily maximum temperature &lt; 0 degrees Celsius) [days].</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_SD1Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_SD1Process</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_SD1Process" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_SD1</strong> SD1 (v2.1.0.dev1)</p>
+<p>Calculates the SD1 indice: number of days with snow depth &gt;= 1 cm [days]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_GD4Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_GD4Process</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_GD4Process" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_GD4</strong> GD4 (v2.1.0.dev1)</p>
+<p>Calculates the GD4 indice: growing degree days (sum of daily mean temperature &gt; 4 degrees Celsius).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TNNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TNNProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TNNProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TNn</strong> TNn (v2.1.0.dev1)</p>
+<p>Calculates the TNn indice: minimum of daily minimum temperature.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_HD17Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_HD17Process</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_HD17Process" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_HD17</strong> HD17 (v2.1.0.dev1)</p>
+<p>Calculates the HD17 indice: heating degree days (sum of (17 degrees Celsius - daily mean temperature)).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_ETRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_ETRProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_ETRProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_ETR</strong> ETR (v2.1.0.dev1)</p>
+<p>Calculates the ETR indice: intra-period extreme temperature range.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tasmin</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="flyingpigeon.processes.ICCLIM_TX10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">ICCLIM_TX10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.ICCLIM_TX10PProcess" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">icclim_TX10p</strong> TX10p (v2.1.0.dev1)</p>
+<p>Calculate the TX10p indice: number of cold day-times (i.e. days with daily max temperature &lt; 10th percentile of daily max temperature in the base period).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
+</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>output_netcdf</strong> (<em class="mimetype">application/x-netcdf</em>) – The indicator values computed on the original input grid.</li>
+<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
 </div>
 
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="impacts.html" class="btn btn-neutral float-right" title="Impacts and adaptation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="impacts.html" class="btn btn-neutral float-right" title="Impacts and adaptation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="basic_climate.html" class="btn btn-neutral" title="Basic climate data analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="bias_correction.html" class="btn btn-neutral" title="Bias correction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -319,8 +1491,7 @@
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

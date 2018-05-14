@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,16 +90,13 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#installation-methods">Installation methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deployment-methods">Deployment methods</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pavics-and-dockerhub-images">PAVICS and Dockerhub images</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pavics-installation-with-docker-compose">PAVICS installation with <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pavics-installation-with-docker-compose">PAVICS installation with <cite>docker-compose</cite></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#updating-containers-to-the-latest-version">Updating containers to the latest version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#resetting-bird-services">Resetting Bird services</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#restarting-bird-services">Restarting Bird services</a></li>
@@ -140,10 +134,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -152,42 +144,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
-        
-      <li>Installation</li>
-    
-    
+      
+    <li>Installation</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/dev/installation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -199,41 +174,85 @@
 <p class="first admonition-title">Note</p>
 <p class="last">PAVICS is built to work within POSIX and POSIX-like systems (e.g. Unix/Linux). For Windows users who want to administer a PAVICS data server, you may need to either install <a class="reference external" href="https://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>, a Unux/Linux virtual machine or use a POSIX API environment like the <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsytem for Linux</a> or <a class="reference external" href="https://cygwin.com/">Cygwin</a> to interface with the PAVICS server system.</p>
 </div>
-<div class="section" id="installation-methods">
-<h2>Installation methods<a class="headerlink" href="#installation-methods" title="Permalink to this headline">¶</a></h2>
-<p>PAVICS can be installed from source on <a class="reference external" href="https://www.github.com/Ouranosinc/pavics-sdi/">GitHub</a> or by using <a class="reference external" href="https://www.docker.com/what-docker">Docker</a>. Docker is a virtualization tool for running isolated service images built with specific library environments.</p>
-<p>Begin by following the guide for installing <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Community</span> <span class="pre">Edition</span></code> on your home machine from the <a class="reference external" href="https://docs.docker.com/install/">Docker Installation Page</a>. Docker Community Edition is a set of command line tools for creating and launching container-based applications.</p>
-<p>Depending on your Linux distribution, you may need to either add a new ppa/apt/yum/dnf repository to your system or you can download and launch the installer directly.</p>
-<p>For users not using Linux, refer to the following guides for <a class="reference external" href="https://docs.docker.com/docker-for-mac/">Mac OS</a> and for <a class="reference external" href="https://docs.docker.com/docker-for-windows/">Windows</a>.</p>
+<div class="section" id="deployment-methods">
+<h2>Deployment methods<a class="headerlink" href="#deployment-methods" title="Permalink to this headline">¶</a></h2>
+<p>PAVICS can be installed from source on <a class="reference external" href="https://www.github.com/Ouranosinc/pavics-sdi/">GitHub</a> or by using <a class="reference external" href="https://www.docker.com/what-docker">Docker</a>. Git/Github is a versioning software and platform that can fetch development branches of pavics while Docker is a virtualization tool for running isolated service images built with specific library environments. Depending on your needs and interests (e.g. debugging vs deploying) either platform may suit your needs.</p>
+<p>Proposing changes to PAVICS or <a class="reference internal" href="contributing.html#contrib"><span class="std std-ref">Contributing</span></a> requires free a <a class="reference external" href="https://github.com/join">GitHub account</a> but anyone can download the source code for PAVICS withour registering. Git is normally in most standard Linux software repositories and can be installed (using Debian/Ubuntu-based systems) with the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable root access</span>
+<span class="n">sudo</span> <span class="n">su</span>
+
+<span class="c1"># Updating software catalogues and and installed libraries</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span><span class="p">;</span> <span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">upgrade</span>
+
+<span class="c1"># Installing git will also install dependent libraries</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">git</span>
+
+<span class="c1"># Configuring git for code commits using your user credentials</span>
+<span class="n">exit</span> <span class="c1"># Leave superuser</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Your Name&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="s2">&quot;youremail@domain.com&quot;</span>
+</pre></div>
+</div>
+<p>For Docker installations, begin by following the guide for installing <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Community</span> <span class="pre">Edition</span></code> on your home machine from the <a class="reference external" href="https://docs.docker.com/install/">Docker Installation Page</a>. Docker Community Edition is a set of command line tools for creating and launching container-based applications.</p>
+<p>Depending on your Linux distribution, you can either download and launch the installer directly or you may need to add a new ppa/apt/yum/dnf/etc. software repository to your system to install the most recent version. For Debian/Ubuntu-based systems:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable root access</span>
+<span class="n">sudo</span> <span class="n">su</span>
+
+<span class="c1"># Install base library requirements</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">apt</span><span class="o">-</span><span class="n">transport</span><span class="o">-</span><span class="n">https</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">wget</span> <span class="n">software</span><span class="o">-</span><span class="n">properties</span><span class="o">-</span><span class="n">common</span>
+
+<span class="c1"># Install the Docker suite of tools</span>
+<span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">docker</span> <span class="n">docker</span><span class="o">.</span><span class="n">io</span> <span class="n">docker</span><span class="o">-</span><span class="n">engine</span>
+</pre></div>
+</div>
+<p>For users not using Linux, refer to the following installation guides for <a class="reference external" href="https://docs.docker.com/docker-for-mac/">Mac OS</a> and for <a class="reference external" href="https://docs.docker.com/docker-for-windows/">Windows</a>.</p>
 </div>
 <div class="section" id="pavics-and-dockerhub-images">
 <h2>PAVICS and Dockerhub images<a class="headerlink" href="#pavics-and-dockerhub-images" title="Permalink to this headline">¶</a></h2>
-<p>All code produced for the PAVICS project is Open Source and hosted publicly through GitHub repositories. Among our members/users, the preferred methodology for packaging and deployment relies on Docker images As such, we employ the automatic Docker Image building feature of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for every push to the GitHub repository for all given branches, for all repositories that include a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for container execution and distribution. Any docker image can be obtained using the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
+<p>All code produced for the PAVICS project is Open Source and hosted publicly through GitHub repositories. Among our members/users, the preferred method for packaging and deployment relies on Docker images. As such, we use the Docker Image building and hosting features of <a class="reference external" href="https://hub.docker.com/">DockerHub</a>. This feature automatically builds a new image for all major releases to the GitHub repository, for all repositories that include a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>. The <a class="reference external" href="https://hub.docker.com/u/pavics/">resulting images</a> are all publicly available for distribution and deployment. Any PAVICS Docker image can be obtained using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">pull</span> <span class="n">pavics</span><span class="o">/</span><span class="p">[</span><span class="n">image_name</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Most of the code base for PAVICS is forked from the <a class="reference external" href="https://birdhouse.readthedocs.io/en/latest/index.html">Birdhouse Project</a> which already has multiple DockerHub <a class="reference external" href="https://hub.docker.com/u/birdhouse">build processes</a>. Using our own DockerHub build gives us the advantage of having our own upstream build process for the code being modified by CRIM / Ouranos. Many of the modifications to these birdhouse components are merged upstream, but some are specific to the PAVICS project and we felt it was worthwhile to maintain an independent build process.</p>
 </div>
 <div class="section" id="pavics-installation-with-docker-compose">
-<h2>PAVICS installation with <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code><a class="headerlink" href="#pavics-installation-with-docker-compose" title="Permalink to this headline">¶</a></h2>
-<p>First mount or create a symlink for the datasets storage at <code class="docutils literal notranslate"><span class="pre">/data</span></code>.
-Mount or make a symlink for the geoserver data storage so that <code class="docutils literal notranslate"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver.</p>
-<p>To install the suite of docker images you must use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>. Docker-compose is a docker helper for coordinating multiple docker images at once. Run the following:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
-</pre></div>
-</div>
-<p>Then get the <em>build recipe</em> from <a class="reference external" href="https://github.com/Ouranosinc/pavics-sdi.git">pavics-sdi</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span> <span class="c1">### TO BE REVISED</span>
-</pre></div>
-</div>
+<h2>PAVICS installation with <cite>docker-compose</cite><a class="headerlink" href="#pavics-installation-with-docker-compose" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Base PAVICS installation is incomplete. The following lines refer to Phoenix instance. Need to specify which birds are needed for a bare installation of PAVICS: Phoenix, FlyingPigeon, Malleefowl, Emu, etc.</p>
 </div>
-<p>In the file <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>, within the <cite>phoenix/volumes</cite> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. This certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx “ssl_certificate_key” and “ssl_certificate” parameters.</p>
-<p>Then simply run the following command, taking care to select an appropriate host name:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;boreas.ouranos.ca&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
+<p>First mount or create a symlink for the datasets storage at <code class="docutils literal notranslate"><span class="pre">/data</span></code>.
+Mount or make a symlink for the geoserver data storage so that <code class="docutils literal notranslate"><span class="pre">/geoserver_data</span></code> could be used (read/write) by geoserver.</p>
+<p>To install the suite of docker images you must use <a class="reference external" href="https://docs.docker.com/compose/">docker-compose</a>. Docker-compose is a docker helper for coordinating multiple docker images at once. Docker-compose exists in most Linux software repositories but can also be installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span></code>. Depending on your Linux distribution and whether you have Anaconda/miniconda installed, run any of the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># For standard libraries (Ubuntu/Debian)</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+
+<span class="c1"># For system-installed Python2 or Python3 (requires sudo)</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">python3</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">sudo</span> <span class="o">-</span><span class="n">H</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+
+<span class="c1"># For Anaconda/miniconda (Python2 or Python3)</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Presently, the main <code class="docutils literal notranslate"><span class="pre">PAVICS</span></code> repo is closed to the public while it is under heavy development</p>
+</div>
+<p>After installing docker-compose, clone the PAVICS repository and navigate to the docker <em>build recipe</em> within <a class="reference external" href="https://github.com/Ouranosinc/PAVICS.git">PAVICS</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cloning the PAVICS repository</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Ouranosinc</span><span class="o">/</span><span class="n">PAVICS</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span>
+<span class="c1"># Open the docker-compose.yml using a text editor</span>
+<span class="n">nano</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> contains many of the setup configurations needed to successfully launch Birdhouse. Be sure to read the <a class="reference internal" href="configuration.html#config"><span class="std std-ref">Birdhouse service configuration</span></a> and the <a class="reference internal" href="load_balancing.html#load-balancing"><span class="std std-ref">Load balancing</span></a> suggestions before continuing the installation.</p>
+</div>
+<p>After modifying the necessary variables in the <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, simply run the following command, taking care to select an appropriate host name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HOSTNAME</span><span class="o">=</span><span class="s1">&#39;&lt;public-ip&gt;&#39;</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;docker-compose up -d&#39;</span>
 </pre></div>
 </div>
 <p>This installation will run on a single server instance, but there are instructions for <a class="reference internal" href="load_balancing.html#load-balancing"><span class="std std-ref">Load balancing</span></a>.</p>
@@ -242,9 +261,9 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 <h2>Updating containers to the latest version<a class="headerlink" href="#updating-containers-to-the-latest-version" title="Permalink to this headline">¶</a></h2>
 <p>To synchronize a deployment with the latest container available on dockerhub:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set working directory where the docker-compose.yml is located. Usually :</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">pavics</span><span class="o">-</span><span class="n">sdi</span><span class="o">/</span><span class="n">birdhouse</span> <span class="c1">### TO BE REVISED</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">PAVICS</span><span class="o">/</span><span class="n">birdhouse</span>
 
-<span class="c1"># Docker required sudo access</span>
+<span class="c1"># Docker requires root privileges</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
 <span class="c1"># Pull the latest containers (container_name is optional but can limit the operation to only one container rather than applying to all containers)</span>
@@ -265,7 +284,7 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 <div class="section" id="resetting-bird-services">
 <h2>Resetting Bird services<a class="headerlink" href="#resetting-bird-services" title="Permalink to this headline">¶</a></h2>
 <p>If a Bird Service becomes unusable, the docker containers can easily be reset to default settings:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker required sudo access</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker requires root privileges</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
 <span class="c1"># Stopping and removing containers (this will flush their states)</span>
@@ -283,7 +302,7 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 <div class="section" id="restarting-bird-services">
 <h2>Restarting Bird services<a class="headerlink" href="#restarting-bird-services" title="Permalink to this headline">¶</a></h2>
 <p>If the dockers containers need to be stopped (including the docker service, if required) these steps will preserve the docker state and all configurations set via Bird Service web portals:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker management requires sudo access</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker requires root privileges</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
 <span class="c1"># Stopping running containers</span>
@@ -294,7 +313,7 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 </pre></div>
 </div>
 <p>Restarting Bird Services (required after restarting the host vm):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker required sudo access</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker requires root privileges</span>
 <span class="n">sudo</span> <span class="n">su</span>
 
 <span class="c1"># Starting the docker service</span>
@@ -336,18 +355,15 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="load_balancing.html" class="btn btn-neutral float-right" title="Load balancing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="load_balancing.html" class="btn btn-neutral float-right" title="Load balancing" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Developer Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Developer Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -381,8 +397,7 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

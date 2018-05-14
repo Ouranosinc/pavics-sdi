@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,10 +90,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
@@ -104,10 +98,8 @@
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Pavics-DataCatalog</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#credits">Credits</a></li>
 </ul>
 </li>
@@ -132,10 +124,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -144,42 +134,25 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">System Architecture</a> &raquo;</li>
-        
-      <li>Pavics-DataCatalog</li>
-    
-    
+      
+    <li>Pavics-DataCatalog</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/arch/data_catalog.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -192,12 +165,16 @@
 <div class="section" id="pavics-catalogue-search">
 <h2>PAVICS Catalogue Search<a class="headerlink" href="#pavics-catalogue-search" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">pavicssearch</span></code> service closely mimics the API for the Earth System Grid Federation (ESGF) search. The search fields (or <em>facets</em>) include author, category, cf_standard_name, experiment, frequency, institute, model, project, source, subject, title, units, variable and variable_long_name. The search results are returned in a <code class="docutils literal notranslate"><span class="pre">json</span></code> file and include the URL to download the file or access it through DAP.</p>
+</div>
 <div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<p>The following request will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>`pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85 &lt;http://132.217.140.45:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85&gt;`_
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The following request will launch the crawler on the server filesystem to catalog available data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicrawler&amp;storeExecuteResponse=true&amp;status=true&amp;DataInputs=
 </pre></div>
 </div>
+<p>The following request will search for all files that are part of the RCP8.5 experiment and based on the CRCM4 model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://localhost:8009/pywps?service=WPS&amp;request=execute&amp;version=1.0.0&amp;identifier=pavicsearch&amp;DataInputs=constraints=model:CRCM4,experiment:rcp85
+</pre></div>
 </div>
 </div>
 <div class="section" id="credits">
@@ -208,18 +185,15 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../processes/index.html" class="btn btn-neutral float-right" title="Processes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../processes/index.html" class="btn btn-neutral float-right" title="Processes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="backend.html" class="btn btn-neutral" title="Backend" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="backend.html" class="btn btn-neutral" title="Backend" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -253,8 +227,7 @@
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

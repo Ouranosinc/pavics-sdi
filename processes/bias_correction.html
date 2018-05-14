@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Visualization &mdash; PAVICS 0.1 documentation</title>
+  <title>Bias correction &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
-        <link rel="next" title="Workflows" href="workflows.html"/>
-        <link rel="prev" title="Advanced climate data analysis" href="advanced_climate.html"/> 
+        <link rel="next" title="Climate indices" href="indices.html"/>
+        <link rel="prev" title="Basic climate data analysis" href="basic_climate.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,11 +96,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bias correction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#algorithms">Algorithms</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="indices.html">Climate indices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="impacts.html">Impacts and adaptation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced_climate.html">Advanced climate data analysis</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="workflows.html">Workflows</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_handling.html">Data handling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="maintenance.html">Data administration</a></li>
@@ -144,11 +147,11 @@
       
           <li><a href="index.html">Processes</a> &raquo;</li>
       
-    <li>Visualization</li>
+    <li>Bias correction</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/processes/visualization.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/processes/bias_correction.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,59 +161,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="visualization">
-<h1>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="bias-correction">
+<h1>Bias correction<a class="headerlink" href="#bias-correction" title="Permalink to this headline">¶</a></h1>
+<p>Climate models are simplified representations of complex real world processes. An obvious example of this simplification
+is representation of the landscape as an array of flat grid cells of uniform altitude, temperature, humidity,
+snow depth, etc, even though we know full well that there are variations within each grid cell. These simplifications
+have consequences on the realism of model simulations. Models might not represent correctly, or at all, important climate
+phenomena such as the El-Nino/La Nina episodes, the rapid melt of Arctic sea ice with raising air temperature or the breakup
+of Antartica’s ice sheets. Another consequence is that when comparing observed climate conditions with their
+corresponding simulated variables, systematic differences appear. One model might overestimate tropical night-time temperature,
+while another might underestimate monsoon precipitation over East Asia.</p>
+<p>These systematic biases usually have to be corrected for before using future climate simulations to assess the impacts of
+climate change. Indeed, if one wants to model crop productivity around 2050 with a model that is systematically too dry
+over the historical period, future projections likely won’t make sense. So-called <em>bias correction</em> methods are used to
+post-process climate simulations such that their statistics over the historical period match those of observations. The
+hypothesis is that the bias over the future period is likely the same as the bias over the historical period. This is a
+fairly strong hypothesis that has been shown to be false [], but until someone finds a better approach, it’s the best we
+can do.</p>
+<div class="section" id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="flyingpigeon.processes.PlottimeseriesProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">PlottimeseriesProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_plot_timeseries.html#PlottimeseriesProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.PlottimeseriesProcess" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong class="program">plot_timeseries</strong> Graphics (timeseries) (v0.10)</p>
-<p>Outputs some timeseries of the file field means. Spaghetti and uncertainty plot</p>
+<dt id="flyingpigeon.processes.KDDM_BC_Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">KDDM_BC_Process</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_kddm_bc.html#KDDM_BC_Process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.KDDM_BC_Process" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong class="program">kddm_bc</strong> Kernel Density Distribution Mapping Bias Correction (v1.0)</p>
+<p>Bias correction method using Kernel Density Distribution Mapping (KDDM).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files. (<a class="reference external" href="None">Info</a>)</li>
-<li><strong>variable</strong> (<em>string</em><em>, </em><em>optional</em>) – Variable to be expected in the input files (variable will be detected if not set)</li>
+<li><strong>obs</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – netCDF files storing the data with the desired statistics, typically observations.</li>
+<li><strong>ref</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – netCDF files storing the reference data whose statistics are going to be mapped to the obs, typically simulations over the observed period.</li>
+<li><strong>fut</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – netCDF files storing the data to be downscaled using the mapping defined between ref and obs.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
-<li><strong>plotout_spagetti</strong> (<em class="mimetype">image/png</em>) – Visualisation of single variables as a spaghetti plot</li>
-<li><strong>plotout_uncertainty</strong> (<em class="mimetype">image/png</em>) – Visualisation of single variables ensemble mean with uncertainty</li>
-</ul>
-</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
-</dd></dl>
-
-<p>#.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess (moved to blackswan)</p>
-<dl class="class">
-<dt id="flyingpigeon.processes.MapSpatialAnalogProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">MapSpatialAnalogProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_map_spatial_analog.html#MapSpatialAnalogProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.MapSpatialAnalogProcess" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong class="program">map_spatial_analog</strong> Map of dissimilarity values calculated by the spatial_analog process. (v0.1)</p>
-<p>Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>Dissimilarity between target at selected location and candidate distributions over the entire grid. (<a class="reference external" href="None">Info</a>)</p>
-</li>
-<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional</em>) – Figure format</li>
-<li><strong>title</strong> (<em>string</em><em>, </em><em>optional</em>) – Figure title.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
-<li><strong>output_figure</strong> (<em class="mimetype">image/png</em>, <em class="mimetype">application/pdf</em>, <em class="mimetype">image/svg+xml</em>, <em class="mimetype">application/postscript</em>) – Map of dissimilarity values.</li>
+<li><strong>output_netcdf_ref</strong> (<em class="mimetype">application/x-netcdf</em>) – Bias-corrected ref dataset.</li>
+<li><strong>output_netcdf_fut</strong> (<em class="mimetype">application/x-netcdf</em>) – Bias-corrected fut dataset.</li>
 <li><strong>output_log</strong> (<em class="mimetype">text/plain</em>) – Collected logs during process run.</li>
 </ul>
 </p>
@@ -218,12 +206,13 @@
 </tr>
 </tbody>
 </table>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><a class="reference external" href="http://flyingpigeon.readthedocs.io/en/latest/">Doc</a></li>
-</ul>
 </dd></dl>
 
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add popular bias correction algorithms.</p>
+</div>
+</div>
 </div>
 
 
@@ -233,10 +222,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="workflows.html" class="btn btn-neutral float-right" title="Workflows" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="indices.html" class="btn btn-neutral float-right" title="Climate indices" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="advanced_climate.html" class="btn btn-neutral" title="Advanced climate data analysis" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="basic_climate.html" class="btn btn-neutral" title="Basic climate data analysis" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

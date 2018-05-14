@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,10 +90,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -110,11 +104,11 @@
 <li class="toctree-l2"><a class="reference internal" href="builddocs.html">Building the docs</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Contributing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#benchmark-development-environment">Benchmark development environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-up-pycharm">Setting up pycharm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-pycharm">Setting up PyCharm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#launching-individual-local-components">Launching individual local components</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#solr">Solr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#public-thredds">Public THREDDS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#https-thredds">HTTPS THREDDS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#secure-thredds-https">Secure THREDDS (HTTPS)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#https-custom-wps-service">HTTPS custom WPS service</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#pavics-datacatalog-development">PAVICS-DataCatalog development</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#flyingpigeon-development">Flyingpigeon development</a></li>
@@ -145,10 +139,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -157,85 +149,69 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
-        
-      <li>Contributing</li>
-    
-    
+      
+    <li>Contributing</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/dev/contributing.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
   <div class="section" id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<span id="contrib"></span><h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="benchmark-development-environment">
 <h2>Benchmark development environment<a class="headerlink" href="#benchmark-development-environment" title="Permalink to this headline">¶</a></h2>
-<p>Recommended VirtualBox (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>) installation:</p>
+<p>For debugging and editing purposes, PAVICS should be set up on a virtual machine. We recommend installing the <a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">Oracle VM VirtualBox with Extensions</a> and creating a VM with the following base specifications:</p>
 <ul class="simple">
-<li>Install Oracle VM VirtualBox Extension Pack (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>)</li>
-<li>Linux Ubuntu 16.04.3 (64-bit) (<a class="reference external" href="https://www.ubuntu.com/download/desktop">https://www.ubuntu.com/download/desktop</a>)</li>
-<li>&gt;8 gb memory</li>
-<li>&gt;70 gb disk space</li>
-<li>&gt;2 CPUs</li>
+<li>AMD64 Ubuntu Linux 16.04 Long-Term-Support (LTS) (via <a class="reference external" href="https://www.ubuntu.com/download/desktop">Ubuntu Downloads</a>)</li>
+<li>&gt; 8 GB RAM</li>
+<li>&gt; 70 GB Storage</li>
+<li>&gt; 2 CPUs</li>
 <li>Network bridge access</li>
-<li>Install VBoxGuestAdditions inside the Ubuntu guest for corresponding
-VirtualBox version (<a class="reference external" href="https://download.virtualbox.org/virtualbox/">https://download.virtualbox.org/virtualbox/</a>). This can
-be done by downloading the .iso file and loading it into the optical drive.</li>
+<li>Install VBoxGuestAdditions within the Ubuntu guest for corresponding
+VirtualBox version. This can be done via the <cite>Devices</cite> tab of the VM via the <cite>Insert Guest Additions ISO image…</cite> and following the install instruction from the <code class="docutils literal notranslate"><span class="pre">autorun.sh</span></code> script.</li>
 </ul>
-<p>Required packages for various PAVICS components:</p>
-<p>python-dev
-curl
-git
-docker.io
-docker-compose</p>
+<p>Required VM packages for various PAVICS components (most can be installed via <a href="#id1"><span class="problematic" id="id2">`</span></a>apt-get`with root privileges):</p>
+<ul class="simple">
+<li>python-dev</li>
+<li>curl <cite>or</cite> wget</li>
+<li>git</li>
+<li>docker.io</li>
+<li>docker-compose</li>
+</ul>
 </div>
 <div class="section" id="setting-up-pycharm">
-<h2>Setting up pycharm<a class="headerlink" href="#setting-up-pycharm" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>For missing python modules: <a class="reference external" href="https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html">https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html</a></li>
-</ul>
-<p>Commands to run in Python console:</p>
+<h2>Setting up PyCharm<a class="headerlink" href="#setting-up-pycharm" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For missing python modules: <a class="reference external" href="https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html">https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html</a></p>
+</div>
+<p>The PAVICS back-end relies on developmental builds based on the Open Geospatial Consortium Web Processing Services. To install these libraries in your working environment, run the following within your PyCharm console:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pip</span>
 <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip&#39;</span><span class="p">])</span>
 <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s1">&#39;install&#39;</span><span class="p">,</span> <span class="s1">&#39;--upgrade&#39;</span><span class="p">,</span> <span class="s1">&#39;--force-reinstall&#39;</span><span class="p">,</span> <span class="s1">&#39;https://github.com/bird-house/OWSLib/archive/pingudev.zip&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li>Some packages are not happy with wheel, try uninstalling it if all else
-fails.</li>
-</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some packages are not happy with Python <code class="docutils literal notranslate"><span class="pre">wheel</span></code>, try uninstalling it if all else fails.</p>
+</div>
 </div>
 <div class="section" id="launching-individual-local-components">
 <h2>Launching individual local components<a class="headerlink" href="#launching-individual-local-components" title="Permalink to this headline">¶</a></h2>
@@ -260,8 +236,8 @@ to an actual path on disk with NetCDF files.</p>
 </div>
 <p>Check that thredds is running at <a class="reference external" href="http://localhost:8083/thredds/">http://localhost:8083/thredds/</a></p>
 </div>
-<div class="section" id="https-thredds">
-<h3>HTTPS THREDDS<a class="headerlink" href="#https-thredds" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="secure-thredds-https">
+<h3>Secure THREDDS (HTTPS)<a class="headerlink" href="#secure-thredds-https" title="Permalink to this headline">¶</a></h3>
 <p>First you will need a self-signed certificate:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">4096</span> <span class="o">-</span><span class="n">keyout</span> <span class="n">key</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">out</span> <span class="n">cert</span><span class="o">.</span><span class="n">pem</span> <span class="o">-</span><span class="n">days</span> <span class="mi">365</span>
 </pre></div>
@@ -357,7 +333,8 @@ PAVICS/birdhouse/config/magpie/providers.cfg</p>
 is not the same as the workstation localhost, so the address must use the ip
 of the local machine (retrieve with, e.g., ifconfig). Also point to a
 valid thredds server.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">su</span>  <span class="c1"># to work with docker</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Docker requires root privileges</span>
+<span class="n">sudo</span> <span class="n">su</span>
 <span class="n">docker</span> <span class="n">build</span> <span class="o">-</span><span class="n">t</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span> <span class="o">.</span>
 <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog1</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">v</span> <span class="o">~/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span><span class="p">:</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">catalog</span><span class="o">.</span><span class="n">cfg</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8009</span><span class="p">:</span><span class="mi">80</span> <span class="n">pavics</span><span class="o">-</span><span class="n">datacatalog</span>
 </pre></div>
@@ -427,18 +404,15 @@ provide the birdhouse root directory of thredds (e.g. in catalog.cfg):</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../arch/index.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../arch/index.html" class="btn btn-neutral float-right" title="System Architecture" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="builddocs.html" class="btn btn-neutral" title="Building the docs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="builddocs.html" class="btn btn-neutral" title="Building the docs" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -472,8 +446,7 @@ provide the birdhouse root directory of thredds (e.g. in catalog.cfg):</p>
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

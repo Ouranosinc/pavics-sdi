@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -47,7 +45,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -91,10 +88,7 @@
           
             
             
-              
-            
-            
-              <ul>
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
@@ -117,10 +111,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PAVICS</a>
       </nav>
 
 
@@ -133,36 +125,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-        
-      <li>flyingpigeon.processes.wps_regrid</li>
-    
-    
+      
+    <li>flyingpigeon.processes.wps_regrid</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -191,27 +166,6 @@
 <span class="c1"># Supported interpolation methods</span>
 <span class="n">methods</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">ESMF</span><span class="o">.</span><span class="n">RegridMethod</span><span class="o">.</span><span class="n">__members__</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
-
-<span class="k">def</span> <span class="nf">extract_doc</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Format the documentation about the ESMF regridding methods.&quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">inspect</span>
-    <span class="kn">import</span> <span class="nn">re</span>
-
-    <span class="n">source</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">ESMF</span><span class="o">.</span><span class="n">RegridMethod</span><span class="p">)</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&quot;&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="n">match</span><span class="p">):</span>
-        <span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    &#39;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">    &#39;</span> <span class="o">+</span> <span class="n">n</span><span class="o">*</span><span class="s1">&#39;~&#39;</span>
-
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;(\w+) = \d&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">3</span><span class="p">:]</span>
-    <span class="n">lines</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;    Notes&#39;</span><span class="p">)</span>
-    <span class="n">lines</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;    -----&#39;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-
 <span class="k">def</span> <span class="nf">actual_output_path</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Return the path to an output file, adjusting for whether or not the server is active or not.</span>
 
@@ -233,7 +187,47 @@
 
 
 <div class="viewcode-block" id="ESMFRegridProcess"><a class="viewcode-back" href="../../../processes/basic_climate.html#flyingpigeon.processes.ESMFRegridProcess">[docs]</a><span class="k">class</span> <span class="nc">ESMFRegridProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
-    <span class="vm">__doc__</span> <span class="o">=</span> <span class="n">extract_doc</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    Bilinear</span>
+<span class="sd">        Destination value is a linear combination of the</span>
+<span class="sd">        source values in the cell which contains the destination point. The weights</span>
+<span class="sd">        for the linear combination are based on the distance of the destination</span>
+<span class="sd">        point from each source value.</span>
+
+<span class="sd">    Patch</span>
+<span class="sd">        Higher-order patch recovery interpolation. Destination value is a weighted</span>
+<span class="sd">        average of 2D polynomial patches constructed from cells surrounding the</span>
+<span class="sd">        source cell which contains the destination point. This method typically</span>
+<span class="sd">        results in better approximations to values and derivatives than bilinear.</span>
+<span class="sd">        However, because of its larger stencil, it also results in a much larger</span>
+<span class="sd">        interpolation matrix than the bilinear method.</span>
+
+<span class="sd">    Conserve</span>
+<span class="sd">        First order conservative interpolation. Value of a destination cell is the</span>
+<span class="sd">        weighted sum of the values of the source cells that it overlaps. The</span>
+<span class="sd">        weights are determined by the amount the source cell overlaps the</span>
+<span class="sd">        destination cell. This method will typically give less accurate</span>
+<span class="sd">        approximations to values than the other interpolation methods, however, it</span>
+<span class="sd">        will do a much better job preserving the integral of the value between the</span>
+<span class="sd">        source and destination. This method requires the corner coordinate values</span>
+<span class="sd">        to be provided in the Grid, and it currently only works for Fields created</span>
+<span class="sd">        on the Grid center stagger (or the Mesh element location).</span>
+
+<span class="sd">    Nearest_STOD</span>
+<span class="sd">        In this version of nearest neighbor interpolation each destination point is</span>
+<span class="sd">        mapped to the closest source point. A given source point may go to multiple</span>
+<span class="sd">        destination points, but no destination point will receive input from more</span>
+<span class="sd">        than one source point.</span>
+
+<span class="sd">    Nearest_DTOS</span>
+<span class="sd">        In this version of nearest neighbor interpolation each source point is</span>
+<span class="sd">        mapped to the closest destination point. A given destination point may</span>
+<span class="sd">        receive input from multiple source points, but no source point will go to</span>
+<span class="sd">        more than one destination point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
@@ -364,13 +358,10 @@
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">([</span><span class="n">actual_output_path</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">]))</span>
 
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">output_json</span>
-        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span></div>
-        <span class="k">return</span> <span class="n">response</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">output_format</span> <span class="o">=</span> <span class="n">json_format</span>
+        <span class="k">return</span> <span class="n">response</span></div>
 </pre></div>
 
-           </div>
-           <div class="articleComments">
-            
            </div>
           </div>
           <footer>
@@ -405,8 +396,7 @@
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../../../_static/jquery.js"></script>

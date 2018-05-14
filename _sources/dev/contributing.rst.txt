@@ -1,3 +1,5 @@
+.. _contrib:
+
 ============
 Contributing
 ============
@@ -5,42 +7,38 @@ Contributing
 Benchmark development environment
 =================================
 
-Recommended VirtualBox (https://www.virtualbox.org/wiki/Downloads) installation:
+For debugging and editing purposes, PAVICS should be set up on a virtual machine. We recommend installing the `Oracle VM VirtualBox with Extensions <https://www.virtualbox.org/wiki/Downloads>`_ and creating a VM with the following base specifications:
 
-- Install Oracle VM VirtualBox Extension Pack (https://www.virtualbox.org/wiki/Downloads)
-- Linux Ubuntu 16.04.3 (64-bit) (https://www.ubuntu.com/download/desktop)
-- >8 gb memory
-- >70 gb disk space
-- >2 CPUs
+- AMD64 Ubuntu Linux 16.04 Long-Term-Support (LTS) (via `Ubuntu Downloads <https://www.ubuntu.com/download/desktop>`_)
+- > 8 GB RAM
+- > 70 GB Storage
+- > 2 CPUs
 - Network bridge access
-- Install VBoxGuestAdditions inside the Ubuntu guest for corresponding
-  VirtualBox version (https://download.virtualbox.org/virtualbox/). This can
-  be done by downloading the .iso file and loading it into the optical drive.
+- Install VBoxGuestAdditions within the Ubuntu guest for corresponding
+  VirtualBox version. This can be done via the `Devices` tab of the VM via the `Insert Guest Additions ISO image...` and following the install instruction from the ``autorun.sh`` script.
 
-Required packages for various PAVICS components:
+Required VM packages for various PAVICS components (most can be installed via `apt-get`with root privileges):
 
-python-dev
-curl
-git
-docker.io
-docker-compose
+- python-dev
+- curl `or` wget
+- git
+- docker.io
+- docker-compose
 
-
-Setting up pycharm
+Setting up PyCharm
 ==================
 
-- For missing python modules: https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html
+.. note::
+	For missing python modules: https://www.jetbrains.com/help/pycharm/installing-uninstalling-and-upgrading-packages.html
 
-Commands to run in Python console:
-
-::
+The PAVICS back-end relies on developmental builds based on the Open Geospatial Consortium Web Processing Services. To install these libraries in your working environment, run the following within your PyCharm console::
 
     import pip
     pip.main(['install', 'https://github.com/geopython/pywps/archive/7cab3866e34ce24d3df56e3c1c546739b1cda2d7.zip'])
     pip.main(['install', '--upgrade', '--force-reinstall', 'https://github.com/bird-house/OWSLib/archive/pingudev.zip'])
 
-- Some packages are not happy with wheel, try uninstalling it if all else
-  fails.
+.. warning::
+	Some packages are not happy with Python ``wheel``, try uninstalling it if all else fails.
 
 
 Launching individual local components
@@ -73,8 +71,8 @@ to an actual path on disk with NetCDF files.
 
 Check that thredds is running at http://localhost:8083/thredds/
 
-HTTPS THREDDS
--------------
+Secure THREDDS (HTTPS)
+----------------------
 
 First you will need a self-signed certificate:
 
@@ -193,9 +191,9 @@ PAVICS-DataCatalog development
 
 ::
 
-    git clone https://github.com/Ouranosinc/PAVICS-DataCatalog.git
-    cd PAVICS-DataCatalog
-    cp catalog.cfg ~/catalog.cfg
+  git clone https://github.com/Ouranosinc/PAVICS-DataCatalog.git
+  cd PAVICS-DataCatalog
+  cp catalog.cfg ~/catalog.cfg
 
 Edit ~/catalog.cfg with Solr address. Note that within docker, localhost
 is not the same as the workstation localhost, so the address must use the ip
@@ -203,10 +201,11 @@ of the local machine (retrieve with, e.g., ifconfig). Also point to a
 valid thredds server.
 
 ::
-
-    sudo su  # to work with docker
-    docker build -t pavics-datacatalog .
-    docker run --name pavics-datacatalog1 -d -v ~/catalog.cfg:/home/catalog.cfg -p 8009:80 pavics-datacatalog
+  
+  # Docker requires root privileges
+  sudo su
+  docker build -t pavics-datacatalog .
+  docker run --name pavics-datacatalog1 -d -v ~/catalog.cfg:/home/catalog.cfg -p 8009:80 pavics-datacatalog
 
 Check that the wps is running at http://localhost:8009/pywps?service=WPS&request=GetCapabilities&version=1.0.0
 

@@ -1,0 +1,65 @@
+==================
+Realistic Workflow
+==================
+
+1. Search for files
+2. Subset and average on region defined by polygon
+3. Compute annual indicators (2)
+
+
+Data Catalog
+http://pavics.ouranos.ca:8086/pywps?service=WPS&request=DescribeProcess&version=1.0.0&identifier=pavicsearch
+
+Flyingpigeon
+http://pavics.ouranos.ca:8093/pywps?service=WPS&request=DescribeProcess&version=1.0.0&identifier=averager_WFS
+
+
+
+1.
+http://pavics.ouranos.ca:8086/pywps?service=WPS&request=Execute&version=1.0.0&identifier=pavicsearch&DataInputs=constraints=project:ClimEx,driving_model_id:CCCma-CanESM2,model_id:OURANOS-CRCM5,frequency:day,driving_model_ensemble_member:historical-r1,variable:tasmin;type=Aggregate
+This should yield multiple files (one per year), that all need to be processed.
+
+.. code-block:: json
+
+{"name": "search_subset_compute",
+ "tasks": [{
+    "name": "search",
+    "url": "http://pavics.ouranos.ca:8086/wps",
+    "identifier": "pavicsearch",
+    "inputs": {
+        "constraints": "project:ClimEx,driving_model_id:CCCma-CanESM2,model_id:OURANOS-CRCM5,driving_model_ensemble_member:historical-r1 r1i1p1,frequency,variable:tasmin",
+        "type":"Aggregate"
+        }
+    },
+    {
+    "name": "subset",
+    "url": "http://pavics.ouranos.ca:8093/wps",
+    "identifier": "averager_WFS",
+    "linked_inputs": {
+        "resource": {
+            "task":"search",
+            "output": "list_result"},
+        },
+    "inputs": {
+        "typename":"TravisTest:region_admin_poly",
+        "featureids":["region_admin_poly.4", "region_admin_poly.5"]}
+    },
+    {
+    "name": "Climate indicator",
+    "url": "http://pavics.ouranos.ca:8093/wps",
+    "identifier": "indices_single",
+    "linked_inputs": {
+        "resource": {
+            "task":"subset",
+            "output": "output"},
+        },
+    "inputs": {
+        "indices":"TR",
+        "grouping": "yr"
+        }
+    }]
+}
+
+
+
+

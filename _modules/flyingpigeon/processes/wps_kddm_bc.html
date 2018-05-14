@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flyingpigeon.processes.wps_kddm_bc &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>flyingpigeon.processes.wps_kddm_bc</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for flyingpigeon.processes.wps_kddm_bc</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">KDDM Bias correction.</span>
+
+<span class="sd">Author: Seth McGinnis (KDDM algorithm), David Huard (WPS wrapper)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Format</span><span class="p">,</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">LiteralOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">import</span> <span class="nn">flyingpigeon</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archiveextract</span><span class="p">,</span> <span class="n">rename_complexinputs</span>
+<span class="kn">import</span> <span class="nn">ocgis</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="KDDM_BC_Process"><a class="viewcode-back" href="../../../processes/bias_correction.html#flyingpigeon.processes.KDDM_BC_Process">[docs]</a><span class="k">class</span> <span class="nc">KDDM_BC_Process</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    McGinnis S., Nychka D., Mearns L.O. (2015) A New Distribution Mapping Technique for Climate Model Bias Correction. In: Lakshmanan V., Gilleland E., McGovern A., Tingley M. (eds) Machine Learning and Data Mining Approaches to Climate Science. Springer, Cham, DOI: https://doi.org/10.1007/978-3-319-17220-0_9</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;Observation netCDF dataset&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF files storing the data with the desired statistics, typically observations.&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                        <span class="p">]),</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span> <span class="s1">&#39;Reference netCDF dataset&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF files storing the reference data whose statistics are going to be mapped to &quot;</span>
+                                  <span class="s2">&quot;the obs, typically simulations over the observed period.&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                                            <span class="p">]),</span>
+            <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;fut&#39;</span><span class="p">,</span> <span class="s1">&#39;Future netCDF dataset&#39;</span><span class="p">,</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF files storing the data to be downscaled using the mapping defined between &quot;</span>
+                                  <span class="s2">&quot;ref and obs.&quot;</span><span class="p">,</span>
+                         <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                         <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                         <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                                            <span class="p">]),</span>
+        <span class="p">]</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                   LiteralInput(&#39;dedrizzle&#39;, &#39;De-drizzle&#39;,</span>
+<span class="sd">                                abstract=&quot;Whether to remove the precipitation drizzle.&quot;,</span>
+<span class="sd">                                min_occurs=0,</span>
+<span class="sd">                                max_occurs=1,</span>
+<span class="sd">                                default=&#39;False&#39;,</span>
+<span class="sd">                                data_type=&#39;bool&#39;),</span>
+<span class="sd">                   LiteralInput(&#39;norm&#39;, &#39;Normalization transformation&#39;,</span>
+<span class="sd">                                abstract=&quot;Transformation to apply before mapping.&quot;,</span>
+<span class="sd">                                default=&#39;identity&#39;,</span>
+<span class="sd">                                allowed_values=[&quot;identifty&quot;, &quot;zscore&quot;, &quot;boxcox&quot;],</span>
+<span class="sd">                                data_type=&#39;string&#39;),</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf_ref&#39;</span><span class="p">,</span> <span class="s1">&#39;Bias-corrected ref dataset.&#39;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),]</span>
+                          <span class="p">),</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf_fut&#39;</span><span class="p">,</span> <span class="s1">&#39;Bias-corrected fut dataset.&#39;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),]</span>
+                          <span class="p">),</span>
+            <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
+                          <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">),]</span>
+                          <span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">KDDM_BC_Process</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">,</span>
+            <span class="n">identifier</span><span class="o">=</span><span class="s1">&#39;kddm_bc&#39;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Kernel Density Distribution Mapping Bias Correction&quot;</span><span class="p">,</span>
+            <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Bias correction method using Kernel Density Distribution Mapping (KDDM).&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">outputs</span><span class="p">,</span>
+            <span class="n">store_supported</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">status_supported</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">rpy2</span> <span class="k">import</span> <span class="n">robjects</span>
+        <span class="kn">from</span> <span class="nn">rpy2.robjects.packages</span> <span class="k">import</span> <span class="n">importr</span>
+
+        <span class="kn">import</span> <span class="nn">os</span>
+        <span class="kn">import</span> <span class="nn">datetime</span> <span class="k">as</span> <span class="nn">dt</span>
+
+        <span class="n">tic</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="n">init_process_logger</span><span class="p">(</span><span class="s1">&#39;log.txt&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_log&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;log.txt&#39;</span>
+
+        <span class="n">LOGGER</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Start process&#39;</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Execution started at : </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tic</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1">######################################</span>
+        <span class="c1"># Read inputs</span>
+        <span class="c1">######################################</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">obs</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]))</span>
+            <span class="n">ref</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]))</span>
+            <span class="n">fut</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span>
+                <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;fut&#39;</span><span class="p">]))</span>
+            <span class="c1">#dedrizzle = request.inputs[&#39;dedrizzle&#39;][0].data</span>
+            <span class="c1">#norm = request.inputs[&#39;norm&#39;][0].data</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Failed to read input parameter </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;obs: &quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;ref: &quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;fut: &quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;fut&#39;</span><span class="p">]</span>
+            <span class="n">LOGGER</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;Input parameters ingested&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">rp</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">ref</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ref_out</span> <span class="o">=</span> <span class="n">rp</span> <span class="o">+</span> <span class="s1">&#39;_kddm-bc&#39;</span> <span class="o">+</span> <span class="n">ext</span>
+
+        <span class="n">fp</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">fut</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">fut_out</span> <span class="o">=</span> <span class="n">fp</span> <span class="o">+</span> <span class="s1">&#39;_kddm-bc&#39;</span> <span class="o">+</span> <span class="n">ext</span>
+
+        <span class="c1"># Assuming all files share the same variable.</span>
+        <span class="n">rd</span> <span class="o">=</span> <span class="n">ocgis</span><span class="o">.</span><span class="n">RequestDataset</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+        <span class="n">varname</span> <span class="o">=</span> <span class="n">rd</span><span class="o">.</span><span class="n">variable</span>
+
+        <span class="c1"># Calling the R code</span>
+        <span class="n">Rsrc</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">flyingpigeon</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">Rsrc_dir</span><span class="p">(),</span> <span class="s1">&#39;bc.kddm.R&#39;</span><span class="p">)</span>
+        <span class="n">devtools</span> <span class="o">=</span> <span class="n">importr</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+
+        <span class="n">rfunc</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">Rsrc</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">rfunc</span><span class="p">(</span><span class="n">varname</span><span class="p">,</span> <span class="n">obs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ref</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fut</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ref_out</span><span class="p">,</span> <span class="n">fut_out</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf_ref&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">ref_out</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf_fut&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fut_out</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

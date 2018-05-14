@@ -15,8 +15,6 @@
   
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
   
-  
-  
 
   
 
@@ -49,7 +47,6 @@
 
 <body class="wy-body-for-nav" role="document">
 
-   
   <div class="wy-grid-for-nav">
 
     
@@ -93,10 +90,7 @@
           
             
             
-              
-            
-            
-              <ul class="current">
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -144,10 +138,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">PAVICS</a>
-        
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
       </nav>
 
 
@@ -156,49 +148,32 @@
         <div class="rst-content">
           
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
-
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
           <li><a href="index.html">Developer Documentation</a> &raquo;</li>
-        
-      <li>Birdhouse service configuration</li>
-    
-    
+      
+    <li>Birdhouse service configuration</li>
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/dev/configuration.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
   <div class="section" id="birdhouse-service-configuration">
-<h1>Birdhouse service configuration<a class="headerlink" href="#birdhouse-service-configuration" title="Permalink to this headline">¶</a></h1>
+<span id="config"></span><h1>Birdhouse service configuration<a class="headerlink" href="#birdhouse-service-configuration" title="Permalink to this headline">¶</a></h1>
 <p>All birdhouse components are deployed and configured using the following methods:</p>
 <ul class="simple">
 <li>Run <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> on a <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> config file to launch a group of containers using their images and some options.</li>
@@ -229,6 +204,10 @@
 </div>
 <div class="section" id="phoenix">
 <h2>Phoenix<a class="headerlink" href="#phoenix" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Phoenix service requires a valid ssl certificate and key prior to running <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> in order to make use of HTTPS. In the <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, within the <cite>phoenix/volumes</cite> configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. This certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx “ssl_certificate_key” and “ssl_certificate” parameters.</p>
+</div>
 <p>For more information on Phoenix, see the <a class="reference external" href="https://pyramid-phoenix.readthedocs.io/en/latest/">Pyramid-Phoenix documentation</a>.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><code class="file docutils literal notranslate"><span class="pre">/config/phoenix/custom.cfg</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
@@ -349,18 +328,15 @@ The administration page allow administrators to add new datasets but again it wi
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="vm.html" class="btn btn-neutral float-right" title="VM configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="vm.html" class="btn btn-neutral float-right" title="VM configuration" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="load_balancing.html" class="btn btn-neutral" title="Load balancing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="load_balancing.html" class="btn btn-neutral" title="Load balancing" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -394,8 +370,7 @@ The administration page allow administrators to add new datasets but again it wi
             VERSION:'0.1',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
+            HAS_SOURCE:  true
         };
     </script>
       <script type="text/javascript" src="../_static/jquery.js"></script>

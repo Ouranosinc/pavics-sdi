@@ -1,3 +1,5 @@
+.. _config:
+
 ===============================
 Birdhouse service configuration
 ===============================
@@ -30,6 +32,9 @@ For more information on Hummingbird, see the `Hummingbird-Birdhouse documentatio
 
 Phoenix
 -------
+
+.. note::
+	The Phoenix service requires a valid ssl certificate and key prior to running ``docker-compose`` in order to make use of HTTPS. In the :file:`docker-compose.yml` file, within the `phoenix/volumes` configuration, set the environment variable SSL_CERTIFICATE  to a valid certificate. This certificate file should contain both the CERTIFICATE and PRIVATE KEY parts as required by the nginx "ssl_certificate_key" and "ssl_certificate" parameters.
 
 For more information on Phoenix, see the `Pyramid-Phoenix documentation <https://pyramid-phoenix.readthedocs.io/en/latest/>`_.
 

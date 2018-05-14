@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Searching for data &mdash; PAVICS 0.1 documentation</title>
+  <title>Bias correction &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -35,10 +35,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
-        <link rel="up" title="Tutorials" href="index.html"/>
-        <link rel="next" title="Working with Web Processing Service with Python" href="wps_with_python.html"/>
-        <link rel="prev" title="Data preparation for inclusion in the platform" href="data_preparation.html"/> 
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -90,19 +87,8 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="data_preparation.html">Data preparation for inclusion in the platform</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Searching for data</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#apis">APIs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#discovering-facets">Discovering facets</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="wps_with_python.html">Working with Web Processing Service with Python</a></li>
-</ul>
-</li>
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
@@ -142,13 +128,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="index.html">Tutorials</a> &raquo;</li>
-      
-    <li>Searching for data</li>
+    <li>Bias correction</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/tutorials/searching.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/tutorials/examples.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -158,41 +142,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="searching-for-data">
-<h1>Searching for data<a class="headerlink" href="#searching-for-data" title="Permalink to this headline">¶</a></h1>
-<p>The first step in a climate analysis is to gather the data to be analyzed.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Describe how to use the UI to add data to the workspace.</p>
-</div>
-<div class="section" id="apis">
-<h2>APIs<a class="headerlink" href="#apis" title="Permalink to this headline">¶</a></h2>
-<p>Data on ESGF nodes can be searched using the ESGF Search API:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ESGF</span><span class="o">/</span><span class="n">esgf</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">ESGF_Search_REST_API</span>
+  <p>Preliminary bit of code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span>
+<span class="n">pavics</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon&#39;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">()</span>
+<span class="n">wps</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="n">pavics</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>PAVICS has its own data catalog that mimics the ESGF catalog and a WPS
-is provided for combining PAVICS search with ESGF search.</p>
-<div class="section" id="discovering-facets">
-<h3>Discovering facets<a class="headerlink" href="#discovering-facets" title="Permalink to this headline">¶</a></h3>
-<p>pending</p>
+<div class="section" id="bias-correction">
+<h1>Bias correction<a class="headerlink" href="#bias-correction" title="Permalink to this headline">¶</a></h1>
+<p>Using a bias correction algorithm from the console:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;obs&#39;</span><span class="p">:</span><span class="s1">&#39;Enter observation dataset&#39;</span> <span class="p">),</span> <span class="p">(</span><span class="s1">&#39;ref&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter reference simulated dataset&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fut&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter future simulated dataset&#39;</span><span class="p">)]</span>
+<span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;kddm_bc&#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;output_netcdf_fut&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
+<div class="section" id="climate-indices">
+<h1>Climate indices<a class="headerlink" href="#climate-indices" title="Permalink to this headline">¶</a></h1>
+<p>Compute climate indices from a simulated time series:</p>
 </div>
 
 
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="wps_with_python.html" class="btn btn-neutral float-right" title="Working with Web Processing Service with Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="data_preparation.html" class="btn btn-neutral" title="Data preparation for inclusion in the platform" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
