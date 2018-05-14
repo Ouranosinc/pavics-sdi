@@ -28,4 +28,4 @@ Algorithms
 
 .. todo::
 
-   Add popular bias correction algorithms. 
+   Add popular bias correction algorithms.
