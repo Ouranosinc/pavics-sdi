@@ -2,6 +2,7 @@
 Data handling
 =============
 
+.. autoprocess:: pavics_datacatalog.wps_processes.PavicsSearch
 
 .. autoprocess:: flyingpigeon.processes.FetchProcess
 

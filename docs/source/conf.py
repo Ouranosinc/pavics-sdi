@@ -35,7 +35,8 @@ import os
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx_autodoc_pywps',
+    #'sphinx_autodoc_pywps',
+    'pywps.ext_autodoc', #Will be available in pywps 4.2 (now in develop branch)
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',

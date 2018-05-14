@@ -244,7 +244,7 @@ dummy:
 	@echo "Build finished. Dummy builder generates no files."
 
 .PHONY: gh-pages
-gh-pages: html html_fr
+gh-pages: html
 	cp -r $(BUILDDIR)/html/* $(GHBUILDDIR)/html/
 	cd $(GHBUILDDIR)/html; git add . ; git commit -m "rebuilt docs"; git push origin gh-pages
 	@echo

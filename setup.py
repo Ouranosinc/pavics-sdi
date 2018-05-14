@@ -18,5 +18,6 @@ setup(
     description="Scientific gateway for climate data analytics.",
     long_description=open('README.rst', 'rt').read(),
     license="BSD",
+    install_requires=""
     classifiers=CLASSIFIERS,
 )
