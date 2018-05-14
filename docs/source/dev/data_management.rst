@@ -38,6 +38,20 @@ After running the pavicrawler, new entries in the catalog should appear in Solr:
 By default, the dataset_id will be made up of the relative path on the thredds
 server.
 
+Inspecting metadata
+-------------------
+
+An essential requirement for a functional platform is that netCDF data stored in THREDDS has complete and uniform
+metadata. To do so, the :function:`pavics.catalog.thredds_crawler` function can be used to extract the metadata from the
+netCDF files and see if there are missing entries::
+
+   from pavics.catalog import thredds_crawler as crawler
+   crawler('http://pavics.ouranos.ca/thredds', index_facets=['project'], exclude_files=['birdhouse/wps_outputs', 'birdhouse/workspaces'])
+
+Note that running this command can take a long while, so the `include_files` argument can be passed to restrict the
+crawler to certain directories, such as :file:`birdhouse/ouranos/climex/`.
+
+
 Birdhouse Solr
 ==============
 
@@ -58,3 +72,13 @@ Adding external services
 
 .. todo::
 	How to add WPS, WMS, WFS servers to PAVICS.
+
+
+Using thredds_crawler
+=====================
+
+Test code ::
+
+  from thredds_crawler.crawl import Crawl
+  Crawl('https://pavics.ouranos.ca/thredds/birdhouse/ouranos/climex/catalog.xml')
+  Crawl('https://pavics.ouranos.ca/thredds/catalog/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r1i1p1/tasmin/catalog.xml')
