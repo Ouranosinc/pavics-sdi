@@ -6,6 +6,7 @@ PAVICS offers a fair number of processes that were developed by different groups
 
 .. toctree::
    basic_climate
+   bias_correction
    indices
    impacts
    advanced_climate
