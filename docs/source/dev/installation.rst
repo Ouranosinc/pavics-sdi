@@ -186,6 +186,12 @@ Container xxx value::
 
 The exception is the Pavics-frontend, which has port 3000.
 
+To find which shell process uses a given port, use:
+
+.. code-block:: sh
+
+   netstat -nlp | grep :<port #>
+
 .. _PAVICS: https://github.com/Ouranosinc/PAVICS.git
 .. _Docker: http://docker.com
 .. _DockerHub: https://hub.docker.com/
