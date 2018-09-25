@@ -346,6 +346,10 @@ Mount or make a symlink for the geoserver data storage so that <code class="docu
 </pre></div>
 </div>
 <p>The exception is the Pavics-frontend, which has port 3000.</p>
+<p>To find which shell process uses a given port, use:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>netstat -nlp <span class="p">|</span> grep :&lt;port <span class="c1">#&gt;</span>
+</pre></div>
+</div>
 <div class="admonition-todo admonition" id="index-1">
 <p class="first admonition-title">Todo</p>
 <p class="last">Update the installation and config with security changes</p>

@@ -144,32 +144,36 @@
            <div itemprop="articleBody">
             
   <h1>Source code for flyingpigeon.processes.wps_subset_regionseurope</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">flyingpigeon.subset</span> <span class="k">import</span> <span class="n">clipping</span>
+<span></span><span class="c1"># TODO: Rename this file to &quot;wps_subset_europe&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
 <span class="c1"># from flyingpigeon.subset import countries, countries_longname</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.subset</span> <span class="k">import</span> <span class="n">_EUREGIONS_</span>
-<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.subset</span> <span class="k">import</span> <span class="n">clipping</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
-
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
 <span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
+<span class="c1"># TODO: rename this process &quot;SubseteuropeProcess&quot;</span>
 <div class="viewcode-block" id="ClipregionseuropeProcess"><a class="viewcode-back" href="../../../processes/basic_climate.html#flyingpigeon.processes.ClipregionseuropeProcess">[docs]</a><span class="k">class</span> <span class="nc">ClipregionseuropeProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    TODO: opendap input support, additional metadata to display region names.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="s1">&#39;Region&#39;</span><span class="p">,</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
-                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;European region code, see ISO-3166 Alpha2: https://en.wikipedia.org/wiki/ISO_3166-2 &quot;</span><span class="p">,</span>  <span class="c1"># noqa</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;European region code, see ISO-3166 Alpha2: https://en.wikipedia.org/wiki/ISO_3166-2 &quot;</span><span class="p">,</span>
+                         <span class="c1"># noqa</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">_EUREGIONS_</span><span class="p">),</span>
                          <span class="n">default</span><span class="o">=</span><span class="s1">&#39;DE.HH&#39;</span><span class="p">,</span>
@@ -240,7 +244,7 @@
                      <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data_format</span><span class="o">.</span><span class="n">mime_type</span><span class="p">)</span>
         <span class="n">ncs</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span>
             <span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;resource&#39;</span><span class="p">]))</span>
-            <span class="c1"># mime_type=request.inputs[&#39;resource&#39;][0].data_format.mime_type)</span>
+        <span class="c1"># mime_type=request.inputs[&#39;resource&#39;][0].data_format.mime_type)</span>
         <span class="c1"># mosaic option</span>
         <span class="c1"># TODO: fix defaults in pywps 4.x</span>
         <span class="k">if</span> <span class="s1">&#39;mosaic&#39;</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">:</span>

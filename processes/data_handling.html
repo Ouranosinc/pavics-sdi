@@ -170,16 +170,16 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>facets</strong> (<em>string</em><em>, </em><em>optional</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
-<li><strong>shards</strong> (<em>string</em><em>, </em><em>optional</em>) – Shards to be queried</li>
-<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Where to start in the document count of the database search.</li>
-<li><strong>limit</strong> (<em>integer</em><em>, </em><em>optional</em>) – Maximum number of documents to return.</li>
-<li><strong>fields</strong> (<em>string</em><em>, </em><em>optional</em>) – Comme separated list of fields to return.</li>
-<li><strong>format</strong> (<em>string</em><em>, </em><em>optional</em>) – Output format.</li>
-<li><strong>query</strong> (<em>string</em><em>, </em><em>optional</em>) – Direct query to the database.</li>
-<li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Distributed query</li>
-<li><strong>type</strong> (<em>string</em><em>, </em><em>optional</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
-<li><strong>constraints</strong> (<em>string</em><em>, </em><em>optional</em>) – Format is facet1:value1,facet2:value2,…</li>
+<li><strong>facets</strong> (<em>string</em>) – Comma separated list of facets; facets are searchable indexing terms in the database.</li>
+<li><strong>shards</strong> (<em>string</em>) – Shards to be queried</li>
+<li><strong>offset</strong> (<em>integer</em>) – Where to start in the document count of the database search.</li>
+<li><strong>limit</strong> (<em>integer</em>) – Maximum number of documents to return.</li>
+<li><strong>fields</strong> (<em>string</em>) – Comme separated list of fields to return.</li>
+<li><strong>format</strong> (<em>string</em>) – Output format.</li>
+<li><strong>query</strong> (<em>string</em>) – Direct query to the database.</li>
+<li><strong>distrib</strong> (<em>boolean</em>) – Distributed query</li>
+<li><strong>type</strong> (<em>string</em>) – One of Dataset, File, Aggregate or FileAsAggregate.</li>
+<li><strong>constraints</strong> (<em>string</em>) – Format is facet1:value1,facet2:value2,…</li>
 </ul>
 </td>
 </tr>
@@ -230,17 +230,17 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>url</strong> (<em>string</em>) – URL of ESGF Search Index. Example: <a class="reference external" href="http://esgf-data.dkrz.de/esg-search">http://esgf-data.dkrz.de/esg-search</a></li>
-<li><strong>distrib</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then a distributed search will be run.</li>
-<li><strong>replica</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include replicated datasets.</li>
-<li><strong>latest</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will include only latest datasets.</li>
-<li><strong>temporal</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If flag is set then search will use temporal filter.</li>
-<li><strong>search_type</strong> (<em>{'Dataset'</em><em>, </em><em>'File'</em><em>, </em><em>'Aggregation'}</em><em>, </em><em>optional</em>) – Search on Datasets, Files or Aggregations.</li>
+<li><strong>distrib</strong> (<em>boolean</em>) – If flag is set then a distributed search will be run.</li>
+<li><strong>replica</strong> (<em>boolean</em>) – If flag is set then search will include replicated datasets.</li>
+<li><strong>latest</strong> (<em>boolean</em>) – If flag is set then search will include only latest datasets.</li>
+<li><strong>temporal</strong> (<em>boolean</em>) – If flag is set then search will use temporal filter.</li>
+<li><strong>search_type</strong> (<em>{'Dataset'</em><em>, </em><em>'File'</em><em>, </em><em>'Aggregation'}</em>) – Search on Datasets, Files or Aggregations.</li>
 <li><strong>constraints</strong> (<em>string</em>) – Constraints as list of key/value pairs.Example: project:CORDEX, time_frequency:mon, variable:tas</li>
-<li><strong>query</strong> (<em>string</em><em>, </em><em>optional</em>) – Freetext query. For Example: temperatue</li>
-<li><strong>start</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Startime: 2000-01-11T12:00:00Z</li>
-<li><strong>end</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Endtime: 2005-12-31T12:00:00Z</li>
-<li><strong>limit</strong> (<em>{'0'</em><em>, </em><em>'1'</em><em>, </em><em>'2'</em><em>, </em><em>'5'</em><em>, </em><em>'10'</em><em>, </em><em>'20'</em><em>, </em><em>'50'</em><em>, </em><em>'100'</em><em>, </em><em>'200'}</em><em>, </em><em>optional</em>) – Maximum number of datasets in search result</li>
-<li><strong>offset</strong> (<em>integer</em><em>, </em><em>optional</em>) – Start search of datasets at offset.</li>
+<li><strong>query</strong> (<em>string</em>) – Freetext query. For Example: temperatue</li>
+<li><strong>start</strong> (<em>dateTime</em>) – Startime: 2000-01-11T12:00:00Z</li>
+<li><strong>end</strong> (<em>dateTime</em>) – Endtime: 2005-12-31T12:00:00Z</li>
+<li><strong>limit</strong> (<em>{'0'</em><em>, </em><em>'1'</em><em>, </em><em>'2'</em><em>, </em><em>'5'</em><em>, </em><em>'10'</em><em>, </em><em>'20'</em><em>, </em><em>'50'</em><em>, </em><em>'100'</em><em>, </em><em>'200'}</em>) – Maximum number of datasets in search result</li>
+<li><strong>offset</strong> (<em>integer</em>) – Start search of datasets at offset.</li>
 </ul>
 </td>
 </tr>

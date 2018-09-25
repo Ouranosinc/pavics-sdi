@@ -149,13 +149,15 @@
 
 <span class="sd">Author: Seth McGinnis (KDDM algorithm), David Huard (WPS wrapper)</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Format</span><span class="p">,</span> <span class="n">LiteralInput</span><span class="p">,</span> <span class="n">LiteralOutput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
 <span class="kn">import</span> <span class="nn">flyingpigeon</span>
+<span class="kn">import</span> <span class="nn">ocgis</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archiveextract</span><span class="p">,</span> <span class="n">rename_complexinputs</span>
-<span class="kn">import</span> <span class="nn">ocgis</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Format</span>
+
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
@@ -167,6 +169,7 @@
 
 
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="s1">&#39;Observation netCDF dataset&#39;</span><span class="p">,</span>
@@ -174,9 +177,9 @@
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span>
-                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
-                             <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
-                        <span class="p">]),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">),</span>
+                                            <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span>
+                                            <span class="p">]),</span>
             <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;ref&#39;</span><span class="p">,</span> <span class="s1">&#39;Reference netCDF dataset&#39;</span><span class="p">,</span>
                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;netCDF files storing the reference data whose statistics are going to be mapped to &quot;</span>
                                   <span class="s2">&quot;the obs, typically simulations over the observed period.&quot;</span><span class="p">,</span>
@@ -212,16 +215,16 @@
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf_ref&#39;</span><span class="p">,</span> <span class="s1">&#39;Bias-corrected ref dataset.&#39;</span><span class="p">,</span>
                           <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),]</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span> <span class="p">]</span>
                           <span class="p">),</span>
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_netcdf_fut&#39;</span><span class="p">,</span> <span class="s1">&#39;Bias-corrected fut dataset.&#39;</span><span class="p">,</span>
                           <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),]</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-netcdf&#39;</span><span class="p">),</span> <span class="p">]</span>
                           <span class="p">),</span>
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
                           <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
                           <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">),]</span>
+                          <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;text/plain&#39;</span><span class="p">),</span> <span class="p">]</span>
                           <span class="p">),</span>
         <span class="p">]</span>
 
@@ -261,8 +264,8 @@
                 <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">]))</span>
             <span class="n">fut</span> <span class="o">=</span> <span class="n">archiveextract</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">rename_complexinputs</span><span class="p">(</span>
                 <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;fut&#39;</span><span class="p">]))</span>
-            <span class="c1">#dedrizzle = request.inputs[&#39;dedrizzle&#39;][0].data</span>
-            <span class="c1">#norm = request.inputs[&#39;norm&#39;][0].data</span>
+            <span class="c1"># dedrizzle = request.inputs[&#39;dedrizzle&#39;][0].data</span>
+            <span class="c1"># norm = request.inputs[&#39;norm&#39;][0].data</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Failed to read input parameter </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;obs: &quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;obs&#39;</span><span class="p">]</span>
@@ -294,7 +297,6 @@
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;output_netcdf_fut&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">fut_out</span>
 
         <span class="k">return</span> <span class="n">response</span></div>
-
 </pre></div>
 
            </div>

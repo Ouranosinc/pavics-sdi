@@ -233,11 +233,11 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 </li>
 <li><strong>location</strong> (<em>string</em>) – Geographical coordinates (lon,lat) of the target location.</li>
 <li><strong>indices</strong> (<em>string</em>) – One or more climate indices to use for the comparison.</li>
-<li><strong>dist</strong> (<em>{'seuclidean'</em><em>, </em><em>'nearest_neighbor'</em><em>, </em><em>'zech_aslan'</em><em>, </em><em>'kolmogorov_smirnov'</em><em>, </em><em>'friedman_rafsky'</em><em>, </em><em>'kldiv'}</em><em>, </em><em>optional</em>) – Dissimilarity metric comparing distributions.</li>
-<li><strong>dateStartCandidate</strong> (<em>string</em><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for candidate data. Defaults to first entry.</li>
-<li><strong>dateEndCandidate</strong> (<em>string</em><em>, </em><em>optional</em>) – End of period (YYYY-MM_DD) for candidate data. Defaults to last entry.</li>
-<li><strong>dateStartTarget</strong> (<em>string</em><em>, </em><em>optional</em>) – Beginning of period (YYYY-MM-DD) for target data. Defaults to first entry.</li>
-<li><strong>dateEndTarget</strong> (<em>string</em><em>, </em><em>optional</em>) – End of period (YYYY-MM_DD) for target data. Defaults to last entry.</li>
+<li><strong>dist</strong> (<em>{'seuclidean'</em><em>, </em><em>'nearest_neighbor'</em><em>, </em><em>'zech_aslan'</em><em>, </em><em>'kolmogorov_smirnov'</em><em>, </em><em>'friedman_rafsky'</em><em>, </em><em>'kldiv'}</em>) – Dissimilarity metric comparing distributions.</li>
+<li><strong>dateStartCandidate</strong> (<em>string</em>) – Beginning of period (YYYY-MM-DD) for candidate data. Defaults to first entry.</li>
+<li><strong>dateEndCandidate</strong> (<em>string</em>) – End of period (YYYY-MM_DD) for candidate data. Defaults to last entry.</li>
+<li><strong>dateStartTarget</strong> (<em>string</em>) – Beginning of period (YYYY-MM-DD) for target data. Defaults to first entry.</li>
+<li><strong>dateEndTarget</strong> (<em>string</em>) – End of period (YYYY-MM_DD) for target data. Defaults to last entry.</li>
 </ul>
 </td>
 </tr>
@@ -268,8 +268,8 @@ temperature values in Montreal over the period 1970-1990.</span></p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>Dissimilarity between target at selected location and candidate distributions over the entire grid. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em><em>, </em><em>optional</em>) – Figure format</li>
-<li><strong>title</strong> (<em>string</em><em>, </em><em>optional</em>) – Figure title.</li>
+<li><strong>fmt</strong> (<em>{'png'</em><em>, </em><em>'pdf'</em><em>, </em><em>'svg'</em><em>, </em><em>'ps'</em><em>, </em><em>'eps'}</em>) – Figure format</li>
+<li><strong>title</strong> (<em>string</em>) – Figure title.</li>
 </ul>
 </td>
 </tr>

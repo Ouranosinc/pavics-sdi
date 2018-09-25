@@ -145,14 +145,13 @@
             
   <h1>Source code for flyingpigeon.processes.wps_ncmerge</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
-
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span><span class="p">,</span> <span class="n">Format</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
 
 <span class="kn">import</span> <span class="nn">ocgis</span>
-<span class="kn">from</span> <span class="nn">ocgis</span> <span class="k">import</span> <span class="n">RequestDataset</span><span class="p">,</span> <span class="n">OcgOperations</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archiveextract</span><span class="p">,</span> <span class="n">rename_complexinputs</span>
+<span class="kn">from</span> <span class="nn">ocgis</span> <span class="k">import</span> <span class="n">RequestDataset</span><span class="p">,</span> <span class="n">OcgOperations</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span><span class="p">,</span> <span class="n">Format</span>
 
 
 <div class="viewcode-block" id="NCMergeProcess"><a class="viewcode-back" href="../../../processes/data_handling.html#flyingpigeon.processes.NCMergeProcess">[docs]</a><span class="k">class</span> <span class="nc">NCMergeProcess</span><span class="p">(</span><span class="n">Process</span><span class="p">):</span>

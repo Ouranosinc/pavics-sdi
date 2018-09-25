@@ -149,15 +149,15 @@
 <span class="sd">Author: Nils Hempelmann (info@nilshempelmann.de)</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span>
 <span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
 <span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
@@ -173,13 +173,13 @@
                          <span class="p">),</span>
         <span class="p">]</span>
 
-            <span class="c1"># self.BBox = self.addBBoxInput(</span>
-            <span class="c1"># #         identifier=&quot;BBox&quot;,</span>
-            <span class="c1"># #         title=&quot;Bounding Box&quot;,</span>
-            <span class="c1"># #         abstract=&quot;coordinates to define the region for occurence data fetch&quot;,</span>
-            <span class="c1"># #         minOccurs=1,</span>
-            <span class="c1"># #         maxOccurs=1,</span>
-            <span class="c1"># #         crss=[&#39;EPSG:4326&#39;]</span>
+        <span class="c1"># self.BBox = self.addBBoxInput(</span>
+        <span class="c1"># #         identifier=&quot;BBox&quot;,</span>
+        <span class="c1"># #         title=&quot;Bounding Box&quot;,</span>
+        <span class="c1"># #         abstract=&quot;coordinates to define the region for occurence data fetch&quot;,</span>
+        <span class="c1"># #         minOccurs=1,</span>
+        <span class="c1"># #         maxOccurs=1,</span>
+        <span class="c1"># #         crss=[&#39;EPSG:4326&#39;]</span>
 
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_map&#39;</span><span class="p">,</span> <span class="s1">&#39;Graphic of species occurences&#39;</span><span class="p">,</span>

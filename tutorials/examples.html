@@ -160,6 +160,25 @@
 <div class="section" id="climate-indices">
 <h1>Climate indices<a class="headerlink" href="#climate-indices" title="Permalink to this headline">¶</a></h1>
 <p>Compute climate indices from a simulated time series:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;resource&#39;</span><span class="p">:),</span> <span class="p">]</span>
+<span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;icclim_TXx&#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;output_netcdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="spatial-subsetting">
+<h1>Spatial subsetting<a class="headerlink" href="#spatial-subsetting" title="Permalink to this headline">¶</a></h1>
+<p>Extract a portion of a netCDF file over a country:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;region&#39;</span><span class="p">:</span> <span class="s1">&#39;CAN&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+<span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;subset_countries&#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;ncout&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Average over a polygon served through WFS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;resource&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;typename&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;featureids&#39;</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">)]</span>
+<span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;averager_WFS&#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that in this last case, the process returns a JSON file storing the URL of the output file, rather than returning
+the file itself. This is an alternative pattern we are experimenting with to facilitate the handling of multifile outputs.</p>
 </div>
 
 

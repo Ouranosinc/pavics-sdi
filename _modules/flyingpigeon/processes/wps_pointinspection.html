@@ -144,22 +144,21 @@
            <div itemprop="articleBody">
             
   <h1>Source code for flyingpigeon.processes.wps_pointinspection</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>
-<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
-<span class="kn">from</span> <span class="nn">flyingpigeon.ocgis_module</span> <span class="k">import</span> <span class="n">call</span>
-<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">sort_by_filename</span><span class="p">,</span> <span class="n">get_values</span><span class="p">,</span> <span class="n">get_time</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">savetxt</span><span class="p">,</span> <span class="n">column_stack</span>
-<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="k">import</span> <span class="n">Point</span>
-
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
-<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span><span class="p">,</span> <span class="n">FORMATS</span>
-<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.ocgis_module</span> <span class="k">import</span> <span class="n">call</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">archive</span><span class="p">,</span> <span class="n">archiveextract</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">rename_complexinputs</span>
+<span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">sort_by_filename</span><span class="p">,</span> <span class="n">get_values</span><span class="p">,</span> <span class="n">get_time</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="k">import</span> <span class="n">savetxt</span><span class="p">,</span> <span class="n">column_stack</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">ComplexInput</span><span class="p">,</span> <span class="n">ComplexOutput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Format</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">LiteralInput</span>
+<span class="kn">from</span> <span class="nn">pywps</span> <span class="k">import</span> <span class="n">Process</span>
+<span class="kn">from</span> <span class="nn">pywps.app.Common</span> <span class="k">import</span> <span class="n">Metadata</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="k">import</span> <span class="n">Point</span>
 
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;PYWPS&quot;</span><span class="p">)</span>
 
 
@@ -167,6 +166,7 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    TODO: optionally provide point list as file (csv, geojson) and WFS service</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexInput</span><span class="p">(</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span>
@@ -181,13 +181,14 @@
                          <span class="p">]),</span>
 
             <span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;coords&quot;</span><span class="p">,</span> <span class="s2">&quot;Coordinates&quot;</span><span class="p">,</span>
-                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;A comma-seperated tuple of WGS85 lon,lat decimal coordinates (e.g. 2.356138, 48.846450)&quot;</span><span class="p">,</span>  <span class="c1"># noqa</span>
+                         <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;A comma-seperated tuple of WGS85 lon,lat decimal coordinates (e.g. 2.356138, 48.846450)&quot;</span><span class="p">,</span>
+                         <span class="c1"># noqa</span>
                          <span class="n">default</span><span class="o">=</span><span class="s2">&quot;2.356138, 48.846450&quot;</span><span class="p">,</span>
                          <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
                          <span class="n">min_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                          <span class="n">max_occurs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                          <span class="p">),</span>
-                         <span class="p">]</span>
+        <span class="p">]</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;output_log&#39;</span><span class="p">,</span> <span class="s1">&#39;Logging information&#39;</span><span class="p">,</span>
                           <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Collected logs during process run.&quot;</span><span class="p">,</span>
@@ -196,7 +197,7 @@
                           <span class="p">),</span>
 
             <span class="n">ComplexOutput</span><span class="p">(</span><span class="s1">&#39;tarout&#39;</span><span class="p">,</span> <span class="s1">&#39;Subsets&#39;</span><span class="p">,</span>
-                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Tar archive containing one CSV file per input file, each one storing time series column-wise for all point coordinates.&quot;</span><span class="p">,</span>
+                          <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;Tar archive containing the netCDF files&quot;</span><span class="p">,</span>
                           <span class="n">as_reference</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">supported_formats</span><span class="o">=</span><span class="p">[</span><span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/x-tar&#39;</span><span class="p">)]</span>
                           <span class="p">),</span>
@@ -266,7 +267,7 @@
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">LOGGER</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;failed for </span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
 
-    <span class="c1"># set the outputs</span>
+        <span class="c1"># set the outputs</span>
         <span class="n">response</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s1">&#39;*** creating output tar archive ****&#39;</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
         <span class="n">tarout_file</span> <span class="o">=</span> <span class="n">archive</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span>
         <span class="n">response</span><span class="o">.</span><span class="n">outputs</span><span class="p">[</span><span class="s1">&#39;tarout&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">tarout_file</span>
