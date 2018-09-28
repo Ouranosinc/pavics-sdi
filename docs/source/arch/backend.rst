@@ -34,12 +34,22 @@ Other Projects
 PAVICS-SDI relies upon several other projects specialized for spatial and climate data management and presentation.
 
 THREDDS 
-    A server system for providing scientific data and metadata access through various online protocols.
-    `THREDDS Data Server Official Website <https://www.unidata.ucar.edu/software/thredds/current/tds/>`_ and `GitHub Repository <https://github.com/Unidata/thredds>`_
+    The *Thematic Real-time Environmental Distributed Data Services* (`THREDDS`_) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this `GitHub repository <https://github.com/Unidata/thredds>`_.
+
+ncWMS
+    `ncWMS`_ is an implementation of the OGC's Web Mapping Service (WMS) specifically built for multidimensional gridded data such as the netCDF format. The PAVICS platform uses it to convert gridded netCDF data layers from a file or an OPeNDAP link to an image that can be accessed through WMS ``GetMap`` requests. See this `reference paper <https://doi.org/10.1016/j.envsoft.2013.04.002>`_ for more information.
 
 GeoServer
-    A server system built for viewing, editing, and presenting geospatial data.
-    `GeoServer Official Website <http://geoserver.org/about/>`_ and `Documentation <http://docs.geoserver.org/>`_
+    `GeoServer`_ is an OGC compliant server system built for viewing, editing, and presenting geospatial data. PAVICS uses GeoServer as its database for vectorial geospatial information, such as administrative regions and watersheds. See the `GeoServer documentation <http://docs.geoserver.org/>`_ for more information on its capabilities.
+
+
+.. _`THREDDS`: https://www.unidata.ucar.edu/software/thredds/current/tds/
+
+.. _`ncWMS`:  https://reading-escience-centre.github.io/ncwms/
+
+.. _`GeoServer`: http://geoserver.org/about/
+
+
 
 In-House Projects
 -----------------
