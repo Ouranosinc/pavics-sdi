@@ -95,7 +95,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Frontend</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Frontend</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gridded-data-rendering">Gridded data rendering</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Pavics-DataCatalog</a></li>
 </ul>
@@ -157,10 +160,18 @@
 <h1>Frontend<a class="headerlink" href="#frontend" title="Permalink to this headline">¶</a></h1>
 <img alt="An example of the PAVICS-frontend in action" src="../_images/PAVICS_data_overlay.png" />
 <p>The PAVICS-frontend (<a class="reference external" href="https://github.com/Ouranosinc/PAVICS-frontend">GitHub Repository</a>) is the custom graphical interface for users to leverage the services offered by the platform. It provides a map interface to display both gridded climate data and geospatial layers, launch services and workflows and monitor the progress and status of user’s jobs. It also provides limited capacity to dynamically interact with datasets. Users can create projects that store datasets, workflows and outputs for future use.</p>
-<p>The frontend is written with the React.js library and interacts with the backend through API calls to REST and WPS services. Take a look at the frontend tutorial for information on the frontend’s usage.</p>
+<p>The frontend is written with the React.js library and interacts with the backend through API calls to REST and WPS services.</p>
+<div class="section" id="gridded-data-rendering">
+<h2>Gridded data rendering<a class="headerlink" href="#gridded-data-rendering" title="Permalink to this headline">¶</a></h2>
+<p>A core component of the frontend is the gridded data renderer. Gridded netCDF datasets selected for visualization are displayed on the base map using <a href="#id1"><span class="problematic" id="id2">`ncWMS`_</span></a>, a server capable of converting multidimensional netCDF data into images. The frontend sends <code class="docutils literal notranslate"><span class="pre">GetMap</span></code> requests to the ncWMS server according to the display’s bounding box and zoom level. These requests are handled by OpenLayer and its plugins.</p>
+<p>The conversion from the raw netCDF data to an image requires a mapping between data values and a colorbar. The color scale can be selected from a menu and its min and max values modified by the user. The color scale information is sent to ncWMS to render the data into an image.</p>
+<p>The colorbar palette is displayed as an image, provided as the response to a <code class="docutils literal notranslate"><span class="pre">GetLegendGraphic</span></code> request to ncWMS.</p>
+<p>For high resolution data, rendering suffers from lag that make browsing netCDF files a frustrating experience. We are investigating options to speed things up.</p>
+<p>Take a look at the frontend tutorial for information on the frontend’s usage.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Describe the relationship between the frontend and Phoenix.</p>
+</div>
 </div>
 </div>
 

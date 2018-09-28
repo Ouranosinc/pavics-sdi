@@ -187,11 +187,11 @@
 <p>PAVICS-SDI relies upon several other projects specialized for spatial and climate data management and presentation.</p>
 <dl class="docutils">
 <dt>THREDDS</dt>
-<dd>A server system for providing scientific data and metadata access through various online protocols.
-<a class="reference external" href="https://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS Data Server Official Website</a> and <a class="reference external" href="https://github.com/Unidata/thredds">GitHub Repository</a></dd>
+<dd>The <em>Thematic Real-time Environmental Distributed Data Services</em> (<a class="reference external" href="https://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a>) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this <a class="reference external" href="https://github.com/Unidata/thredds">GitHub repository</a>.</dd>
+<dt>ncWMS</dt>
+<dd><a class="reference external" href="https://reading-escience-centre.github.io/ncwms/">ncWMS</a> is an implementation of the OGC’s Web Mapping Service (WMS) specifically built for multidimensional gridded data such as the netCDF format. The PAVICS platform uses it to convert gridded netCDF data layers from a file or an OPeNDAP link to an image that can be accessed through WMS <code class="docutils literal notranslate"><span class="pre">GetMap</span></code> requests. See this <a class="reference external" href="https://doi.org/10.1016/j.envsoft.2013.04.002">reference paper</a> for more information.</dd>
 <dt>GeoServer</dt>
-<dd>A server system built for viewing, editing, and presenting geospatial data.
-<a class="reference external" href="http://geoserver.org/about/">GeoServer Official Website</a> and <a class="reference external" href="http://docs.geoserver.org/">Documentation</a></dd>
+<dd><a class="reference external" href="http://geoserver.org/about/">GeoServer</a> is an OGC compliant server system built for viewing, editing, and presenting geospatial data. PAVICS uses GeoServer as its database for vectorial geospatial information, such as administrative regions and watersheds. See the <a class="reference external" href="http://docs.geoserver.org/">GeoServer documentation</a> for more information on its capabilities.</dd>
 </dl>
 </div>
 <div class="section" id="in-house-projects">
