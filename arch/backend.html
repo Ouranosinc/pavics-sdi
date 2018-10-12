@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Backend &mdash; PAVICS 0.1 documentation</title>
+  <title>Backend - PAVICS Node &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -96,10 +96,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Backend</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#birdhouse">Birdhouse</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#other-projects">Other Projects</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#in-house-projects">In-House Projects</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Backend - PAVICS Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-storage">Data storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indexation">Indexation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#climate-analytic-processes-with-birdhouse">Climate Analytic Processes with Birdhouse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#authentication-and-authorization">Authentication and authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gridded-data-visualization">Gridded data visualization</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Pavics-DataCatalog</a></li>
@@ -144,7 +146,7 @@
       
           <li><a href="index.html">System Architecture</a> &raquo;</li>
       
-    <li>Backend</li>
+    <li>Backend - PAVICS Node</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -158,57 +160,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="backend">
-<h1>Backend<a class="headerlink" href="#backend" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="backend-pavics-node">
+<h1>Backend - PAVICS Node<a class="headerlink" href="#backend-pavics-node" title="Permalink to this headline">¶</a></h1>
 <img alt="../_images/PAVICS_architecture.png" src="../_images/PAVICS_architecture.png" />
-<p>The Backend of PAVICS-SDI is built entirely with Free and Open Source Software. All of the backend projects (source code and documentation) are open to be inspected, built upon, or contributed to.</p>
-<div class="section" id="birdhouse">
-<h2>Birdhouse<a class="headerlink" href="#birdhouse" title="Permalink to this headline">¶</a></h2>
-<p>PAVICS is largely built upon the many components developed as part of the <a class="reference external" href="https://github.com/bird-house/birdhouse-docs/blob/master/slides/birdhouse-architecture/birdhouse-architecture.pdf">Birdhouse Project</a>.</p>
-<p>The goal of Birdhouse is to develop an easy-to-use Web Processing Service to support remote analyses of climate data using python. The library components of Birdhouse are called ‘Birds’ while each ‘bird’ is built to perform a specific set of functions within the Birdhouse ecosystem. PAVICS components that are borrowed from within the official Birdhouse structure are the following:</p>
-<dl class="docutils">
-<dt>Birdhouse/Malleefowl</dt>
-<dd>Access to ESGF data nodes and THREDDS catalogs, workflow engine.
-<a class="reference external" href="https://malleefowl.readthedocs.io/en/latest/">Malleefowl Official Documentation</a></dd>
-<dt>Birdhouse/Flyingpigeon</dt>
-<dd>Climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc.
-<a class="reference external" href="https://flyingpigeon.readthedocs.io/en/latest/">Flyingpigeon Official Documentation</a></dd>
-<dt>Birdhouse/Hummingbird</dt>
-<dd>Climate Data Operators (CDO) and compliance-checker for netCDF files.
-<a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">Hummingbird Official Documentation</a></dd>
-</dl>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Are there any other birds worth mentioning here?</p>
-</div>
-</div>
-<div class="section" id="other-projects">
-<h2>Other Projects<a class="headerlink" href="#other-projects" title="Permalink to this headline">¶</a></h2>
-<p>PAVICS-SDI relies upon several other projects specialized for spatial and climate data management and presentation.</p>
+<p>PAVICS nodes are data, compute and index endpoints accessed through the PAVICS platform or external clients. The Node service is the backend that provides data storage, metadata harvesting, indexation and discovery of local and federated data, user authentication and authorization, server registration and management. The <em>node service</em> is therefore composed of several services that are briefly described below, accompanied by links to the full documentation of each individual building block.</p>
+<p>The backend of PAVICS-SDI is built entirely with Free and Open Source Software. All of the backend projects (source code and documentation) are open to be inspected, built upon, or contributed to.</p>
+<div class="section" id="data-storage">
+<h2>Data storage<a class="headerlink" href="#data-storage" title="Permalink to this headline">¶</a></h2>
+<p>Data is stored on two different servers: THREDDS for gridded netCDF data, and GeoServer for GIS features (region polygons, river networks).</p>
 <dl class="docutils">
 <dt>THREDDS</dt>
-<dd>The <em>Thematic Real-time Environmental Distributed Data Services</em> (<a class="reference external" href="https://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a>) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this <a class="reference external" href="https://github.com/Unidata/thredds">GitHub repository</a>.</dd>
+<dd>The <em>Thematic Real-time Environmental Distributed Data Services</em> (<a class="reference external" href="https://www.unidata.ucar.edu/software/thredds/current/tds/">THREDDS</a>) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this <a class="reference external" href="https://github.com/Unidata/thredds">GitHub repository</a>. THREDDS support direct file access as well as the OPeNDAP protocol, which allows the netCDF library to access segments of the hosted data without downloading the entire file. Links to files archived on THREDDS are thus used as inputs to WPS processes. File content cannot however be directly displayed by the frontend and require an intermediary (see ncWMS).</dd>
+<dt>GeoServer</dt>
+<dd><a class="reference external" href="http://geoserver.org/about/">GeoServer</a> is an OGC compliant server system built for viewing, editing, and presenting geospatial data. PAVICS uses GeoServer as its database for vector geospatial information, such as administrative regions, watersheds and river networks. The frontend sends requests for layers that can be overlayed on the map canvas. See the <a class="reference external" href="http://docs.geoserver.org/">GeoServer documentation</a> for more information on its capabilities.</dd>
+</dl>
+</div>
+<div class="section" id="indexation">
+<h2>Indexation<a class="headerlink" href="#indexation" title="Permalink to this headline">¶</a></h2>
+<p>Although information about file content is stored in the netCDF metadata fields, accessing and reading those fields one by one takes a considerable amount of time. The strategy used here mimic that used by ESGF, and consists in running a crawler over all netCDF files hosted on THREDDS, extracting relevant meta data and storing them in a <a class="reference external" href="http://lucene.apache.org/solr/">SOLR</a> database. Search queries are thus directed at SOLR, which returns a list of links matching the search terms. The crawler is part of the <a class="reference external" href="https://github.com/Ouranosinc/PAVICS-DataCatalog">PAVICS-DataCatalog</a> library.</p>
+<dl class="docutils">
+<dt>SOLR</dt>
+<dd><a class="reference external" href="http://lucene.apache.org/solr/">SOLR</a> is a search platform part of the Apache Lucene project. It is used in this project for its faceted search capability. Search queries are relayed from the UI or WPS processes to the SOLR database, which returns a json file with the links to matching files.</dd>
+<dt>PAVICS-DataCatalog</dt>
+<dd><a class="reference external" href="https://github.com/Ouranosinc/PAVICS-DataCatalog">PAVICS-DataCatalog</a> is a database system for storing and serving information about available climate data.</dd>
+</dl>
+</div>
+<div class="section" id="climate-analytic-processes-with-birdhouse">
+<h2>Climate Analytic Processes with Birdhouse<a class="headerlink" href="#climate-analytic-processes-with-birdhouse" title="Permalink to this headline">¶</a></h2>
+<p>The climate computing aspect of PAVICS is largely built upon the many components developed as part of the <a class="reference external" href="https://github.com/bird-house/birdhouse-docs/blob/master/slides/birdhouse-architecture/birdhouse-architecture.pdf">Birdhouse Project</a>. The goal of Birdhouse is to develop a collection of easy-to-use Web Processing Service (WPS) servers providing climate analytic algorithms. Birdhouse servers are called ‘birds’, each one offering a set of individual processes:</p>
+<dl class="docutils">
+<dt>Birdhouse/Malleefowl</dt>
+<dd>Provides processes to access ESGF data nodes and THREDDS catalogs, as well as a workflow engine to string different processes together.
+<a class="reference external" href="https://malleefowl.readthedocs.io/en/latest/">Malleefowl Official Documentation</a></dd>
+<dt>Birdhouse/Flyingpigeon</dt>
+<dd>Provides a wide array of climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc. FlyingPigeon is the sand box for emerging services, which eventually will make their way to more stable and specialized birds.
+<a class="reference external" href="https://flyingpigeon.readthedocs.io/en/latest/">Flyingpigeon Official Documentation</a></dd>
+<dt>Birdhouse/Hummingbird</dt>
+<dd>Provides access to climate Data Operators (<a class="reference external" href="https://code.mpimet.mpg.de/projects/cdo/">CDO</a>) functions and compliance-checker for netCDF files.
+<a class="reference external" href="https://birdhouse-hummingbird.readthedocs.io/en/latest/">Hummingbird Official Documentation</a></dd>
+</dl>
+<p>Virtually all individual processes ingest and return netCDF files (or OPeNDAP links), such that one process’ output can be used as the input of another process. This lets scientist create complex workflows. By insisting that process inputs and outputs comply with the CF-Convention, we make sure that data is accompanied by clear and unambiguous metadata.</p>
+</div>
+<div class="section" id="authentication-and-authorization">
+<h2>Authentication and authorization<a class="headerlink" href="#authentication-and-authorization" title="Permalink to this headline">¶</a></h2>
+<p>Access to files and services is controlled by a security proxy called <a class="reference external" href="https://twitcher.readthedocs.io/en/latest/">Twitcher</a>, also part of Birdhouse. Upon login, the proxy issues access tokens that allow users to access services behind the proxy. CRIM developed a Twitcher extension called <a class="reference external" href="https://github.com/Ouranosinc/Magpie">Magpie</a> that provides a higher level of granularity for service access.</p>
+<dl class="docutils">
+<dt>Twitcher</dt>
+<dd>Proxy service issuing access tokens necessary to run WPS processes or any other OWS service.</dd>
+<dt>Magpie</dt>
+<dd>Manages user/group/resource permissions for services behind Twitcher.</dd>
+</dl>
+</div>
+<div class="section" id="gridded-data-visualization">
+<h2>Gridded data visualization<a class="headerlink" href="#gridded-data-visualization" title="Permalink to this headline">¶</a></h2>
+<p>The UI can display 2D netCDF fields by making a request to a <a class="reference external" href="https://reading-escience-centre.github.io/ncwms/">ncWMS</a> server. The UI will specify which time step of which file to map, and <a class="reference external" href="https://reading-escience-centre.github.io/ncwms/">ncWMS</a> will fetch the data from the THREDDS server, then convert the array into an image embedded into a WMS response. This conversion requires a mapping of numerical value to a color scale: a colormap and min/max values. The colormap is defined by the user through the UI,   while default min/max values are stored in our <a class="reference external" href="http://lucene.apache.org/solr/">SOLR</a> database by the metadata crawler. Users may also specify min/max values directly within the UI.</p>
+<dl class="docutils">
 <dt>ncWMS</dt>
 <dd><a class="reference external" href="https://reading-escience-centre.github.io/ncwms/">ncWMS</a> is an implementation of the OGC’s Web Mapping Service (WMS) specifically built for multidimensional gridded data such as the netCDF format. The PAVICS platform uses it to convert gridded netCDF data layers from a file or an OPeNDAP link to an image that can be accessed through WMS <code class="docutils literal notranslate"><span class="pre">GetMap</span></code> requests. See this <a class="reference external" href="https://doi.org/10.1016/j.envsoft.2013.04.002">reference paper</a> for more information.</dd>
-<dt>GeoServer</dt>
-<dd><a class="reference external" href="http://geoserver.org/about/">GeoServer</a> is an OGC compliant server system built for viewing, editing, and presenting geospatial data. PAVICS uses GeoServer as its database for vectorial geospatial information, such as administrative regions and watersheds. See the <a class="reference external" href="http://docs.geoserver.org/">GeoServer documentation</a> for more information on its capabilities.</dd>
 </dl>
-</div>
-<div class="section" id="in-house-projects">
-<h2>In-House Projects<a class="headerlink" href="#in-house-projects" title="Permalink to this headline">¶</a></h2>
-<p>CRIM and Ouranos have also been actively involved in the planning and development of new and existing ‘birds’ to better perform very specific functions:</p>
-<dl class="docutils">
-<dt>PAVICS-DataCatalog</dt>
-<dd>A database system for storing and serving information about available climate data.
-<a class="reference external" href="https://github.com/Ouranosinc/PAVICS-DataCatalog">PAVICS-DataCatalog GitHub Repository</a></dd>
-<dt>Magpie</dt>
-<dd>Authentication and authorization services using RestAPI.
-<a class="reference external" href="https://github.com/Ouranosinc/Magpie">Magpie GitHub Repository</a></dd>
-</dl>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Ask CRIM to review architecture backend</p>
-</div>
 </div>
 </div>
 
