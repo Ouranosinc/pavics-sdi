@@ -38,7 +38,7 @@ For an example of a climate analysis process using the PAVICS-frontend, see this
 
 
 Dashboard
---------
+---------
 The right hand side dashboard contains four different sections: dataset search, project workspace, process and workflow launcher and process monitoring.
 
 Dataset Search
