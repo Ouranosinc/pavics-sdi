@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Using the graphical interface &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Using the graphical interface</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/gui/frontend.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="using-the-graphical-interface">
+<h1>Using the graphical interface<a class="headerlink" href="#using-the-graphical-interface" title="Permalink to this headline">¶</a></h1>
+<p>The frontend is composed of a base map, a tool menu and a dashboard.</p>
+<p>The basemap works like similar online maps, with the mouse wheel allowing zoom control, while click and crag lets you move laterally on the map. At the moment, only the standard rectangular projection is supported. There are three different options for the basemap: a satellite view, and an administrative view with and without labels. Let us know which other projection and basemap would be useful for your needs.</p>
+<p>At the bottom of the screen is a colorbar with min and max values. Use these to set the limits on the colorbar for displayed netCDF datasets.</p>
+<div class="section" id="tool-menu">
+<h2>Tool menu<a class="headerlink" href="#tool-menu" title="Permalink to this headline">¶</a></h2>
+<p>The tool menu is located at the bottom left corner and looks like a pie. It opens five panels that provide methods for interacting with the map and overlayed datsets available within the PAVICS-SDI:</p>
+<dl class="docutils">
+<dt>Clicked Point Information</dt>
+<dd>When a netCDF dataset is displayed on the map, clicking on a grid cell will display the information stored at that point.</dd>
+<dt>A Time Series Chart</dt>
+<dd>When a netCDF dataset is displayed on the map, clicking on a grid cell will load the time series at that point and display it on a graphic.</dd>
+<dt>A Data Layer Visibility Switcher</dt>
+<dd>This panel lets user select which basemap, netCDF dataset and geospatial layer is displayed on the map.</dd>
+<dt>A Temporal Slider</dt>
+<dd>When a netCDF dataset is displayed on the map, the time slider controls which time slice is displayed. You may pick a date then go forward or backward in time by specific increments.</dd>
+<dt>Other Map Controls</dt>
+<dd>TODO</dd>
+</dl>
+<p>Each panel element can be used to view/inspect different types and display additional information of the active data.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For an example of a climate analysis process using the PAVICS-frontend, see this short <code class="xref download docutils literal notranslate"><span class="pre">hands-on</span> <span class="pre">video</span></code>.</p>
+<div class="section" id="dashboard">
+<h3>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h3>
+<p>The right hand side dashboard contains four different sections: dataset search, project workspace, process and workflow launcher and process monitoring.</p>
+<dl class="docutils">
+<dt>Dataset Search</dt>
+<dd><p class="first">This interface is used to search for netCDF files on the PAVICS-SDI platform. It initially displays typical search categories that can be refined by loading additional search facets. Click on values for the different categories to restrict the search. Search results appear in the bottom section of the dashboard. Select the datasets of interest and add them to your workspace to visualize them or feed them into an analytical process.</p>
+<p class="last">Search queries or search results can be saved for later use. TODO.</p>
+</dd>
+<dt>Project Workspace</dt>
+<dd>The workspace area lets you create projects in which an ensemble of files, search queries, workflows and process outputs can be stored. At the moment it is not possible for users to upload files or geospatial layers to the workspace. Let us know if this is a feature you’d like to have.</dd>
+<dt>Process and Workflows</dt>
+<dd><p class="first">This is the interface where computations are launched. You may launch a workflow (see <a href="#id1"><span class="problematic" id="id2">`workflows`_</span></a>) or a process (see <a href="#id3"><span class="problematic" id="id4">`processes`_</span></a>). The workflow dashboard let’s you select from existing workflows that have been defined within the project or edit a new workflow from a template. Saving the workflow will trigger a validator that will warn you of syntax errors. Once the workflow has been validated, you may launch it already if there are no user defined inputs to be specified. Otherwise a form will appear to let you enter input values before launching the workflow. A notification will let you know if the workflow launched sucessfully or not.</p>
+<p class="last">The process interface first asks you to identify the process provider. We realize that you probably have no idea which services are offered by which provider, and for now, we suggest you search for relevant processes in this documentation, note the package they are coming from and use this as the provider. We’ll eventually <em>flatten</em> the process list and allow you to search from the list of processes.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="data-and-process-manager">
+<h2>Data and Process Manager<a class="headerlink" href="#data-and-process-manager" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

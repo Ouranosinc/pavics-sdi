@@ -38,7 +38,7 @@
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="System Architecture" href="index.html"/>
         <link rel="next" title="Processes" href="../processes/index.html"/>
-        <link rel="prev" title="Backend" href="backend.html"/> 
+        <link rel="prev" title="Backend - PAVICS Node" href="backend.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -96,7 +96,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">System Architecture</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="frontend.html">Frontend</a></li>
-<li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backend.html">Backend - PAVICS Node</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Pavics-DataCatalog</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pavics-catalogue-search">PAVICS Catalogue Search</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
@@ -158,7 +158,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pavics-datacatalog">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="pavics-datacatalog">
 <h1>Pavics-DataCatalog<a class="headerlink" href="#pavics-datacatalog" title="Permalink to this headline">¶</a></h1>
 <p>PAVICS-SDI bundles a number of cataloguing services that allow users to search for and add data to its backend catalog service.</p>
 <p>The main cataloguing component within the PAVICS-SDI architecture is <a class="reference external" href="https://www.github.com/ouranosinc/PAVICS-DataCatalog/">PAVICS-DataCatalog</a>, a service that identifies and enables querying of <a class="reference external" href="http://cfconventions.org/">CF-compliant</a> climate data organized within THREDDS Data Servers. PAVICS-DataCatalog is built with the <a class="reference external" href="https://lucene.apache.org/solr/">Apache Solr</a> search platform.</p>
@@ -193,7 +212,7 @@
         <a href="../processes/index.html" class="btn btn-neutral float-right" title="Processes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="backend.html" class="btn btn-neutral" title="Backend" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="backend.html" class="btn btn-neutral" title="Backend - PAVICS Node" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

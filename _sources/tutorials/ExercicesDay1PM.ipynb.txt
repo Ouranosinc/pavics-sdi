@@ -1,0 +1,175 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Exercises \n",
+    "\n",
+    "## Ideas\n",
+    "\n",
+    "1. Use PAVICS WPS to to take a yearly average of a netcdf file\n",
+    "    * Use the Hummingbird WPS suite : hint use the 'cdo_operation' process to run 'yearmean' \n",
+    "    * Use this OpenDap link to a CanESM monthly tas .nc file : 'http://boreas.ouranos.ca:8083/thredds/dodsC/birdhouse/CCCMA/CanESM2/historical/mon/atmos/r1i1p1/tas/tas_Amon_CanESM2_historical_r1i1p1_185001-200512.nc'\n",
+    "    * PAVICS wps url : 'https://boreas.ouranos.ca/twitcher/ows/proxy/hummingbord/wps'\n",
+    "    * the NCDUMP example can help structure your code!\n",
+    "    \n",
+    "    \n",
+    "2. Access point information from a layer (lat, lon of your choice for the layer of your choice). There are two ways to do this, one is to use a Web Coverage Service to access the gridded data, the other is to use the GetFeatureInfo operation of Web Mapping Service (see http://cite.opengeospatial.org/pub/cite/files/edu/wms/text/operations.html#getfeatureinfo). The challenge with GeoMet's WCS services is that it tends to be fragile (not all layers seem to work all the time). For WMS, the service appears robust, but the challenge is rather to map the geographic coordinates of the point of interest (lat, lon) into native geodesic coordinates (x,y). \n",
+    "\n",
+    "    * Possible datasources:\n",
+    "        * ECCC GeoMet WCS : 'http://geo.weather.gc.ca/geomet/?lang=en&service=WCS'\n",
+    "        * ECCC GeoMet WMS : 'http://geo.weather.gc.ca/geomet/?lang=en&service=WMS'\n",
+    "        \n",
+    "       \n",
+    " "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## WPS Exercise : solution\n",
+    "Run PAVICS 'getpoint' wps to extract data from a single grid cell"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 160,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "from owslib.wps import WebProcessingService\n",
+    "import requests\n",
+    "from lxml import etree\n",
+    "from netCDF4 import Dataset\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "def parseStatus(execute):\n",
+    "    o = requests.get(execute.statusLocation)\n",
+    "    t = etree.fromstring(o.content)\n",
+    "    ref = t.getchildren()[-1].getchildren()[-1].getchildren()[-1].get('{http://www.w3.org/1999/xlink}href')\n",
+    "    \n",
+    "    return ref"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 161,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "url = 'https://boreas.ouranos.ca/twitcher/ows/proxy/hummingbird/wps'\n",
+    "wps = WebProcessingService(url=url)\n",
+    "nc_url = 'http://boreas.ouranos.ca:8083/thredds/dodsC/birdhouse/CCCMA/CanESM2/historical/mon/atmos/r1i1p1/tas/tas_Amon_CanESM2_historical_r1i1p1_185001-200512.nc'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Steps \n",
+    "\n",
+    "1. Build the inputs\n",
+    "2. Execute the process\n",
+    "3. Parse the response\n",
+    "4. Copy the result to a file\n",
+    "5. Open the file using netCDF4\n",
+    "6. Create plots"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## WCS Example"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 170,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "from owslib.wcs import WebCoverageService\n",
+    "geomet_wcs_url = 'http://geo.weather.gc.ca/geomet/?lang=en&service=WCS'\n",
+    "pavics_wcs_url = 'http://boreas.ouranos.ca:8087/geoserver/wcs'\n",
+    "layer = 'RDPA.24F_PR' # You can use another, but this one is available in both WMS and WCS. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Steps\n",
+    "\n",
+    "1. Create WebCoverageService instance. (version 1.0.0)\n",
+    "2. Get coverage (you need to set some optional parameters for it to work, crs, format, bbox, width, height)\n",
+    "3. Write the response to a file.\n",
+    "4. Extract the data"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## WMS Example\n",
+    "\n",
+    "Here the challenge is to make the correspondance between geographic coordinates and the layer's geodesic coordinates."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 185,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "from owslib.wms import WebMapService\n",
+    "geomet_wms_url ='http://geo.weather.gc.ca/geomet/?lang=en&service=WMS'\n",
+    "wms = WebMapService(geomet_wms_url, version='1.3.0')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Steps\n",
+    "\n",
+    "1. Create WebMapService instance (version 1.3.0)\n",
+    "2. Understand how GetFeatureInfo request work (we haven't figured it our ourselves...)\n",
+    "3. We probably need to create a geographic projection and find the corresponding x,y coordinate for the projection used in the data. \n",
+    "4. Make a request for GetFeatureInfo for data at the x,y location. \n",
+    "5. Parse the output"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3.6",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials" href="index.html"/>
-        <link rel="next" title="Developer Documentation" href="../dev/index.html"/>
-        <link rel="prev" title="Searching for data" href="searching.html"/> 
+        <link rel="next" title="owslib is a Python package for client programming with OGC web service interface standards." href="owslib_intro.html"/>
+        <link rel="prev" title="Tutorials" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,9 +92,9 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="data_preparation.html">Data preparation for inclusion in the platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="searching.html">Searching for data</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Working with Web Processing Service with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html">owslib is a Python package for client programming with OGC web service interface standards.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
@@ -152,7 +152,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="working-with-web-processing-service-with-python">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="working-with-web-processing-service-with-python">
 <h1>Working with Web Processing Service with Python<a class="headerlink" href="#working-with-web-processing-service-with-python" title="Permalink to this headline">¶</a></h1>
 <p>Basic WPS interaction using OWSLib is described in their documentation:
 <a class="reference external" href="https://geopython.github.io/OWSLib/#wps">https://geopython.github.io/OWSLib/#wps</a></p>
@@ -220,10 +239,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../dev/index.html" class="btn btn-neutral float-right" title="Developer Documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="owslib_intro.html" class="btn btn-neutral float-right" title="owslib is a Python package for client programming with OGC web service interface standards." accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="searching.html" class="btn btn-neutral" title="Searching for data" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

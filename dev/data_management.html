@@ -101,6 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="geoserver.html">GeoServer administration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data and service management</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#netcdf-file-management-in-thredds">NetCDF file management in THREDDS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-preparation-for-inclusion-in-the-platform">Data preparation for inclusion in the platform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#adding-files">Adding files</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#inspecting-metadata">Inspecting metadata</a></li>
 </ul>
@@ -170,13 +171,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-and-service-management">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="data-and-service-management">
 <h1>Data and service management<a class="headerlink" href="#data-and-service-management" title="Permalink to this headline">¶</a></h1>
 <p>The PAVICS project Data Server is built around a Thematic Real-time Environmental Distributed Data Service (THREDDS). This service allows for real-time collection and presentation of archived data and metadata using remote access protocols to bridge the gap between data providers and researchers.</p>
 <p>The THREDDS Project is an Open Source initiative maintained by UCAR’s Unidata Program. For more information on Unidata, see the <a class="reference external" href="https://www.unidata.ucar.edu/">Project Home Page</a>. To learn more about THREDDS, view the <a class="reference external" href="https://github.com/Unidata/thredds/">Project Description</a> on GitHub.</p>
 <p>To better understand the way THREDDS integrates within PAVICS, see the System Architecture <a class="reference internal" href="../arch/overview.html"><span class="doc">Overview</span></a>.</p>
 <div class="section" id="netcdf-file-management-in-thredds">
 <h2>NetCDF file management in THREDDS<a class="headerlink" href="#netcdf-file-management-in-thredds" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="data-preparation-for-inclusion-in-the-platform">
+<h3>Data preparation for inclusion in the platform<a class="headerlink" href="#data-preparation-for-inclusion-in-the-platform" title="Permalink to this headline">¶</a></h3>
+<p>NetCDF files integrated in the PAVICS platform must follow the CF Conventions
+document: <a class="reference external" href="http://cfconventions.org/">http://cfconventions.org/</a></p>
+<p>In order to benefit from the search engine capabilities, typical global
+attributes should be set. Currently the platorms searches the following
+fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">project</span>
+<span class="n">institute</span>
+<span class="n">model</span>
+<span class="n">experiment</span>
+<span class="n">frequency</span>
+</pre></div>
+</div>
+<p>For variables, the standard_name and units should follow the CF standard name
+table: <a class="reference external" href="http://cfconventions.org/standard-names.html">http://cfconventions.org/standard-names.html</a></p>
+<p>It is recommended to provide a dataset_id as a global attribute
+in each NetCDF file that is unique for each collection of files that constitute
+a timeseries.</p>
+<p>NetCDF files with multiple variables are presently not fully supported.</p>
+</div>
 <div class="section" id="adding-files">
 <h3>Adding files<a class="headerlink" href="#adding-files" title="Permalink to this headline">¶</a></h3>
 <p>NetCDF files can be manually added to the THREDDS Data Server by copying them to the directory used as a docker volume in <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>).</p>

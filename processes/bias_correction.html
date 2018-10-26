@@ -161,7 +161,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bias-correction">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="bias-correction">
 <h1>Bias correction<a class="headerlink" href="#bias-correction" title="Permalink to this headline">¶</a></h1>
 <p>Climate models are simplified representations of complex real world processes. An obvious example of this simplification
 is representation of the landscape as an array of flat grid cells of uniform altitude, temperature, humidity,
@@ -206,12 +225,10 @@ can do.</p>
 </tr>
 </tbody>
 </table>
+<p class="rubric">References</p>
+<p>McGinnis S., Nychka D., Mearns L.O. (2015) A New Distribution Mapping Technique for Climate Model Bias Correction. In: Lakshmanan V., Gilleland E., McGovern A., Tingley M. (eds) Machine Learning and Data Mining Approaches to Climate Science. Springer, Cham, DOI: <a class="reference external" href="https://doi.org/10.1007/978-3-319-17220-0_9">https://doi.org/10.1007/978-3-319-17220-0_9</a></p>
 </dd></dl>
 
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Add popular bias correction algorithms.</p>
-</div>
 </div>
 </div>
 

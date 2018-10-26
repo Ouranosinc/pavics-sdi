@@ -142,7 +142,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>Preliminary bit of code:</p>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<p>Preliminary bit of code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span>
 <span class="n">pavics</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon&#39;</span>
 <span class="n">headers</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">()</span>

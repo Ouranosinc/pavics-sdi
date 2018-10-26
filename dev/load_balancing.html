@@ -165,7 +165,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="load-balancing">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="load-balancing">
 <span id="id1"></span><h1>Load balancing<a class="headerlink" href="#load-balancing" title="Permalink to this headline">¶</a></h1>
 <p>Here we’ll cover the case where pavics-sdi is installed on more than one machine and you want to balance the load across these machines. This is done with <a class="reference external" href="https://nginx.org">NGINX</a> and requires modifications to <code class="file docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> and creating a configuration file for the <a class="reference external" href="https://nginx.org">NGINX</a> server.</p>
 <div class="section" id="modifying-the-docker-compose-yml">

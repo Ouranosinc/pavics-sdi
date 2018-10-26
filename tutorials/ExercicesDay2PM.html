@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modify a provided PAVICS WPS workflow for a similar but different purpose &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Modify a provided PAVICS WPS workflow for a similar but different purpose</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/ExercicesDay2PM.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Modify-a-provided-PAVICS-WPS-workflow-for-a-similar-but-different-purpose">
+<h1>Modify a provided PAVICS WPS workflow for a similar but different purpose<a class="headerlink" href="#Modify-a-provided-PAVICS-WPS-workflow-for-a-similar-but-different-purpose" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="One-potentially-powerful-tool-for-the-Climate-Scenarios-and-Services-team-is-to-provide-users-with-example-workflows-that-can-then-be-modified-to-different-needs">
+<h2>One potentially powerful tool for the Climate Scenarios and Services team is to provide users with example workflows that can then be modified to different needs<a class="headerlink" href="#One-potentially-powerful-tool-for-the-Climate-Scenarios-and-Services-team-is-to-provide-users-with-example-workflows-that-can-then-be-modified-to-different-needs" title="Permalink to this headline">¶</a></h2>
+<p>In this exercice we will ask you to modify the provided PAVICS workflow
+example below in order to : 1. Change the spatial subset to a region of
+your choice * Select a different set of 3 consecutive years (2008-2010)
+- 3 only to keep time and processing reasonable * Calculate a 2
+additional climate indices using CDO - monmax (previous) as well as
+monmin and monmean * Download the resulting .nc files locally and make
+a plot - the plot should contain : original daily data, with monthly
+min, mean, and max</p>
+<p>PAVICS WPS urls: * PAVICS catalogue :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/catalog/pywps">https://pavics.ouranos.ca/twitcher/ows/proxy/catalog/pywps</a> *
+Flyingpigeon suite :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps">https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps</a> *
+Hummingbird suite :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/hummingbird/wps">https://pavics.ouranos.ca/twitcher/ows/proxy/hummingbird/wps</a></p>
+<div class="section" id="Imports">
+<h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span><span class="p">,</span> <span class="n">ComplexDataInput</span>
+
+<span class="c1"># Work around function to handle reference</span>
+<span class="k">def</span> <span class="nf">parseStatus</span><span class="p">(</span><span class="n">execute</span><span class="p">):</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">execute</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ref</span>
+
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="1---search-for-datasets-using-the-Catalogue">
+<h2>1 - search for datasets using the Catalogue<a class="headerlink" href="#1---search-for-datasets-using-the-Catalogue" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="1.1-List-available-catalogue-processes">
+<h2>1.1 List available catalogue processes<a class="headerlink" href="#1.1-List-available-catalogue-processes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="1.2-we-want-the-'pavicsearch'-process">
+<h2>1.2 we want the ‘pavicsearch’ process<a class="headerlink" href="#1.2-we-want-the-'pavicsearch'-process" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>let’s describe the process first</li>
+</ul>
+</div>
+<div class="section" id="1.3-Search-for-data---variable-tasmax">
+<h2>1.3 Search for data - variable tasmax<a class="headerlink" href="#1.3-Search-for-data---variable-tasmax" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Process the output</li>
+</ul>
+</div>
+<div class="section" id="1.4-We-have-a-lot-of-files---Let's-filter-for-NRCAN-anusplin">
+<h2>1.4 We have a lot of files - Let’s filter for NRCAN anusplin<a class="headerlink" href="#1.4-We-have-a-lot-of-files---Let's-filter-for-NRCAN-anusplin" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Filter the list for only ‘nrcan’</li>
+<li>Get only a 3 years of data - 1981 to 1983 (more manageable for today)</li>
+<li>Files are not in sequential order - use sort() to clean up the list</li>
+</ul>
+</div>
+<div class="section" id="End-step-1---Successful-search-and-filtering-of-datasets">
+<h2>End step 1 - Successful search and filtering of datasets<a class="headerlink" href="#End-step-1---Successful-search-and-filtering-of-datasets" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="Step-2---spatial-subset-the-ncfiles">
+<h1>Step 2 - spatial subset the ncfiles<a class="headerlink" href="#Step-2---spatial-subset-the-ncfiles" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>let’s try to learn how to use WPS more efficiently</li>
+<li>subsetting functions can be found in Flyingpigeon</li>
+<li>fist step initiate connection to flyingpigeon</li>
+</ul>
+<div class="section" id="2.1-List-available-flyingpigeon-processes">
+<h2>2.1 List available flyingpigeon processes<a class="headerlink" href="#2.1-List-available-flyingpigeon-processes" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="2.2-Flyingpigeon-does-a-lot---use-'subset_bbox'-process-for-now">
+<h2>2.2 Flyingpigeon does a lot - use ‘subset_bbox’ process for now<a class="headerlink" href="#2.2-Flyingpigeon-does-a-lot---use-'subset_bbox'-process-for-now" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>let’s describe the process first</li>
+</ul>
+</div>
+<div class="section" id="2.3-Create-WPS-inputs-and-execute-WPS">
+<h2>2.3 Create WPS inputs and execute WPS<a class="headerlink" href="#2.3-Create-WPS-inputs-and-execute-WPS" title="Permalink to this headline">¶</a></h2>
+<p>This time we will have multiple ‘resource’ inputs * Subset multiple .nc
+files with one WPS call * Subset only using lat lon bounds - other
+inputs left blank</p>
+</div>
+<div class="section" id="2.4-subset-completed">
+<h2>2.4 subset completed<a class="headerlink" href="#2.4-subset-completed" title="Permalink to this headline">¶</a></h2>
+<p>Before moving on - Let’s download one file to see how the subset worked</p>
+</div>
+</div>
+<div class="section" id="Step-3---temporal-concatenation-using-'ncmerge'">
+<h1>Step 3 - temporal concatenation using ‘ncmerge’<a class="headerlink" href="#Step-3---temporal-concatenation-using-'ncmerge'" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>‘ncmerge’ can also be accessed in Flyingpigeon</li>
+</ul>
+<div class="section" id="As-always-:-start-by-describing-the-process">
+<h2>As always : start by describing the process<a class="headerlink" href="#As-always-:-start-by-describing-the-process" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="3.1-Question-:-Are-my-subsetted-urls-(list_subset)-opendap-urls?">
+<h2>3.1 Question : Are my subsetted urls (list_subset) opendap urls?<a class="headerlink" href="#3.1-Question-:-Are-my-subsetted-urls-(list_subset)-opendap-urls?" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Simple test : follow one of the links</li>
+<li>If you start to download : Not OpenDAP</li>
+</ul>
+</div>
+<div class="section" id="3.2-Test-conclusion-:-The-subsetted-.nc-urls-are-NOT-OpenDAP">
+<h2>3.2 Test conclusion : The subsetted .nc urls are NOT OpenDAP<a class="headerlink" href="#3.2-Test-conclusion-:-The-subsetted-.nc-urls-are-NOT-OpenDAP" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Future development - we would like to get both OpenDap and direct
+links as outputs from PAVICS</li>
+</ul>
+</div>
+<div class="section" id="3.3-We-can-still-use-them-but-resouce-inputs-must-be-sent-using-ComplexDataInput()">
+<h2>3.3 We can still use them but resouce inputs must be sent using ComplexDataInput()<a class="headerlink" href="#3.3-We-can-still-use-them-but-resouce-inputs-must-be-sent-using-ComplexDataInput()" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create inputs list and execute WPS</li>
+</ul>
+</div>
+<div class="section" id="3.3-Get-WPS-output-location-and-download-merged-.nc-file">
+<h2>3.3 Get WPS output location and download merged .nc file<a class="headerlink" href="#3.3-Get-WPS-output-location-and-download-merged-.nc-file" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="3.4-Make-a-plot-:-we-should-have-3-years-of-data">
+<h2>3.4 Make a plot : we should have 3 years of data<a class="headerlink" href="#3.4-Make-a-plot-:-we-should-have-3-years-of-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="End-step-3---Successful-temporal-merge">
+<h2>End step 3 - Successful temporal merge<a class="headerlink" href="#End-step-3---Successful-temporal-merge" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="Step-4---Calculate-monthly-min,-mean-and-max">
+<h1>Step 4 - Calculate monthly min, mean and max<a class="headerlink" href="#Step-4---Calculate-monthly-min,-mean-and-max" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Use CDO operators via Hummingbird - A different WPS suite</li>
+</ol>
+<div class="section" id="4.1-Let's-start-with-connecting-to-Hummingbird">
+<h2>4.1 Let’s start with connecting to Hummingbird<a class="headerlink" href="#4.1-Let's-start-with-connecting-to-Hummingbird" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="As-always-:-start-by-describing-the-process">
+<h2>As always : start by describing the process<a class="headerlink" href="#As-always-:-start-by-describing-the-process" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="4.2-List-WPS-services-available-in-Hummingbird">
+<h2>4.2 List WPS services available in Hummingbird<a class="headerlink" href="#4.2-List-WPS-services-available-in-Hummingbird" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="4.3-We-want-to-use-'CDO-operation'">
+<h2>4.3 We want to use ‘CDO operation’<a class="headerlink" href="#4.3-We-want-to-use-'CDO-operation'" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>As always we start by …… Describing the process!</li>
+</ul>
+</div>
+<div class="section" id="4.4-Create-inputs-&amp;-execute-WPS">
+<h2>4.4 Create inputs &amp; execute WPS<a class="headerlink" href="#4.4-Create-inputs-&-execute-WPS" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="4.5-Download-the-output">
+<h2>4.5 Download the output<a class="headerlink" href="#4.5-Download-the-output" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="4.6-Plot-the-results-and-compare-with-daily-data-series">
+<h2>4.6 Plot the results and compare with daily data series<a class="headerlink" href="#4.6-Plot-the-results-and-compare-with-daily-data-series" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -36,7 +36,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
-        <link rel="next" title="Using the graphical interface" href="frontend.html"/>
+        <link rel="next" title="Working with Web Processing Service with Python" href="wps_with_python.html"/>
         <link rel="prev" title="Documentation structure" href="../index.html"/> 
 
   
@@ -91,10 +91,9 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="frontend.html">Using the graphical interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_preparation.html">Data preparation for inclusion in the platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="searching.html">Searching for data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wps_with_python.html">Working with Web Processing Service with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html">owslib is a Python package for client programming with OGC web service interface standards.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
@@ -150,34 +149,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tutorials">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="tutorials">
 <h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="frontend.html">Using the graphical interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="frontend.html#tool-menu">Tool menu</a></li>
-<li class="toctree-l2"><a class="reference internal" href="frontend.html#example">Example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="frontend.html#dashboard">Dashboard</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="frontend.html#data-and-process-manager">Data and Process Manager</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="data_preparation.html">Data preparation for inclusion in the platform</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_preparation.html#netcdf-files">NetCDF files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="data_preparation.html#file-conventions">File conventions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="searching.html">Searching for data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="searching.html#apis">APIs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="searching.html#discovering-facets">Discovering facets</a></li>
-</ul>
-</li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="wps_with_python.html">Working with Web Processing Service with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="owslib_intro.html">owslib is a Python package for client programming with OGC web service interface standards.</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html#Web-Mapping-Service">Web Mapping Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html#Getting-the-image-data">Getting the image data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html#Plotting-the-image-on-a-map">Plotting the image on a map</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="owslib_intro.html#See-the-WFS-example.-Maybe-you-can-integrate-something-from-there?">See the WFS example. Maybe you can integrate something from there?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bias_correction.html">Bias correction process</a></li>
 </ul>
 </div>
 <div class="admonition-todo admonition" id="index-0">
@@ -193,7 +198,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="frontend.html" class="btn btn-neutral float-right" title="Using the graphical interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="wps_with_python.html" class="btn btn-neutral float-right" title="Working with Web Processing Service with Python" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="Documentation structure" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

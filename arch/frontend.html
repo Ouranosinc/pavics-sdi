@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="System Architecture" href="index.html"/>
-        <link rel="next" title="Backend" href="backend.html"/>
+        <link rel="next" title="Backend - PAVICS Node" href="backend.html"/>
         <link rel="prev" title="Overview" href="overview.html"/> 
 
   
@@ -99,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#gridded-data-rendering">Gridded data rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="backend.html">Backend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backend.html">Backend - PAVICS Node</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_catalog.html">Pavics-DataCatalog</a></li>
 </ul>
 </li>
@@ -156,7 +156,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="frontend">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="frontend">
 <h1>Frontend<a class="headerlink" href="#frontend" title="Permalink to this headline">¶</a></h1>
 <img alt="An example of the PAVICS-frontend in action" src="../_images/PAVICS_data_overlay.png" />
 <p>The PAVICS-frontend (<a class="reference external" href="https://github.com/Ouranosinc/PAVICS-frontend">GitHub Repository</a>) is the custom graphical interface for users to leverage the services offered by the platform. It provides a map interface to display both gridded climate data and geospatial layers, launch services and workflows and monitor the progress and status of user’s jobs. It also provides limited capacity to dynamically interact with datasets. Users can create projects that store datasets, workflows and outputs for future use.</p>
@@ -182,7 +201,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="backend.html" class="btn btn-neutral float-right" title="Backend" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="backend.html" class="btn btn-neutral float-right" title="Backend - PAVICS Node" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="overview.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PAVICS Web Processing Services &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>PAVICS Web Processing Services</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/tutorials/WPS_example.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="PAVICS-Web-Processing-Services">
+<h1>PAVICS Web Processing Services<a class="headerlink" href="#PAVICS-Web-Processing-Services" title="Permalink to this headline">¶</a></h1>
+<p>PAVICS allows access to a number of different WPS services via Birdhouse
+* Each ‘bird’ groups a set of processing tools</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
+<span class="kn">import</span> <span class="nn">owslib</span>
+<span class="n">owslib</span><span class="o">.</span><span class="n">__version__</span>
+
+<span class="k">def</span> <span class="nf">parseStatus</span><span class="p">(</span><span class="n">execute</span><span class="p">):</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">execute</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ref</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="One-suite-of-WPS-tools-for-netcdf-files-resides-in-'Hummingbird'">
+<h2>One suite of WPS tools for netcdf files resides in ‘Hummingbird’<a class="headerlink" href="#One-suite-of-WPS-tools-for-netcdf-files-resides-in-'Hummingbird'" title="Permalink to this headline">¶</a></h2>
+<p>For metadata use GetCapabilities</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Hummingbird WPS url</span>
+<span class="n">wps_url</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/hummingbird/wps&#39;</span>
+<span class="c1"># connection</span>
+<span class="n">wps</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">wps_url</span><span class="p">)</span>
+<span class="c1"># print wps title</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wps</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Hummingbird 0.5_dev
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Print-out-info-on-available-processes-(from-Hummingbird)">
+<h2>Print out info on available processes (from Hummingbird)<a class="headerlink" href="#Print-out-info-on-available-processes-(from-Hummingbird)" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">wps</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> : </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ncdump   : Run ncdump to retrieve NetCDF header metadata.
+
+spotchecker      : Checks a single uploaded or remote dataset against a variety of compliance standards. The dataset is either in the NetCDF format or a remote OpenDAP resource. Available compliance standards are the Climate and Forecast conventions (CF) and project specific rules for CMIP6 and CORDEX.
+
+cchecker         : Runs the IOOS Compliance Checker tool to check datasets against compliance standards. Each compliance standard is executed by a Check Suite, which functions similar to a Python standard Unit Test. A Check Suite runs one or more checks against a dataset, returning a list of Results which are then aggregated into a summary. Development and maintenance for the compliance checker is done by the Integrated Ocean Observing System (IOOS).
+
+cfchecker        : The NetCDF Climate Forcast Conventions compliance checker by CEDA. This process allows you to run the compliance checker to check that the contents of a NetCDF file comply with the Climate and Forecasts (CF) Metadata Convention. The CF-checker was developed at the Hadley Centre for Climate Prediction and Research, UK Met Office by Rosalyn Hatcher. This work was supported by PRISM (PRogramme for Integrated Earth System Modelling). Development and maintenance for the CF-checker has now been taken over by the NCAS Computational Modelling Services (NCAS-CMS). If you have suggestions for improvement then please contact Rosalyn Hatcher at NCAS-CMS (r.s.hatcher@reading.ac.uk).
+
+cmor_checker     : Calls the CMIP6 cmor checker to verify CMIP6 compliance.CMIP6 CMOR checker will verify that all attributes in the input file are present and conform to CMIP6 for publication into ESGF.
+
+qa_cfchecker     : The NetCDF Climate Forcast Conventions compliance checker by DKRZ. This process allows you to run the compliance checker to check that the contents of a NetCDF file comply with the Climate and Forecasts (CF) Metadata Convention. The CF Conformance checker applies to conventions 1.4 -1.7draft. Development and maintenance for the CF-checker is done by the German Climate Computing Centre (DKRZ). If you have suggestions for improvement then please contact Heinz-Dieter Hollweg at DKRZ (hollweg@dkrz.de).
+
+qa_checker       : The Quality Assurance checker QA-DKRZ checks conformance of meta-data of climate simulations given in NetCDF format with conventions and rules of climate model projects. At present, checking of CF Conventions, CMIP5, and CORDEX is supported. Development and maintenance for the QA checker is done by the German Climate Computing Centre (DKRZ). If you have suggestions for improvement then please contact Heinz-Dieter Hollweg at DKRZ (hollweg@dkrz.de).
+
+cdo_sinfo        : Runs CDO to retrieve NetCDF metadata information. Calls the sinfo operator of CDO (Climate Data Operator) on a NetCDF file and returns a document with metadata information.
+
+cdo_operation    : Calls CDO operations like monmax on a NetCDF file.
+
+cdo_copy         : Calls CDO to copy or concatenate datasets. All input datasets need to have the same structure with the same variables on different timesteps.
+
+cdo_bbox         : Runs CDO to clip a bounding-box from a NetCDF file. Calls the CDO (Climate Data Operators) sellonlatbox operator with a bounding-box and returns the resulting NetCDF file.
+
+cdo_indices      : Calculates climate indices like summer days using CDO. Calls the Climate Data Operators (CDO) tool with a single dataset (NetCDF, OpenDAP) provided and uses the chosen operator to calculate climate indices written to a NetCDF file.
+
+ensembles        : Calling cdo to calculate ensembles operations.
+
+cdo_inter_mpi    : CDO Remapping of NetCDF File(s) with multiprocessing
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="PAVICS/Hummingbird-has-lots-of-WPS-services">
+<h2>PAVICS/Hummingbird has lots of WPS services<a class="headerlink" href="#PAVICS/Hummingbird-has-lots-of-WPS-services" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="Let's-keep-it-simple-with-'ncdump'">
+<h2>Let’s keep it simple with ‘ncdump’<a class="headerlink" href="#Let's-keep-it-simple-with-'ncdump'" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Print info on WPS inputs needed</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># ncdump</span>
+<span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;ncdump&#39;</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="n">proc_name</span><span class="p">)</span> <span class="c1"># get process info</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inputs:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; * &#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Run ncdump to retrieve NetCDF header metadata.
+Inputs:
+ *  dataset
+ *  dataset_opendap
+</pre></div></div>
+</div>
+<div class="section" id="The-only-input-we-need-is-a-dataset-(url)-or-it's-OpenDAP-link">
+<h3>The only input we need is a dataset (url) or it’s OpenDAP link<a class="headerlink" href="#The-only-input-we-need-is-a-dataset-(url)-or-it's-OpenDAP-link" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>A simple way to find a test dataset is to access :
+<a class="reference external" href="https://pavics.ouranos.ca/thredds">https://pavics.ouranos.ca/thredds</a></li>
+<li>Note - PAVICS also has a catalogue WPS but we will see that in other
+examples later</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Example netcdf url to NRCAN daily - tasmin 2013</span>
+<span class="n">nc_url</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmin/nrcan_canada_daily_tasmin_2013.nc&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nc_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmin/nrcan_canada_daily_tasmin_2013.nc
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Create-WPS-input---Python-list">
+<h3>Create WPS input - Python list<a class="headerlink" href="#Create-WPS-input---Python-list" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;dataset_opendap&#39;</span><span class="p">,</span><span class="n">nc_url</span><span class="p">))</span> <span class="c1"># inputs : use opendap link of a single netcdf file from catalogue search to erun ncdump</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myinputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[(&#39;dataset_opendap&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmin/nrcan_canada_daily_tasmin_2013.nc&#39;)]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Execute-the-WPS">
+<h3>Execute the WPS<a class="headerlink" href="#Execute-the-WPS" title="Permalink to this headline">¶</a></h3>
+<p>The execution is asynchronous, meaning that it does not automatically
+return the output. The response of the server is only a message saying
+that the request was accepted.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nb">print</span><span class="p">(</span><span class="n">proc_name</span><span class="p">)</span>
+<span class="n">execute</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">proc_name</span><span class="p">,</span> <span class="n">myinputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ncdump
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">execute</span><span class="o">.</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;wps:ExecuteResponse xmlns:gml=&#34;http://www.opengis.net/gml&#34; xmlns:ows=&#34;http://www.opengis.net/ows/1.1&#34; xmlns:wps=&#34;http://www.opengis.net/wps/1.0.0&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34; xmlns:xsi=&#34;http://www.w3.org/2001/XMLSchema-instance&#34; xsi:schemaLocation=&#34;http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsExecute_response.xsd&#34; service=&#34;WPS&#34; version=&#34;1.0.0&#34; xml:lang=&#34;en-US&#34; serviceInstance=&#34;https://pavics.ouranos.ca:443/wps?service=WPS&amp;amp;request=GetCapabilities&#34; statusLocation=&#34;https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/6ca0018a-bb58-11e8-91d6-0242ac12000d.xml&#34;&gt;
+  &lt;wps:Process wps:processVersion=&#34;4.4.1.1&#34;&gt;
+    &lt;ows:Identifier&gt;ncdump&lt;/ows:Identifier&gt;
+    &lt;ows:Title&gt;NCDump&lt;/ows:Title&gt;
+    &lt;ows:Abstract&gt;Run ncdump to retrieve NetCDF header metadata.&lt;/ows:Abstract&gt;
+  &lt;/wps:Process&gt;
+  &lt;wps:Status creationTime=&#34;2018-09-18T15:35:09Z&#34;&gt;
+    &lt;wps:ProcessSucceeded&gt;PyWPS Process NCDump finished&lt;/wps:ProcessSucceeded&gt;
+  &lt;/wps:Status&gt;
+  &lt;wps:ProcessOutputs&gt;
+    &lt;wps:Output&gt;
+      &lt;ows:Identifier&gt;output&lt;/ows:Identifier&gt;
+      &lt;ows:Title&gt;NetCDF Metadata&lt;/ows:Title&gt;
+      &lt;ows:Abstract&gt;NetCDF Metadata&lt;/ows:Abstract&gt;
+      &lt;wps:Reference xlink:href=&#34;https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/6ca0018a-bb58-11e8-91d6-0242ac12000d/nc_dump_Qo2F86.txt&#34; mimeType=&#34;text/plain&#34;/&gt;
+    &lt;/wps:Output&gt;
+  &lt;/wps:ProcessOutputs&gt;
+&lt;/wps:ExecuteResponse&gt;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Get-the-result">
+<h3>Get the result<a class="headerlink" href="#Get-the-result" title="Permalink to this headline">¶</a></h3>
+<p>To actually parse the output, we must first make sure that the process
+completed server-side. <code class="docutils literal notranslate"><span class="pre">execute.checkStatus()</span></code> will poll the server
+and update its response.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">execute</span><span class="o">.</span><span class="n">checkStatus</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Status: &quot;</span><span class="p">,</span> <span class="n">execute</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execute</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Status:  ProcessSucceeded
+https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/6ca0018a-bb58-11e8-91d6-0242ac12000d.xml
+</pre></div></div>
+</div>
+<p>Then we can check the actual output of the process, stored as a list in
+the <code class="docutils literal notranslate"><span class="pre">processOutputs</span></code> attribute. In the case where the output is a
+reference to a file, we can get it using the <code class="docutils literal notranslate"><span class="pre">reference</span></code> attribute.
+The method <code class="docutils literal notranslate"><span class="pre">retrieveData</span></code> let’s us fetch and retrieve the content of
+the file.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execute</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output reference :</span><span class="se">\n</span><span class="s1">*&#39;</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">NCDUMP results :</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1">#out = execute.processOutputs[0]</span>
+<span class="c1">#print(&quot;Output reference: &quot;, out.reference)</span>
+<span class="c1">#data = out.retrieveData()</span>
+<span class="c1">#print(&quot;Data: &quot;, data.decode())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Output reference :
+* https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/6ca0018a-bb58-11e8-91d6-0242ac12000d/nc_dump_8MSe6y.txt
+
+NCDUMP results :
+ netcdf nrcan_canada_daily_tasmin_2013.nc {
+dimensions:
+        time = UNLIMITED ; // (365 currently)
+        lat = 510 ;
+        lon = 1068 ;
+        ts = 3 ;
+variables:
+        float lon(lon) ;
+                lon:units = &#34;degrees_east&#34; ;
+                lon:long_name = &#34;longitude&#34; ;
+                lon:standard_name = &#34;longitude&#34; ;
+                lon:axis = &#34;X&#34; ;
+                lon:_ChunkSizes = 1068 ;
+        float lat(lat) ;
+                lat:axis = &#34;Y&#34; ;
+                lat:units = &#34;degrees_north&#34; ;
+                lat:long_name = &#34;latitude&#34; ;
+                lat:standard_name = &#34;latitude&#34; ;
+                lat:_ChunkSizes = 510 ;
+        short ts(ts) ;
+                ts:_FillValue = -32767s ;
+                ts:_ChunkSizes = 3 ;
+        short time(time) ;
+                time:axis = &#34;T&#34; ;
+                time:units = &#34;days since 1950-01-01 00:00:00&#34; ;
+                time:long_name = &#34;time&#34; ;
+                time:standard_name = &#34;time&#34; ;
+                time:calendar = &#34;gregorian&#34; ;
+                time:_ChunkSizes = 1 ;
+        short time_vectors(time, ts) ;
+                time_vectors:_ChunkSizes = 1, 3 ;
+        float tasmin(time, lat, lon) ;
+                tasmin:long_name = &#34;air_temperature&#34; ;
+                tasmin:standard_name = &#34;air_temperature&#34; ;
+                tasmin:units = &#34;K&#34; ;
+                tasmin:_FillValue = 9.96921e+36f ;
+                tasmin:_ChunkSizes = 31, 102, 267 ;
+
+// global attributes:
+                :Conventions = &#34;CF-1.5&#34; ;
+                :title = &#34;NRCAN 10km Gridded Climate Dataset&#34; ;
+                :history = &#34;2016-01-05T16:30:06: Convert from original format to NetCDF&#34; ;
+                :institution = &#34;NRCAN&#34; ;
+                :source = &#34;ANUSPLIN&#34; ;
+                :redistribution = &#34;Redistribution policy unknown. For internal use only.&#34; ;
+                :DODS_EXTRA.Unlimited_Dimension = &#34;time&#34; ;
+}
+
+
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

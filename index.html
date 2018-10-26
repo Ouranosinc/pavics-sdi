@@ -143,7 +143,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <p>PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<p>PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
 data search, analytics and visualization services. PAVICS is developped by Ouranos, CRIM and the <a class="reference external" href="http://bird-house.github.io/">birdhouse</a> community and been funded by the <a class="reference external" href="http://www.canarie.ca/">CANARIE</a> research software program.</p>
 <div class="section" id="documentation-structure">
 <h1>Documentation structure<a class="headerlink" href="#documentation-structure" title="Permalink to this headline">¶</a></h1>
@@ -153,6 +172,7 @@ data search, analytics and visualization services. PAVICS is developped by Ouran
 <li><a class="reference internal" href="dev/index.html"><span class="doc">Developer Documentation</span></a> explains how to install and configure the various components and run system tests.</li>
 <li><a class="reference internal" href="arch/index.html"><span class="doc">System Architecture</span></a> describes the individual components of the system and how they work together.</li>
 <li><a class="reference internal" href="processes/index.html"><span class="doc">Processes</span></a> documents all available processes on the PAVICS platform.</li>
+<li><a class="reference internal" href="gui/index.html"><span class="doc">Graphical User Interface</span></a> walks you through the components of the web browser frontend.</li>
 </ul>
 </div>
 <div class="section" id="contents">
@@ -160,10 +180,9 @@ data search, analytics and visualization services. PAVICS is developped by Ouran
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/index.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/frontend.html">Using the graphical interface</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/data_preparation.html">Data preparation for inclusion in the platform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/searching.html">Searching for data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/wps_with_python.html">Working with Web Processing Service with Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/owslib_intro.html">owslib is a Python package for client programming with OGC web service interface standards.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/bias_correction.html">Bias correction process</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev/index.html">Developer Documentation</a><ul>

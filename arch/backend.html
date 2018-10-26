@@ -160,7 +160,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="backend-pavics-node">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="backend-pavics-node">
 <h1>Backend - PAVICS Node<a class="headerlink" href="#backend-pavics-node" title="Permalink to this headline">¶</a></h1>
 <img alt="../_images/PAVICS_architecture.png" src="../_images/PAVICS_architecture.png" />
 <p>PAVICS nodes are data, compute and index endpoints accessed through the PAVICS platform or external clients. The Node service is the backend that provides data storage, metadata harvesting, indexation and discovery of local and federated data, user authentication and authorization, server registration and management. The <em>node service</em> is therefore composed of several services that are briefly described below, accompanied by links to the full documentation of each individual building block.</p>

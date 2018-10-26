@@ -161,7 +161,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-the-graphical-interface">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="using-the-graphical-interface">
 <h1>Using the graphical interface<a class="headerlink" href="#using-the-graphical-interface" title="Permalink to this headline">¶</a></h1>
 <p>The frontend is composed of a base map, a tool menu and a dashboard.</p>
 <p>The basemap works like similar online maps, with the mouse wheel allowing zoom control, while click and crag lets you move laterally on the map. At the moment, only the standard rectangular projection is supported. There are three different options for the basemap: a satellite view, and an administrative view with and without labels. Let us know which other projection and basemap would be useful for your needs.</p>

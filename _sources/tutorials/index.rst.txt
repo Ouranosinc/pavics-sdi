@@ -3,11 +3,9 @@ Tutorials
 =========
 
 .. toctree::
-   frontend
-   data_preparation
-   searching
    wps_with_python
-
+   owslib_intro
+   bias_correction
 
 
 .. todo::

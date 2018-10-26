@@ -161,7 +161,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="data-administration">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="data-administration">
 <h1>Data administration<a class="headerlink" href="#data-administration" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="solr">
 <h2>SOLR<a class="headerlink" href="#solr" title="Permalink to this headline">¶</a></h2>
@@ -176,8 +195,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_files</strong> (<em>string</em><em>, </em><em>optional</em>) – Only those file names will be crawled.</li>
-<li><strong>target_thredds</strong> (<em>string</em><em>, </em><em>optional</em>) – Thredds server to scan.</li>
+<li><strong>target_files</strong> (<em>string</em>) – Only those file names will be crawled.</li>
+<li><strong>target_thredds</strong> (<em>string</em>) – Thredds server to scan.</li>
 </ul>
 </td>
 </tr>
@@ -202,7 +221,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>id</strong> (<em>string</em>) – id field of the dataset or file.</li>
-<li><strong>type</strong> (<em>string</em><em>, </em><em>optional</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
+<li><strong>type</strong> (<em>string</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
 <li><strong>updates</strong> (<em>string</em>) – Format is key1:value1,key2:value2,…</li>
 </ul>
 </td>
@@ -228,8 +247,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>facets</strong> (<em>string</em>) – Facets that are required to be present in each database entry.</li>
-<li><strong>paths</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation to certain paths relative to thredds main directory.</li>
-<li><strong>files</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation according to file names.</li>
+<li><strong>paths</strong> (<em>string</em>) – Limit validation to certain paths relative to thredds main directory.</li>
+<li><strong>files</strong> (<em>string</em>) – Limit validation according to file names.</li>
 </ul>
 </td>
 </tr>
