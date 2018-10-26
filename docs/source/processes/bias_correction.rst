@@ -24,8 +24,6 @@ Algorithms
 ----------
 
 .. autoprocess:: flyingpigeon.processes.KDDM_BC_Process
+   :docstring:
 
 
-.. todo::
-
-   Add popular bias correction algorithms.

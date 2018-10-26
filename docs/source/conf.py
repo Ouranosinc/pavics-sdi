@@ -46,7 +46,8 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinxjsondomain',
-    'sphinx-jsonschema'
+    'sphinx-jsonschema',
+    'nbsphinx'
 ]
 
 #napoleon_numpy_docstring = True

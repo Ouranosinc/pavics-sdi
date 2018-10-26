@@ -19,6 +19,9 @@ We plan to build extensive documentation for PAVICS. We're just getting started,
 
 * :doc:`Processes </processes/index>` documents all available processes on the PAVICS platform.
 
+* :doc:`Graphical User Interface </gui/index>` walks you through the components of the web browser frontend.
+
+
 .. _issue tracker: https://github.com/Ouranosinc/pavics-sdi/issues
 .. _birdhouse: http://bird-house.github.io/
 .. _CANARIE: http://www.canarie.ca/

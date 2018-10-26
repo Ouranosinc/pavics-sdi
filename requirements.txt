@@ -9,3 +9,5 @@ sphinx-jsonschema
 -e git+https://github.com/Ouranosinc/PAVICS-DataCatalog.git#egg=pavics_datacatalog
 #-e git+https://github.com/Ouranosinc/malleefowl.git@pavics#egg=mallefowl
 #-e git+https://github.com/Ouranosinc/flyingpigeon.git@pavics#egg=flyingpigeon
+nbsphinx
+jupyter
