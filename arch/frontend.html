@@ -185,8 +185,8 @@
 <p>A core component of the frontend is the gridded data renderer. Gridded netCDF datasets selected for visualization are displayed on the base map using <a href="#id1"><span class="problematic" id="id2">`ncWMS`_</span></a>, a server capable of converting multidimensional netCDF data into images. The frontend sends <code class="docutils literal notranslate"><span class="pre">GetMap</span></code> requests to the ncWMS server according to the display’s bounding box and zoom level. These requests are handled by OpenLayer and its plugins.</p>
 <p>The conversion from the raw netCDF data to an image requires a mapping between data values and a colorbar. The color scale can be selected from a menu and its min and max values modified by the user. The color scale information is sent to ncWMS to render the data into an image.</p>
 <p>The colorbar palette is displayed as an image, provided as the response to a <code class="docutils literal notranslate"><span class="pre">GetLegendGraphic</span></code> request to ncWMS.</p>
-<p>For high resolution data, rendering suffers from lag that make browsing netCDF files a frustrating experience. We are investigating options to speed things up.</p>
-<p>Take a look at the frontend tutorial for information on the frontend’s usage.</p>
+<p>For high resolution data, rendering suffers from lag that can make browsing netCDF files a frustrating experience. We are investigating options to reduce delivery latency.</p>
+<p>Take a look at the frontend tutorial for information on the frontend’s usage!</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">Describe the relationship between the frontend and Phoenix.</p>

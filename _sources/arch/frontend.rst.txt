@@ -18,9 +18,9 @@ The conversion from the raw netCDF data to an image requires a mapping between d
 
 The colorbar palette is displayed as an image, provided as the response to a ``GetLegendGraphic`` request to ncWMS.
 
-For high resolution data, rendering suffers from lag that make browsing netCDF files a frustrating experience. We are investigating options to speed things up.
+For high resolution data, rendering suffers from lag that can make browsing netCDF files a frustrating experience. We are investigating options to reduce delivery latency.
 
-Take a look at the frontend tutorial for information on the frontend's usage.
+Take a look at the frontend tutorial for information on the frontend's usage!
 
 .. todo::
 
