@@ -4,7 +4,7 @@ Using the graphical interface
 The frontend is composed of a base map, a tool menu and a dashboard.
 
 
-The basemap works like similar online maps, with the mouse wheel allowing zoom control, while click and crag lets you move laterally on the map. At the moment, only the standard rectangular projection is supported. There are three different options for the basemap: a satellite view, and an administrative view with and without labels. Let us know which other projection and basemap would be useful for your needs.
+The basemap works like similar online maps, with the mouse wheel allowing zoom control, while click and drag lets you move laterally on the map. At the moment, only the standard rectangular projection is supported. There are three different options for the basemap: a satellite view, and an administrative view with and without labels. Let us know which other projection and basemap would be useful for your needs.
 
 At the bottom of the screen is a colorbar with min and max values. Use these to set the limits on the colorbar for displayed netCDF datasets.
 

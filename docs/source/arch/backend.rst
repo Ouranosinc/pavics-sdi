@@ -25,7 +25,7 @@ GeoServer
 Indexation
 ----------
 
-Although information about file content is stored in the netCDF metadata fields, accessing and reading those fields one by one takes a considerable amount of time. The strategy used here mimic that used by ESGF, and consists in running a crawler over all netCDF files hosted on THREDDS, extracting relevant meta data and storing them in a `SOLR`_ database. Search queries are thus directed at SOLR, which returns a list of links matching the search terms. The crawler is part of the `PAVICS-DataCatalog`_ library.
+Although information about file content is stored in the netCDF metadata fields, accessing and reading those fields one by one takes a considerable amount of time. The strategies used here mimic those used by ESGF, and comprises running a crawler over all netCDF files hosted on THREDDS, extracting relevant metadata and storing them in a `SOLR`_ database. Search queries are thus directed at SOLR, which returns a list of links matching the search terms. The crawler is part of the `PAVICS-DataCatalog`_ library.
 
 SOLR
   `SOLR`_ is a search platform part of the Apache Lucene project. It is used in this project for its faceted search capability. Search queries are relayed from the UI or WPS processes to the SOLR database, which returns a json file with the links to matching files.
