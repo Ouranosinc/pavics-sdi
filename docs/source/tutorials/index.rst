@@ -4,7 +4,6 @@ Tutorials
 
 .. toctree::
 
-   owslib_intro
    bias_correction
 
 

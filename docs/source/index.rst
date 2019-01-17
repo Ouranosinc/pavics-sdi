@@ -11,7 +11,7 @@ Documentation structure
 -----------------------
 We plan to build extensive documentation for PAVICS. We're just getting started, but please provide your comments on our `issue tracker`_.
 
-* :doc:`Tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
+* :doc:`Tutorials </notebooks/index>` provides step by step instruction on how to use PAVICS using Jupyter notebooks. Start here to get a feeling of what can be done.
 
 * :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
