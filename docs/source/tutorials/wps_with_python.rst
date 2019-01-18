@@ -1,16 +1,10 @@
-===============================================
-Working with Web Processing Service with Python
-===============================================
+==========================================================
+Working with Web Processing Service with Python and OWSLib
+==========================================================
 
-Basic WPS interaction using OWSLib is described in their documentation:
-https://geopython.github.io/OWSLib/#wps
+Basic WPS interaction is described in the `OWSLib documentation <https://geopython.github.io/OWSLib/#wps>`_
 
-Currently, we recommend the following branch of owslib since it allows for the distinction between sync/async execution:
-https://github.com/bird-house/OWSLib/tree/pingudev
-
-::
-
-    pip install --upgrade --force-reinstall https://github.com/bird-house/OWSLib/archive/pingudev.zip
+We suggest using `OWSLib`_ 0.17.1 and up.
 
 Getting a list of processes::
 
@@ -19,7 +13,7 @@ Getting a list of processes::
     wps.getcapabilities()
     processes = [x.identifier for x in wps.processes]
 
-Inputs identifers::
+Inputs identifiers::
 
     process = wps.describeprocess('some_process')
     inputs = [x.identifier for x in process.dataInputs]
@@ -61,3 +55,5 @@ If the WPS is protected behind magpie::
     auth_tkt = response.cookies.get('auth_tkt', domain='localhost.local')
     headers = dict(Cookie='auth_tkt={0}'.format(auth_tkt))
     wps = WebProcessingService('https://localhost/twitcher/ows/proxy/wpsandbox/pywps', headers=headers, verify=False)
+
+.. _OWSLib: https://geopython.github.io/OWSLib/
