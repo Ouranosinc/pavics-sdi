@@ -89,10 +89,12 @@
             
                 <ul>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -333,7 +335,7 @@ see what is available, collect the layers we want by using a query,
 download the results in GML, and visualize them using OGR.</p>
 <p>We begin by loading the libraries needed for parsing and downloading
 from WFS and for opening and visualizing the results</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
 <span></span>In [1]:
 </pre></div>
@@ -356,13 +358,58 @@ from WFS and for opening and visualizing the results</p>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-1-6fe2721f0224&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg"># Import ogr from osgeo in order to work with vector data</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> osgeo <span class="ansi-green-fg">import</span> ogr
+<span class="ansi-green-intense-fg ansi-bold">      7</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-red-fg"># Import matplotlib for visualizing the outputs</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/osgeo/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     19</span>                 fp<span class="ansi-blue-fg">.</span>close<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span>             <span class="ansi-green-fg">return</span> _mod
+<span class="ansi-green-fg">---&gt; 21</span><span class="ansi-red-fg">     </span>_gdal <span class="ansi-blue-fg">=</span> swig_import_helper<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     22</span>     <span class="ansi-green-fg">del</span> swig_import_helper
+<span class="ansi-green-intense-fg ansi-bold">     23</span> <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/osgeo/__init__.py</span> in <span class="ansi-cyan-fg">swig_import_helper</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">     15</span>         <span class="ansi-green-fg">if</span> fp <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     16</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 17</span><span class="ansi-red-fg">                 </span>_mod <span class="ansi-blue-fg">=</span> imp<span class="ansi-blue-fg">.</span>load_module<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;_gdal&#39;</span><span class="ansi-blue-fg">,</span> fp<span class="ansi-blue-fg">,</span> pathname<span class="ansi-blue-fg">,</span> description<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     18</span>             <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     19</span>                 fp<span class="ansi-blue-fg">.</span>close<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/imp.py</span> in <span class="ansi-cyan-fg">load_module</span><span class="ansi-blue-fg">(name, file, filename, details)</span>
+<span class="ansi-green-intense-fg ansi-bold">    241</span>                 <span class="ansi-green-fg">return</span> load_dynamic<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">,</span> opened_file<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    242</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 243</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> load_dynamic<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">,</span> file<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    244</span>     <span class="ansi-green-fg">elif</span> type_ <span class="ansi-blue-fg">==</span> PKG_DIRECTORY<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    245</span>         <span class="ansi-green-fg">return</span> load_package<span class="ansi-blue-fg">(</span>name<span class="ansi-blue-fg">,</span> filename<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/imp.py</span> in <span class="ansi-cyan-fg">load_dynamic</span><span class="ansi-blue-fg">(name, path, file)</span>
+<span class="ansi-green-intense-fg ansi-bold">    341</span>         spec = importlib.machinery.ModuleSpec(
+<span class="ansi-green-intense-fg ansi-bold">    342</span>             name=name, loader=loader, origin=path)
+<span class="ansi-green-fg">--&gt; 343</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> _load<span class="ansi-blue-fg">(</span>spec<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    344</span>
+<span class="ansi-green-intense-fg ansi-bold">    345</span> <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">ImportError</span>: libpoppler.so.76: cannot open shared object file: No such file or directory
+</pre></div></div>
+</div>
 <p>We start by making a connection to the PAVICS instance we have locally
 on our server, <code class="docutils literal notranslate"><span class="pre">Boreas</span></code>. Using WFS, we can very quickly see the
 contents, which are the layers and the workspaces they’re located with
 (ie: TravisTest, scratchTJS). These layer names act as dictionaries for</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [74]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -375,30 +422,11 @@ contents, which are the layers and the workspaces they’re located with
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-scratchTJS:CANVEC_hydro_waterbodies
-scratchTJS:canada_admin_boundaries
-scratchTJS:CanVec_Rivers
-scratchTJS:CanVec_WaterBodies
-scratchTJS:global_admin_boundaries
-TravisTest:Provinces_États_Global
-TravisTest:mrc_poly
-TravisTest:region_admin_poly
-scratchTJS:wshed_bound_n1
-scratchTJS:wshed_bound_n2
-scratchTJS:wshed_bound_n3
-scratchTJS:usa_admin_boundaries
-</pre></div></div>
-</div>
 <p>If we want to know more about these layers, we can use the layer names
 as keys in a dictionary to return more information from each layer.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [75]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -410,67 +438,12 @@ as keys in a dictionary to return more information from each layer.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Layer ID: scratchTJS:CANVEC_hydro_waterbodies
-Title: CANVEC_hydro_waterbodies
-Boundaries: (-153.69994123236103, 10.90107974384662, -51.71947468536068, 112.88154629084697)
-
-Layer ID: scratchTJS:canada_admin_boundaries
-Title: Canada Administrative Boundaries
-Boundaries: (-141.01807315799994, 41.681435425000075, -52.61940850399992, 83.13550252400006)
-
-Layer ID: scratchTJS:CanVec_Rivers
-Title: Canada Rivers
-Boundaries: (-152.79985046399997, 40.50671574100005, -52.668701700999975, 83.09577966100005)
-
-Layer ID: scratchTJS:CanVec_WaterBodies
-Title: Canada Water Bodies
-Boundaries: (-152.70001220699996, 40.725906372000054, -52.719278747999965, 83.05670650100006)
-
-Layer ID: scratchTJS:global_admin_boundaries
-Title: Global Admin Boundaries
-Boundaries: (-180.0, -89.99892578124998, 180.00000000000003, 83.59960937500006)
-
-Layer ID: TravisTest:Provinces_États_Global
-Title: Global Province and State Boundaries
-Boundaries: (-179.99999999999997, -89.99999999999994, 179.9999998800001, 83.66549110400007)
-
-Layer ID: TravisTest:mrc_poly
-Title: Quebec MRC Boundaries
-Boundaries: (-79.99077462077396, 42.14471395386876, -56.706674288317146, 65.42881428632558)
-
-Layer ID: TravisTest:region_admin_poly
-Title: Quebec Region Admin Boundaries
-Boundaries: (-79.99077462077396, 42.14471395386876, -56.706674288317146, 65.42881428632558)
-
-Layer ID: scratchTJS:wshed_bound_n1
-Title: Quebec Watersheds - Level 1
-Boundaries: (-79.57933414172513, 44.99135772317446, -64.1588439129039, 52.31723300189569)
-
-Layer ID: scratchTJS:wshed_bound_n2
-Title: Quebec Watersheds - Level 2
-Boundaries: (-79.5378203658975, 44.99145446889615, -64.25593470795337, 52.31723300189569)
-
-Layer ID: scratchTJS:wshed_bound_n3
-Title: Quebec Watersheds - Level 3
-Boundaries: (-79.5176519288096, 44.991612094992874, -64.26988061514169, 49.250005072226095)
-
-Layer ID: scratchTJS:usa_admin_boundaries
-Title: USA Administrative Boundaries
-Boundaries: (-179.23023299999997, 17.831509000000036, -65.16882499999997, 71.437769)
-
-</pre></div></div>
-</div>
 <p>We can then perform a GetFeatures call using the layer name as a target.
 This returns an IOstream that can be written as a GML file, a common
 file format for vector data served throughout the web.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [80]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -492,21 +465,13 @@ file format for vector data served throughout the web.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-File successfully downloaded!
-</pre></div></div>
-</div>
 <p>Once the GML is downloaded, we can either open it with a GIS application
 or we can read the features in using OGR, a library for manipulating
 vector data. The following code reads the number of features within the
 GML and outputs the each feature’s names and values.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [123]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -530,252 +495,11 @@ GML and outputs the each feature’s names and values.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Number of features in output.gml: 21
-
-Layer Name: region_admin_poly
-gml_id  Value: region_admin_poly.1
-AREA  Value: 0.000753085700268
-PERIMETER  Value: 0.151935634889
-REGIO_S_  Value: 2
-REGIO_S_ID  Value: 2
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 09
-RES_NM_REG  Value: CÃ´te-Nord
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.2
-AREA  Value: 0.502880816649
-PERIMETER  Value: 8.82743384756
-REGIO_S_  Value: 3
-REGIO_S_ID  Value: 4
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 09
-RES_NM_REG  Value: CÃ´te-Nord
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.3
-AREA  Value: 0.0877979035376
-PERIMETER  Value: 2.02590211595
-REGIO_S_  Value: 4
-REGIO_S_ID  Value: 5
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 09
-RES_NM_REG  Value: CÃ´te-Nord
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.4
-AREA  Value: 13.2980065483
-PERIMETER  Value: 19.7857933261
-REGIO_S_  Value: 5
-REGIO_S_ID  Value: 6
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 02
-RES_NM_REG  Value: Saguenay - Lac-Saint-Jean
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.5
-AREA  Value: 9.4831495973
-PERIMETER  Value: 20.8678792455
-REGIO_S_  Value: 6
-REGIO_S_ID  Value: 7
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 11
-RES_NM_REG  Value: GaspÃ©sie - Ãles-de-la-Madeleine
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.6
-AREA  Value: 3.43782496715
-PERIMETER  Value: 11.2654083387
-REGIO_S_  Value: 7
-REGIO_S_ID  Value: 8
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 01
-RES_NM_REG  Value: Bas-Saint-Laurent
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.7
-AREA  Value: 7.78473054972
-PERIMETER  Value: 14.9638243153
-REGIO_S_  Value: 8
-REGIO_S_ID  Value: 9
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 08
-RES_NM_REG  Value: Abitibi-TÃ©miscamingue
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.8
-AREA  Value: 4.78751318
-PERIMETER  Value: 13.1966772377
-REGIO_S_  Value: 9
-REGIO_S_ID  Value: 10
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 04
-RES_NM_REG  Value: Mauricie
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.9
-AREA  Value: 2.49937337389
-PERIMETER  Value: 8.8181721024
-REGIO_S_  Value: 10
-REGIO_S_ID  Value: 11
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 03
-RES_NM_REG  Value: Capitale-Nationale
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.10
-AREA  Value: 3.99614361097
-PERIMETER  Value: 15.4275800018
-REGIO_S_  Value: 11
-REGIO_S_ID  Value: 12
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 07
-RES_NM_REG  Value: Outaouais
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.11
-AREA  Value: 2.64627784217
-PERIMETER  Value: 12.0473497359
-REGIO_S_  Value: 12
-REGIO_S_ID  Value: 13
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 15
-RES_NM_REG  Value: Laurentides
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.12
-AREA  Value: 1.58700910317
-PERIMETER  Value: 9.01209725043
-REGIO_S_  Value: 13
-REGIO_S_ID  Value: 14
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 14
-RES_NM_REG  Value: LanaudiÃ¨re
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.13
-AREA  Value: 1.89098805979
-PERIMETER  Value: 8.20535335219
-REGIO_S_  Value: 14
-REGIO_S_ID  Value: 15
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 12
-RES_NM_REG  Value: ChaudiÃ¨re-Appalaches
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.14
-AREA  Value: 0.844851321836
-PERIMETER  Value: 5.4045476338
-REGIO_S_  Value: 15
-REGIO_S_ID  Value: 16
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 17
-RES_NM_REG  Value: Centre-du-QuÃ©bec
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.15
-AREA  Value: 1.36183178555
-PERIMETER  Value: 7.0912987939
-REGIO_S_  Value: 16
-REGIO_S_ID  Value: 17
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 16
-RES_NM_REG  Value: MontÃ©rÃ©gie
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.16
-AREA  Value: 1.20899519668
-PERIMETER  Value: 7.28698953467
-REGIO_S_  Value: 17
-REGIO_S_ID  Value: 18
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 05
-RES_NM_REG  Value: Estrie
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.17
-AREA  Value: 0.0719384128929
-PERIMETER  Value: 1.46897572892
-REGIO_S_  Value: 18
-REGIO_S_ID  Value: 19
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 06
-RES_NM_REG  Value: MontrÃ©al
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.18
-AREA  Value: 0.0307859846863
-PERIMETER  Value: 0.931105008023
-REGIO_S_  Value: 19
-REGIO_S_ID  Value: 20
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 13
-RES_NM_REG  Value: Laval
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.19
-AREA  Value: 124.086869032
-PERIMETER  Value: 94.6754067058
-REGIO_S_  Value: 20
-REGIO_S_ID  Value: 1
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 10
-RES_NM_REG  Value: Nord-du-QuÃ©bec
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.20
-AREA  Value: 44.6092588061
-PERIMETER  Value: 55.8047912025
-REGIO_S_  Value: 21
-REGIO_S_ID  Value: 3
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 09
-RES_NM_REG  Value: CÃ´te-Nord
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-gml_id  Value: region_admin_poly.21
-AREA  Value: 3.81309426378
-PERIMETER  Value: 22.6943886103
-REGIO_S_  Value: 22
-REGIO_S_ID  Value: 2
-RES_NO_IND  Value: 50 02 0100 000
-RES_DE_IND  Value: RÃ©gion administrative
-RES_CO_REG  Value: 09
-RES_NM_REG  Value: CÃ´te-Nord
-RES_CO_REF  Value: BDGA1M
-RES_CO_VER  Value: V2016-08
-</pre></div></div>
-</div>
 <p>This <code class="docutils literal notranslate"><span class="pre">layer</span></code> object can also be examined with matplotlib if we want to
 create maps or figures within Python without a Grapgical User Interface.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [120]:
+<span></span>In [ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -826,13 +550,6 @@ create maps or figures within Python without a Grapgical User Interface.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/tutorials_WFS_example_12_0.png" src="../_images/tutorials_WFS_example_12_0.png" />
 </div>
 </div>
 </div>

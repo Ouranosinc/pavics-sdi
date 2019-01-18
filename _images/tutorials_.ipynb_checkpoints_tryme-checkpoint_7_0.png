@@ -1,0 +1,26 @@
+<html><head><title>Apache Tomcat/7.0.63 - Error report</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--></style> </head><body><h1>HTTP Status 500 - java.lang.NumberFormatException: For input string: &quot;&lt;xarray.DataArray 'tasmax' ()&gt;</h1><HR size="1" noshade="noshade"><p><b>type</b> Exception report</p><p><b>message</b> <u>java.lang.NumberFormatException: For input string: &quot;&lt;xarray.DataArray 'tasmax' ()&gt;</u></p><p><b>description</b> <u>The server encountered an internal error that prevented it from fulfilling this request.</u></p><p><b>exception</b> <pre>java.io.IOException: java.lang.NumberFormatException: For input string: &quot;&lt;xarray.DataArray 'tasmax' ()&gt;
+array(239.85884&quot;
+	uk.ac.rdg.resc.edal.wms.WmsServlet.doGet(WmsServlet.java:282)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:624)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	com.thetransactioncompany.cors.CORSFilter.doFilter(CORSFilter.java:168)
+	com.thetransactioncompany.cors.CORSFilter.doFilter(CORSFilter.java:233)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+</pre></p><p><b>root cause</b> <pre>java.lang.NumberFormatException: For input string: &quot;&lt;xarray.DataArray 'tasmax' ()&gt;
+array(239.85884&quot;
+	sun.misc.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2043)
+	sun.misc.FloatingDecimal.parseFloat(FloatingDecimal.java:122)
+	java.lang.Float.parseFloat(Float.java:451)
+	uk.ac.rdg.resc.edal.wms.GetMapStyleParams.getColorScaleRange(GetMapStyleParams.java:196)
+	uk.ac.rdg.resc.edal.wms.GetMapStyleParams.&lt;init&gt;(GetMapStyleParams.java:166)
+	uk.ac.rdg.resc.edal.wms.GetMapParameters.&lt;init&gt;(GetMapParameters.java:93)
+	uk.ac.rdg.resc.edal.wms.WmsServlet.getMap(WmsServlet.java:354)
+	uk.ac.rdg.resc.edal.wms.WmsServlet.dispatchWmsRequest(WmsServlet.java:309)
+	uk.ac.rdg.resc.edal.ncwms.NcwmsServlet.dispatchWmsRequest(NcwmsServlet.java:176)
+	uk.ac.rdg.resc.edal.wms.WmsServlet.doGet(WmsServlet.java:245)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:624)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	com.thetransactioncompany.cors.CORSFilter.doFilter(CORSFilter.java:168)
+	com.thetransactioncompany.cors.CORSFilter.doFilter(CORSFilter.java:233)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+</pre></p><p><b>note</b> <u>The full stack trace of the root cause is available in the Apache Tomcat/7.0.63 logs.</u></p><HR size="1" noshade="noshade"><h3>Apache Tomcat/7.0.63</h3></body></html>

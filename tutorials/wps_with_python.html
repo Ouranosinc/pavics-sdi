@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with Web Processing Service with Python &mdash; PAVICS 0.1 documentation</title>
+  <title>Working with Web Processing Service with Python and OWSLib &mdash; PAVICS 0.1 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Tutorials" href="index.html"/>
-        <link rel="next" title="owslib is a Python package for client programming with OGC web service interface standards." href="owslib_intro.html"/>
-        <link rel="prev" title="Tutorials" href="index.html"/> 
+        <link rel="next" title="Notebooks" href="../notebooks/index.html"/>
+        <link rel="prev" title="Bias correction process" href="bias_correction.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -92,15 +92,16 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Working with Web Processing Service with Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="owslib_intro.html">owslib is a Python package for client programming with OGC web service interface standards.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction process</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Working with Web Processing Service with Python and OWSLib</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -138,7 +139,7 @@
       
           <li><a href="index.html">Tutorials</a> &raquo;</li>
       
-    <li>Working with Web Processing Service with Python</li>
+    <li>Working with Web Processing Service with Python and OWSLib</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -171,15 +172,10 @@
     margin-right: 4px;  /* make room for the exclamation icon */
 }
 </style>
-<div class="section" id="working-with-web-processing-service-with-python">
-<h1>Working with Web Processing Service with Python<a class="headerlink" href="#working-with-web-processing-service-with-python" title="Permalink to this headline">¶</a></h1>
-<p>Basic WPS interaction using OWSLib is described in their documentation:
-<a class="reference external" href="https://geopython.github.io/OWSLib/#wps">https://geopython.github.io/OWSLib/#wps</a></p>
-<p>Currently, we recommend the following branch of owslib since it allows for the distinction between sync/async execution:
-<a class="reference external" href="https://github.com/bird-house/OWSLib/tree/pingudev">https://github.com/bird-house/OWSLib/tree/pingudev</a></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bird</span><span class="o">-</span><span class="n">house</span><span class="o">/</span><span class="n">OWSLib</span><span class="o">/</span><span class="n">archive</span><span class="o">/</span><span class="n">pingudev</span><span class="o">.</span><span class="n">zip</span>
-</pre></div>
-</div>
+<div class="section" id="working-with-web-processing-service-with-python-and-owslib">
+<h1>Working with Web Processing Service with Python and OWSLib<a class="headerlink" href="#working-with-web-processing-service-with-python-and-owslib" title="Permalink to this headline">¶</a></h1>
+<p>Basic WPS interaction is described in the <a class="reference external" href="https://geopython.github.io/OWSLib/#wps">OWSLib documentation</a></p>
+<p>We suggest using <a class="reference external" href="https://geopython.github.io/OWSLib/">OWSLib</a> 0.17.1 and up.</p>
 <p>Getting a list of processes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span>
 <span class="n">wps</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="s1">&#39;http://localhost:8081/pywps&#39;</span><span class="p">)</span>
@@ -187,7 +183,7 @@
 <span class="n">processes</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">identifier</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">wps</span><span class="o">.</span><span class="n">processes</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Inputs identifers:</p>
+<p>Inputs identifiers:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">wps</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="s1">&#39;some_process&#39;</span><span class="p">)</span>
 <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">identifier</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">]</span>
 </pre></div>
@@ -239,10 +235,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="owslib_intro.html" class="btn btn-neutral float-right" title="owslib is a Python package for client programming with OGC web service interface standards." accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../notebooks/index.html" class="btn btn-neutral float-right" title="Notebooks" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="bias_correction.html" class="btn btn-neutral" title="Bias correction process" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

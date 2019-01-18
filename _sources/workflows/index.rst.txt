@@ -1,5 +1,7 @@
+.. _sec-workflows:
+
 ===============
-Using workflows
+Using Workflows
 ===============
 
 

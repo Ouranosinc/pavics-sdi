@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Climate indices &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Notebooks" href="index.html"/>
+        <link rel="next" title="Working with owslib’s WMS interface" href="owslib_wms.html"/>
+        <link rel="prev" title="Gridded Data Renderer" href="rendering.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Notebooks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="subsetting.html">Spatial and temporal subsetting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rendering.html">Gridded Data Renderer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Climate indices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="owslib_wms.html">Working with owslib’s WMS interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opendap.html">OPeNDAP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Notebooks</a> &raquo;</li>
+      
+    <li>Climate indices</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notebooks/climate_indices.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Climate-indices">
+<h1>Climate indices<a class="headerlink" href="#Climate-indices" title="Permalink to this headline">¶</a></h1>
+<p>The current production version of PAVICS provides ICCLIM indices through
+the FlyingPigeon server, which includes over fourty different indices.
+In the example below, we’re calling on one of these indices on a small
+test file available on a public URL, but it is also possible to send
+local files to the server.</p>
+<p>Another implementation of climate indices is in the works. It relies on
+the xarray+dask backend to parallelize computations in the background.
+The library of climate indices is
+<a class="reference external" href="https://github.com/Ouranosinc/xclim">xclim</a> and the WPS server
+hosting it is <a class="reference external" href="https://github.com/bird-house/finch">finch</a>, but is
+not yet in production.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">birdy</span> <span class="k">import</span> <span class="n">WPSClient</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps&#39;</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="n">WPSClient</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">help</span><span class="p">(</span><span class="n">fp</span><span class="o">.</span><span class="n">icclim_tx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Help on method icclim_tx in module birdy.client.base:
+
+icclim_tx(resource=None, grouping=&#39;yr&#39;) method of birdy.client.base.WPSClient instance
+    Calculates the TX indice: mean of daily maximum temperature.
+
+    Parameters
+    ----------
+    resource : ComplexData:mimetype:`application/x-netcdf`, :mimetype:`application/x-tar`, :mimetype:`application/zip`
+        NetCDF Files or archive (tar/zip) containing netCDF files.
+    grouping : {&#39;day&#39;, &#39;mon&#39;, &#39;sem&#39;, &#39;yr&#39;, &#39;ONDJFM&#39;, &#39;AMJJAS&#39;, &#39;DJF&#39;, &#39;MAM&#39;, &#39;JJA&#39;, &#39;SON&#39;, ...}string
+        Temporal group over which the index is computed.
+
+    Returns
+    -------
+    output_netcdf : ComplexData:mimetype:`application/x-netcdf`
+        The indicator values computed on the original input grid.
+    output_log : ComplexData:mimetype:`text/plain`
+        Collected logs during process run.
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">thredds</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/fileServer/birdhouse/testdata/flyingpigeon/&#39;</span>
+<span class="n">resp</span> <span class="o">=</span> <span class="n">fp</span><span class="o">.</span><span class="n">icclim_tx</span><span class="p">(</span><span class="n">resource</span><span class="o">=</span><span class="n">thredds</span><span class="o">+</span><span class="s1">&#39;cmip3/tas.sresb1.giss_model_e_r.run1.atm.da.nc&#39;</span><span class="p">,</span> <span class="n">grouping</span><span class="o">=</span><span class="s1">&#39;yr&#39;</span><span class="p">)</span>
+<span class="n">tx</span><span class="p">,</span> <span class="n">log</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">asobj</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tx</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;class &#39;netCDF4._netCDF4.Dataset&#39;&gt;
+root group (NETCDF4 data model, file format HDF5):
+    source_data_global_attributes: {&quot;title&quot;: &quot;NASA/GISS  model output prepared for IPCC Fourth Assessment AMIP experiment&quot;, &quot;cmor_version&quot;: 0.9599999785423279, &quot;institution&quot;: &quot;NASA/GISS (Goddard Institute for Space Studies)New York, NY&quot;, &quot;source&quot;: &quot;E3OCNf8aM20A&quot;, &quot;contact&quot;: &quot;Kenneth Lo (cdkkl@giss.nasa.gov)&quot;, &quot;references&quot;: &quot;www.giss.nasa.gov/research/modeling&quot;, &quot;experiment_id&quot;: &quot;sresb1&quot;, &quot;realization&quot;: 1, &quot;directory&quot;: &quot;/ipcc/sresb1/atm/da/&quot;, &quot;table_id&quot;: &quot;Table A2 (20 September 2004)&quot;, &quot;calendar&quot;: &quot;noleap&quot;, &quot;project_id&quot;: &quot;IPCC Fourth Assessment&quot;, &quot;Conventions&quot;: &quot;CF-1.0&quot;, &quot;id&quot;: &quot;pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da&quot;, &quot;history&quot;: &quot;Tue Nov 22 09:25:17 2011: ncks -D 0 -4 -L 7 -d lat,42.0,64.0 -d lon,278.0,306.0 -d time,2040-01-01 00:00:00,2070-01-01 00:00:00 -v tas http://davidhuard:patate@esgcet.llnl.gov/dap/ipcc4/sresb1/giss_model_e_r/pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da.xml /home/david/projects/ingenieurs/data/CMIP3/tas.sresb1.giss_model_e_r.run1.atm.da.tas.nc\n  At 10:47:22 on 11/03/2004, CMOR rewrote data to comply with CF standards and IPCC Fourth Assessment requirements [2006-4-6 11:6:16] cdscan -x /var/www/html/ipcc4/sresb1/giss_model_e_r/pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da.xml -d pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da --exclude=plev --ignore-open-error --var-locate ps,ps_.* -f /tmp/scan/list.pcmdi.ipcc4.giss_model_e_r.sre ...&quot;, &quot;NCO&quot;: &quot;4.0.8&quot;}
+    history: Tue Nov 22 09:25:17 2011: ncks -D 0 -4 -L 7 -d lat,42.0,64.0 -d lon,278.0,306.0 -d time,2040-01-01 00:00:00,2070-01-01 00:00:00 -v tas http://davidhuard:patate@esgcet.llnl.gov/dap/ipcc4/sresb1/giss_model_e_r/pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da.xml /home/david/projects/ingenieurs/data/CMIP3/tas.sresb1.giss_model_e_r.run1.atm.da.tas.nc
+  At 10:47:22 on 11/03/2004, CMOR rewrote data to comply with CF standards and IPCC Fourth Assessment requirements [2006-4-6 11:6:16] cdscan -x /var/www/html/ipcc4/sresb1/giss_model_e_r/pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da.xml -d pcmdi.ipcc4.giss_model_e_r.sresb1.run1.atm.da --exclude=plev --ignore-open-error --var-locate ps,ps_.* -f /tmp/scan/list.pcmdi.ipcc4.giss_model_e_r.sre ...
+2019-01-18 17:30:14 Calculation of TX indice (annual) from 2046-1-1 to 2065-12-31.
+2019-01-18 17:30:14.427279 UTC ocgis-2.2.0dev0: OcgOperations(calc_sample_size=False, optimizations=None, geom_select_sql_where=None, output_format=&quot;nc&quot;, spatial_wrapping=&quot;None&quot;, format_time=True, select_nearest=False, output_crs=None, time_range=None, calc_grouping=(&#39;year&#39;,), prefix=&quot;b6959f22-1b46-11e9-871f-0242ac12000b&quot;, abstraction=&quot;auto&quot;, regrid_destination=None, output_format_options=None, allow_empty=False, vector_wrap=False, aggregate=False, interpolate_spatial_bounds=False, dataset=&lt;generator object __iter__ at 0x7f952019f320&gt;, geom_uid=None, dir_output=&quot;/opt/birdhouse/var/lib/pywps/tmp/flyingpigeon/pywps_process_M9RLpn&quot;, backend=&quot;ocg&quot;, search_radius_mult=None, add_auxiliary_files=False, slice=None, regrid_options={&#39;regrid_method&#39;: &#39;auto&#39;, &#39;value_mask&#39;: None, &#39;split&#39;: True}, callback=None, calc_raw=False, level_range=None, geom_select_uid=None, snippet=False, time_region=None, melted=False, geom=None, time_subset_func=None, conform_units_to=None, spatial_operation=&quot;intersects&quot;, calc=[{&#39;meta_attrs&#39;: None, &#39;name&#39;: &#39;icclim_TX&#39;, &#39;func&#39;: &#39;icclim_TX&#39;, &#39;kwds&#39;: OrderedDict()}], optimized_bbox_subset=False, file_only=False, spatial_reorder=False, )
+    title: ECA temperature indice TX
+    references: ATBD of the ECA indices calculation (http://eca.knmi.nl/documents/atbd.pdf)
+    institution: Climate impact portal (http://climate4impact.eu)
+    comment:
+    dimensions(sizes): lat(6), bnds(2), lon(5), time(20)
+    variables(dimensions): float64 [4mheight[0m(), float64 [4mlat[0m(lat), float64 [4mlat_bnds[0m(lat,bnds), float64 [4mlon[0m(lon), float64 [4mlon_bnds[0m(lon,bnds), |S1 [4mlatitude_longitude[0m(), float64 [4mtime[0m(time), float64 [4mclimatology_bounds[0m(time,bnds), float32 [4micclim_TX[0m(time,lat,lon)
+    groups:
+</pre></div>
+</div>
+</div>
+<p>Let’s now check that we indeed computed an annual maximum temperature.
+Since the file object is already opened using <code class="docutils literal notranslate"><span class="pre">netCDF</span></code>, we need to
+tell <code class="docutils literal notranslate"><span class="pre">xarray</span></code> to create a dataset from a <code class="docutils literal notranslate"><span class="pre">NetCDF4DataStore</span></code>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">NetCDF4DataStore</span><span class="p">(</span><span class="n">tx</span><span class="p">))</span>
+<span class="n">ds</span><span class="o">.</span><span class="n">icclim_TX</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7f720f4fb588&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_climate_indices_5_1.png" src="../_images/notebooks_climate_indices_5_1.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="owslib_wms.html" class="btn btn-neutral float-right" title="Working with owslib’s WMS interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rendering.html" class="btn btn-neutral" title="Gridded Data Renderer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

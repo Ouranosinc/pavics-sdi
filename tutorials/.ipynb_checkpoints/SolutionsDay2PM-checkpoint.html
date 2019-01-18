@@ -1,0 +1,1671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modify a provided PAVICS WPS workflow for a similar but different purpose &mdash; PAVICS 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="PAVICS 0.1 documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> PAVICS
+          
+
+          
+            
+            <img src="../../_static/pavics_v.svg" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/index.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gui/index.html">Graphical User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../provenance/index.html">Provenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support.html">Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../releasenotes.html">Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../todo.html">TODO</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">PAVICS</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Modify a provided PAVICS WPS workflow for a similar but different purpose</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/tutorials/.ipynb_checkpoints/SolutionsDay2PM-checkpoint.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Modify-a-provided-PAVICS-WPS-workflow-for-a-similar-but-different-purpose">
+<h1>Modify a provided PAVICS WPS workflow for a similar but different purpose<a class="headerlink" href="#Modify-a-provided-PAVICS-WPS-workflow-for-a-similar-but-different-purpose" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="One-potentially-powerful-tool-for-the-Climate-Scenarios-and-Services-team-is-to-provide-users-with-example-workflows-that-can-then-be-modified-to-different-needs">
+<h2>One potentially powerful tool for the Climate Scenarios and Services team is to provide users with example workflows that can then be modified to different needs<a class="headerlink" href="#One-potentially-powerful-tool-for-the-Climate-Scenarios-and-Services-team-is-to-provide-users-with-example-workflows-that-can-then-be-modified-to-different-needs" title="Permalink to this headline">¶</a></h2>
+<p>In this exercice we will ask you to modify the provided PAVICS workflow
+example below in order to : 1. Change the spatial subset to a region of
+your choice * Select a different set of 3 consecutive years (2008-2010)
+- 3 only to keep time and processing reasonable * Calculate a 2
+additional climate indices using CDO - monmax (previous) as well as
+monmin and monmean * Download the resulting .nc files locally and make
+a plot - the plot should contain : original daily data, with monthly
+min, mean, and max</p>
+<p>PAVICS WPS urls: * PAVICS catalogue :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/catalog/pywps">https://pavics.ouranos.ca/twitcher/ows/proxy/catalog/pywps</a> *
+Flyingpigeon suite :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps">https://pavics.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps</a> *
+Hummingbird suite :
+<a class="reference external" href="https://pavics.ouranos.ca/twitcher/ows/proxy/hummingbird/wps">https://pavics.ouranos.ca/twitcher/ows/proxy/hummingbird/wps</a></p>
+<div class="section" id="Imports">
+<h3>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="k">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">owslib.wps</span> <span class="k">import</span> <span class="n">WebProcessingService</span><span class="p">,</span> <span class="n">ComplexDataInput</span>
+
+<span class="c1"># Work around function to handle reference</span>
+<span class="k">def</span> <span class="nf">parseStatus</span><span class="p">(</span><span class="n">execute</span><span class="p">):</span>
+    <span class="n">o</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">execute</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">getchildren</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;{http://www.w3.org/1999/xlink}href&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ref</span>
+
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="1---search-for-datasets-using-the-Catalogue">
+<h2>1 - search for datasets using the Catalogue<a class="headerlink" href="#1---search-for-datasets-using-the-Catalogue" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># catalogue WPS url</span>
+<span class="n">wpsURL</span> <span class="o">=</span> <span class="s1">&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/catalog/pywps&#39;</span>
+
+<span class="c1"># Connection</span>
+<span class="n">wpsCatalogue</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">wpsURL</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="1.1-List-available-catalogue-processes">
+<h2>1.1 List available catalogue processes<a class="headerlink" href="#1.1-List-available-catalogue-processes" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">wpsCatalogue</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> : </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+getpoint         : Return a single value from a NetCDF file at the given grid coordinates.
+
+ncplotly         : Return a dictionary storing the data necessary to create a simple plotly time series.
+
+pavicrawler      : Crawl thredds server and write metadata to SOLR database.
+
+pavicsearch      : Search the PAVICS database and return a catalogue of matches.
+
+pavicsupdate     : Update database entries using key:value pairs and identified by their ids.
+
+pavicsvalidate   : Query database entries for missing required facets.
+
+period2indices   : The final index is inclusive.
+
+pavicstestdocs   : Add test documents to Solr index.
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="1.2-we-want-the-'pavicsearch'-process">
+<h2>1.2 we want the ‘pavicsearch’ process<a class="headerlink" href="#1.2-we-want-the-'pavicsearch'-process" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>let’s describe the process first</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;pavicsearch&#39;</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">wpsCatalogue</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="n">proc_name</span><span class="p">)</span> <span class="c1"># get process info</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;outputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inputs : facets  :  Comma separated list of facets; facets are searchable indexing terms in the database.
+inputs : shards  :  Shards to be queried
+inputs : offset  :  Where to start in the document count of the database search.
+inputs : limit  :  Maximum number of documents to return.
+inputs : fields  :  Comme separated list of fields to return.
+inputs : format  :  Output format.
+inputs : query  :  Direct query to the database.
+inputs : distrib  :  Distributed query
+inputs : type  :  One of Dataset, File, Aggregate or FileAsAggregate.
+inputs : constraints  :  Format is facet1:value1,facet2:value2,...
+inputs : esgf  :  Whether to also search ESGF nodes.
+inputs : list_type  :  Can be opendap_url, fileserver_url, gridftp_url, globus_url, wms_url
+outputs : search_result  :  PAVICS Catalogue Search Result
+outputs : list_result  :  List of urls of the search result.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="1.3-Search-for-data---variable-tasmax">
+<h2>1.3 Search for data - variable tasmax<a class="headerlink" href="#1.3-Search-for-data---variable-tasmax" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># built Constraint string  variable = &#39;tasmax&#39;</span>
+<span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;pavicsearch&#39;</span>
+<span class="n">constraintString</span> <span class="o">=</span> <span class="s1">&#39;variable:tasmax&#39;</span>
+<span class="n">maxfiles</span> <span class="o">=</span> <span class="s1">&#39;1000000&#39;</span>
+<span class="n">myinputs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;constraints&#39;</span><span class="p">,</span> <span class="n">constraintString</span><span class="p">),(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;File&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;limit&#39;</span><span class="p">,</span><span class="n">maxfiles</span><span class="p">)]</span>
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wpsCatalogue</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reference</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessSucceeded
+https://pavics.ouranos.ca/wpsoutputs/catalog/0cd8f4c2-055f-11e9-b5a4-0242ac12000f/list_result_2018-12-21T20:29:04Z__VfPP6g.json
+</pre></div></div>
+</div>
+<ul class="simple">
+<li>Process the output</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+<span class="n">list_nc</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numer of files found :&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">list_nc</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_nc</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">15</span><span class="p">],</span><span class="s1">&#39;...&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Numer of files found : 13026
+
+[&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r3i1p1/tasmax/tasmax_kdc_198902_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r1i1p1/tasmax/tasmax_kda_206005_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/cb-oura-1.0/HadGEM2-CC/rcp45/day/tasmax/tasmax_day_HadGEM2-CC_rcp45_r1i1p1_na10kgrid_qm-moving-50bins-detrend_2043.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r2i1p1/tasmax/tasmax_kdb_202907_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r1i1p1/tasmax/tasmax_kda_200310_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r3i1p1/tasmax/tasmax_kdc_209701_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r2i1p1/tasmax/tasmax_kdb_199110_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/cb-oura-1.0/GFDL-ESM2M/rcp45/day/tasmax/tasmax_day_GFDL-ESM2M_rcp45_r1i1p1_na10kgrid_qm-moving-50bins-detrend_2046.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r3i1p1/tasmax/tasmax_kdc_201311_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r4i1p1/tasmax/tasmax_kdd_202210_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r2i1p1/tasmax/tasmax_kdb_199406_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/cb-oura-1.0/NorESM1-M/rcp85/day/tasmax/tasmax_day_NorESM1-M_rcp85_r1i1p1_na10kgrid_qm-moving-50bins-detrend_1998.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r4i1p1/tasmax/tasmax_kdd_199403_se.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/ouranos/climex/QC11d3_CCCma-CanESM2_rcp85/day/historical-r1-r2i1p1/tasmax/tasmax_kdb_201703_se.nc&#39;] ...
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="1.4-We-have-a-lot-of-files---Let's-filter-for-NRCAN-anusplin">
+<h2>1.4 We have a lot of files - Let’s filter for NRCAN anusplin<a class="headerlink" href="#1.4-We-have-a-lot-of-files---Let's-filter-for-NRCAN-anusplin" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Filter the list for only ‘nrcan’</li>
+<li>Get only a 3 years of data - 1981 to 1983 (more manageable for today)</li>
+<li>Files are not in sequential order - use sort() to clean up the list</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># filter netcdf_file list</span>
+<span class="n">nrcan_nc</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_nc</span> <span class="k">if</span> <span class="s1">&#39;nrcan&#39;</span> <span class="ow">in</span> <span class="n">i</span> <span class="ow">and</span> <span class="p">(</span><span class="s1">&#39;2008&#39;</span> <span class="ow">in</span> <span class="n">i</span> <span class="ow">or</span> <span class="s1">&#39;2009&#39;</span> <span class="ow">in</span> <span class="n">i</span> <span class="ow">or</span> <span class="s1">&#39;2010&#39;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">)]</span>
+<span class="c1"># sort the filtered list</span>
+<span class="n">nrcan_nc</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of files :&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nrcan_nc</span><span class="p">),</span><span class="n">nrcan_nc</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of files : 3 [&#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2008.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2009.nc&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2010.nc&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="End-step-1---Successful-search-and-filtering-of-datasets">
+<h2>End step 1 - Successful search and filtering of datasets<a class="headerlink" href="#End-step-1---Successful-search-and-filtering-of-datasets" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="Step-2---spatial-subset-the-ncfiles">
+<h1>Step 2 - spatial subset the ncfiles<a class="headerlink" href="#Step-2---spatial-subset-the-ncfiles" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>let’s try to learn how to use WPS more efficiently</li>
+<li>subsetting functions can be found in Flyingpigeon</li>
+<li>fist step initiate connection to flyingpigeon</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">wpsURL</span> <span class="o">=</span> <span class="s1">&#39;https://boreas.ouranos.ca/twitcher/ows/proxy/flyingpigeon/wps&#39;</span>
+<span class="n">wpsFP</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="n">wpsURL</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wpsFP</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Flyingpigeon 1.1_dev
+</pre></div></div>
+</div>
+<div class="section" id="2.1-List-available-flyingpigeon-processes">
+<h2>2.1 List available flyingpigeon processes<a class="headerlink" href="#2.1-List-available-flyingpigeon-processes" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">wpsFP</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> : </span><span class="si">%s</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+subset_countries         : Return the data whose grid cells intersect the selected countries for each input dataset.
+
+subset_continents        : Return the data whose grid cells intersect the selected continents for each input dataset.
+
+subset_regionseurope     : Return the data whose grid cells inteserct the selected regions for each input dataset.
+
+pointinspection          : Extract the timeseries at the given coordinates.
+
+landseamask      : Mask grid cells according to their land area fraction. This process uses the ESGF datastore to access an appropriate land/sea mask.
+
+fetch_resources          : Fetch data resources (limited to 50GB) to the local filesystem of the birdhouse compute provider.
+
+indices_percentiledays   : Climatological percentile for each day of the year computed over the entire dataset.
+
+indices_single   : Climate index calculated from one daily input variable.
+
+sdm_gbiffetch    : Species occurence search in Global Biodiversity              Infrastructure Facillity (GBIF)
+
+sdm_getindices   : Indices preparation for SDM process
+
+sdm_csvindices   : Indices preparation for SDM process
+
+sdm_csv          : Indices preparation for SDM process
+
+sdm_allinone     : Indices preparation for SDM process
+
+weatherregimes_reanalyse         : k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes
+
+weatherregimes_projection        : k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes
+
+weatherregimes_model     : k-mean cluster analyse of the pressure patterns. Clusters are equivalent to weather regimes
+
+plot_timeseries          : Outputs some timeseries of the file field means. Spaghetti and uncertainty plot
+
+segetalflora     : Species biodiversity of segetal flora.
+
+spatial_analog   : Spatial analogs based on the comparison of climate indices. The algorithm compares the distribution of the target indices with the distribution of spatially distributed candidate indices and returns a value  measuring the dissimilarity between both distributions over the candidate grid.
+
+map_spatial_analog       : Produce map showing the dissimilarity values computed by the spatial_analog process as well as indicating by a marker the location of the target site.
+
+subset   : Return the data for which grid cells intersect the selected polygon for each input dataset as well asthe time range selected.
+
+averager         : Return the data with weighted average of grid cells intersecting the selected polygon for each input dataset as well as the time range selected.
+
+subset_WFS       : Return the data for which grid cells intersect the selected polygon for each input dataset.
+
+averager_WFS     : Return the data with weighted average of grid cells intersecting the selected polygon for each input dataset.
+
+subset_bbox      : Return the data for which grid cells intersect the bounding box for each input dataset as well asthe time range selected.
+
+averager_bbox    : Return the data with weighted average of grid cells intersecting the bounding box for each input dataset as well as the time range selected.
+
+ouranos_public_indicators        : Compute climate indicators: mean daily temp., min daily temp., max daily temp., growing degree days, number of days above 30C, freeze thaw cycles, total precipitation, and max 5-day precip.
+
+ncmerge          : Merge NetCDF files in the time dimension.
+
+EO_COPERNICUS_search     : Search for EO Data in the scihub.copernicus archiveoutput is a list of Product according to the querry and a graphical visualisation.
+
+EO_COPERNICUS_fetch      : Search for EO Data in the scihub.copernicus archiveproducts will be fechted into the local disc system.outuput is a list of produces and a graphical visualisation.
+
+esmf_regrid      : Regrid netCDF files to a destination grid.
+
+EO_COPERNICUS_rgb        : Based on a search querry the appropriate products are ploted as RGB graphics
+
+EO_COPERNICUS_indices    : Derivateing indices like NDVI based on
+
+kddm_bc          : Bias correction method using Kernel Density Distribution Mapping (KDDM).
+
+freezethaw       : Number of freeze-thaw events, where freezing and thawing occurs once a threshold of degree days below or above 0C is reached. A complete cycle (freeze-thaw-freeze) will return a value of 2.
+
+duration         : Summarizes consecutive occurrences in a sequence where the logical operation returns TRUE. The summary operation is applied to the sequences within a temporal aggregation.
+
+icclim_TXx       : Calculates the TXx indice: maximum of daily maximum temperature.
+
+icclim_SD        : Calculates the SD indice: mean of daily snow depth [cm]
+
+icclim_TX90p     : Calculate the TX90p indice: number of warm days-times (i.e. days with daily max temperature &gt; 90th percentile of daily max temperature in the base period).
+
+icclim_R99pTOT   : Calculate the R99pTOT indice: precipitation fraction due to extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period) [%]
+
+icclim_TXn       : Calculates the TXn indice: minimum of daily maximum temperature.
+
+icclim_CDD       : Calculates the CDD indice: maximum number of consecutive dry days (i.e. days with daily precipitation amount &lt; 1 mm) [days].
+
+icclim_TG90p     : Calculate the TG90p indice: number of warm days (i.e. days with daily mean temperature &gt; 90th percentile of daily mean temperature in the base period).
+
+icclim_SU        : Calculates the SU indice: number of summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].
+
+icclim_CFD       : Calculates the CFD indice: maximum number of consecutive frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].
+
+icclim_TN10p     : Calculate the TN10p indice: number of cold nights (i.e. days with daily min temperature &lt; 10th percentile of daily min temperature in the base period).
+
+icclim_TG        : Calculates the TG indice: mean of daily mean temperature.
+
+icclim_TN90p     : Calculate the TN90p indice: number of warm nights (i.e. days with daily min temperature &gt; 90th percentile of daily min temperature in the base period).
+
+icclim_TR        : Calculates the TR indice: number of tropical nights (i.e. days with daily minimum temperature &gt; 20 degrees Celsius) [days].
+
+icclim_RX5day    : Calculates the RX5day indice: maximum consecutive 5-day precipitation amount [mm]
+
+icclim_vDTR      : Calculates the vDTR indice: mean absolute day-to-day difference in DTR.
+
+icclim_SD50cm    : Calculates the SD50cm indice: number of days with snow depth &gt;= 50 cm [days]
+
+icclim_CWD       : Calculates the CWD indice: maximum number of consecutive wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days].
+
+icclim_ID        : Calculates the ID indice: number of ice days (i.e. days with daily maximum temperature &lt; 0 degrees Celsius) [days].
+
+icclim_R20mm     : Calculates the R20mm indice: number of very heavy precipitation days (i.e. days with daily precipitation amount &gt; = 20 mm) [days]
+
+icclim_CSU       : Calculates the CSU indice: maximum number of consecutive summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].
+
+icclim_RX1day    : Calculates the RX1day indice: maximum 1-day precipitation amount [mm]
+
+icclim_WSDI      : Calculate the WSDI indice (warm-spell duration index): number of days where, in intervals of at least 6 consecutive days,
+
+icclim_RR1       : Calculates the RR1 indice: number of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days]
+
+icclim_CSDI      : Calculate the CSDI indice (cold-spell duration index): number of days where, in intervals of at least 6 consecutive days,
+
+icclim_R75pTOT   : Calculate the R75pTOT indice: precipitation fraction due to moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period) [%]
+
+icclim_R95pTOT   : Calculate the R95pTOT indice: precipitation fraction due to very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period) [%]
+
+icclim_R10mm     : Calculates the R10mm indice: number of heavy precipitation days (i.e. days with daily precipitation amount &gt; = 10 mm) [days]
+
+icclim_SDII      : Calculates the SDII (simple daily intensity index) indice:  mean precipitation amount of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [mm]
+
+icclim_DTR       : Calculates the DTR indice: mean of daily temperature range.
+
+icclim_TG10p     : Calculate the TG10p indice: number of cold days (i.e. days with daily mean temperature &lt; 10th percentile of daily mean temperature in the base period).
+
+icclim_TX        : Calculates the TX indice: mean of daily maximum temperature.
+
+icclim_PRCPTOT   : Calculates the PRCPTOT indice: total precipitation in wet days [mm]
+
+icclim_TN        : Calculates the TN indice: mean of daily minimum temperature.
+
+icclim_R75p      : Calculate the R75p indice: number of moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period).
+
+icclim_TNx       : Calculates the TNx indice: maximum of daily minimum temperature.
+
+icclim_SD5cm     : Calculates the SD5cm indice: number of days with snow depth &gt;= 5 cm [days]
+
+icclim_FD        : Calculates the FD indice: number of frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].
+
+icclim_R99p      : Calculate the R99p indice: number of extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period).
+
+icclim_R95p      : Calculate the R95p indice: number of very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period).
+
+icclim_SD1       : Calculates the SD1 indice: number of days with snow depth &gt;= 1 cm [days]
+
+icclim_GD4       : Calculates the GD4 indice: growing degree days (sum of daily mean temperature &gt; 4 degrees Celsius).
+
+icclim_TNn       : Calculates the TNn indice: minimum of daily minimum temperature.
+
+icclim_HD17      : Calculates the HD17 indice: heating degree days (sum of (17 degrees Celsius - daily mean temperature)).
+
+icclim_ETR       : Calculates the ETR indice: intra-period extreme temperature range.
+
+icclim_TX10p     : Calculate the TX10p indice: number of cold day-times (i.e. days with daily max temperature &lt; 10th percentile of daily max temperature in the base period).
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.2-Flyingpigeon-does-a-lot---use-'subset_bbox'-process-for-now">
+<h2>2.2 Flyingpigeon does a lot - use ‘subset_bbox’ process for now<a class="headerlink" href="#2.2-Flyingpigeon-does-a-lot---use-'subset_bbox'-process-for-now" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>let’s describe the process first</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;subset_bbox&#39;</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">wpsFP</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">title</span><span class="p">,</span><span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;outputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Subset  :  Return the data for which grid cells intersect the bounding box for each input dataset as well asthe time range selected.
+
+inputs : resource  :  NetCDF files, can be OPEnDAP urls.
+inputs : lon0  :  Minimum longitude.
+inputs : lon1  :  Maximum longitude.
+inputs : lat0  :  Minimum latitude.
+inputs : lat1  :  Maximum latitude.
+inputs : initial_datetime  :  Initial datetime for temporal subsetting.
+inputs : final_datetime  :  Final datetime for temporal subsetting.
+inputs : variable  :  Name of the variable in the NetCDF file.Will be guessed if not provided.
+outputs : output  :  JSON file with link to NetCDF outputs.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.3-Create-WPS-inputs-and-execute-WPS">
+<h2>2.3 Create WPS inputs and execute WPS<a class="headerlink" href="#2.3-Create-WPS-inputs-and-execute-WPS" title="Permalink to this headline">¶</a></h2>
+<p>This time we will have multiple ‘resource’ inputs * Subset multiple .nc
+files with one WPS call * Subset only using lat lon bounds - other
+inputs left blank</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1"># To keep things reasonably quick : subset jan-april</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">nrcan_nc</span><span class="p">:</span>
+    <span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;lon0&#39;</span><span class="p">,</span> <span class="s1">&#39;-120.0&#39;</span><span class="p">))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;lon1&#39;</span><span class="p">,</span> <span class="s1">&#39;-90.0&#39;</span><span class="p">))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;lat0&#39;</span><span class="p">,</span> <span class="s1">&#39;49.0&#39;</span><span class="p">))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;lat1&#39;</span><span class="p">,</span> <span class="s1">&#39;55&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myinputs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[(&#39;resource&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2008.nc&#39;), (&#39;resource&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2009.nc&#39;), (&#39;resource&#39;, &#39;https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/dodsC/birdhouse/nrcan/nrcan_canada_daily/tasmax/nrcan_canada_daily_tasmax_2010.nc&#39;), (&#39;lon0&#39;, &#39;-120.0&#39;), (&#39;lon1&#39;, &#39;-90.0&#39;), (&#39;lat0&#39;, &#39;49.0&#39;), (&#39;lat1&#39;, &#39;55&#39;)]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># This could take a some time</span>
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wpsFP</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reference</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">timeout</span>                                   Traceback (most recent call last)
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="ansi-green-intense-fg ansi-bold">    386</span>                     <span class="ansi-red-fg"># otherwise it looks like a programming error was the cause.</span>
+<span class="ansi-green-fg">--&gt; 387</span><span class="ansi-red-fg">                     </span>six<span class="ansi-blue-fg">.</span>raise_from<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    388</span>         <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>SocketTimeout<span class="ansi-blue-fg">,</span> BaseSSLError<span class="ansi-blue-fg">,</span> SocketError<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/packages/six.py</span> in <span class="ansi-cyan-fg">raise_from</span><span class="ansi-blue-fg">(value, from_value)</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="ansi-green-intense-fg ansi-bold">    382</span>                 <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 383</span><span class="ansi-red-fg">                     </span>httplib_response <span class="ansi-blue-fg">=</span> conn<span class="ansi-blue-fg">.</span>getresponse<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    384</span>                 <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/http/client.py</span> in <span class="ansi-cyan-fg">getresponse</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1330</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1331</span><span class="ansi-red-fg">                 </span>response<span class="ansi-blue-fg">.</span>begin<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1332</span>             <span class="ansi-green-fg">except</span> ConnectionError<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/http/client.py</span> in <span class="ansi-cyan-fg">begin</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    296</span>         <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 297</span><span class="ansi-red-fg">             </span>version<span class="ansi-blue-fg">,</span> status<span class="ansi-blue-fg">,</span> reason <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_read_status<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    298</span>             <span class="ansi-green-fg">if</span> status <span class="ansi-blue-fg">!=</span> CONTINUE<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/http/client.py</span> in <span class="ansi-cyan-fg">_read_status</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    257</span>     <span class="ansi-green-fg">def</span> _read_status<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 258</span><span class="ansi-red-fg">         </span>line <span class="ansi-blue-fg">=</span> str<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>fp<span class="ansi-blue-fg">.</span>readline<span class="ansi-blue-fg">(</span>_MAXLINE <span class="ansi-blue-fg">+</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;iso-8859-1&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    259</span>         <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;</span> _MAXLINE<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/socket.py</span> in <span class="ansi-cyan-fg">readinto</span><span class="ansi-blue-fg">(self, b)</span>
+<span class="ansi-green-intense-fg ansi-bold">    585</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 586</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_sock<span class="ansi-blue-fg">.</span>recv_into<span class="ansi-blue-fg">(</span>b<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    587</span>             <span class="ansi-green-fg">except</span> timeout<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/contrib/pyopenssl.py</span> in <span class="ansi-cyan-fg">recv_into</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    293</span>             <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> rd<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 294</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> timeout<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;The read operation timed out&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    295</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">timeout</span>: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">ReadTimeoutError</span>                          Traceback (most recent call last)
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/requests/adapters.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="ansi-green-intense-fg ansi-bold">    444</span>                     retries<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>max_retries<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 445</span><span class="ansi-red-fg">                     </span>timeout<span class="ansi-blue-fg">=</span>timeout
+<span class="ansi-green-intense-fg ansi-bold">    446</span>                 )
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="ansi-green-intense-fg ansi-bold">    638</span>             retries = retries.increment(method, url, error=e, _pool=self,
+<span class="ansi-green-fg">--&gt; 639</span><span class="ansi-red-fg">                                         _stacktrace=sys.exc_info()[2])
+</span><span class="ansi-green-intense-fg ansi-bold">    640</span>             retries<span class="ansi-blue-fg">.</span>sleep<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/util/retry.py</span> in <span class="ansi-cyan-fg">increment</span><span class="ansi-blue-fg">(self, method, url, response, error, _pool, _stacktrace)</span>
+<span class="ansi-green-intense-fg ansi-bold">    356</span>             <span class="ansi-green-fg">if</span> read <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">False</span> <span class="ansi-green-fg">or</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_is_method_retryable<span class="ansi-blue-fg">(</span>method<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 357</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> six<span class="ansi-blue-fg">.</span>reraise<span class="ansi-blue-fg">(</span>type<span class="ansi-blue-fg">(</span>error<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> error<span class="ansi-blue-fg">,</span> _stacktrace<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    358</span>             <span class="ansi-green-fg">elif</span> read <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/packages/six.py</span> in <span class="ansi-cyan-fg">reraise</span><span class="ansi-blue-fg">(tp, value, tb)</span>
+<span class="ansi-green-intense-fg ansi-bold">    685</span>             <span class="ansi-green-fg">raise</span> value<span class="ansi-blue-fg">.</span>with_traceback<span class="ansi-blue-fg">(</span>tb<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 686</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> value
+<span class="ansi-green-intense-fg ansi-bold">    687</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="ansi-green-intense-fg ansi-bold">    600</span>                                                   body<span class="ansi-blue-fg">=</span>body<span class="ansi-blue-fg">,</span> headers<span class="ansi-blue-fg">=</span>headers<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 601</span><span class="ansi-red-fg">                                                   chunked=chunked)
+</span><span class="ansi-green-intense-fg ansi-bold">    602</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="ansi-green-intense-fg ansi-bold">    388</span>         <span class="ansi-green-fg">except</span> <span class="ansi-blue-fg">(</span>SocketTimeout<span class="ansi-blue-fg">,</span> BaseSSLError<span class="ansi-blue-fg">,</span> SocketError<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 389</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_raise_timeout<span class="ansi-blue-fg">(</span>err<span class="ansi-blue-fg">=</span>e<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">=</span>url<span class="ansi-blue-fg">,</span> timeout_value<span class="ansi-blue-fg">=</span>read_timeout<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    390</span>             <span class="ansi-green-fg">raise</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_raise_timeout</span><span class="ansi-blue-fg">(self, err, url, timeout_value)</span>
+<span class="ansi-green-intense-fg ansi-bold">    308</span>         <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>err<span class="ansi-blue-fg">,</span> SocketTimeout<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 309</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> ReadTimeoutError<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;Read timed out. (read timeout=%s)&#34;</span> <span class="ansi-blue-fg">%</span> timeout_value<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    310</span>
+
+<span class="ansi-red-fg">ReadTimeoutError</span>: HTTPSConnectionPool(host=&#39;boreas.ouranos.ca&#39;, port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">ReadTimeout</span>                               Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-12-4f8fb26be90a&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># This could take a some time</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>execution <span class="ansi-blue-fg">=</span> wpsFP<span class="ansi-blue-fg">.</span>execute<span class="ansi-blue-fg">(</span>identifier<span class="ansi-blue-fg">=</span>proc_name<span class="ansi-blue-fg">,</span> inputs<span class="ansi-blue-fg">=</span>myinputs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> print<span class="ansi-blue-fg">(</span>execution<span class="ansi-blue-fg">.</span>status<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> print<span class="ansi-blue-fg">(</span>execution<span class="ansi-blue-fg">.</span>processOutputs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>reference<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> print<span class="ansi-blue-fg">(</span>execution<span class="ansi-blue-fg">.</span>statusLocation<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/src/OWSLib/owslib/wps.py</span> in <span class="ansi-cyan-fg">execute</span><span class="ansi-blue-fg">(self, identifier, inputs, output, mode, lineage, request, response)</span>
+<span class="ansi-green-intense-fg ansi-bold">    326</span>         <span class="ansi-red-fg"># submit the request to the live server</span>
+<span class="ansi-green-intense-fg ansi-bold">    327</span>         <span class="ansi-green-fg">if</span> response <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 328</span><span class="ansi-red-fg">             </span>response <span class="ansi-blue-fg">=</span> execution<span class="ansi-blue-fg">.</span>submitRequest<span class="ansi-blue-fg">(</span>request<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    329</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    330</span>             response <span class="ansi-blue-fg">=</span> etree<span class="ansi-blue-fg">.</span>fromstring<span class="ansi-blue-fg">(</span>response<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/src/OWSLib/owslib/wps.py</span> in <span class="ansi-cyan-fg">submitRequest</span><span class="ansi-blue-fg">(self, request)</span>
+<span class="ansi-green-intense-fg ansi-bold">    854</span>         response = reader.readFromUrl(
+<span class="ansi-green-intense-fg ansi-bold">    855</span>             self<span class="ansi-blue-fg">.</span>url<span class="ansi-blue-fg">,</span> request<span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">&#39;Post&#39;</span><span class="ansi-blue-fg">,</span> username<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>username<span class="ansi-blue-fg">,</span> password<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>password<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 856</span><span class="ansi-red-fg">             headers=self.headers, verify=self.verify, cert=self.cert)
+</span><span class="ansi-green-intense-fg ansi-bold">    857</span>         self<span class="ansi-blue-fg">.</span>response <span class="ansi-blue-fg">=</span> response
+<span class="ansi-green-intense-fg ansi-bold">    858</span>         <span class="ansi-green-fg">return</span> response
+
+<span class="ansi-green-fg">~/src/OWSLib/owslib/wps.py</span> in <span class="ansi-cyan-fg">readFromUrl</span><span class="ansi-blue-fg">(self, url, data, method, username, password, headers, verify, cert)</span>
+<span class="ansi-green-intense-fg ansi-bold">    551</span>
+<span class="ansi-green-intense-fg ansi-bold">    552</span>         return self._readFromUrl(url, data, method, username=username, password=password,
+<span class="ansi-green-fg">--&gt; 553</span><span class="ansi-red-fg">                                  headers=headers, verify=verify, cert=cert)
+</span><span class="ansi-green-intense-fg ansi-bold">    554</span>
+<span class="ansi-green-intense-fg ansi-bold">    555</span>
+
+<span class="ansi-green-fg">~/src/OWSLib/owslib/wps.py</span> in <span class="ansi-cyan-fg">_readFromUrl</span><span class="ansi-blue-fg">(self, url, data, method, username, password, headers, verify, cert)</span>
+<span class="ansi-green-intense-fg ansi-bold">    463</span>             u = openURL(url, data, method=&#39;Post&#39;,
+<span class="ansi-green-intense-fg ansi-bold">    464</span>                         username<span class="ansi-blue-fg">=</span>username<span class="ansi-blue-fg">,</span> password<span class="ansi-blue-fg">=</span>password<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 465</span><span class="ansi-red-fg">                         headers=headers, verify=verify, cert=cert)
+</span><span class="ansi-green-intense-fg ansi-bold">    466</span>             <span class="ansi-green-fg">return</span> etree<span class="ansi-blue-fg">.</span>fromstring<span class="ansi-blue-fg">(</span>u<span class="ansi-blue-fg">.</span>read<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    467</span>
+
+<span class="ansi-green-fg">~/src/OWSLib/owslib/util.py</span> in <span class="ansi-cyan-fg">openURL</span><span class="ansi-blue-fg">(url_base, data, method, cookies, username, password, timeout, headers, verify, cert)</span>
+<span class="ansi-green-intense-fg ansi-bold">    188</span>                            verify<span class="ansi-blue-fg">=</span>verify<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    189</span>                            cert<span class="ansi-blue-fg">=</span>cert<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-fg">--&gt; 190</span><span class="ansi-red-fg">                            **rkwargs)
+</span><span class="ansi-green-intense-fg ansi-bold">    191</span>
+<span class="ansi-green-intense-fg ansi-bold">    192</span>     <span class="ansi-green-fg">if</span> req<span class="ansi-blue-fg">.</span>status_code <span class="ansi-green-fg">in</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">400</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">401</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/requests/api.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(method, url, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     56</span>     <span class="ansi-red-fg"># cases, and look like a memory leak in others.</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">with</span> sessions<span class="ansi-blue-fg">.</span>Session<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> session<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> session<span class="ansi-blue-fg">.</span>request<span class="ansi-blue-fg">(</span>method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">=</span>url<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="ansi-green-intense-fg ansi-bold">    510</span>         }
+<span class="ansi-green-intense-fg ansi-bold">    511</span>         send_kwargs<span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>settings<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 512</span><span class="ansi-red-fg">         </span>resp <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>prep<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>send_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    513</span>
+<span class="ansi-green-intense-fg ansi-bold">    514</span>         <span class="ansi-green-fg">return</span> resp
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    620</span>
+<span class="ansi-green-intense-fg ansi-bold">    621</span>         <span class="ansi-red-fg"># Send the request</span>
+<span class="ansi-green-fg">--&gt; 622</span><span class="ansi-red-fg">         </span>r <span class="ansi-blue-fg">=</span> adapter<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>request<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    623</span>
+<span class="ansi-green-intense-fg ansi-bold">    624</span>         <span class="ansi-red-fg"># Total elapsed time of the request (approximately)</span>
+
+<span class="ansi-green-fg">~/.conda/envs/birdy/lib/python3.6/site-packages/requests/adapters.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="ansi-green-intense-fg ansi-bold">    524</span>                 <span class="ansi-green-fg">raise</span> SSLError<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> request<span class="ansi-blue-fg">=</span>request<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    525</span>             <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> ReadTimeoutError<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 526</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> ReadTimeout<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">,</span> request<span class="ansi-blue-fg">=</span>request<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    527</span>             <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    528</span>                 <span class="ansi-green-fg">raise</span>
+
+<span class="ansi-red-fg">ReadTimeout</span>: HTTPSConnectionPool(host=&#39;boreas.ouranos.ca&#39;, port=443): Read timed out. (read timeout=30)
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ref</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+
+<span class="n">list_subset</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_subset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;https://pavics.ouranos.ca:443/wpsoutputs/flyingpigeon/tmpd2YbsA/nrcan_canada_daily_tasmax_2008_subset.nc&#39;, &#39;https://pavics.ouranos.ca:443/wpsoutputs/flyingpigeon/tmpd2YbsA/nrcan_canada_daily_tasmax_2009_subset.nc&#39;, &#39;https://pavics.ouranos.ca:443/wpsoutputs/flyingpigeon/tmpd2YbsA/nrcan_canada_daily_tasmax_2010_subset.nc&#39;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="2.4-subset-completed">
+<h2>2.4 subset completed<a class="headerlink" href="#2.4-subset-completed" title="Permalink to this headline">¶</a></h2>
+<p>Before moving on - Let’s download one file to see how the subset worked</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">list_subset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">outfile</span> <span class="o">=</span> <span class="s1">&#39;./output/&#39;</span> <span class="o">+</span><span class="n">list_subset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+./output/nrcan_canada_daily_tasmax_2008_subset.nc
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">nc1</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+<span class="n">tasmax</span> <span class="o">=</span> <span class="n">nc1</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">nc1</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">nc1</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">tasmax</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span><span class="mi">20</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.contour.QuadContourSet at 0x7f2da270f710&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_28_1.png" src="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_28_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tasmax</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7f2da2618eb8&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_29_1.png" src="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_29_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Looks-good---the-St-Lawrence-valley-is-visible-(if-you-are-familiar-with-Quebec-geography)">
+<h2>Looks good - the St-Lawrence valley is visible (if you are familiar with Quebec geography)<a class="headerlink" href="#Looks-good---the-St-Lawrence-valley-is-visible-(if-you-are-familiar-with-Quebec-geography)" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="End-step-2---Successful-spatial-subsetting-of-datasets">
+<h2>End step 2 - Successful spatial subsetting of datasets<a class="headerlink" href="#End-step-2---Successful-spatial-subsetting-of-datasets" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="Step-3---temporal-concatenation-using-'ncmerge'">
+<h1>Step 3 - temporal concatenation using ‘ncmerge’<a class="headerlink" href="#Step-3---temporal-concatenation-using-'ncmerge'" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>‘ncmerge’ can also be accessed in Flyingpigeon</li>
+</ul>
+<div class="section" id="As-always-:-start-by-describing-the-process">
+<h2>As always : start by describing the process<a class="headerlink" href="#As-always-:-start-by-describing-the-process" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;ncmerge&#39;</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">wpsFP</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">)</span> <span class="c1"># get process info</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;outputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+inputs : resource  :  NetCDF files, can be OPEnDAP urls.
+outputs : output  :  Temporally merged NetCDF files.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3.1-Question-:-Are-my-subsetted-urls-(list_subset)-opendap-urls?">
+<h2>3.1 Question : Are my subsetted urls (list_subset) opendap urls?<a class="headerlink" href="#3.1-Question-:-Are-my-subsetted-urls-(list_subset)-opendap-urls?" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Simple test : follow one of the links</li>
+<li>If you start to download : Not OpenDAP</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#Check if opendap</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">list_subset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+https://pavics.ouranos.ca:443/wpsoutputs/flyingpigeon/tmpd2YbsA/nrcan_canada_daily_tasmax_2008_subset.nc
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3.2-Test-conclusion-:-The-subsetted-.nc-urls-are-NOT-OpenDAP">
+<h2>3.2 Test conclusion : The subsetted .nc urls are NOT OpenDAP<a class="headerlink" href="#3.2-Test-conclusion-:-The-subsetted-.nc-urls-are-NOT-OpenDAP" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Future development - we would like to get both OpenDap and direct
+links as outputs from PAVICS</li>
+</ul>
+</div>
+<div class="section" id="3.3-We-can-still-use-them-but-resouce-inputs-must-be-sent-using-ComplexDataInput()">
+<h2>3.3 We can still use them but resouce inputs must be sent using ComplexDataInput()<a class="headerlink" href="#3.3-We-can-still-use-them-but-resouce-inputs-must-be-sent-using-ComplexDataInput()" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create inputs list and execute WPS</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;ncmerge&#39;</span>
+
+<span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">list_subset</span><span class="p">:</span>
+    <span class="c1">#print(l)</span>
+    <span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;resource&#39;</span><span class="p">,</span> <span class="n">ComplexDataInput</span><span class="p">(</span><span class="n">l</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">myinputs</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[(&#39;resource&#39;, &lt;owslib.wps.ComplexDataInput object at 0x7f2da2294278&gt;), (&#39;resource&#39;, &lt;owslib.wps.ComplexDataInput object at 0x7f2da2294240&gt;), (&#39;resource&#39;, &lt;owslib.wps.ComplexDataInput object at 0x7f2da2294470&gt;)]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">execution</span> <span class="o">=</span> <span class="n">wpsFP</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessSucceeded
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3.3-Get-WPS-output-location-and-download-merged-.nc-file">
+<h2>3.3 Get WPS output location and download merged .nc file<a class="headerlink" href="#3.3-Get-WPS-output-location-and-download-merged-.nc-file" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">merged_nc</span><span class="o">=</span><span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">merged_nc</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is the url to the merged file :&#39;</span><span class="p">,</span><span class="n">merged_nc</span><span class="p">)</span>
+<span class="n">outfile_merge</span> <span class="o">=</span> <span class="s1">&#39;./output/&#39;</span> <span class="o">+</span> <span class="n">merged_nc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outfile_merge</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile_merge</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+This is the url to the merged file : https://pavics.ouranos.ca:443/wpsoutputs/flyingpigeon/722bf490-bba5-11e8-9c30-0242ac12000b/nrcan_canada_daily_tasmax_2008_subset_merged_4feNMY.nc
+./output/nrcan_canada_daily_tasmax_2008_subset_merged_4feNMY.nc
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="3.4-Make-a-plot-:-we-should-have-3-years-of-data">
+<h2>3.4 Make a plot : we should have 3 years of data<a class="headerlink" href="#3.4-Make-a-plot-:-we-should-have-3-years-of-data" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ncOut</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile_merge</span><span class="p">)</span>
+<span class="c1">#print(ncOut)</span>
+
+<span class="n">tasmax_merge</span> <span class="o">=</span> <span class="n">ncOut</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tasmax_merge</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7f2da25970f0&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_43_1.png" src="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_43_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="End-step-3---Successful-temporal-merge">
+<h2>End step 3 - Successful temporal merge<a class="headerlink" href="#End-step-3---Successful-temporal-merge" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+<div class="section" id="Step-4---Calculate-monthly-min,-mean-and-max">
+<h1>Step 4 - Calculate monthly min, mean and max<a class="headerlink" href="#Step-4---Calculate-monthly-min,-mean-and-max" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic simple">
+<li>Use CDO operators via Hummingbird - A different WPS suite</li>
+</ol>
+<div class="section" id="4.1-Let's-start-with-connecting-to-Hummingbird">
+<h2>4.1 Let’s start with connecting to Hummingbird<a class="headerlink" href="#4.1-Let's-start-with-connecting-to-Hummingbird" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="As-always-:-start-by-describing-the-process">
+<h2>As always : start by describing the process<a class="headerlink" href="#As-always-:-start-by-describing-the-process" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">wpsURL</span> <span class="o">=</span> <span class="s1">&#39;https://boreas.ouranos.ca/twitcher/ows/proxy/hummingbird/wps&#39;</span>
+<span class="n">wpsHM</span> <span class="o">=</span> <span class="n">WebProcessingService</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">wpsURL</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wpsHM</span><span class="o">.</span><span class="n">identification</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Hummingbird 0.5_dev
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.2-List-WPS-services-available-in-Hummingbird">
+<h2>4.2 List WPS services available in Hummingbird<a class="headerlink" href="#4.2-List-WPS-services-available-in-Hummingbird" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">wpsHM</span><span class="o">.</span><span class="n">processes</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="se">\t</span><span class="s1"> : </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">))</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ncdump   : Run ncdump to retrieve NetCDF header metadata.
+spotchecker      : Checks a single uploaded or remote dataset against a variety of compliance standards. The dataset is either in the NetCDF format or a remote OpenDAP resource. Available compliance standards are the Climate and Forecast conventions (CF) and project specific rules for CMIP6 and CORDEX.
+cchecker         : Runs the IOOS Compliance Checker tool to check datasets against compliance standards. Each compliance standard is executed by a Check Suite, which functions similar to a Python standard Unit Test. A Check Suite runs one or more checks against a dataset, returning a list of Results which are then aggregated into a summary. Development and maintenance for the compliance checker is done by the Integrated Ocean Observing System (IOOS).
+cfchecker        : The NetCDF Climate Forcast Conventions compliance checker by CEDA. This process allows you to run the compliance checker to check that the contents of a NetCDF file comply with the Climate and Forecasts (CF) Metadata Convention. The CF-checker was developed at the Hadley Centre for Climate Prediction and Research, UK Met Office by Rosalyn Hatcher. This work was supported by PRISM (PRogramme for Integrated Earth System Modelling). Development and maintenance for the CF-checker has now been taken over by the NCAS Computational Modelling Services (NCAS-CMS). If you have suggestions for improvement then please contact Rosalyn Hatcher at NCAS-CMS (r.s.hatcher@reading.ac.uk).
+cmor_checker     : Calls the CMIP6 cmor checker to verify CMIP6 compliance.CMIP6 CMOR checker will verify that all attributes in the input file are present and conform to CMIP6 for publication into ESGF.
+qa_cfchecker     : The NetCDF Climate Forcast Conventions compliance checker by DKRZ. This process allows you to run the compliance checker to check that the contents of a NetCDF file comply with the Climate and Forecasts (CF) Metadata Convention. The CF Conformance checker applies to conventions 1.4 -1.7draft. Development and maintenance for the CF-checker is done by the German Climate Computing Centre (DKRZ). If you have suggestions for improvement then please contact Heinz-Dieter Hollweg at DKRZ (hollweg@dkrz.de).
+qa_checker       : The Quality Assurance checker QA-DKRZ checks conformance of meta-data of climate simulations given in NetCDF format with conventions and rules of climate model projects. At present, checking of CF Conventions, CMIP5, and CORDEX is supported. Development and maintenance for the QA checker is done by the German Climate Computing Centre (DKRZ). If you have suggestions for improvement then please contact Heinz-Dieter Hollweg at DKRZ (hollweg@dkrz.de).
+cdo_sinfo        : Runs CDO to retrieve NetCDF metadata information. Calls the sinfo operator of CDO (Climate Data Operator) on a NetCDF file and returns a document with metadata information.
+cdo_operation    : Calls CDO operations like monmax on a NetCDF file.
+cdo_copy         : Calls CDO to copy or concatenate datasets. All input datasets need to have the same structure with the same variables on different timesteps.
+cdo_bbox         : Runs CDO to clip a bounding-box from a NetCDF file. Calls the CDO (Climate Data Operators) sellonlatbox operator with a bounding-box and returns the resulting NetCDF file.
+cdo_indices      : Calculates climate indices like summer days using CDO. Calls the Climate Data Operators (CDO) tool with a single dataset (NetCDF, OpenDAP) provided and uses the chosen operator to calculate climate indices written to a NetCDF file.
+ensembles        : Calling cdo to calculate ensembles operations.
+cdo_inter_mpi    : CDO Remapping of NetCDF File(s) with multiprocessing
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.3-We-want-to-use-'CDO-operation'">
+<h2>4.3 We want to use ‘CDO operation’<a class="headerlink" href="#4.3-We-want-to-use-'CDO-operation'" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>As always we start by …… Describing the process!</li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">proc_name</span> <span class="o">=</span> <span class="s1">&#39;cdo_operation&#39;</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">wpsHM</span><span class="o">.</span><span class="n">describeprocess</span><span class="p">(</span><span class="n">proc_name</span><span class="p">)</span> <span class="c1"># get process info</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span><span class="n">process</span><span class="o">.</span><span class="n">abstract</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">dataInputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;inputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">process</span><span class="o">.</span><span class="n">processOutputs</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;outputs :&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39; : &#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+CDO Operation  :  Calls CDO operations like monmax on a NetCDF file.
+
+inputs : dataset  :  You may provide a URL or upload a NetCDF file.
+inputs : dataset_opendap  :  Or provide a remote OpenDAP data URL, for example: http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc
+inputs : operator  :  Choose a CDO Operator.                          See the CDO documentation to lookup a description of the operators.
+outputs : output  :  NetCDF Output generated by CDO.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.4-Create-inputs-&amp;-execute-WPS">
+<h2>4.4 Create inputs &amp; execute WPS<a class="headerlink" href="#4.4-Create-inputs-&-execute-WPS" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span><span class="n">ComplexDataInput</span><span class="p">(</span><span class="n">merged_nc</span><span class="p">)))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;operator&#39;</span><span class="p">,</span><span class="s1">&#39;monmax&#39;</span><span class="p">))</span>
+
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wpsHM</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span><span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessSucceeded
+https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/91734d30-bba5-11e8-b808-0242ac12000d.xml
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.5-Download-the-output">
+<h2>4.5 Download the output<a class="headerlink" href="#4.5-Download-the-output" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">monmax_nc</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">monmax_nc</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">monmax_nc</span><span class="p">)</span>
+
+<span class="n">outfile_monmax</span> <span class="o">=</span> <span class="s1">&#39;./output/&#39;</span> <span class="o">+</span> <span class="n">monmax_nc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outfile_monmax</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile_monmax</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Monthly min</span>
+<span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span><span class="n">ComplexDataInput</span><span class="p">(</span><span class="n">merged_nc</span><span class="p">)))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;operator&#39;</span><span class="p">,</span><span class="s1">&#39;monmin&#39;</span><span class="p">))</span>
+
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wpsHM</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span><span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+
+<span class="n">monmin_nc</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">monmin_nc</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">monmin_nc</span><span class="p">)</span>
+
+<span class="n">outfile_monmin</span> <span class="o">=</span> <span class="s1">&#39;./output/&#39;</span> <span class="o">+</span> <span class="n">monmin_nc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outfile_monmin</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile_monmin</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Monthly mean</span>
+<span class="n">myinputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span><span class="n">ComplexDataInput</span><span class="p">(</span><span class="n">merged_nc</span><span class="p">)))</span>
+<span class="n">myinputs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;operator&#39;</span><span class="p">,</span><span class="s1">&#39;monmean&#39;</span><span class="p">))</span>
+
+<span class="n">execution</span> <span class="o">=</span> <span class="n">wpsHM</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">proc_name</span><span class="p">,</span><span class="n">inputs</span><span class="o">=</span><span class="n">myinputs</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">status</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">execution</span><span class="o">.</span><span class="n">statusLocation</span><span class="p">)</span>
+
+<span class="n">monmean_nc</span> <span class="o">=</span> <span class="n">parseStatus</span><span class="p">(</span><span class="n">execution</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">monmean_nc</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">monmean_nc</span><span class="p">)</span>
+
+<span class="n">outfile_monmean</span> <span class="o">=</span> <span class="s1">&#39;./output/&#39;</span> <span class="o">+</span> <span class="n">monmean_nc</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outfile_monmean</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile_monmean</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+ProcessSucceeded
+https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/43d57c78-bba6-11e8-8b91-0242ac12000d.xml
+https://pavics.ouranos.ca:443/wpsoutputs/hummingbird/43d57c78-bba6-11e8-8b91-0242ac12000d/cdo_monmean_RdzVXI.nc
+./output/cdo_monmean_RdzVXI.nc
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4.6-Plot-the-results-and-compare-with-daily-data-series">
+<h2>4.6 Plot the results and compare with daily data series<a class="headerlink" href="#4.6-Plot-the-results-and-compare-with-daily-data-series" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ncMerge</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile_merge</span><span class="p">)</span>
+<span class="n">ncMax</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile_monmax</span><span class="p">)</span>
+<span class="n">ncMin</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile_monmin</span><span class="p">)</span>
+<span class="n">ncMean</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">outfile_monmean</span><span class="p">)</span>
+
+<span class="n">tasmax_merge</span> <span class="o">=</span> <span class="n">ncMerge</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">time_merge</span> <span class="o">=</span> <span class="n">ncMerge</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_merge</span><span class="p">,</span><span class="n">tasmax_merge</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="n">tasmax_monmax</span> <span class="o">=</span> <span class="n">ncMax</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">time_max</span> <span class="o">=</span> <span class="n">ncMax</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_max</span><span class="p">,</span><span class="n">tasmax_monmax</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">tasmax_monmin</span> <span class="o">=</span> <span class="n">ncMin</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">time_min</span> <span class="o">=</span> <span class="n">ncMin</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_min</span><span class="p">,</span><span class="n">tasmax_monmin</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="n">tasmax_monmean</span> <span class="o">=</span> <span class="n">ncMean</span><span class="p">[</span><span class="s1">&#39;tasmax&#39;</span><span class="p">][:]</span>
+<span class="n">time_mean</span> <span class="o">=</span> <span class="n">ncMean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_mean</span><span class="p">,</span><span class="n">tasmax_monmean</span><span class="p">[:,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[37]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7f2da2075b38&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_58_1.png" src="../../_images/tutorials_.ipynb_checkpoints_SolutionsDay2PM-checkpoint_58_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ouranos &amp; CRIM.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

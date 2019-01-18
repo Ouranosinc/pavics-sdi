@@ -1,0 +1,218 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Bias correction\n",
+    "\n",
+    "There is at the moment only one bias correction process implemented, the Kernel Density Distribution Mapping. It was written in R and given an observation variable `obs`, a simulated variable over the observation period `ref` and a future period `fut`, it would be called as `fp.kddm_bc(obs=obs, ref=ref, fut=fut)`. Since this function is so compute intensive, we'll create a small synthetic file for testing. \n",
+    "\n",
+    "### Note\n",
+    "The current production version of FlyingPigeon runs on a version of PyWPS whose handling of binary files is sketchy. That means that it works well when files are provided as references, not embedded in an http request. This functionality will become available with the next update. For this example we'll use files stored on the PAVICS THREDDS server. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'fp' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-9-57f9d3c55267>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0mfut\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mthredds\u001b[0m \u001b[0;34m+\u001b[0m \u001b[0;34m'tmax.fut.nc'\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      6\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----> 7\u001b[0;31m \u001b[0mresp\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mfp\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mkddm_bc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mobs\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mobs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mref\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mref\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mfut\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mfut\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      8\u001b[0m \u001b[0mresp\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mNameError\u001b[0m: name 'fp' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "thredds = 'https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/fileServer/birdhouse/testdata/flyingpigeon/'\n",
+    "          \n",
+    "obs = thredds + 'tmax.obs.nc'\n",
+    "ref = thredds + 'tmax.cur.nc'\n",
+    "fut = thredds + 'tmax.fut.nc'\n",
+    "\n",
+    "resp = fp.kddm_bc(obs=obs, ref=ref, fut=fut)\n",
+    "resp"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The response is a link to the bias-corrected file. It's possible to get the actual netCDF file by using the `get` method of the response. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### Subset processes with WPS and FlyingPigeon\n",
+    "\n",
+    "PAVICS offers a number of subsetting processes:\n",
+    " - subset_continents\n",
+    " - subset_countries\n",
+    " - subset_bbox\n",
+    " - subset_wfs\n",
+    " - subset\n",
+    " \n",
+    "The `subset_continents` and `subset_countries` use a predefined list of polygons for the subsetting. The `subset_bbox` takes the geographical coordinates of the two opposite corner of a rectangle to define the subset region, while both `subset_wfs` and `subset` use a polygon defined on a remote geoserver, identified by a typename and a feature id. The only difference is that `subset` also does temporal subsetting. \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "afr = fp.subset_continents(resource=thredds+res, region='Africa')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "XMLSyntaxError",
+     "evalue": "Opening and ending tag mismatch: hr line 5 and body, line 6, column 8 (<string>, line 6)",
+     "output_type": "error",
+     "traceback": [
+      "Traceback \u001b[0;36m(most recent call last)\u001b[0m:\n",
+      "  File \u001b[1;32m\"/home/david/.conda/envs/birdy/lib/python3.6/site-packages/IPython/core/interactiveshell.py\"\u001b[0m, line \u001b[1;32m2963\u001b[0m, in \u001b[1;35mrun_code\u001b[0m\n    exec(code_obj, self.user_global_ns, self.user_ns)\n",
+      "  File \u001b[1;32m\"<ipython-input-26-ba96f4e0b0a3>\"\u001b[0m, line \u001b[1;32m1\u001b[0m, in \u001b[1;35m<module>\u001b[0m\n    mex = fp.subset_countries(resource=thredds+res, region='FRA')\n",
+      "  File \u001b[1;32m\"</home/david/src/birdy/birdy/client/base.py-7>\"\u001b[0m, line \u001b[1;32m25\u001b[0m, in \u001b[1;35msubset_countries\u001b[0m\n",
+      "  File \u001b[1;32m\"/home/david/src/birdy/birdy/client/base.py\"\u001b[0m, line \u001b[1;32m206\u001b[0m, in \u001b[1;35m_execute\u001b[0m\n    ]\n",
+      "  File \u001b[1;32m\"/home/david/src/OWSLib/owslib/wps.py\"\u001b[0m, line \u001b[1;32m328\u001b[0m, in \u001b[1;35mexecute\u001b[0m\n    requestElement = execution.buildRequest(identifier, inputs, output, mode=mode, lineage=lineage)\n",
+      "  File \u001b[1;32m\"/home/david/src/OWSLib/owslib/wps.py\"\u001b[0m, line \u001b[1;32m856\u001b[0m, in \u001b[1;35msubmitRequest\u001b[0m\n",
+      "  File \u001b[1;32m\"/home/david/src/OWSLib/owslib/wps.py\"\u001b[0m, line \u001b[1;32m553\u001b[0m, in \u001b[1;35mreadFromUrl\u001b[0m\n    def readFromUrl(self, url, data={}, method='Get', username=None, password=None,\n",
+      "  File \u001b[1;32m\"/home/david/src/OWSLib/owslib/wps.py\"\u001b[0m, line \u001b[1;32m466\u001b[0m, in \u001b[1;35m_readFromUrl\u001b[0m\n    1], method='Get', username=username, password=password,\n",
+      "  File \u001b[1;32m\"src/lxml/etree.pyx\"\u001b[0m, line \u001b[1;32m3213\u001b[0m, in \u001b[1;35mlxml.etree.fromstring\u001b[0m\n",
+      "  File \u001b[1;32m\"src/lxml/parser.pxi\"\u001b[0m, line \u001b[1;32m1876\u001b[0m, in \u001b[1;35mlxml.etree._parseMemoryDocument\u001b[0m\n",
+      "  File \u001b[1;32m\"src/lxml/parser.pxi\"\u001b[0m, line \u001b[1;32m1764\u001b[0m, in \u001b[1;35mlxml.etree._parseDoc\u001b[0m\n",
+      "  File \u001b[1;32m\"src/lxml/parser.pxi\"\u001b[0m, line \u001b[1;32m1126\u001b[0m, in \u001b[1;35mlxml.etree._BaseParser._parseDoc\u001b[0m\n",
+      "  File \u001b[1;32m\"src/lxml/parser.pxi\"\u001b[0m, line \u001b[1;32m600\u001b[0m, in \u001b[1;35mlxml.etree._ParserContext._handleParseResultDoc\u001b[0m\n",
+      "  File \u001b[1;32m\"src/lxml/parser.pxi\"\u001b[0m, line \u001b[1;32m710\u001b[0m, in \u001b[1;35mlxml.etree._handleParseResult\u001b[0m\n",
+      "\u001b[0;36m  File \u001b[0;32m\"src/lxml/parser.pxi\"\u001b[0;36m, line \u001b[0;32m639\u001b[0;36m, in \u001b[0;35mlxml.etree._raiseParseError\u001b[0;36m\u001b[0m\n",
+      "\u001b[0;36m  File \u001b[0;32m\"<string>\"\u001b[0;36m, line \u001b[0;32m6\u001b[0m\n\u001b[0;31mXMLSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m Opening and ending tag mismatch: hr line 5 and body, line 6, column 8\n"
+     ]
+    }
+   ],
+   "source": [
+    "mex = fp.subset_countries(resource=thredds+res, region='FRA')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " owslib.wps.WPSException : {'code': 'NoApplicableCode', 'locator': None, 'text': 'Process error: wps_subset_bbox.py._handler Line 87 Traceback (most recent call last):\\n  File \"/opt/birdhouse/src/flyingpigeon/flyingpigeon/processes/wps_subset_bbox.py\", line 84, in _handler\\n    spatial_mode=\\'bbox\\')\\n  File \"/opt/birdhouse/src/flyingpigeon/flyingpigeon/handler_common.py\", line 46, in wfs_common\\n    raise Exception(traceback.format_exc())\\nException: Traceback (most recent call last):\\n  File \"/opt/birdhouse/src/flyingpigeon/flyingpigeon/handler_common.py\", line 44, in wfs_common\\n    output_path=\\'/tmp\\')\\n  File \"/opt/birdhouse/src/flyingpigeon/flyingpigeon/utils.py\", line 1230, in opendap_or_download\\n    raise IOError(\"This does not appear to be a valid NetCDF file.\")\\nIOError: This does not appear to be a valid NetCDF file.\\n\\n'}\n"
+     ]
+    }
+   ],
+   "source": [
+    "import datetime as dt\n",
+    "bb = fp.subset_bbox(resource=thredds+res, \n",
+    "                    lon0=10, lon1=20, lat0=40, lat1=50, \n",
+    "                    initial_datetime=dt.datetime(2006, 1, 1),\n",
+    "                    final_datetime=dt.datetime(2006, 6, 1))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fp.subset_wfs(resource=thredds+res, \n",
+    "             typename=)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fn = thredds+res"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "f = \"https://pavics.ouranos.ca/twitcher/ows/proxy/thredds/fileServer/birdhouse/testdata/flyingpigeon/cmip5/tasmax_Amon_MPI-ESM-MR_rcp45_r2i1p1_200601-200612.nc\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import requests\n",
+    "r = requests.get(fn)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "b'\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n\\r\\n<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\\r\\n  <head>\\r\\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\\r\\n    <title>TDS - Error report</title>\\r\\n    <link rel=\"stylesheet\" href=\"/thredds/tds.css\" type=\"text/css\"/>\\r\\n  </head>\\r\\n  <body>\\r\\n    <h1>HTTP Status 404 - Not Found</h1>\\r\\n    <HR size=\"1\" noshade=\"noshade\">\\r\\n    <p><b>Status</b> 404 - Not Found</p>\\r\\n    <HR size=\"1\" noshade=\"noshade\">\\r\\n    <h3>THREDDS Data Server Version 4.6\\r\\n      -- <a href=\\'http://www.unidata.ucar.edu/software/thredds/v4.6/tds/TDS.html\\'>Documentation</a></h3>\\r\\n  </body>\\r\\n</html>\\r\\n'"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "r.content"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.3"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}

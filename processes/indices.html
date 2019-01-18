@@ -92,8 +92,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction</a></li>
@@ -109,7 +108,10 @@
 <li class="toctree-l2"><a class="reference internal" href="maintenance.html">Data administration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -184,8 +186,8 @@
 <h1>Climate indices<a class="headerlink" href="#climate-indices" title="Permalink to this headline">¶</a></h1>
 <p>The following processes return general climate indicators based on spatial and temporal grid resolutions.</p>
 <dl class="class">
-<dt id="flyingpigeon.processes.FreezeThawProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">FreezeThawProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#FreezeThawProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.FreezeThawProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.FreezeThawProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">FreezeThawProcess</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#FreezeThawProcess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.FreezeThawProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">freezethaw</strong> Number of freeze-thaw events (vNone)</p>
 <p>Number of freeze-thaw events, where freezing and thawing occurs once a threshold of degree days below or above 0C is reached. A complete cycle (freeze-thaw-freeze) will return a value of 2.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -194,8 +196,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
-<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The number of degree-days above or below the freezing point after which theground is considered frozen or thawed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a><em>, </em><em>optional</em>) – The number of degree-days above or below the freezing point after which theground is considered frozen or thawed.</li>
 </ul>
 </td>
 </tr>
@@ -211,8 +213,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.Duration">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.</code><code class="descname">Duration</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#Duration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.Duration" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.Duration">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">Duration</code><a class="reference internal" href="../_modules/flyingpigeon/processes/wps_ocgis_func.html#Duration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.Duration" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">duration</strong> Duration (vNone)</p>
 <p>Summarizes consecutive occurrences in a sequence where the logical operation returns TRUE. The summary operation is applied to the sequences within a temporal aggregation.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -222,10 +224,10 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 <li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The threshold value to use for the logical operation.</li>
 <li><strong>operation</strong> (<em>string</em>) – The logical operation. One of ‘gt’,’gte’,’lt’, or ‘lte’.</li>
-<li><strong>summary</strong> (<em>string</em>) – The summary operation to apply the durations. One of ‘mean’,’median’,’std’,’max’, or ‘min’.</li>
+<li><strong>summary</strong> (<em>string</em><em>, </em><em>optional</em>) – The summary operation to apply the durations. One of ‘mean’,’median’,’std’,’max’, or ‘min’.</li>
 </ul>
 </td>
 </tr>
@@ -243,8 +245,8 @@
 <div class="section" id="icclim-indices">
 <h2>ICCLIM indices<a class="headerlink" href="#icclim-indices" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TXXProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TXXProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TXXProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TXXProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXXProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TXx</strong> TXx (vNone)</p>
 <p>Calculates the TXx indice: maximum of daily maximum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -254,7 +256,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -270,8 +272,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SD</strong> SD (vNone)</p>
 <p>Calculates the SD indice: mean of daily snow depth [cm]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -281,7 +283,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -297,8 +299,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R95PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R95PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R95PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R95PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R95PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R95PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R95p</strong> R95p (vNone)</p>
 <p>Calculate the R95p indice: number of very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -308,7 +310,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -324,8 +326,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TX90PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TX90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TX90PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TX90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TX90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TX90PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TX90p</strong> TX90p (vNone)</p>
 <p>Calculate the TX90p indice: number of warm days-times (i.e. days with daily max temperature &gt; 90th percentile of daily max temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -335,7 +337,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -351,8 +353,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TG90PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TG90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TG90PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TG90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TG90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TG90PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TG90p</strong> TG90p (vNone)</p>
 <p>Calculate the TG90p indice: number of warm days (i.e. days with daily mean temperature &gt; 90th percentile of daily mean temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -362,7 +364,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -378,8 +380,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TXNProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TXNProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TXNProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TXNProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXNProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TXn</strong> TXn (vNone)</p>
 <p>Calculates the TXn indice: minimum of daily maximum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -389,7 +391,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -405,8 +407,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_CDDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_CDDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_CDDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_CDDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_CDDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_CDDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_CDD</strong> CDD (vNone)</p>
 <p>Calculates the CDD indice: maximum number of consecutive dry days (i.e. days with daily precipitation amount &lt; 1 mm) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -416,7 +418,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -432,8 +434,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R99PTOTProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R99PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R99PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R99PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R99PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R99PTOTProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R99pTOT</strong> R99pTOT (vNone)</p>
 <p>Calculate the R99pTOT indice: precipitation fraction due to extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period) [%]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -443,7 +445,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -459,8 +461,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SUProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SUProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SUProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SUProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SUProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SUProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SU</strong> SU (vNone)</p>
 <p>Calculates the SU indice: number of summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -470,7 +472,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -486,8 +488,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_CFDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_CFDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_CFDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_CFDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_CFDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_CFDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_CFD</strong> CFD (vNone)</p>
 <p>Calculates the CFD indice: maximum number of consecutive frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -497,7 +499,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -513,8 +515,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TN10PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TN10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TN10PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TN10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TN10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TN10PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TN10p</strong> TN10p (vNone)</p>
 <p>Calculate the TN10p indice: number of cold nights (i.e. days with daily min temperature &lt; 10th percentile of daily min temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -524,7 +526,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -540,8 +542,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TGProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TGProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TGProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TGProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TGProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TGProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TG</strong> TG (vNone)</p>
 <p>Calculates the TG indice: mean of daily mean temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -551,7 +553,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -567,8 +569,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TRProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TRProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TRProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TRProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TRProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TR</strong> TR (vNone)</p>
 <p>Calculates the TR indice: number of tropical nights (i.e. days with daily minimum temperature &gt; 20 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -578,7 +580,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -594,8 +596,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_RX5DAYProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_RX5DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_RX5DAYProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_RX5DAYProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_RX5DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_RX5DAYProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_RX5day</strong> RX5day (vNone)</p>
 <p>Calculates the RX5day indice: maximum consecutive 5-day precipitation amount [mm]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -605,7 +607,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -621,8 +623,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_VDTRProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_VDTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_VDTRProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_VDTRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_VDTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_VDTRProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_vDTR</strong> vDTR (vNone)</p>
 <p>Calculates the vDTR indice: mean absolute day-to-day difference in DTR.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -634,7 +636,7 @@
 </li>
 <li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -650,8 +652,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SD50CMProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SD50CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SD50CMProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD50CMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SD50CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD50CMProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SD50cm</strong> SD50cm (vNone)</p>
 <p>Calculates the SD50cm indice: number of days with snow depth &gt;= 50 cm [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -661,7 +663,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -677,8 +679,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_CWDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_CWDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_CWDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_CWDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_CWDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_CWDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_CWD</strong> CWD (vNone)</p>
 <p>Calculates the CWD indice: maximum number of consecutive wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -688,7 +690,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -704,8 +706,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TN90PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TN90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TN90PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TN90PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TN90PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TN90PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TN90p</strong> TN90p (vNone)</p>
 <p>Calculate the TN90p indice: number of warm nights (i.e. days with daily min temperature &gt; 90th percentile of daily min temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -715,7 +717,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -731,8 +733,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R20MMProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R20MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R20MMProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R20MMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R20MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R20MMProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R20mm</strong> R20mm (vNone)</p>
 <p>Calculates the R20mm indice: number of very heavy precipitation days (i.e. days with daily precipitation amount &gt; = 20 mm) [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -742,7 +744,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -758,8 +760,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_CSUProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_CSUProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_CSUProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_CSUProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_CSUProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_CSUProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_CSU</strong> CSU (vNone)</p>
 <p>Calculates the CSU indice: maximum number of consecutive summer days (i.e. days with daily maximum temperature &gt; 25 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -769,7 +771,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -785,8 +787,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_RX1DAYProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_RX1DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_RX1DAYProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_RX1DAYProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_RX1DAYProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_RX1DAYProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_RX1day</strong> RX1day (vNone)</p>
 <p>Calculates the RX1day indice: maximum 1-day precipitation amount [mm]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -796,7 +798,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -812,8 +814,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_WSDIProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_WSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_WSDIProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_WSDIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_WSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_WSDIProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_WSDI</strong> WSDI (vNone)</p>
 <p>Calculate the WSDI indice (warm-spell duration index): number of days where, in intervals of at least 6 consecutive days,</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -823,7 +825,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -839,8 +841,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_RR1Process">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_RR1Process</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_RR1Process" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_RR1Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_RR1Process</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_RR1Process" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_RR1</strong> RR1 (vNone)</p>
 <p>Calculates the RR1 indice: number of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -850,7 +852,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -866,8 +868,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_CSDIProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_CSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_CSDIProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_CSDIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_CSDIProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_CSDIProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_CSDI</strong> CSDI (vNone)</p>
 <p>Calculate the CSDI indice (cold-spell duration index): number of days where, in intervals of at least 6 consecutive days,</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -877,7 +879,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -893,8 +895,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R75PTOTProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R75PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R75PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R75PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R75PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R75PTOTProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R75pTOT</strong> R75pTOT (vNone)</p>
 <p>Calculate the R75pTOT indice: precipitation fraction due to moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period) [%]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -904,7 +906,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -920,8 +922,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R95PTOTProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R95PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R95PTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R95PTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R95PTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R95PTOTProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R95pTOT</strong> R95pTOT (vNone)</p>
 <p>Calculate the R95pTOT indice: precipitation fraction due to very wet days (i.e. days with daily precipitation amount &gt; 95th percentile of daily amount in the base period) [%]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -931,7 +933,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -947,8 +949,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R10MMProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R10MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R10MMProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R10MMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R10MMProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R10MMProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R10mm</strong> R10mm (vNone)</p>
 <p>Calculates the R10mm indice: number of heavy precipitation days (i.e. days with daily precipitation amount &gt; = 10 mm) [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -958,7 +960,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -974,8 +976,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SDIIProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SDIIProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SDIIProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SDIIProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SDIIProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SDIIProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SDII</strong> SDII (vNone)</p>
 <p>Calculates the SDII (simple daily intensity index) indice:  mean precipitation amount of wet days (i.e. days with daily precipitation amount &gt; = 1 mm) [mm]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -985,7 +987,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1001,8 +1003,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_DTRProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_DTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_DTRProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_DTRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_DTRProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_DTRProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_DTR</strong> DTR (vNone)</p>
 <p>Calculates the DTR indice: mean of daily temperature range.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1014,7 +1016,7 @@
 </li>
 <li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1030,8 +1032,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TG10PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TG10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TG10PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TG10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TG10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TG10PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TG10p</strong> TG10p (vNone)</p>
 <p>Calculate the TG10p indice: number of cold days (i.e. days with daily mean temperature &lt; 10th percentile of daily mean temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1041,7 +1043,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1057,8 +1059,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TXProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TXProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TXProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TXProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TXProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TX</strong> TX (vNone)</p>
 <p>Calculates the TX indice: mean of daily maximum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1068,7 +1070,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1084,8 +1086,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_PRCPTOTProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_PRCPTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_PRCPTOTProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_PRCPTOTProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_PRCPTOTProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_PRCPTOTProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_PRCPTOT</strong> PRCPTOT (vNone)</p>
 <p>Calculates the PRCPTOT indice: total precipitation in wet days [mm]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1095,7 +1097,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1111,8 +1113,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TNProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TNProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TNProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TNProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TN</strong> TN (vNone)</p>
 <p>Calculates the TN indice: mean of daily minimum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1122,7 +1124,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1138,8 +1140,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R75PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R75PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R75PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R75PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R75PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R75PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R75p</strong> R75p (vNone)</p>
 <p>Calculate the R75p indice: number of moderate wet days (i.e. days with daily precipitation amount &gt; 75th percentile of daily amount in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1149,7 +1151,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1165,8 +1167,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TNXProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TNXProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TNXProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNXProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TNXProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNXProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TNx</strong> TNx (vNone)</p>
 <p>Calculates the TNx indice: maximum of daily minimum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1176,7 +1178,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1192,8 +1194,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SD5CMProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SD5CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SD5CMProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD5CMProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SD5CMProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD5CMProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SD5cm</strong> SD5cm (vNone)</p>
 <p>Calculates the SD5cm indice: number of days with snow depth &gt;= 5 cm [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1203,7 +1205,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1219,8 +1221,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_FDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_FDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_FDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_FDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_FDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_FDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_FD</strong> FD (vNone)</p>
 <p>Calculates the FD indice: number of frost days (i.e. days with daily minimum temperature &lt; 0 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1230,7 +1232,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1246,8 +1248,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_R99PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_R99PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_R99PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_R99PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_R99PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_R99PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_R99p</strong> R99p (vNone)</p>
 <p>Calculate the R99p indice: number of extremely wet days (i.e. days with daily precipitation amount &gt; 99th percentile of daily amount in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1257,7 +1259,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1273,8 +1275,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_IDProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_IDProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_IDProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_IDProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_IDProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_IDProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_ID</strong> ID (vNone)</p>
 <p>Calculates the ID indice: number of ice days (i.e. days with daily maximum temperature &lt; 0 degrees Celsius) [days].</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1284,7 +1286,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1300,8 +1302,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_SD1Process">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_SD1Process</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_SD1Process" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD1Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_SD1Process</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_SD1Process" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_SD1</strong> SD1 (vNone)</p>
 <p>Calculates the SD1 indice: number of days with snow depth &gt;= 1 cm [days]</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1311,7 +1313,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1327,8 +1329,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_GD4Process">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_GD4Process</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_GD4Process" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_GD4Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_GD4Process</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_GD4Process" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_GD4</strong> GD4 (vNone)</p>
 <p>Calculates the GD4 indice: growing degree days (sum of daily mean temperature &gt; 4 degrees Celsius).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1338,7 +1340,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1354,8 +1356,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TNNProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TNNProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TNNProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNNProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TNNProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TNNProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TNn</strong> TNn (vNone)</p>
 <p>Calculates the TNn indice: minimum of daily minimum temperature.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1365,7 +1367,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1381,8 +1383,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_HD17Process">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_HD17Process</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_HD17Process" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_HD17Process">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_HD17Process</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_HD17Process" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_HD17</strong> HD17 (vNone)</p>
 <p>Calculates the HD17 indice: heating degree days (sum of (17 degrees Celsius - daily mean temperature)).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1392,7 +1394,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1408,8 +1410,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_ETRProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_ETRProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_ETRProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_ETRProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_ETRProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_ETRProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_ETR</strong> ETR (vNone)</p>
 <p>Calculates the ETR indice: intra-period extreme temperature range.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1421,7 +1423,7 @@
 </li>
 <li><strong>tasmax</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>
@@ -1437,8 +1439,8 @@
 </dd></dl>
 
 <dl class="class">
-<dt id="flyingpigeon.processes.icclim.ICCLIM_TX10PProcess">
-<em class="property">class </em><code class="descclassname">flyingpigeon.processes.icclim.</code><code class="descname">ICCLIM_TX10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.icclim.ICCLIM_TX10PProcess" title="Permalink to this definition">¶</a></dt>
+<dt id="flyingpigeon.processes.wps_ocgis_func.ICCLIM_TX10PProcess">
+<em class="property">class </em><code class="descclassname">flyingpigeon.processes.wps_ocgis_func.</code><code class="descname">ICCLIM_TX10PProcess</code><a class="headerlink" href="#flyingpigeon.processes.wps_ocgis_func.ICCLIM_TX10PProcess" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong class="program">icclim_TX10p</strong> TX10p (vNone)</p>
 <p>Calculate the TX10p indice: number of cold day-times (i.e. days with daily max temperature &lt; 10th percentile of daily max temperature in the base period).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -1448,7 +1450,7 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em>) – Temporal group over which the index is computed.</li>
+<li><strong>grouping</strong> (<em>{'day'</em><em>, </em><em>'mon'</em><em>, </em><em>'sem'</em><em>, </em><em>'yr'</em><em>, </em><em>'ONDJFM'</em><em>, </em><em>'AMJJAS'</em><em>, </em><em>'DJF'</em><em>, </em><em>'MAM'</em><em>, </em><em>'JJA'</em><em>, </em><em>'SON'</em><em>, </em><em>..}</em><em>, </em><em>optional</em>) – Temporal group over which the index is computed.</li>
 </ul>
 </td>
 </tr>

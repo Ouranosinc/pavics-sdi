@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
         <link rel="up" title="Processes" href="index.html"/>
-        <link rel="next" title="Using workflows" href="../workflows/index.html"/>
+        <link rel="next" title="Using Workflows" href="../workflows/index.html"/>
         <link rel="prev" title="Data handling" href="data_handling.html"/> 
 
   
@@ -92,8 +92,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basic_climate.html">Basic climate data analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bias_correction.html">Bias correction</a></li>
@@ -109,7 +108,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -195,8 +197,8 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>target_files</strong> (<em>string</em>) – Only those file names will be crawled.</li>
-<li><strong>target_thredds</strong> (<em>string</em>) – Thredds server to scan.</li>
+<li><strong>target_files</strong> (<em>string</em><em>, </em><em>optional</em>) – Only those file names will be crawled.</li>
+<li><strong>target_thredds</strong> (<em>string</em><em>, </em><em>optional</em>) – Thredds server to scan.</li>
 </ul>
 </td>
 </tr>
@@ -221,7 +223,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>id</strong> (<em>string</em>) – id field of the dataset or file.</li>
-<li><strong>type</strong> (<em>string</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
+<li><strong>type</strong> (<em>string</em><em>, </em><em>optional</em>) – The File type will update a single file, the Dataset type will update all documents sharing its dataset_id</li>
 <li><strong>updates</strong> (<em>string</em>) – Format is key1:value1,key2:value2,…</li>
 </ul>
 </td>
@@ -247,8 +249,8 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>facets</strong> (<em>string</em>) – Facets that are required to be present in each database entry.</li>
-<li><strong>paths</strong> (<em>string</em>) – Limit validation to certain paths relative to thredds main directory.</li>
-<li><strong>files</strong> (<em>string</em>) – Limit validation according to file names.</li>
+<li><strong>paths</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation to certain paths relative to thredds main directory.</li>
+<li><strong>files</strong> (<em>string</em><em>, </em><em>optional</em>) – Limit validation according to file names.</li>
 </ul>
 </td>
 </tr>
@@ -272,7 +274,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../workflows/index.html" class="btn btn-neutral float-right" title="Using workflows" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../workflows/index.html" class="btn btn-neutral float-right" title="Using Workflows" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="data_handling.html" class="btn btn-neutral" title="Data handling" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

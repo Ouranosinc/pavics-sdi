@@ -92,8 +92,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Processes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Basic climate data analysis</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#spatial-and-temporal-subsetting">Spatial and temporal subsetting</a></li>
@@ -110,7 +109,10 @@
 <li class="toctree-l2"><a class="reference internal" href="maintenance.html">Data administration</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">Graphical User Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -201,9 +203,9 @@
 <li><strong>resource</strong> (<em>string</em>) – NetCDF files, can be OPEnDAP urls.</li>
 <li><strong>typename</strong> (<em>string</em>) – Name of the layer in GeoServer.</li>
 <li><strong>featureids</strong> (<em>string</em>) – fid(s) of the feature in the layer.</li>
-<li><strong>geoserver</strong> (<em>string</em>) – Typically of the form <a class="reference external" href="http://host:port/geoserver/wfs">http://host:port/geoserver/wfs</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em>) – If True, selected regions will be merged into a single geometry.</li>
-<li><strong>variable</strong> (<em>string</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
+<li><strong>geoserver</strong> (<em>string</em><em>, </em><em>optional</em>) – Typically of the form <a class="reference external" href="http://host:port/geoserver/wfs">http://host:port/geoserver/wfs</a></li>
+<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
+<li><strong>variable</strong> (<em>string</em><em>, </em><em>optional</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
 </ul>
 </td>
 </tr>
@@ -232,9 +234,9 @@
 <li><strong>lon1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum longitude.</li>
 <li><strong>lat0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Minimum latitude.</li>
 <li><strong>lat1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum latitude.</li>
-<li><strong>initial_datetime</strong> (<em>dateTime</em>) – Initial datetime for temporal subsetting.</li>
-<li><strong>final_datetime</strong> (<em>dateTime</em>) – Final datetime for temporal subsetting.</li>
-<li><strong>variable</strong> (<em>string</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
+<li><strong>initial_datetime</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Initial datetime for temporal subsetting.</li>
+<li><strong>final_datetime</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Final datetime for temporal subsetting.</li>
+<li><strong>variable</strong> (<em>string</em><em>, </em><em>optional</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
 </ul>
 </td>
 </tr>
@@ -261,9 +263,9 @@
 <li><strong>resource</strong> (<em>string</em>) – NetCDF files, can be OPEnDAP urls.</li>
 <li><strong>typename</strong> (<em>string</em>) – Name of the layer in GeoServer.</li>
 <li><strong>featureids</strong> (<em>string</em>) – fid(s) of the feature in the layer.</li>
-<li><strong>geoserver</strong> (<em>string</em>) – Typically of the form <a class="reference external" href="http://host:port/geoserver/wfs">http://host:port/geoserver/wfs</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em>) – If True, selected regions will be merged into a single geometry.</li>
-<li><strong>variable</strong> (<em>string</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
+<li><strong>geoserver</strong> (<em>string</em><em>, </em><em>optional</em>) – Typically of the form <a class="reference external" href="http://host:port/geoserver/wfs">http://host:port/geoserver/wfs</a></li>
+<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
+<li><strong>variable</strong> (<em>string</em><em>, </em><em>optional</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
 </ul>
 </td>
 </tr>
@@ -292,9 +294,9 @@
 <li><strong>lon1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum longitude.</li>
 <li><strong>lat0</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Minimum latitude.</li>
 <li><strong>lat1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum latitude.</li>
-<li><strong>initial_datetime</strong> (<em>dateTime</em>) – Initial datetime for temporal subsetting.</li>
-<li><strong>final_datetime</strong> (<em>dateTime</em>) – Final datetime for temporal subsetting.</li>
-<li><strong>variable</strong> (<em>string</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
+<li><strong>initial_datetime</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Initial datetime for temporal subsetting.</li>
+<li><strong>final_datetime</strong> (<em>dateTime</em><em>, </em><em>optional</em>) – Final datetime for temporal subsetting.</li>
+<li><strong>variable</strong> (<em>string</em><em>, </em><em>optional</em>) – Name of the variable in the NetCDF file.Will be guessed if not provided.</li>
 </ul>
 </td>
 </tr>
@@ -319,7 +321,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'ABW'</em><em>, </em><em>'AFG'</em><em>, </em><em>'AGO'</em><em>, </em><em>'ALB'</em><em>, </em><em>'ALD'</em><em>, </em><em>'AND'</em><em>, </em><em>'ARE'</em><em>, </em><em>'ARG'</em><em>, </em><em>'ARM'</em><em>, </em><em>'ASM'</em><em>, </em><em>..}</em>) – Country code, see ISO-3166-3:                          <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3#Officially_assigned_code_elements</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em>) – If True, selected regions will be merged into a single geometry.</li>
+<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files. (<a class="reference external" href="None">Info</a>)</li>
 </ul>
 </td>
@@ -352,7 +354,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'Africa'</em><em>, </em><em>'Asia'</em><em>, </em><em>'Australia'</em><em>, </em><em>'North America'</em><em>, </em><em>'Oceania'</em><em>, </em><em>'South America'</em><em>, </em><em>'Antarctica'</em><em>, </em><em>'Europe'}</em>) – Continent name.</li>
-<li><strong>mosaic</strong> (<em>boolean</em>) – If True, selected regions will be merged into a single geometry.</li>
+<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF Files or archive (tar/zip) containing netCDF files. (<a class="reference external" href="None">Info</a>)</p>
 </li>
 </ul>
@@ -385,7 +387,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>region</strong> (<em>{'DE.BR'</em><em>, </em><em>'ME.AN'</em><em>, </em><em>'SE.VN'</em><em>, </em><em>'UA.KM'</em><em>, </em><em>'UK.NI'</em><em>, </em><em>'DE.BW'</em><em>, </em><em>'UK.WA'</em><em>, </em><em>'LV.RG'</em><em>, </em><em>'DE.BY'</em><em>, </em><em>'EE.SA'</em><em>, </em><em>..}</em>) – European region code, see ISO-3166 Alpha2: <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_3166-2">https://en.wikipedia.org/wiki/ISO_3166-2</a></li>
-<li><strong>mosaic</strong> (<em>boolean</em>) – If True, selected regions will be merged into a single geometry.</li>
+<li><strong>mosaic</strong> (<em>boolean</em><em>, </em><em>optional</em>) – If True, selected regions will be merged into a single geometry.</li>
 <li><strong>resource</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – NetCDF Files or archive (tar/zip) containing NetCDF files.</li>
 </ul>
 </td>
@@ -450,9 +452,9 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>dataset</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>, optional) – URL pointing to a NetCDF File or an archive (tar/zip) containing NetCDF files.</li>
-<li><strong>dataset_opendap</strong> (<em>string</em>) – Remote OpenDAP data URL, for example: <a class="reference external" href="http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc">http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc</a></li>
+<li><strong>dataset_opendap</strong> (<em>string</em><em>, </em><em>optional</em>) – Remote OpenDAP data URL, for example: <a class="reference external" href="http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc">http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis2.dailyavgs/surface/mslp.2016.nc</a> (<a class="reference external" href="https://www.iana.org/assignments/media-types/media-types.xhtml">application/x-ogc-dods</a>)</li>
 <li><strong>threshold</strong> (<em>{'10'</em><em>, </em><em>'25'</em><em>, </em><em>'50'</em><em>, </em><em>'75'</em><em>, </em><em>'90'}</em>) – Land Area Fraction in percent.</li>
-<li><strong>mask</strong> (<em>string</em>) – Optionally provide an OpenDAP URL to an appropriate land area fraction file. If no file is provided, the process will run a search on the ESGF archive.</li>
+<li><strong>mask</strong> (<em>string</em><em>, </em><em>optional</em>) – Optionally provide an OpenDAP URL to an appropriate land area fraction file. If no file is provided, the process will run a search on the ESGF archive.</li>
 <li><strong>land_or_sea</strong> (<em>{'land'</em><em>, </em><em>'sea'}</em>) – Either the land or the sea area of the mask will be subsetted.</li>
 </ul>
 </td>
@@ -486,7 +488,7 @@
 <li><strong>initial_date</strong> (<em>string</em>) – Format must be %Y-%m-%dT%H:%M:%S</li>
 <li><strong>final_date</strong> (<em>string</em>) – Format must be %Y-%m-%dT%H:%M:%S</li>
 <li><strong>opendap_url</strong> (<em>string</em>) – OPeNDAP url to a NetCDF file</li>
-<li><strong>calendar</strong> (<em>string</em>) – If left unspecified, taken from NetCDF file time variable.</li>
+<li><strong>calendar</strong> (<em>string</em><em>, </em><em>optional</em>) – If left unspecified, taken from NetCDF file time variable.</li>
 </ul>
 </td>
 </tr>
@@ -513,11 +515,11 @@
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>opendap_url</strong> (<em>string</em>) – OPeNDAP url to NetCDF file.</li>
 <li><strong>variable</strong> (<em>string</em>) – NetCDF variable name.</li>
-<li><strong>use_ordered_indices</strong> (<em>boolean</em>) – Whether ordered indices are used.</li>
-<li><strong>ordered_index</strong> (<em>integer</em>) – Indices for the point in the NetCDF variable.</li>
-<li><strong>named_index</strong> (<em>string</em>) – Indices for the point in the NetCDF variable with named dimensions (dim:index).</li>
-<li><strong>nearest_to</strong> (<em>string</em>) – Nearest value for each dimension in the NetCDF variable for the point with named dimensions (dim:value).</li>
-<li><strong>threshold</strong> (<em>string</em>) – Thresholds for the distance to each nearest value with named dimensions (dim:threshold).</li>
+<li><strong>use_ordered_indices</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Whether ordered indices are used.</li>
+<li><strong>ordered_index</strong> (<em>integer</em><em>, </em><em>optional</em>) – Indices for the point in the NetCDF variable.</li>
+<li><strong>named_index</strong> (<em>string</em><em>, </em><em>optional</em>) – Indices for the point in the NetCDF variable with named dimensions (dim:index).</li>
+<li><strong>nearest_to</strong> (<em>string</em><em>, </em><em>optional</em>) – Nearest value for each dimension in the NetCDF variable for the point with named dimensions (dim:value).</li>
+<li><strong>threshold</strong> (<em>string</em><em>, </em><em>optional</em>) – Thresholds for the distance to each nearest value with named dimensions (dim:threshold).</li>
 </ul>
 </td>
 </tr>
@@ -548,8 +550,8 @@
 </li>
 <li><strong>dest</strong> (<em class="mimetype">application/x-netcdf</em>, <em class="mimetype">application/x-tar</em>, <em class="mimetype">application/zip</em>) – <p>NetCDF file whose grid defines the interpolation target. (<a class="reference external" href="None">Info</a>)</p>
 </li>
-<li><strong>method</strong> (<em>{'bilinear'</em><em>, </em><em>'patch'</em><em>, </em><em>'conserve'</em><em>, </em><em>'nearest_stod'</em><em>, </em><em>'nearest_dtos'}</em>) – Regridding method. Note that <cite>conserve</cite> requires grid corners to be defined.</li>
-<li><strong>snippet</strong> (<em>boolean</em>) – Run process only for first time step.</li>
+<li><strong>method</strong> (<em>{'bilinear'</em><em>, </em><em>'patch'</em><em>, </em><em>'conserve'</em><em>, </em><em>'nearest_stod'</em><em>, </em><em>'nearest_dtos'}</em><em>, </em><em>optional</em>) – Regridding method. Note that <cite>conserve</cite> requires grid corners to be defined.</li>
+<li><strong>snippet</strong> (<em>boolean</em><em>, </em><em>optional</em>) – Run process only for first time step.</li>
 </ul>
 </td>
 </tr>

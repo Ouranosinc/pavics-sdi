@@ -11,7 +11,7 @@ Documentation structure
 -----------------------
 We plan to build extensive documentation for PAVICS. We're just getting started, but please provide your comments on our `issue tracker`_.
 
-* :doc:`Tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
+* :doc:`Notebooks </notebooks/index>` and :doc:`tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
 
 * :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
@@ -34,10 +34,12 @@ Contents
    :maxdepth: 2
 
    tutorials/index
-   dev/index
-   arch/index
+   notebooks/index
    processes/index
    workflows/index
+   gui/index
+   dev/index
+   arch/index
    provenance/index
    support
    releasenotes

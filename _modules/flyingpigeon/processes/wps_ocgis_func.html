@@ -90,10 +90,12 @@
             
                 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/index.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gui/index.html">Graphical User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../arch/index.html">System Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../processes/index.html">Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../releasenotes.html">Release notes</a></li>
@@ -162,8 +164,6 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
-<span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">from</span> <span class="nn">flyingpigeon.log</span> <span class="k">import</span> <span class="n">init_process_logger</span>
 <span class="kn">from</span> <span class="nn">flyingpigeon.utils</span> <span class="k">import</span> <span class="n">GROUPING</span>
@@ -362,7 +362,7 @@
 <span class="c1">#############################################</span>
 
 
-<div class="viewcode-block" id="FreezeThawProcess"><a class="viewcode-back" href="../../../processes/indices.html#flyingpigeon.processes.FreezeThawProcess">[docs]</a><span class="k">class</span> <span class="nc">FreezeThawProcess</span><span class="p">(</span><span class="n">IndicatorProcess</span><span class="p">):</span>
+<div class="viewcode-block" id="FreezeThawProcess"><a class="viewcode-back" href="../../../processes/indices.html#flyingpigeon.processes.wps_ocgis_func.FreezeThawProcess">[docs]</a><span class="k">class</span> <span class="nc">FreezeThawProcess</span><span class="p">(</span><span class="n">IndicatorProcess</span><span class="p">):</span>
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;freezethaw&#39;</span>
     <span class="n">extra_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;Threshold&quot;</span><span class="p">,</span>
                                  <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;The number of degree-days above or below the freezing point after which the&quot;</span>
@@ -373,7 +373,7 @@
                                  <span class="n">max_occurs</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="p">]</span></div>
 
 
-<div class="viewcode-block" id="Duration"><a class="viewcode-back" href="../../../processes/indices.html#flyingpigeon.processes.Duration">[docs]</a><span class="k">class</span> <span class="nc">Duration</span><span class="p">(</span><span class="n">IndicatorProcess</span><span class="p">):</span>
+<div class="viewcode-block" id="Duration"><a class="viewcode-back" href="../../../processes/indices.html#flyingpigeon.processes.wps_ocgis_func.Duration">[docs]</a><span class="k">class</span> <span class="nc">Duration</span><span class="p">(</span><span class="n">IndicatorProcess</span><span class="p">):</span>
     <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;duration&#39;</span>
     <span class="n">extra_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">LiteralInput</span><span class="p">(</span><span class="s2">&quot;threshold&quot;</span><span class="p">,</span> <span class="s2">&quot;Threshold&quot;</span><span class="p">,</span>
                                  <span class="n">abstract</span><span class="o">=</span><span class="s2">&quot;The threshold value to use for the logical operation.&quot;</span><span class="p">,</span>
@@ -430,26 +430,19 @@
                                      <span class="n">Format</span><span class="p">(</span><span class="s1">&#39;application/zip&#39;</span><span class="p">),</span> <span class="p">]</span>
                                  <span class="p">))</span>
 
-
 <span class="k">def</span> <span class="nf">create_icclim_process_class</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create a subclass of an ICCLIMProcess for a given indicator.&quot;&quot;&quot;</span>
-    <span class="n">clazz</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;Process&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">ICCLIMProcess</span><span class="p">,),</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">})</span>
-    <span class="n">clazz</span><span class="o">.</span><span class="vm">__module__</span> <span class="o">=</span> <span class="s1">&#39;flyingpigeon.processes.icclim&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39;Process&#39;</span>
+    <span class="n">clazz</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span><span class="n">ICCLIMProcess</span><span class="p">,),</span> <span class="p">{</span><span class="s1">&#39;key&#39;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">})</span>
     <span class="k">return</span> <span class="n">clazz</span>
 
+<span class="n">ICCLIM_PROCESSES</span> <span class="o">=</span> <span class="p">[</span><span class="n">create_icclim_process_class</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">icclim_classes</span><span class="p">]</span>
+<span class="n">OCGIS_INDEX_PROCESSES</span> <span class="o">=</span> <span class="p">[</span><span class="n">FreezeThawProcess</span><span class="p">,</span> <span class="n">Duration</span><span class="p">]</span> <span class="o">+</span> <span class="n">ICCLIM_PROCESSES</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">OCGIS_INDEX_PROCESSES</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;OCGIS_INDEX_PROCESSES&#39;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">icclim_process_generator</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Dynamically create derived classes for ICCLIM processes.&quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
-        <span class="k">yield</span> <span class="n">create_icclim_process_class</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">create_icclim_module</span><span class="p">():</span>
-
-    <span class="n">icclim</span> <span class="o">=</span> <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">(</span><span class="s1">&#39;icclim&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">icclim_process_generator</span><span class="p">(</span><span class="n">icclim_classes</span><span class="p">):</span>
-        <span class="nb">setattr</span><span class="p">(</span><span class="n">icclim</span><span class="p">,</span> <span class="n">p</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="s1">&#39;flyingpigeon.processes.icclim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">icclim</span>
-    <span class="k">return</span> <span class="n">icclim</span>
+<span class="c1"># Add generated classes to namespace</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ICCLIM_PROCESSES</span><span class="p">:</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">c</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
 </pre></div>
 
            </div>

@@ -3,10 +3,9 @@ Tutorials
 =========
 
 .. toctree::
-   wps_with_python
-   owslib_intro
-   bias_correction
 
+   bias_correction
+   wps_with_python
 
 .. todo::
    Write tutorial on creating and launching workflows

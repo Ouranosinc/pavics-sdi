@@ -35,7 +35,10 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/> 
+    <link rel="top" title="PAVICS 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Graphical User Interface" href="index.html"/>
+        <link rel="next" title="Developer Documentation" href="../dev/index.html"/>
+        <link rel="prev" title="Graphical User Interface" href="index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -87,12 +90,23 @@
           
             
             
-                <ul>
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/index.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using Workflows</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Graphical User Interface</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Using the graphical interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tool-menu">Tool menu</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dashboard">Dashboard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../dev/index.html">Developer Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../arch/index.html">System Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../processes/index.html">Processes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../workflows/index.html">Using workflows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../provenance/index.html">Provenance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../support.html">Support</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release notes</a></li>
@@ -127,6 +141,8 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">Graphical User Interface</a> &raquo;</li>
       
     <li>Using the graphical interface</li>
       <li class="wy-breadcrumbs-aside">
@@ -182,10 +198,6 @@
 <dd>TODO</dd>
 </dl>
 <p>Each panel element can be used to view/inspect different types and display additional information of the active data.</p>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>For an example of a climate analysis process using the PAVICS-frontend, see this short <code class="xref download docutils literal notranslate"><span class="pre">hands-on</span> <span class="pre">video</span></code>.</p>
 <div class="section" id="dashboard">
 <h3>Dashboard<a class="headerlink" href="#dashboard" title="Permalink to this headline">¶</a></h3>
 <p>The right hand side dashboard contains four different sections: dataset search, project workspace, process and workflow launcher and process monitoring.</p>
@@ -197,14 +209,11 @@
 <dt>Project Workspace</dt>
 <dd>The workspace area lets you create projects in which an ensemble of files, search queries, workflows and process outputs can be stored. At the moment it is not possible for users to upload files or geospatial layers to the workspace. Let us know if this is a feature you’d like to have.</dd>
 <dt>Process and Workflows</dt>
-<dd><p class="first">This is the interface where computations are launched. You may launch a workflow (see <a href="#id1"><span class="problematic" id="id2">`workflows`_</span></a>) or a process (see <a href="#id3"><span class="problematic" id="id4">`processes`_</span></a>). The workflow dashboard let’s you select from existing workflows that have been defined within the project or edit a new workflow from a template. Saving the workflow will trigger a validator that will warn you of syntax errors. Once the workflow has been validated, you may launch it already if there are no user defined inputs to be specified. Otherwise a form will appear to let you enter input values before launching the workflow. A notification will let you know if the workflow launched sucessfully or not.</p>
+<dd><p class="first">This is the interface where computations are launched. You may launch a workflow (see <a class="reference internal" href="../workflows/index.html#sec-workflows"><span class="std std-ref">Using Workflows</span></a>) or a process (see <a class="reference internal" href="../processes/index.html#sec-processes"><span class="std std-ref">Processes</span></a>). The workflow dashboard let’s you select from existing workflows that have been defined within the project or edit a new workflow from a template. Saving the workflow will trigger a validator that will warn you of syntax errors. Once the workflow has been validated, you may launch it already if there are no user defined inputs to be specified. Otherwise a form will appear to let you enter input values before launching the workflow. A notification will let you know if the workflow launched sucessfully or not.</p>
 <p class="last">The process interface first asks you to identify the process provider. We realize that you probably have no idea which services are offered by which provider, and for now, we suggest you search for relevant processes in this documentation, note the package they are coming from and use this as the provider. We’ll eventually <em>flatten</em> the process list and allow you to search from the list of processes.</p>
 </dd>
 </dl>
 </div>
-</div>
-<div class="section" id="data-and-process-manager">
-<h2>Data and Process Manager<a class="headerlink" href="#data-and-process-manager" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -212,6 +221,15 @@
            </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dev/index.html" class="btn btn-neutral float-right" title="Developer Documentation" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Graphical User Interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

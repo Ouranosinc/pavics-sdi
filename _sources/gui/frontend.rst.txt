@@ -31,10 +31,11 @@ Other Map Controls
 Each panel element can be used to view/inspect different types and display additional information of the active data.
 
 
-Example
-~~~~~~~
+..
+    Example
+    ~~~~~~~
 
-For an example of a climate analysis process using the PAVICS-frontend, see this short :download:`hands-on video <images/PAVICS_process.mp4>`.
+    For an example of a climate analysis process using the PAVICS-frontend, see this short :download:`hands-on video <images/PAVICS_process.mp4>`.
 
 
 Dashboard
@@ -50,14 +51,9 @@ Project Workspace
    The workspace area lets you create projects in which an ensemble of files, search queries, workflows and process outputs can be stored. At the moment it is not possible for users to upload files or geospatial layers to the workspace. Let us know if this is a feature you'd like to have.
 
 Process and Workflows
-   This is the interface where computations are launched. You may launch a workflow (see `workflows`_) or a process (see `processes`_). The workflow dashboard let's you select from existing workflows that have been defined within the project or edit a new workflow from a template. Saving the workflow will trigger a validator that will warn you of syntax errors. Once the workflow has been validated, you may launch it already if there are no user defined inputs to be specified. Otherwise a form will appear to let you enter input values before launching the workflow. A notification will let you know if the workflow launched sucessfully or not.
+   This is the interface where computations are launched. You may launch a workflow (see :ref:`sec-workflows`) or a process (see :ref:`sec-processes`). The workflow dashboard let's you select from existing workflows that have been defined within the project or edit a new workflow from a template. Saving the workflow will trigger a validator that will warn you of syntax errors. Once the workflow has been validated, you may launch it already if there are no user defined inputs to be specified. Otherwise a form will appear to let you enter input values before launching the workflow. A notification will let you know if the workflow launched sucessfully or not.
 
    The process interface first asks you to identify the process provider. We realize that you probably have no idea which services are offered by which provider, and for now, we suggest you search for relevant processes in this documentation, note the package they are coming from and use this as the provider. We'll eventually *flatten* the process list and allow you to search from the list of processes.
-
-
-Data and Process Manager
-~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 
 
