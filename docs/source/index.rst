@@ -11,13 +11,16 @@ Documentation structure
 -----------------------
 We plan to build extensive documentation for PAVICS. We're just getting started, but please provide your comments on our `issue tracker`_.
 
-* :doc:`Tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
+* :doc:`Notebooks </notebooks/index>` and :doc:`tutorials </tutorials/index>` provides step by step instruction on how to use PAVICS. Start here to get a feeling of what can be done.
 
 * :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
 * :doc:`System Architecture <arch/index>` describes the individual components of the system and how they work together.
 
 * :doc:`Processes </processes/index>` documents all available processes on the PAVICS platform.
+
+* :doc:`Graphical User Interface </gui/index>` walks you through the components of the web browser frontend.
+
 
 .. _issue tracker: https://github.com/Ouranosinc/pavics-sdi/issues
 .. _birdhouse: http://bird-house.github.io/
@@ -31,10 +34,12 @@ Contents
    :maxdepth: 2
 
    tutorials/index
-   dev/index
-   arch/index
+   notebooks/index
    processes/index
    workflows/index
+   gui/index
+   dev/index
+   arch/index
    provenance/index
    support
    releasenotes
