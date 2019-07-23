@@ -15,6 +15,12 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    climate_indices
    owslib_wms
    opendap
+   finch
+   owslib_wms
+   pavics_thredds
+   WCS_example
+   WFS_example
+   WPS_example
 
 
 .. _OWSLib: https://geopython.github.io/OWSLib/

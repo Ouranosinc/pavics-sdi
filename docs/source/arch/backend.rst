@@ -39,6 +39,13 @@ Climate Analytic Processes with Birdhouse
 
 The climate computing aspect of PAVICS is largely built upon the many components developed as part of the `Birdhouse Project <https://github.com/bird-house/birdhouse-docs/blob/master/slides/birdhouse-architecture/birdhouse-architecture.pdf>`_. The goal of Birdhouse is to develop a collection of easy-to-use Web Processing Service (WPS) servers providing climate analytic algorithms. Birdhouse servers are called 'birds', each one offering a set of individual processes:
 
+Birdhouse/Finch
+    Provides access to a large suite of climate indicators, largely inspired by `ICCLIM`_.
+    `Finch Official Documentation <https://finch.readthedocs.io/en/latest/>`_
+
+Raven
+    Provides hydrological modeling capability using the `Raven`_ framework, along with model calibration utilities, regionalization tools, hydrological indicators and frequency analysis.
+
 Birdhouse/Malleefowl
     Provides processes to access ESGF data nodes and THREDDS catalogs, as well as a workflow engine to string different processes together.
     `Malleefowl Official Documentation <https://malleefowl.readthedocs.io/en/latest/>`_
@@ -46,7 +53,7 @@ Birdhouse/Malleefowl
 Birdhouse/Flyingpigeon
     Provides a wide array of climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc. FlyingPigeon is the sand box for emerging services, which eventually will make their way to more stable and specialized birds.
     `Flyingpigeon Official Documentation <https://flyingpigeon.readthedocs.io/en/latest/>`_
-    
+
 Birdhouse/Hummingbird
     Provides access to climate Data Operators (`CDO`_) functions and compliance-checker for netCDF files.
     `Hummingbird Official Documentation <https://birdhouse-hummingbird.readthedocs.io/en/latest/>`_
@@ -90,3 +97,6 @@ ncWMS
 
 .. _`PAVICS-DataCatalog` : https://github.com/Ouranosinc/PAVICS-DataCatalog
 
+.. _`Raven`: http://raven.uwaterloo.ca/
+
+.. _`ICCLIM`: https://icclim.readthedocs.io/en/latest/
