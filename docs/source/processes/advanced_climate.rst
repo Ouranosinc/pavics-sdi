@@ -8,31 +8,6 @@ Advanced climate data analysis
    :depth: 3
 
 
-..
-   Uncertainty analysis
-   --------------------
-
-   .. autoprocess:: flyingpigeon.processes.RobustnessProcess
-
-..
-   Commented (moved to blackswan)
-   Weather analogs
-   ---------------
-
-   .. autoprocess:: flyingpigeon.processes.WeatherregimesreanalyseProcess
-
-   .. autoprocess:: flyingpigeon.processes.WeatherregimesprojectionProcess
-
-   .. autoprocess:: flyingpigeon.processes.WeatherregimesmodelProcess
-
-   .. autoprocess:: flyingpigeon.processes.AnalogsreanalyseProcess
-
-   .. autoprocess:: flyingpigeon.processes.AnalogsmodelProcess
-
-   .. autoprocess:: flyingpigeon.processes.AnalogscompareProcess
-
-   .. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess
-      :noindex:
 
 
 Spatial analogues
@@ -92,10 +67,9 @@ by a white marker.
    A map of the dissimilarity metric computed from mean annual precipitation and
    temperature values in Montreal over the period 1970-1990.
 
-.. autoprocess:: flyingpigeon.processes.SpatialAnalogProcess
+:class:`flyingpigeon.processes.SpatialAnalogProcess`
 
-.. autoprocess:: flyingpigeon.processes.MapSpatialAnalogProcess
-   :noindex:
+:class:`flyingpigeon.processes.MapSpatialAnalogProcess`
 
 .. rubric:: References
 

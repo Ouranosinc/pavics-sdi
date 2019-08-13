@@ -22,8 +22,8 @@ can do.
 
 Algorithms
 ----------
-
-.. autoprocess:: flyingpigeon.processes.KDDM_BC_Process
-   :docstring:
+..
+    .. autoprocess:: flyingpigeon.processes.KDDM_BC_Process
+       :docstring:
 
 

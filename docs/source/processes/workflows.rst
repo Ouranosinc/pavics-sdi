@@ -2,7 +2,7 @@
 Workflows
 =========
 
+..
+    .. autoprocess:: malleefowl.processes.DispelWorkflow
 
-.. autoprocess:: malleefowl.processes.DispelWorkflow
-
-.. autoprocess:: malleefowl.processes.DispelCustomWorkflow
+    .. autoprocess:: malleefowl.processes.DispelCustomWorkflow
