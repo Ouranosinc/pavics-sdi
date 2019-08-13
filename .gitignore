@@ -1,3 +1,5 @@
 *.mo
 
 *.swp
+
+.ipynb_checkpoints
