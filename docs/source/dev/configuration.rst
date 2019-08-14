@@ -16,9 +16,9 @@ To customize the container application config we must also update the custom.cfg
 
   * Since custom.cfg is built into the docker image and thus reset each time we run an image the only way to alter it is to mount a host file inside the container using the volume option. Therefore a :file:`custom.cfg` is configured on host for each birdhouse component and mounted inside the container using the volume option of the :file:`docker-compose.yml` file. This way each time a container is started, it is configured by the host :file:`custom.cfg` file which indeed persist the lifecycle of a container
 
-  * The :file:`custom.cfg` is a buildout configuration file which extends :file:`buildout.cfg` providing default parameters. Each birdhouse component has it's own buildout recipe looking for particular parameters to configure their application. 
+  * The :file:`custom.cfg` is a buildout configuration file which extends :file:`buildout.cfg` providing default parameters. Each birdhouse component has it's own buildout recipe looking for particular parameters to configure their application.
 
-.. note:: 
+.. note::
 	An exemple recipe for ncWMS configuration can be found here: https://github.com/bird-house/birdhousebuilder.recipe.ncwms. Look on github for other components recipe : https://github.com/bird-house.
 
 Hummingbird
@@ -103,7 +103,7 @@ To access the ncWMS admin page (changes be overriden each time the container is 
 The administration page allow administrators to add new datasets but again it will not persist upon container restarting.
 
 
-Default Tomact credentials::
+Default Tomcat credentials::
 
    username="birdhouse"
    password="4FO72WcTt7K9gYiNKApf"
@@ -116,7 +116,7 @@ Default ncWMS credentials::
 Dynamic services
 ----------------
 
-.. warning:: 
+.. warning::
 	The dynamic services section allow with only one command to enable access to all the database available at :file:`M:\data16\projets\multi\PAVICS\data` by configuring a file system entrypoint. The only thing to do is to use the following url: http://<domain>:8080/ncWMS2/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0&DATASET=outputs/<path> and replace ``<path>`` by the relative path to :file:`M:\data16\projets\multi\PAVICS\data` to the required dataset. So thanks to this config and to the catalog service we should be able to get the entire database list from the catalog and access their WMS by using the relative path in the wms url.
 
 THREDDS
@@ -142,6 +142,7 @@ In the catalog.cfg file:
 .. |login| image:: images/phoenix_login.*
 .. |settings| image:: images/phoenix_setting.*
 .. |refresh| image:: images/phoenix_refresh.*
+.. |service| image:: images/phoenix_services.*
 
 .. _pavics-sdi: https://github.com/Ouranosinc/pavics-sdi.git
 .. _Docker: http://docker.com

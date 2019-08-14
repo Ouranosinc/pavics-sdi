@@ -12,11 +12,9 @@ You'll find below links to services or service providers organized by topics. Yo
    basic_climate
    indices
    advanced_climate
-   data_handling
-   maintenance
-
 
 
 .. todo::
 
-   Add hummingbird processes
+   Take a systematic approach and link to other birds and libraries through intersphinx
+
