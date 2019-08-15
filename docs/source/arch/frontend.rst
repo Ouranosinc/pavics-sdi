@@ -27,3 +27,4 @@ Take a look at the frontend tutorial for information on the frontend's usage!
    Describe the relationship between the frontend and Phoenix.
 
 
+.. _ncWMS:  https://reading-escience-centre.github.io/ncwms/

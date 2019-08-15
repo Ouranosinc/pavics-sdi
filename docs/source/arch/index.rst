@@ -7,6 +7,7 @@ System Architecture
    :maxdepth: 2
 
    overview
-   frontend
    backend
+   jupyter
+   frontend
    data_catalog

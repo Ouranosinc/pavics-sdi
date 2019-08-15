@@ -2,9 +2,9 @@
 Data and service management
 ===========================
 
-The PAVICS project Data Server is built around a Thematic Real-time Environmental Distributed Data Service (THREDDS). This service allows for real-time collection and presentation of archived data and metadata using remote access protocols to bridge the gap between data providers and researchers. 
+The PAVICS project Data Server is built around a Thematic Real-time Environmental Distributed Data Service (THREDDS). This service allows for real-time collection and presentation of archived data and metadata using remote access protocols to bridge the gap between data providers and researchers.
 
-The THREDDS Project is an Open Source initiative maintained by UCAR's Unidata Program. For more information on Unidata, see the `Project Home Page <https://www.unidata.ucar.edu/>`_. To learn more about THREDDS, view the `Project Description <https://github.com/Unidata/thredds/>`_ on GitHub.  
+The THREDDS Project is an Open Source initiative maintained by UCAR's Unidata Program. For more information on Unidata, see the `Project Home Page <https://www.unidata.ucar.edu/>`_. To learn more about THREDDS, view the `Project Description <https://github.com/Unidata/thredds/>`_ on GitHub.
 
 To better understand the way THREDDS integrates within PAVICS, see the System Architecture :doc:`../arch/overview`.
 
@@ -54,8 +54,8 @@ Note that this crawls the whole THREDDS server and can take a very long time. In
 
 It is possible to restrict the crawling even more from the specified THREDDS path with the target_files argument to pavicrawler.
 
-.. note:: 
-	The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform. 
+.. note::
+	The pavicrawler scans for typical attributes (mostly defined by CMIP) in the NetCDF global attributes. This allows search by facets by other components of the platform.
 
 After running the pavicrawler, new entries in the catalog should appear in Solr::
 
@@ -69,7 +69,7 @@ Inspecting metadata
 -------------------
 
 An essential requirement for a functional platform is that netCDF data stored in THREDDS has complete and uniform
-metadata. To do so, the :function:`pavics.catalog.thredds_crawler` function can be used to extract the metadata from the
+metadata. To do so, the :func:`pavics.catalog.thredds_crawler` function can be used to extract the metadata from the
 netCDF files and see if there are missing entries::
 
    from pavics.catalog import thredds_crawler as crawler

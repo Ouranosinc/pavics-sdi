@@ -17,7 +17,7 @@ For debugging and editing purposes, PAVICS should be set up on a virtual machine
 - Install VBoxGuestAdditions within the Ubuntu guest for corresponding
   VirtualBox version. This can be done via the `Devices` tab of the VM via the `Insert Guest Additions ISO image...` and following the install instruction from the ``autorun.sh`` script.
 
-Required VM packages for various PAVICS components (most can be installed via `apt-get`with root privileges):
+Required VM packages for various PAVICS components (most can be installed via `apt-get` with root privileges):
 
 - python-dev
 - curl `or` wget
@@ -201,7 +201,7 @@ of the local machine (retrieve with, e.g., ifconfig). Also point to a
 valid thredds server.
 
 ::
-  
+
   # Docker requires root privileges
   sudo su
   docker build -t pavics-datacatalog .

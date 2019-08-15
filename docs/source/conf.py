@@ -34,9 +34,6 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
-    #'sphinx_autodoc_pywps',
-    'pywps.ext_autodoc', #Will be available in pywps 4.2 (now in develop branch)
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
@@ -45,6 +42,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
+    'sphinx.ext.intersphinx',
     'sphinxjsondomain',
     'sphinx-jsonschema',
     'nbsphinx',
@@ -103,7 +101,7 @@ gettext_compact = False     # optional.
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'notebooks/.ipynb_checkpoints']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '*/.ipynb_checkpoints']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -374,13 +372,15 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'python': ('http://docs.python.org/', None),
+                       'finch': ('https://finch.readthedocs.io/en/latest', None),
+                       'raven': ('https://pavics-raven.readthedocs.io/en/latest', None),
 #                       'birdhouse': ('http://birdhouse.readthedocs.io/en/latest/', None),
 #                       'phoenix': ('http://pyramid-phoenix.readthedocs.io/en/latest/', None),
 #                       'malleefowl': ('http://malleefowl.readthedocs.io/en/latest/', None),
 #                       'twitcher': ('http://twitcher.readthedocs.io/en/latest/', None),
-#                       'flyingpigeon': ('http://flyingpigeon.readthedocs.io/en/latest/', None),
+                       'flyingpigeon': ('http://flyingpigeon.readthedocs.io/en/latest/', None),
 #                       'hummingbird': ('http://birdhouse-hummingbird.readthedocs.io/en/latest/', None),
 #                       'emu': ('http://emu.readthedocs.io/en/latest/', None),
-#                       'birdy': ('http://birdy.readthedocs.io/en/latest/', None),
+                       'birdy': ('http://birdy.readthedocs.io/en/latest/', None),
 #                       'bootstrap': ('http://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
                         }
