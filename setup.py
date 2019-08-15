@@ -11,7 +11,7 @@ CLASSIFIERS = [
 setup(
     name="pavics_sdi",
     version="0.1",
-    url="https://ouranosinc.github.io/pavics-sdi/",
+    url="https://pavics-sdi.readthedocs.io",
     install_requires=[],
     author="CRIM/Ouranos",
     author_email="pavics@ouranos.ca",
