@@ -9,15 +9,14 @@ CLASSIFIERS = [
 ]
 
 setup(
-    name = "pavics_sdi",
-    version = "0.1",
-    url = "https://ouranosinc.github.io/pavics-sdi/",
-    install_requires = [],
+    name="pavics_sdi",
+    version="0.1",
+    url="https://ouranosinc.github.io/pavics-sdi/",
+    install_requires=[],
     author="CRIM/Ouranos",
     author_email="pavics@ouranos.ca",
     description="Scientific gateway for climate data analytics.",
     long_description=open('README.rst', 'rt').read(),
     license="BSD",
-    install_requires=""
     classifiers=CLASSIFIERS,
 )
