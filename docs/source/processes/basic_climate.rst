@@ -2,7 +2,9 @@
 Basic climate data analysis
 ===========================
 
-The following processes concern basic climate data analysis, methods for formatting data to examine a specific region or time interval.
+The following processes concern basic climate data analysis, methods for formatting data to examine a
+specific region or time interval. They are provided by Flyingpigeon's
+:ref:`subset processes <flyingpigeon:subset_processes_api>`.
 
 ..
     Spatial subsetting and regridding are methods of deriving a new set of data from another set of data using interpolation techniques to generate different spatial or temporal resolutions.
