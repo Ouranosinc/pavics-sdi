@@ -1,0 +1,11 @@
+# Conda environment file used to run the notebooks
+
+birdhouse-birdy
+xarray
+pydap
+geopandas
+matplotlib
+descartes
+ipython
+
+
