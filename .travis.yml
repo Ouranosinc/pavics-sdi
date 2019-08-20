@@ -45,4 +45,4 @@ install:
 script:
     - cd docs
     - make clean html
-    - pytest --nbval docs/source/notebooks
+    - pytest --nbval source/notebooks
