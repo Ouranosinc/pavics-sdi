@@ -45,4 +45,4 @@ install:
 
 script:
     - make clean html
-    - pytest --nbval source/notebooks --sanitize-with regex_patterns.yml
+    - pytest --nbval source/notebooks --sanitize-with regex_patterns.cfg
