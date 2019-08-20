@@ -12,7 +12,6 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
 
    subsetting
    rendering
-   climate_indices
    owslib_wms
    opendap
    finch
