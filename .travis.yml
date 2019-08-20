@@ -46,4 +46,4 @@ install:
 
 script:
     - make clean html
-    - pytest --nbval source/notebooks --sanitize-with regex_patterns.cfg
+    - pytest --nbval -k 'not esgf-dap' source/notebooks --sanitize-with regex_patterns.cfg
