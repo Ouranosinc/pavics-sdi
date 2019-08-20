@@ -5,12 +5,16 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - birdhouse-birdy
-  - xarray
-  - pydap
-  - geopandas
   - matplotlib
+  - xarray
+  - numpy
+  - birdhouse-birdy
+  - netcdf4
+  - pydap
+  - cartopy
   - descartes
+  - rasterio
+  - geopandas
   - ipython
 
 
