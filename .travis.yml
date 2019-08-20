@@ -21,9 +21,9 @@ matrix:
           name: "Python3.6 - Linux"
         - env:
               - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
-              - PYTHON_BUILD=3.5
+              - PYTHON_BUILD=3.6
           os: osx
-          name: "Python3.5 - Darwin (macOS)"
+          name: "Python3.6 - Darwin (macOS)"
 
 # before_install will simply setup a conda environment for installing python packages, if you
 # have project dependencies it's usually recommended to go this route
