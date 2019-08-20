@@ -1,28 +1,51 @@
-language: python - "2.7"
+language: generic
 
-# before_install will simply setup a conda enviroment for installing python packages, if you
+dist: xenial
+
+branches:
+    only:
+        - master
+
+matrix:
+    fast_finish: true
+    include:
+        - env:
+              - CONDA_BINARY="Miniconda-latest-Linux-x86_64.sh"
+              - PYTHON_BUILD=3.7
+          os: linux
+          name: "Python3.7 - Linux"
+        - env:
+              - CONDA_BINARY="Miniconda-latest-Linux-x86_64.sh"
+              - PYTHON_BUILD=3.6
+          os: linux
+          name: "Python3.6 - Linux"
+        - env:
+              - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
+              - PYTHON_BUILD=3.5
+          os: osx
+          name: "Python3.5 - MacOS"
+
+# before_install will simply setup a conda environment for installing python packages, if you
 # have project dependencies it's usually recommended to go this route
 before_install:
-    - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
+    - wget "http://repo.continuum.io/miniconda/$CONDA_BINARY" -O miniconda.sh
     - chmod +x miniconda.sh
-    - "./miniconda.sh -b"
-    - export PATH=/home/travis/miniconda2/bin:$PATH
+    - bash ./miniconda.sh -b
+    - export PATH=/home/travis/miniconda3/bin:$PATH
     - conda update --yes conda
     - sudo rm -rf /dev/shm
     - sudo ln -s /run/shm /dev/shm
 
 install:
-    - conda install --yes python="2.7" sphinx
-    - pip install --user travis-sphinx
-    - pip install --user -r requirements.txt
-    - git clone https://github.com/Ouranosinc/flyingpigeon.git@pavics
-    - pip install --user -r flyingpigeon/requirements/deploy.txt
-    - pip install --user ./flyingpigeon
-    - git clone https://github.com/Ouranosinc/malleefowl.git@pavics
-    - pip install --user ./malleefowl
+    - conda install --yes python=$PYTHON_BUILD
+    - git clone https://github.com/Ouranosinc/pavics-sdi
+    - conda env update --file environment.yml
+    - conda env update --file environment-dev.yml
+    - conda activate pavics-sdi
 
 script:
     - travis-sphinx build
+    - pytest --nbval docs/source/notebooks
 
 after_success:
     - travis-sphinx deploy

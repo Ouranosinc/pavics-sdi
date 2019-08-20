@@ -1,3 +1,15 @@
-pytest
-nbval
-jupyter
+name: pavics-sdi
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pytest
+  - jupyter
+  - sphinx
+  - sphinx_rtd_theme
+  - nbsphinx
+  - nbval
+pip:
+  - sphinx-intl
+  - sphinx-jsondomain
+  - sphinx-jsonschema

@@ -1,11 +1,16 @@
 # Conda environment file used to run the notebooks
-
-birdhouse-birdy
-xarray
-pydap
-geopandas
-matplotlib
-descartes
-ipython
+name: pavics-sdi
+channels:
+  - birdhouse
+  - conda-forge
+  - defaults
+dpeendencies:
+  - birdhouse-birdy
+  - xarray
+  - pydap
+  - geopandas
+  - matplotlib
+  - descartes
+  - ipython
 
 
