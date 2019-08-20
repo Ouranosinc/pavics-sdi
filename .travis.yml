@@ -41,8 +41,8 @@ install:
     - conda env update --file environment.yml
     - conda env update --file environment-dev.yml
     - source activate pavics-sdi
+    - cd docs
 
 script:
-    - cd docs
     - make clean html
-    - pytest --nbval source/notebooks
+    - pytest --nbval source/notebooks --sanitize-with regex_patterns.yml
