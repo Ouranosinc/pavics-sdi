@@ -38,7 +38,7 @@ before_install:
 install:
     - conda install --yes python=$PYTHON_BUILD
     - git clone https://github.com/Ouranosinc/pavics-sdi
-    - conda-env update --file environment.yml --file environment-dev.yml
+    - conda-env update --file environment.yml environment-dev.yml
     - source activate pavics-sdi
     - cd docs
 
