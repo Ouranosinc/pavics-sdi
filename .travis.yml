@@ -39,7 +39,7 @@ install:
     - git clone https://github.com/Ouranosinc/pavics-sdi
     - conda env update --file environment.yml
     - conda env update --file environment-dev.yml
-    - conda activate pavics-sdi
+    - source activate pavics-sdi
 
 script:
     - travis-sphinx build

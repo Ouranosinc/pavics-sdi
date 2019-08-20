@@ -4,7 +4,7 @@ channels:
   - birdhouse
   - conda-forge
   - defaults
-dpeendencies:
+dependencies:
   - birdhouse-birdy
   - xarray
   - pydap
