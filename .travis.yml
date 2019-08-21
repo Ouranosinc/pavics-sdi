@@ -37,7 +37,7 @@ before_install:
 
 install:
     - conda install --yes python=$PYTHON_BUILD
-    - git clone https://github.com/Ouranosinc/pavics-sdi
+    - conda install pip
     - pip install conda-merge
     - conda-merge environment.yml environment-dev.yml > merged_env.yml
     - conda-env update -n pavics-sdi --file merged_env.yml
@@ -47,5 +47,4 @@ install:
 
 script:
     - make clean html
-    - pytest --nbval -k 'not esgf-dap' source/notebooks --sanitize-with regex_patterns.cfg
-    - pytest --nbval source/notebooks --sanitize-with output-sanitize.cfg   # regex_patterns.cfg
+    - pytest --nbval -k 'not esgf-dap' source/notebooks --sanitize-with output-sanitize.cfg  # regex_patterns.cfg
