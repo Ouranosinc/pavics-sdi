@@ -12,16 +12,19 @@ matrix:
         - env:
               - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
               - PYTHON_BUILD=3.7
+              - GRAB=wget
           os: linux
           name: "Python3.7 - Linux"
         - env:
               - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
               - PYTHON_BUILD=3.6
+              - GRAB=wget
           os: linux
           name: "Python3.6 - Linux"
         - env:
               - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
               - PYTHON_BUILD=3.6
+              - GRAB='curl --output output-sanitize.cfg'
           os: osx
           name: "Python3.6 - Darwin (macOS)"
 
@@ -43,7 +46,7 @@ install:
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs
-    - git archive --remote=https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests HEAD:notebooks output-sanitize.cfg | tar -x
+    - $GRAB https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/blob/master/notebooks/output-sanitize.cfg
 
 script:
     - make clean html
