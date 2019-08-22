@@ -46,7 +46,7 @@ install:
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs
-    - bash -c $GRAB https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/blob/master/notebooks/output-sanitize.cfg
+    - bash -c "$GRAB https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/blob/master/notebooks/output-sanitize.cfg"
 
 script:
     - make clean html
