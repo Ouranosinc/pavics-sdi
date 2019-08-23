@@ -46,8 +46,8 @@ install:
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs
-    - bash -c "$GRAB https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/blob/master/notebooks/output-sanitize.cfg"
+    - bash -c "$GRAB https://raw.githubusercontent.com/Ouranosinc/PAVICS-e2e-workflow-tests/master/notebooks/output-sanitize.cfg"
 
 script:
     - make clean html
-    - pytest --nbval -k 'not esgf-dap' source/notebooks --sanitize-with output-sanitize.cfg  # regex_patterns.cfg
+    - pytest --nbval --sanitize-with output-sanitize.cfg -k 'not esgf-dap' source/notebooks   # regex_patterns.cfg
