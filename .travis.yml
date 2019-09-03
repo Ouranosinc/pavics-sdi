@@ -42,7 +42,7 @@ install:
     - conda install pip
     - pip install conda-merge
     - conda-merge environment.yml environment-dev.yml > merged_env.yml
-    - conda create -n pavics-sdi python=$PYTHON_BUILD
+    - conda create --yes -n pavics-sdi python=$PYTHON_BUILD
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs
