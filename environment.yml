@@ -1,14 +1,13 @@
 # Conda environment file used to run the notebooks
 name: pavics-sdi
 channels:
-  - birdhouse
   - conda-forge
   - defaults
 dependencies:
   - matplotlib
   - xarray
   - numpy
-  - birdhouse-birdy
+  - birdy
   - netcdf4
   - pydap
   - cartopy
