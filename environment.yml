@@ -1,0 +1,17 @@
+# Conda environment file used to run the notebooks
+name: pavics-sdi
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - matplotlib
+  - xarray
+  - numpy
+  - birdy
+  - netcdf4
+  - pydap
+  - cartopy
+  - descartes
+  - rasterio
+  - geopandas
+  - ipython

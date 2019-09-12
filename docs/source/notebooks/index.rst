@@ -9,10 +9,12 @@ If you're unfamiliar with notebooks, note that typing `TAB` after an object will
 Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0.17.1) and Birdy_ since some issues were found and fixed in the process of writing these notebooks.
 
 .. toctree::
+   :maxdepth: 1
 
-   subsetting
+   ..
+       subsetting
+
    rendering
-   climate_indices
    owslib_wms
    opendap
    finch
