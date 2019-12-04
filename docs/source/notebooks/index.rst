@@ -11,18 +11,16 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
 .. toctree::
    :maxdepth: 1
 
-   ..
-       subsetting
-
    rendering
-   owslib_wms
    opendap
+   esgf-dap
    finch
-   owslib_wms
+   catalog_search
    pavics_thredds
    WCS_example
    WFS_example
    WPS_example
+   WMS_example
 
 
 .. _OWSLib: https://geopython.github.io/OWSLib/
