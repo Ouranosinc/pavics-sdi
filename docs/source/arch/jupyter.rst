@@ -2,11 +2,13 @@
 JupyterLab Interface
 ====================
 
-A `JupyterLab`_ instance runs on the PAVICS server at `<pavics.ouranos.ca/jupyter>`_. The intent is not to run production code, but rather to demo the backend services available from a programming environment. The Python 3 engine has a number of libraries pre-installed, making it easy to experiment with web processing services and netCDF files.
+A `JupyterLab`_ instance runs on the PAVICS server at `<pavics.ouranos.ca/jupyter>`_.  The Python 3 engine has a number of libraries pre-installed, making it easy to experiment with web processing services and netCDF files.
 
-Users should connect with the `public` login and the `public` password. User accounts will be available at a later time. Meanwhile, save your work elsewhere, because the user-created notebooks will be erased periodically.
+There is a demo account, contact the support email on the login screen to get the password.  This demo account has limitted computing resources, for security reasons.  Any files created in the demo account is visible and editable to all users having access to the demo account.
 
-A number of tutorial notebooks are available in the public directory to give a sense of how services can be  used in scientific workflows. These notebooks are tested daily against the production server.
+For production usage, without computing resource limitation and with private user workspace, request your own user account using the support email on the login screen.
+
+A number of tutorial notebooks are available in each user workspace to give a sense of how services can be used in scientific workflows. These notebooks are tested daily against the production server and kept up-to-date automatically.
 
 
 .. _JupyterLab: https://jupyterlab.readthedocs.io/en/stable/
