@@ -15,18 +15,18 @@ matrix:
               - GRAB=wget
           os: linux
           name: "Python3.7 - Linux"
-        - env:
-              - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
-              - PYTHON_BUILD=3.6
-              - GRAB=wget
-          os: linux
-          name: "Python3.6 - Linux"
-        - env:
-              - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
-              - PYTHON_BUILD=3.6
-              - GRAB='curl --output output-sanitize.cfg'
-          os: osx
-          name: "Python3.6 - Darwin (macOS)"
+#        - env:
+#              - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
+#              - PYTHON_BUILD=3.6
+#              - GRAB=wget
+#          os: linux
+#          name: "Python3.6 - Linux"
+#        - env:
+#              - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
+#              - PYTHON_BUILD=3.6
+#              - GRAB='curl --output output-sanitize.cfg'
+#          os: osx
+#          name: "Python3.6 - Darwin (macOS)"
 
 # before_install will simply setup a conda environment for installing python packages, if you
 # have project dependencies it's usually recommended to go this route
