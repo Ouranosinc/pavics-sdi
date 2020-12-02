@@ -39,8 +39,8 @@ before_install:
     - conda update --yes conda
 
 install:
-    - conda install pip
-    - pip install conda-merge
+    - conda install -c conda-forge pip
+    - conda install -c conda-forge conda-merge
     - conda-merge environment.yml environment-dev.yml > merged_env.yml
     - conda create --yes -n pavics-sdi python=$PYTHON_BUILD
     - conda-env update -n pavics-sdi --file merged_env.yml
