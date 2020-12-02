@@ -8,5 +8,9 @@ formats: all
 build:
   image: latest
 
-conda:
-  environment: environment-dev.yml
+python:
+  version: 3.6
+  pip_install: true
+  extra_requirements:
+    - docs
+
