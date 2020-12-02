@@ -12,5 +12,5 @@ dependencies:
   - pip
   - pip:
     - sphinx-intl
-    - sphinx-jsondomain
+    - sphinx-jsondomain # unmaintained and has sphinx <2.0 hardcoded in dependencies
     - sphinx-jsonschema
