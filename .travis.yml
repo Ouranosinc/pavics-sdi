@@ -36,13 +36,14 @@ before_install:
     - bash ./miniconda.sh -b
     - export PATH=$HOME/miniconda3/bin:$PATH
     - source activate
-    - conda update --yes conda
+    - conda config --env --set always_yes true
+    - conda update conda
 
 install:
     - conda install -c conda-forge pip
     - conda install -c conda-forge conda-merge
     - conda-merge environment.yml environment-dev.yml > merged_env.yml
-    - conda create --yes -n pavics-sdi python=$PYTHON_BUILD
+    - conda create -n pavics-sdi python=$PYTHON_BUILD
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs
