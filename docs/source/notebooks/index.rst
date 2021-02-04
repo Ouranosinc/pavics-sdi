@@ -23,5 +23,12 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    WMS_example
 
 
+Project' related notebooks
+
+.. toctree::
+   :maxdepth: 1
+
+   cruesdeca
+
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io

@@ -42,7 +42,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
-    # 'sphinxjsondomain', unmaintained and has sphinx <2.0 hardcoded in dependencies
+    'sphinx.ext.autosectionlabel',
     'sphinx-jsonschema',
     'nbsphinx',
 ]
