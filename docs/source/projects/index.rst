@@ -8,3 +8,12 @@ Some Ouranos projects are using PAVICS as a mechanism to distribute results, cod
    :maxdepth: 1
 
    cruesdeca
+
+
+
+Project' related notebooks
+
+.. toctree::
+   :maxdepth: 2
+
+   notebooks/index

@@ -1,10 +1,12 @@
 Flood Frequency Analysis and Dam Safety in the 21st Century Climate
 ===================================================================
 
-:ref:`Version en français<Analyse fréquentielle des crues>`
+.. ::
+
+    :ref:`Version en français<Analyse fréquentielle des crues>`
 
 
-This project completed in March 2021 looked at how climate change information can be integrated into flood design values estimated by frequency analysis. The `report`_ includes maps showing the relative change in 1,000 and 10,000 return values for over 500 watersheds over Canada. The data underlying these figures is available online as a geospatial layer named ``public:decamillenial_flood_CC`` on the `Ouranos GeoServer <pavics.ouranos.ca/geoserver>`. This layer can be downloaded locally, streamed by GIS client (see instructions below) or accessed programmatically (see nb_client_).
+This project completed in March 2021 looked at how climate change information can be integrated into flood design values estimated by frequency analysis. The `report`_ includes maps showing the relative change in 1,000 and 10,000 return values for over 500 watersheds over Canada. The data underlying these figures is available online as a geospatial layer named ``public:decamillenial_flood_CC`` on the `Ouranos GeoServer <pavics.ouranos.ca/geoserver>`. This layer can be downloaded locally, streamed by GIS client (see instructions below) or accessed programmatically (see notebook_).
 
 
 For each watershed, the results include the following properties:
@@ -51,9 +53,11 @@ One the layer is available, you can access the various columns of the data table
 
 
 .. _report: http://to.be.completed.pdf
-.. _nb_client: ../notebooks/cruesdeca.ipynb
+.. _notebook: notebooks/cruesdeca.ipynb
 
 
 
 Analyse fréquentielle des crues
 ===============================
+
+Version en français à venir...
