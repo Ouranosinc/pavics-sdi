@@ -14,7 +14,6 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    rendering
    opendap
    esgf-dap
-   finch
    catalog_search
    pavics_thredds
    WCS_example
