@@ -39,6 +39,7 @@ Contents
    notebooks/index
    processes/index
    workflows/index
+   projects/index
    gui/index
    dev/index
    arch/index

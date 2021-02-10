@@ -14,14 +14,12 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    rendering
    opendap
    esgf-dap
-   finch
    catalog_search
    pavics_thredds
    WCS_example
    WFS_example
    WPS_example
    WMS_example
-
 
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io
