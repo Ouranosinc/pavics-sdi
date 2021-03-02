@@ -20,6 +20,7 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    WFS_example
    WPS_example
    WMS_example
+   regridding
 
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io
