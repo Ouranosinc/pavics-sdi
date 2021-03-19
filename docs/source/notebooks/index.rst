@@ -42,7 +42,7 @@ These following notebooks demonstrate *additional* features of the PAVICS platfo
 .. toctree::
    :maxdepth: 1
 
-   ../notebook-components/OGCAPI_processes_example
+   ../notebook-components/weaver_example
 
 
 .. |pavics-components| replace:: Components
