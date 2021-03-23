@@ -14,13 +14,16 @@ Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0
    rendering
    opendap
    esgf-dap
-   catalog_search
    pavics_thredds
    WCS_example
    WFS_example
    WPS_example
    WMS_example
    regridding
+   ../deprecated/index
 
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io
+
+.. seealso::
+    :ref:`Deprecated Notebooks` for older methodologies that were employed with previous versions.
