@@ -6,6 +6,7 @@ channels:
 dependencies:
   - matplotlib
   - xarray
+  - dask
   - numpy
   - birdy
   - netcdf4
