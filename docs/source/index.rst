@@ -7,7 +7,7 @@
 PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
 data search, analytics and visualization services. PAVICS is developped by Ouranos, CRIM and the `birdhouse`_ community and been funded by the `CANARIE`_ research software program.
 
-To get a sense of what the platform can do, check out our `JupyterLab`_ environment (login/passwd: public/public).
+To get a sense of what the platform can do, check out our `JupyterLab`_ environment.
 
 Documentation structure
 -----------------------
@@ -39,6 +39,7 @@ Contents
    notebooks/index
    processes/index
    workflows/index
+   projects/index
    gui/index
    dev/index
    arch/index

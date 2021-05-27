@@ -15,18 +15,18 @@ matrix:
               - GRAB=wget
           os: linux
           name: "Python3.7 - Linux"
-        - env:
-              - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
-              - PYTHON_BUILD=3.6
-              - GRAB=wget
-          os: linux
-          name: "Python3.6 - Linux"
-        - env:
-              - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
-              - PYTHON_BUILD=3.6
-              - GRAB='curl --output output-sanitize.cfg'
-          os: osx
-          name: "Python3.6 - Darwin (macOS)"
+#        - env:
+#              - CONDA_BINARY="Miniconda3-latest-Linux-x86_64.sh"
+#              - PYTHON_BUILD=3.6
+#              - GRAB=wget
+#          os: linux
+#          name: "Python3.6 - Linux"
+#        - env:
+#              - CONDA_BINARY="Miniconda3-latest-MacOSX-x86_64.sh"
+#              - PYTHON_BUILD=3.6
+#              - GRAB='curl --output output-sanitize.cfg'
+#          os: osx
+#          name: "Python3.6 - Darwin (macOS)"
 
 # before_install will simply setup a conda environment for installing python packages, if you
 # have project dependencies it's usually recommended to go this route
@@ -36,13 +36,14 @@ before_install:
     - bash ./miniconda.sh -b
     - export PATH=$HOME/miniconda3/bin:$PATH
     - source activate
-    - conda update --yes conda
+    - conda config --env --set always_yes true
+    - conda update conda
 
 install:
-    - conda install pip
-    - pip install conda-merge
+    - conda install -c conda-forge pip
+    - conda install -c conda-forge conda-merge
     - conda-merge environment.yml environment-dev.yml > merged_env.yml
-    - conda create --yes -n pavics-sdi python=$PYTHON_BUILD
+    - conda create -n pavics-sdi python=$PYTHON_BUILD
     - conda-env update -n pavics-sdi --file merged_env.yml
     - source activate pavics-sdi
     - cd docs

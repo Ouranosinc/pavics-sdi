@@ -42,10 +42,12 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
-    'sphinxjsondomain',
+    'sphinx.ext.autosectionlabel',
     'sphinx-jsonschema',
     'nbsphinx',
 ]
+
+nbsphinx_allow_errors = True
 
 #napoleon_numpy_docstring = True
 
