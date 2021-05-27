@@ -21,6 +21,7 @@ setup(
             "sphinx-jsondomain",  # unmaintained and has sphinx <2.0 hardcoded in dependencies
             "sphinx-jsonschema",
             "nbsphinx",
+            "jinja2",
             "jupyter",
         ]
     },
