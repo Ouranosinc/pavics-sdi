@@ -12,8 +12,9 @@ dependencies:
   - netcdf4
   - pydap
   - cartopy
-  - descartes
+#  - descartes
   - rasterio
+  - rioxarray
   - geopandas
   - siphon
   - ipython
