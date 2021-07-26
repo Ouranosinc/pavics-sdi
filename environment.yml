@@ -6,12 +6,16 @@ channels:
 dependencies:
   - matplotlib
   - xarray
+  - dask
   - numpy
   - birdy
   - netcdf4
   - pydap
   - cartopy
-  - descartes
+#  - descartes
   - rasterio
+  - rioxarray
   - geopandas
+  - siphon
   - ipython
+  - ipyleaflet
