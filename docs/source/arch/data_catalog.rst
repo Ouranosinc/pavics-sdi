@@ -19,7 +19,6 @@ The following request will search for all files that are part of the RCP8.5 expe
  
   http://localhost:8009/pywps?service=WPS&request=execute&version=1.0.0&identifier=pavicsearch&DataInputs=constraints=model:CRCM4,experiment:rcp85
 
-Credits
--------
-
+PAVICS Catalogue Credits
+------------------------
 PAVICS-DataCatalog is developed by researchers at CRIM and Ouranos.
