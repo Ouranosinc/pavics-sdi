@@ -31,12 +31,11 @@ were found and fixed in the process of writing these notebooks.
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io
 
-<<<<<<< HEAD
-.. seealso::
-    :ref:`Deprecated Notebooks` for older methodologies that were employed with previous versions.
-=======
+-------------------------
+Optional Notebooks
+-------------------------
 
-These following notebooks demonstrate *additional* features of the PAVICS platform when corresponding
+These following notebooks demonstrate *additional* and *optional* features of the PAVICS platform when corresponding
 |pavics-components|_ or |pavics-opt-comp|_ are enabled.
 
 .. toctree::
@@ -49,4 +48,4 @@ These following notebooks demonstrate *additional* features of the PAVICS platfo
 .. _pavics-components: https://github.com/bird-house/birdhouse-deploy/blob/master/birdhouse/components/README.rst
 .. |pavics-opt-comp| replace:: Optional Components
 .. _pavics-opt-comp: https://github.com/bird-house/birdhouse-deploy/blob/master/birdhouse/optional-components/README.rst
->>>>>>> add weaver to docs
+
