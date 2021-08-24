@@ -26,10 +26,12 @@ were found and fixed in the process of writing these notebooks.
    WMS_example
    regridding
    subset-user-input
-   ../deprecated/index
 
 .. _OWSLib: https://geopython.github.io/OWSLib/
 .. _Birdy: https://birdy.readthedocs.io
+
+
+.. include:: ../deprecated/index
 
 -------------------------
 Optional Notebooks
