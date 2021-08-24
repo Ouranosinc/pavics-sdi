@@ -31,7 +31,7 @@ were found and fixed in the process of writing these notebooks.
 .. _Birdy: https://birdy.readthedocs.io
 
 
-.. include:: ../deprecated/index
+.. include:: ../deprecated/index.rst
 
 -------------------------
 Optional Notebooks
