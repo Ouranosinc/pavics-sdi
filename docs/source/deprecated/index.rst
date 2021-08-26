@@ -10,4 +10,4 @@ Deprecated Notebooks
 .. toctree::
    :maxdepth: 1
 
-   catalog_search
+   ../deprecated/catalog_search
