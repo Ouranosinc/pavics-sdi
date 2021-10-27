@@ -51,10 +51,10 @@ The climate computing aspect of PAVICS is largely built upon the many components
 
 Birdhouse/Finch
     Provides access to a large suite of climate indicators, largely inspired by `ICCLIM`_.
-    `Finch Official Documentation <https://finch.readthedocs.io/en/latest/>`_
+    `Finch Official Documentation <https://finch.readthedocs.io/en/latest/>`_ Finch also includes processes to subset and average gridded data over bounding boxes or polygons.
 
 Raven
-    Provides hydrological modeling capability using the `Raven`_ framework, along with model calibration utilities, regionalization tools, hydrological indicators and frequency analysis.
+    Provides hydrological modeling capability using the `Raven`_ framework, along with model calibration utilities, regionalization tools, and watershed properties extraction tools.
 
 Birdhouse/Malleefowl
     Provides processes to access ESGF data nodes and THREDDS catalogs, as well as a workflow engine to string different processes together.
@@ -68,7 +68,7 @@ Birdhouse/Hummingbird
     Provides access to climate Data Operators (`CDO`_) functions and compliance-checker for netCDF files.
     `Hummingbird Official Documentation <https://birdhouse-hummingbird.readthedocs.io/en/latest/>`_
 
-Virtually all individual processes ingest and return netCDF files (or OPeNDAP links), such that one process' output can be used as the input of another process. This lets scientist create complex workflows. By insisting that process inputs and outputs comply with the CF-Convention, we make sure that data is accompanied by clear and unambiguous metadata.
+Virtually all individual processes ingest and return netCDF files (or OPeNDAP links for some processes), such that one process' output can be used as the input of another process. This lets scientist create complex workflows. By insisting that process inputs and outputs comply with the CF-Convention, we make sure that data is accompanied by clear and unambiguous metadata.
 
 
 Authentication and authorization
@@ -85,17 +85,11 @@ Magpie
 
 Gridded data visualization
 --------------------------
-The UI can display 2D netCDF fields by making a request to a `ncWMS`_ server. The UI will specify which time step of which file to map, and `ncWMS`_ will fetch the data from the THREDDS server, then convert the array into an image embedded into a WMS response. This conversion requires a mapping of numerical value to a color scale: a colormap and min/max values. The colormap is defined by the user through the UI,   while default min/max values are stored in our `SOLR`_ database by the metadata crawler. Users may also specify min/max values directly within the UI.
-
-ncWMS
-    `ncWMS`_ is an implementation of the OGC's Web Mapping Service (WMS) specifically built for multidimensional gridded data such as the netCDF format. The PAVICS platform uses it to convert gridded netCDF data layers from a file or an OPeNDAP link to an image that can be accessed through WMS ``GetMap`` requests. See this `reference paper <https://doi.org/10.1016/j.envsoft.2013.04.002>`_ for more information.
-
+The PAVICS platform is not meant as a front-end, but still provides backend services to facilitate data visualization. It provides for each netCDF file in the THREDDS server a WMS endpoint that can be used to display netCDF fields over maps.
 
 .. _CDO: https://code.mpimet.mpg.de/projects/cdo/
 
 .. _`THREDDS`: https://www.unidata.ucar.edu/software/thredds/current/tds/
-
-.. _`ncWMS`:  https://reading-escience-centre.github.io/ncwms/
 
 .. _`GeoServer`: http://geoserver.org/about/
 
