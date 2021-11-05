@@ -16,22 +16,32 @@ Data storage
 Data is stored on two different servers: THREDDS for gridded netCDF data, and GeoServer for GIS features (region polygons, river networks).
 
 THREDDS
-    The *Thematic Real-time Environmental Distributed Data Services* (`THREDDS`_) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this `GitHub repository <https://github.com/Unidata/thredds>`_. THREDDS support direct file access as well as the OPeNDAP protocol, which allows the netCDF library to access segments of the hosted data without downloading the entire file. Links to files archived on THREDDS are thus used as inputs to WPS processes. File content cannot however be directly displayed by the frontend and require an intermediary (see ncWMS).
+    The *Thematic Real-time Environmental Distributed Data Services* (`THREDDS`_) is a server system for providing scientific data and metadata access through various online protocols. The PAVICS platform relies on THREDDS to provide access to all netCDF data archives, as well as output files created by processes. The code is hosted on this `GitHub repository <https://github.com/Unidata/thredds>`_. THREDDS support direct file access as well as the OPeNDAP protocol, which allows the netCDF library to access segments of the hosted data without downloading the entire file. Links to files archived on THREDDS are thus used as inputs to WPS processes.
 
 GeoServer
     `GeoServer`_ is an OGC compliant server system built for viewing, editing, and presenting geospatial data. PAVICS uses GeoServer as its database for vector geospatial information, such as administrative regions, watersheds and river networks. The frontend sends requests for layers that can be overlayed on the map canvas. See the `GeoServer documentation <http://docs.geoserver.org/>`_ for more information on its capabilities.
 
 
-Indexation
-----------
+Data Catalog
+------------
 
-Although information about file content is stored in the netCDF metadata fields, accessing and reading those fields one by one takes a considerable amount of time. The strategies used here mimic those used by ESGF, and comprises running a crawler over all netCDF files hosted on THREDDS, extracting relevant metadata and storing them in a `SOLR`_ database. Search queries are thus directed at SOLR, which returns a list of links matching the search terms. The crawler is part of the `PAVICS-DataCatalog`_ library. Note that this component of the architecture is being decommissioned and will be replaced by Intake catalogs, and later by STAC when it supports climate metadata formats.
+Although information about file content is stored in the netCDF metadata fields, accessing and reading those fields one by one takes a considerable amount of time. To improve file discoverability, we manage [intake-esm](https://github.com/intake/intake-esm) catalogs for each data category found within the dataset folder of THREDDS:
 
-SOLR
-  `SOLR`_ is a search platform part of the Apache Lucene project. It is used in this project for its faceted search capability. Search queries are relayed from the UI or WPS processes to the SOLR database, which returns a json file with the links to matching files.
+- biasadjusted
+- climex
+- cmip5
+- forecast
+- gridobs
+- reanalysis
+- stationobs
 
-PAVICS-DataCatalog
-    `PAVICS-DataCatalog`_ is a database system for storing and serving information about available climate data.
+These catalogs are created by:
+
+- walking through all the aggregated datasets found in the THREDDS ``Datasets`` folder;
+- calling THREDDS NCML service on each dataset. This returns an XML file storing metadata;
+- parsing the NCML metadata and creating a catalog description (``json``) and a data table (``csv``).
+
+The resulting catalogs are hosted at https://pavics.ouranos.ca/catalog
 
 
 Climate Analytic Processes with Birdhouse
@@ -83,13 +93,9 @@ The PAVICS platform is not meant as a front-end, but still provides backend serv
 
 .. _`GeoServer`: http://geoserver.org/about/
 
-.. _`SOLR`: http://lucene.apache.org/solr/
-
 .. _`Twitcher`: https://twitcher.readthedocs.io/en/latest/
 
 .. _`Magpie`: https://github.com/Ouranosinc/Magpie
-
-.. _`PAVICS-DataCatalog` : https://github.com/Ouranosinc/PAVICS-DataCatalog
 
 .. _`Raven`: http://raven.uwaterloo.ca/
 
