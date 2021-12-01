@@ -10,8 +10,7 @@ If you're unfamiliar with notebooks, note that typing `TAB` after an object will
 object's attributes and methods, and that you need to hit `CTRL-Enter` to run a *cell*. You can also type `?` after a
 function or method to display the corresponding help message.
 
-Note that some of these notebooks need the bleeding edge version of OWSLib_ (>=0.17.1) and Birdy_ since some issues
-were found and fixed in the process of writing these notebooks.
+Note that some of these notebooks need recent version of OWSLib_ (>=0.17.1) and Birdy_.
 
 .. toctree::
    :maxdepth: 1
@@ -20,6 +19,7 @@ were found and fixed in the process of writing these notebooks.
    opendap
    esgf-dap
    pavics_thredds
+   climex
    WCS_example
    WFS_example
    WPS_example
