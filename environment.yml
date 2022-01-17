@@ -4,18 +4,22 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - matplotlib
-  - xarray
-  - dask
-  - numpy
+  - python >=3.7,<3.10
   - birdy
-  - netcdf4
-  - pydap
   - cartopy
+  - clisops
+  - dask
 #  - descartes
+  - geopandas
+  - intake-esm
+  - ipyleaflet
+  - ipython
+  - matplotlib
+  - netcdf4
+  - numpy
+  - pydap
   - rasterio
   - rioxarray
-  - geopandas
   - siphon
-  - ipython
-  - ipyleaflet
+  - xarray
+  - xclim
