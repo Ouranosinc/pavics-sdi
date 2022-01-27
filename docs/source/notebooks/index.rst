@@ -21,6 +21,7 @@ Note that some of these notebooks need recent version of OWSLib_ (>=0.17.1) and 
    pavics_thredds
    climex
    forecasts
+   eccc_geoapi
    WCS_example
    WFS_example
    WPS_example
