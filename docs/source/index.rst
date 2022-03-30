@@ -36,7 +36,6 @@ Contents
    tutorials/index
    notebooks/index
    processes/index
-   workflows/index
    projects/index
    dev/index
    arch/index
