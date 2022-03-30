@@ -9,5 +9,3 @@ System Architecture
    overview
    backend
    jupyter
-   frontend
-   data_catalog
