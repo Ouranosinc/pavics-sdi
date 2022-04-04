@@ -28,14 +28,11 @@ Raven
 JupyterLab
   A notebook interface to demonstrate how WPS services can be used from a programming environment.
 
-PAVICS-frontend
-   The user interface (UI) handling user accounts, workspace, workflows and data visualization. Development of the UI has paused as it consumed a lot of resources, consider it as a prototype.
-
-PAVICS-DataCatalog
-   Storing and serving information about available climate data.
-
 Magpie
    Authentication and authorization services.
+
+Weaver
+   Workflow Execution Management Service (EMS) and Application, Deployment and Execution Service (ADES) supporting legacy WPS services as well as OGC API - Processes REST bindings.
 
 THREDDS
    netCDF data server.
@@ -44,9 +41,10 @@ GeoServer
    Geospatial data server.
 
 
+
 These components work together to offer users a seamless access to data and a suite of services that can convert raw climate data into useful information, graphics and tables.
 
 
 Credits
 -------
-PAVICS is led by `Ouranos <https://www.ouranos.ca/en/>`_, a regional climatology research consortium, and `CRIM <http://www.crim.ca/fr>`_, an informatics and software research institute, (both located in Montreal, Quebec, Canada) to provide climate scientists with a set of tools to acquire and analyze climate data. The project was funded by the CANARIE research software program.
+PAVICS is led by `Ouranos <https://www.ouranos.ca/en/>`_, a regional climatology research consortium, and `CRIM <http://www.crim.ca/fr>`_, an informatics and software research institute, (both located in Montreal, Quebec, Canada) to provide climate scientists with a set of tools to acquire and analyze climate data. The project was initially funded by the CANARIE research software program, and has since benefited from contributions from the Open Geospatial Consortium, the Québec Ministry of Environment and Fight Against Climate Change, Environment and Climate Change Canada and the Canadian Foundation for Innovation.

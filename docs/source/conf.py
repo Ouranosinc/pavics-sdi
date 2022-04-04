@@ -43,7 +43,6 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
-    'sphinx-jsonschema',
     'nbsphinx',
 ]
 
