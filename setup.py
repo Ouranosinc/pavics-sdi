@@ -18,8 +18,6 @@ setup(
             "sphinx>=1.4",
             "sphinx-intl",
             "sphinx_rtd_theme",
-            "sphinx-jsondomain",  # unmaintained and has sphinx <2.0 hardcoded in dependencies
-            "sphinx-jsonschema",
             "nbsphinx",
             "jinja2",
             "jupyter",
