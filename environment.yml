@@ -11,6 +11,8 @@ dependencies:
   - dask
 #  - descartes
   - geopandas
+  - geoviews
+  - hvplot
   - intake-esm
   - ipyleaflet
   - ipython
