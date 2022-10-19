@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 #
 import os
+from datetime import date
 
 # PAVICS documentation build configuration file, created by
-# sphinx-quickstart on Mon Oct  3 13:56:31 2016.
+# sphinx-quickstart on Mon Oct 3 13:56:31 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -33,15 +34,14 @@ import os
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.doctest",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.todo",
-    "sphinx.ext.coverage",
-    "sphinx.ext.mathjax",
-    "sphinx.ext.ifconfig",
-    "sphinx.ext.viewcode",
-    "sphinx.ext.intersphinx",
     "sphinx.ext.autosectionlabel",
+    "sphinx.ext.coverage",
+    "sphinx.ext.doctest",
+    "sphinx.ext.ifconfig",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.todo",
+    "sphinx.ext.viewcode",
     "nbsphinx",
 ]
 
@@ -66,7 +66,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "PAVICS"
-copyright = "2018, Ouranos & CRIM"
+copyright = f"2018-{date.today().year}, Ouranos & CRIM"
 author = "Ouranos & CRIM"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -83,7 +83,7 @@ release = "0.1"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = "en"
 
 locale_dirs = ["locale/"]  # path is example but recommended.
 gettext_compact = False  # optional.
@@ -145,9 +145,8 @@ todo_include_todos = True
 #
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 # http://docs.readthedocs.org/en/latest/faq.html?highlight=autodoc#how-do-i-change-behavior-for-read-the-docs
-on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 
-if on_rtd:
+if os.environ.get("READTHEDOCS"):
     html_theme = "default"
 else:  # only import and set the theme if we're building docs locally
     import sphinx_rtd_theme
@@ -373,16 +372,16 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("http://docs.python.org/", None),
+    "python": ("https://docs.python.org/", None),
     "finch": ("https://finch.readthedocs.io/en/latest", None),
     "raven": ("https://pavics-raven.readthedocs.io/en/latest", None),
-    #  'birdhouse': ('http://birdhouse.readthedocs.io/en/latest/', None),
-    #  'phoenix': ('http://pyramid-phoenix.readthedocs.io/en/latest/', None),
-    #  'malleefowl': ('http://malleefowl.readthedocs.io/en/latest/', None),
-    #  'twitcher': ('http://twitcher.readthedocs.io/en/latest/', None),
-    "flyingpigeon": ("http://flyingpigeon.readthedocs.io/en/latest/", None),
-    #  'hummingbird': ('http://birdhouse-hummingbird.readthedocs.io/en/latest/', None),
-    #  'emu': ('http://emu.readthedocs.io/en/latest/', None),
-    "birdy": ("http://birdy.readthedocs.io/en/latest/", None),
-    #  'bootstrap': ('http://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
+    #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
+    #  'phoenix': ('https://pyramid-phoenix.readthedocs.io/en/latest/', None),
+    #  'malleefowl': ('https://malleefowl.readthedocs.io/en/latest/', None),
+    #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
+    "flyingpigeon": ("https://flyingpigeon.readthedocs.io/en/latest/", None),
+    #  'hummingbird': ('https://birdhouse-hummingbird.readthedocs.io/en/latest/', None),
+    #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
+    "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
+    #  'bootstrap': ('https://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
 }
