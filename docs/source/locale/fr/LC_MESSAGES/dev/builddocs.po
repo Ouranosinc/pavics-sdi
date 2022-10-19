@@ -48,4 +48,3 @@ msgid ""
 "but this requires creating a build directory according to these "
 "`instructions <https://daler.github.io/sphinxdoc-test/includeme.html>`_."
 msgstr ""
-

@@ -378,4 +378,3 @@ msgid ""
 "where wps temporary output files will be saved). Set the WMS alternate "
 "server if desired."
 msgstr ""
-

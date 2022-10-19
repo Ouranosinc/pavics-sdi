@@ -153,4 +153,3 @@ msgstr ""
 #: of pavics_datacatalog.wps_processes.PavicsValidate:12
 msgid "**validation_result** -- Validation result"
 msgstr ""
-

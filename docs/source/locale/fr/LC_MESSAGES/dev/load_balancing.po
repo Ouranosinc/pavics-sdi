@@ -92,4 +92,3 @@ msgid ""
 "processes don’t accept any new connections and terminate once all their "
 "existing connections terminate."
 msgstr ""
-

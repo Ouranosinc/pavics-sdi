@@ -5,6 +5,7 @@ channels:
 dependencies:
   - pytest
   - jupyter
+  - pre-commit
   - sphinx
   - sphinx_rtd_theme
   - nbsphinx

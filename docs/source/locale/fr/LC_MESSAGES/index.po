@@ -77,4 +77,3 @@ msgstr ""
 #: ../../source/index.rst:41
 msgid ":ref:`search`"
 msgstr ""
-
