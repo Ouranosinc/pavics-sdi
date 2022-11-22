@@ -9,6 +9,7 @@ dependencies:
   - cartopy
   - clisops
   - dask
+#  - descartes
   - geopandas
   - geoviews
   - hvplot
