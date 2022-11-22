@@ -6,14 +6,14 @@ repos:
     rev: v3.1.0
     hooks:
       - id: pyupgrade
-        args: [ --py37-plus ]
+        args: [ '--py37-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.3.0
     hooks:
       - id: trailing-whitespace
-        exclude: .html|.svg|.css|.xml
+        exclude: .html|.po|.svg|.css|.xml
       - id: end-of-file-fixer
-        exclude: .ipynb
+        exclude: .ipynb|.po|.xml
       - id: debug-statements
   - repo: https://github.com/psf/black
     rev: 22.10.0
@@ -23,7 +23,7 @@ repos:
     rev: 5.10.1
     hooks:
       - id: isort
-        args: [ '--profile', 'black' ]
+        args: [ '--profile=black' ]
   - repo: https://github.com/nbQA-dev/nbQA
     rev: 1.5.2
     hooks:
@@ -34,6 +34,7 @@ repos:
         args: [ '--py37-plus' ]
         additional_dependencies: [ pyupgrade==v3.1.0 ]
       - id: nbqa-isort
+        args: [ '--profile=black' ]
         additional_dependencies: [ isort==5.10.1 ]
   - repo: meta
     hooks:
