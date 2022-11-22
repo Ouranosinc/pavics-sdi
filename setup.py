@@ -26,7 +26,7 @@ setup(
     author="CRIM/Ouranos",
     author_email="pavics@ouranos.ca",
     description="Scientific gateway for climate data analytics.",
-    long_description=open("README.rst", "rt").read(),
+    long_description=open("README.rst").read(),
     license="BSD",
     classifiers=CLASSIFIERS,
 )

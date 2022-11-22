@@ -91,4 +91,3 @@ edit the ``.po`` files and rebuild the documentation.
 
 
 .. _pavics-sdi: https://github.com/Ouranosinc/pavics-sdi.git
-

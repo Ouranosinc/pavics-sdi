@@ -14,6 +14,3 @@ Data handling
     .. autoprocess:: malleefowl.processes.ThreddsDownload
 
     .. autoprocess:: flyingpigeon.processes.NCMergeProcess
-
-
-

@@ -9,17 +9,17 @@ Installation
 Deployment methods
 ==================
 
-PAVICS can be installed from source on `GitHub <https://www.github.com/Ouranosinc/pavics-sdi/>`_ or by using `Docker <https://www.docker.com/what-docker>`_. Git/Github is a versioning software and platform that can fetch development branches of pavics while Docker is a virtualization tool for running isolated service images built with specific library environments. Depending on your needs and interests (e.g. debugging vs deploying) either platform may suit your needs. 
+PAVICS can be installed from source on `GitHub <https://www.github.com/Ouranosinc/pavics-sdi/>`_ or by using `Docker <https://www.docker.com/what-docker>`_. Git/Github is a versioning software and platform that can fetch development branches of pavics while Docker is a virtualization tool for running isolated service images built with specific library environments. Depending on your needs and interests (e.g. debugging vs deploying) either platform may suit your needs.
 
 Proposing changes to PAVICS or :ref:`contrib` requires free a `GitHub account <https://github.com/join>`_ but anyone can download the source code for PAVICS withour registering. Git is normally in most standard Linux software repositories and can be installed (using Debian/Ubuntu-based systems) with the following::
-  
+
   # Enable root access
   sudo su
 
   # Updating software catalogues and and installed libraries
   apt-get update; sudo apt-get upgrade
 
-  # Installing git will also install dependent libraries 
+  # Installing git will also install dependent libraries
   apt-get install -y git
 
   # Configuring git for code commits using your user credentials
@@ -32,14 +32,14 @@ For Docker installations, begin by following the guide for installing ``Docker C
 
 Depending on your Linux distribution, you can either download and launch the installer directly or you may need to add a new ppa/apt/yum/dnf/etc. software repository to your system to install the most recent version. For Debian/Ubuntu-based systems::
 
-  # Enable root access  
+  # Enable root access
   sudo su
 
   # Install base library requirements
   apt-get install -y apt-transport-https ca-certificates wget software-properties-common
 
   # Install the Docker suite of tools
-  apt-get install -y docker docker.io docker-engine 
+  apt-get install -y docker docker.io docker-engine
 
 For users not using Linux, refer to the following installation guides for `Mac OS <https://docs.docker.com/docker-for-mac/>`_ and for `Windows <https://docs.docker.com/docker-for-windows/>`_.
 
@@ -56,14 +56,14 @@ Most of the code base for PAVICS is forked from the `Birdhouse Project <https://
 PAVICS installation with `docker-compose`
 ===========================================
 
-.. todo:: 
+.. todo::
 	Base PAVICS installation is incomplete. The following lines refer to Phoenix instance. Need to specify which birds are needed for a bare installation of PAVICS: Phoenix, FlyingPigeon, Malleefowl, Emu, etc.
 
 First mount or create a symlink for the datasets storage at ``/data``.
 Mount or make a symlink for the geoserver data storage so that ``/geoserver_data`` could be used (read/write) by geoserver.
 
 To install the suite of docker images you must use `docker-compose <https://docs.docker.com/compose/>`_. Docker-compose is a docker helper for coordinating multiple docker images at once. Docker-compose exists in most Linux software repositories but can also be installed using ``pip`` or ``conda``. Depending on your Linux distribution and whether you have Anaconda/miniconda installed, run any of the following::
-  
+
   # For standard libraries (Ubuntu/Debian)
   sudo apt-get install docker-compose
 
@@ -74,7 +74,7 @@ To install the suite of docker images you must use `docker-compose <https://docs
   # For Anaconda/miniconda (Python2 or Python3)
   conda install docker-compose
 
-.. note:: 
+.. note::
 	Presently, the main ``PAVICS`` repo is closed to the public while it is under heavy development
 
 After installing docker-compose, clone the PAVICS repository and navigate to the docker *build recipe* within `PAVICS`_::
@@ -115,7 +115,7 @@ To synchronize a deployment with the latest container available on dockerhub::
    # Start again containers (-d is for detached, avoid it to get all output to the command line)
    HOSTNAME='<public-ip>' bash -c 'docker-compose up -d [container_name]'
 
-.. note:: 
+.. note::
 	``container_name`` is the name chosen in the docker-compose.yml, not the name of the docker image.
 
 

@@ -27,8 +27,3 @@ PAVICS-SDI
 1.0.0-beta (2017-11-29)
 -----------------------
 * First official release of the PAVICS Spatial Data Infrastructure system in time for the Canarie demo. Contains all elements from the statement of work, but the frontend does not provide a comfortable user experience. This release is not production ready.
-
-
-
-
-

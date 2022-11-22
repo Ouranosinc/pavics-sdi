@@ -9,5 +9,3 @@ Visualization
     #.. autoprocess:: flyingpigeon.processes.AnalogsviewerProcess (moved to blackswan)
 
     .. autoprocess:: flyingpigeon.processes.MapSpatialAnalogProcess
-
-
