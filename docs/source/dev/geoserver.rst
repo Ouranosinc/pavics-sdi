@@ -71,3 +71,4 @@ Styling data layers
    * Add images for the step-by-step processes
    * How to modify the meta data associated with layers (how they appear in the interface)
    * Add advice on setting styles with SLD4raster and other tools/advice
+

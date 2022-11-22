@@ -6,7 +6,7 @@ Developer Documentation
 
 .. toctree::
    :maxdepth: 2
-
+   
    installation
    load_balancing
    configuration
@@ -17,3 +17,4 @@ Developer Documentation
    integration_tests
    builddocs
    contributing
+

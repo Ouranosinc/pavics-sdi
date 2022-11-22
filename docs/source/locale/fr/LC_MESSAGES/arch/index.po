@@ -20,3 +20,4 @@ msgstr ""
 #: ../../source/arch/index.rst:3
 msgid "System Architecture"
 msgstr ""
+

@@ -160,3 +160,4 @@ msgstr ""
 #: flyingpigeon.processes.MapSpatialAnalogProcess:12 of
 msgid "**output_figure** (*image/png*) -- Map of dissimilarity values."
 msgstr ""
+
