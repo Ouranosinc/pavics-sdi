@@ -52,4 +52,3 @@ These following notebooks demonstrate *additional* and *optional* features of th
 .. _pavics-components: https://github.com/bird-house/birdhouse-deploy/blob/master/birdhouse/components/README.rst
 .. |pavics-opt-comp| replace:: Optional Components
 .. _pavics-opt-comp: https://github.com/bird-house/birdhouse-deploy/blob/master/birdhouse/optional-components/README.rst
-
