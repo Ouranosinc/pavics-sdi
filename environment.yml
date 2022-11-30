@@ -23,5 +23,6 @@ dependencies:
   - rasterio
   - rioxarray
   - siphon
+  - urlpath
   - xarray
   - xclim
