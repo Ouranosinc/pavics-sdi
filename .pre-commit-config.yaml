@@ -3,12 +3,12 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.1.0
+    rev: v3.3.0
     hooks:
       - id: pyupgrade
         args: [ '--py37-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
         exclude: .html|.po|.svg|.css|.xml
@@ -25,7 +25,7 @@ repos:
       - id: isort
         args: [ '--profile=black' ]
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.5.2
+    rev: 1.5.3
     hooks:
       - id: nbqa-black
         args: [ '--target-version=py37' ]
