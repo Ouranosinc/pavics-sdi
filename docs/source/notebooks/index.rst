@@ -10,7 +10,6 @@ If you're unfamiliar with notebooks, note that typing `TAB` after an object will
 object's attributes and methods, and that you need to hit `CTRL-Enter` to run a *cell*. You can also type `?` after a
 function or method to display the corresponding help message.
 
-Note that some of these notebooks need recent version of OWSLib_ (>=0.17.1) and Birdy_.
 
 .. toctree::
    :maxdepth: 1
@@ -21,16 +20,14 @@ Note that some of these notebooks need recent version of OWSLib_ (>=0.17.1) and 
    pavics_thredds
    climex
    forecasts
-   eccc_geoapi
+   eccc-geoapi-climate-stations
+   eccc-geoapi-xclim
    WCS_example
    WFS_example
    WPS_example
    WMS_example
    regridding
    subset-user-input
-
-.. _OWSLib: https://geopython.github.io/OWSLib/
-.. _Birdy: https://birdy.readthedocs.io
 
 
 .. include:: ../deprecated/index.rst
