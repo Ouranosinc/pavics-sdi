@@ -16,7 +16,7 @@ repos:
         exclude: .ipynb|.po|.xml
       - id: debug-statements
   - repo: https://github.com/psf/black
-    rev: 23.1.0
+    rev: 23.3.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
@@ -25,11 +25,11 @@ repos:
       - id: isort
         args: [ '--profile=black' ]
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.6.1
+    rev: 1.7.0
     hooks:
       - id: nbqa-black
         args: [ '--target-version=py37' ]
-        additional_dependencies: [ black==23.1.0 ]
+        additional_dependencies: [ black==23.3.0 ]
       - id: nbqa-pyupgrade
         args: [ '--py37-plus' ]
         additional_dependencies: [ pyupgrade==v3.3.1 ]
