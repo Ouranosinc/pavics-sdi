@@ -15,12 +15,14 @@ from owslib.wps import WebProcessingService
 # Connect to the server
 wps = WebProcessingService('https://pavics.ouranos.ca/twitcher/ows/proxy/finch')
 
+print(wps.identification.title)
+
 # Send a `getCapabilities` request to populate the list of processes
 wps.getcapabilities()
 
-# Print out the identifiers of five processes
-processes = [x.identifier for x in wps.processes]
-print(processes[:5])
+# Print out the identifiers and abstract of five processes
+for process in wps.processes[:5]:
+    print(f"{process.identifier} \t : {process.abstract} \n")
 ```
 
 ## Get information about a single process
@@ -64,7 +66,14 @@ print(exec.status)
 In synchronous mode, once the execution has completed the client automatically fetches the response. The response is an XML document that either stores the results, or links to the results, depending on how the process and server are configured. 
 
 ```python
+from lxml import etree
 
+print(etree.tostring(exec.response).decode())
+```
+
+In the case of the `tg_mean` process, the results are stored in a netCDF file, which is returned as a `ComplexDataOutput` object. It is stored on the server, so the response only contains the URL to this output file. 
+
+```python
 out = exec.processOutputs[0]
 
 # The link to the output stored on the server 
