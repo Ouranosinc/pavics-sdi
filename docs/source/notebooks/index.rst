@@ -14,6 +14,7 @@ function or method to display the corresponding help message.
 .. toctree::
    :maxdepth: 1
 
+   subsetting
    rendering
    opendap
    esgf-dap

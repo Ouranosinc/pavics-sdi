@@ -57,7 +57,7 @@ nb_execution_allow_errors = False
 
 # Notebooks are not executed by Sphinx, simply rendered as HTML.
 # I suggest we run tutorials, and keep them light.
-nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
+# nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
 
 # napoleon_numpy_docstring = True
 
