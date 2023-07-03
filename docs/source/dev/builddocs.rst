@@ -8,19 +8,8 @@ To build the docs, grab a copy of the `pavics-sdi`_ repository on github::
 
 This is the repository presently storing the comprehensive documentation for the PAVICS platform. Because PAVICS processes are documented using the `autoprocess` directive, you'll also need to install a few other packages that contribute services for documentation to ::
 
-  git clone https://github.com/Ouranosinc/flyingpigeon.git
-  cd flyingpigeon
-  git checkout pavics
-  make clean install
-  cd ..
-
-  git clone https://github.com/Ouranosinc/malleefowl.git
-  cd malleefowl
-  make clean install
-  cd ..
-
-  git clone https://github.com/bird-house/hummingbird.git
-  cd hummingbird
+  git clone https://github.com/bird-house/finch.git
+  cd finch
   make clean install
   cd ..
 
