@@ -11,8 +11,6 @@ You'll find below links to services or service providers organized by topics. Yo
 .. toctree::
    basic_climate
    indices
-   advanced_climate
-   bias_correction
 
 
 .. todo::
