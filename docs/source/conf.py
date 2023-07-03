@@ -42,7 +42,6 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
-    #"nbsphinx",
     "myst_nb"
 ]
 
@@ -55,8 +54,6 @@ nbsphinx_custom_formats = {
 nb_execution_mode = "cache"
 nb_execution_allow_errors = False
 
-# Notebooks are not executed by Sphinx, simply rendered as HTML.
-# I suggest we run tutorials, and keep them light.
 # nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
 
 # napoleon_numpy_docstring = True

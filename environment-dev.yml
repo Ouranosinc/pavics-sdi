@@ -7,7 +7,7 @@ dependencies:
   - jupyter
   - sphinx
   - sphinx_rtd_theme
-  - nbsphinx
+  - myst_nb
   - nbval
   - pip
   - pip:
