@@ -185,4 +185,3 @@ PAVICS/birdhouse/config/magpie/providers.cfg
 Check that the wps is running at https://localhost/twitcher/ows/proxy/wpsandbox/pywps?service=WPS&version=1.0.0&request=GetCapabilities
 
 Play around with magpie permissions to check that the security is working
-
