@@ -2,6 +2,7 @@
 file_format: mystnb
 kernelspec:
   name: python3
+  display_name: Python 3
 ---
 
 # Working with Web Processing Service with Python and OWSLib
