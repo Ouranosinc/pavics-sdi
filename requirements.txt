@@ -1,9 +1,0 @@
-sphinx>=1.4
-sphinx-intl
-sphinx_rtd_theme
-sphinx-jsonschema
-requests
-nbsphinx
-jupytext
-myst_nb
-jupyter
