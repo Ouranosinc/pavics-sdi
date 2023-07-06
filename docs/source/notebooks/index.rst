@@ -14,6 +14,7 @@ function or method to display the corresponding help message.
 .. toctree::
    :maxdepth: 1
 
+   subsetting
    rendering
    opendap
    esgf-dap
@@ -24,7 +25,7 @@ function or method to display the corresponding help message.
    eccc-geoapi-xclim
    WCS_example
    WFS_example
-   WPS_example
+   wps_with_owslib
    WMS_example
    regridding
    subset-user-input

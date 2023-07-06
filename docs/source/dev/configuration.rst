@@ -153,9 +153,6 @@ In the catalog.cfg file:
 Magpie
 ------
 
-FlyingPigeon
-------------
-
 Emu
 ---
 
