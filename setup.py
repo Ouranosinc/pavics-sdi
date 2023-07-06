@@ -19,7 +19,6 @@ setup(
             "jupyter",
             "jupytext",
             "myst-nb",
-            "nbsphinx",
             "requests",
             "sphinx-intl",
             "sphinx-jsonschema",

@@ -45,8 +45,6 @@ extensions = [
     "myst_nb",
 ]
 
-nbsphinx_allow_errors = True
-
 nbsphinx_custom_formats = {
     ".md": ["jupytext.reads", {"fmt": "mystnb"}],
 }
