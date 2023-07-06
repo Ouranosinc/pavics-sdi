@@ -19,6 +19,7 @@ dependencies:
   - netcdf4
   - numpy
   - pydap
+  - pykdtree  # Fixes cartopy bug arising with scipy 1.11
   - rasterio
   - rioxarray
   - siphon
