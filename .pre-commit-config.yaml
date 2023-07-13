@@ -6,7 +6,7 @@ repos:
     rev: v3.8.0
     hooks:
       - id: pyupgrade
-        args: [ '--py37-plus' ]
+        args: [ '--py38-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
@@ -15,8 +15,14 @@ repos:
       - id: end-of-file-fixer
         exclude: .ipynb|.po|.xml
       - id: debug-statements
+        exclude: .ipynb
+      - id: check-toml
       - id: check-yaml
         args: [ '--allow-multiple-documents' ]
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort-fix
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.32.0
     hooks:
@@ -35,10 +41,10 @@ repos:
     rev: 1.7.0
     hooks:
       - id: nbqa-black
-        args: [ '--target-version=py37' ]
+        args: [ '--target-version=py38' ]
         additional_dependencies: [ black==23.3.0 ]
       - id: nbqa-pyupgrade
-        args: [ '--py37-plus' ]
+        args: [ '--py38-plus' ]
         additional_dependencies: [ pyupgrade==v3.3.1 ]
       - id: nbqa-isort
         args: [ '--profile=black' ]

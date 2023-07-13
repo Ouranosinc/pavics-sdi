@@ -1,0 +1,58 @@
+[build-system]
+requires = ["flit_core >=3.8,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pavics_sdi"
+requires-python = ">=3.8"
+authors = [
+  {name = "CRIM/Ouranos", email = "pavics@ouranos.ca"}
+]
+maintainers = [
+  {name = "Tuan Long Vu", email = "vu.long@ouranos.ca"},
+  {name = "David Huard", email = "huard.davis@ouranos.ca"},
+  {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"},
+  {name = "Francis Charette-Migneault", email = "francis.charette.migneault@gmail.com"}
+]
+readme = {file = "README.rst", content-type = "text/x-rst"}
+description = "Scientific gateway for climate data analytics."
+license = {file = "LICENSE"}
+classifiers = [
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Topic :: Scientific/Engineering :: Atmospheric Science"
+]
+dynamic = ["version"]
+dependencies = []
+
+[project.optional-dependencies]
+docs = [
+  "jinja2",
+  "jupyter",
+  "jupytext",
+  "myst-nb",
+  "requests",
+  "sphinx-intl",
+  "sphinx-jsonschema",
+  "sphinx-rtd-theme>=1.0",
+  "sphinx>=1.4"
+]
+dagger = [
+  "anyio; python_version >= '3.10'",
+  "dagger; python_version >= '3.10'"
+]
+
+[project.urls]
+"Homepage" = "https://pavics-sdi.readthedocs.io"
+"Source" = "https://github.com/Ouranosinc/pavics-sdi/"
+"Changelog" = "https://pavics-sdi.readthedocs.io/en/latest/release_notes.html"
+"Issue tracker" = "https://github.com/Ouranosinc/pavics-sdi/issues"
+"About CRIM" = "https://www.crim.ca/en/"
+"About Ouranos" = "https://www.ouranos.ca/en/"
