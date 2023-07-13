@@ -15,6 +15,13 @@ repos:
       - id: end-of-file-fixer
         exclude: .ipynb|.po|.xml
       - id: debug-statements
+      - id: check-yaml
+        args: [ '--allow-multiple-documents' ]
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: [ '--config-file=.yamllint.yaml' ]
   - repo: https://github.com/psf/black
     rev: 23.3.0
     hooks:
@@ -42,6 +49,11 @@ repos:
       - id: nbstripout
         files: ".ipynb"
         args: [ '--keep-output', '--keep-count' ]
+  - repo: https://github.com/keewis/blackdoc
+    rev: v0.3.8
+    hooks:
+    - id: blackdoc
+      additional_dependencies: ['black==23.3.0']
   - repo: meta
     hooks:
       - id: check-hooks-apply
