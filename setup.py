@@ -3,8 +3,13 @@ from setuptools import setup
 CLASSIFIERS = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: BSD License",
-    "Programming Language :: Python",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
 ]
 
@@ -24,7 +29,11 @@ setup(
             "sphinx-jsonschema",
             "sphinx-rtd-theme>=1.0",
             "sphinx>=1.4",
-        ]
+        ],
+        "dagger": [
+            "anyio",
+            "dagger",
+        ],
     },
     author="CRIM/Ouranos",
     author_email="pavics@ouranos.ca",
