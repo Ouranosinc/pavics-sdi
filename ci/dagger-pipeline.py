@@ -8,6 +8,7 @@ try:
     import anyio
     import dagger
     from dagger import BuildArg
+    from dagger.engine._version import CLI_VERSION as __dagger_version__  # noqa
 except ImportError:
     raise ImportError(
         "Dagger is not installed. Please install it with `pip install dagger-io` first."
@@ -37,9 +38,11 @@ async def main():
         version = await python_version.stdout()
         docs_built = await docs.stdout()
 
-    print(f"Hello from Dagger and {version}")
-    print(f"Running commands as {user} user.")
-
+    print("\n")
+    print(
+        f"Hello from Dagger {__dagger_version__} and {'.'.join([str(v) for v in sys.version_info[0:3]])}\n"
+    )
+    print(f"Running commands as `{user.strip()}` user in {version.strip()}.\n")
     print(docs_built)
 
 
