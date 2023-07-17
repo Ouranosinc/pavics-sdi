@@ -18,34 +18,28 @@ async def main():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         top_level_dir = client.host().directory(Path(__file__).parent.parent.as_posix())
 
-        # if os.getenv("CI"):
-        #     sources = (
-        #         client.container()
-        #         # pull container
-        #         .from_("localpavics-sdi:latest").with_workdir("/code")
-        #     )
-        # else:
+        # build container
         sources = await top_level_dir.docker_build(
             build_args=BuildArg("BASE_IMAGE_TAG", os.getenv("BASE_IMAGE_TAG"))
             if os.getenv("BASE_IMAGE_TAG")
             else None,
         )
 
-        username = sources.with_exec(["whoami"])
-        whats_here = sources.with_exec(["ls", "-la", "/code"])
+        # smoke tests
         python_version = sources.with_exec(["python", "-V"])
+        username = sources.with_exec(["whoami"])
+
+        # build docs
         docs = sources.with_exec(["make", "--directory=/code/docs", "html"])
 
         # execute
         user = await username.stdout()
-        contents = await whats_here.stdout()
         version = await python_version.stdout()
         docs_built = await docs.stdout()
 
-    print(user)
-    print(contents)
-
     print(f"Hello from Dagger and {version}")
+    print(f"Running commands as {user} user.")
+
     print(docs_built)
 
 
