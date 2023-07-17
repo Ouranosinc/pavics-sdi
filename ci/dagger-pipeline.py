@@ -7,6 +7,7 @@ from pathlib import Path
 try:
     import anyio
     import dagger
+    from dagger import BuildArg
 except ImportError:
     raise ImportError(
         "Dagger is not installed. Please install it with `pip install dagger-io` first."
@@ -25,7 +26,9 @@ async def main():
         #     )
         # else:
         sources = await top_level_dir.docker_build(
-            build_args=os.getenv("BASE_IMAGE_TAG")
+            build_args=BuildArg("BASE_IMAGE_TAG", os.getenv("BASE_IMAGE_TAG"))
+            if os.getenv("BASE_IMAGE_TAG")
+            else None,
         )
 
         username = sources.with_exec(["whoami"])
