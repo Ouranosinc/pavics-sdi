@@ -1,5 +1,6 @@
 """Build the documentation within a docker pipeline to test integration and notebooks."""
 
+import os
 import sys
 from pathlib import Path
 
@@ -16,13 +17,14 @@ async def main():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         top_level_dir = client.host().directory(Path(__file__).parent.parent.as_posix())
 
-        image_ref = await top_level_dir.docker_build()
-
-        sources = (
-            client.container()
-            # pull container
-            .from_("localpavics-sdi:latest").with_workdir("/code")
-        )
+        if os.getenv("CI"):
+            sources = (
+                client.container()
+                # pull container
+                .from_("localpavics-sdi:latest").with_workdir("/code")
+            )
+        else:
+            sources = await top_level_dir.docker_build()
 
         username = sources.with_exec(["whoami"])
         whats_here = sources.with_exec(["ls", "-la", "/code"])
