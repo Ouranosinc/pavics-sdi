@@ -53,17 +53,31 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - uses: docker/setup-buildx-action@v2
+
       - uses: docker/build-push-action@v4
+        if: github.event_name == 'workflow_dispatch'
         with:
           context: .
           file: "Dockerfile"
           build-args: |
-            BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }} || latest
+            BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}
           tags: localpavics-sdi:latest
           load: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
           push: false
+
+      - uses: docker/build-push-action@v4
+        if: github.event_name != 'workflow_dispatch'
+        with:
+          context: .
+          file: "Dockerfile"
+          tags: localpavics-sdi:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: false
+
       - name: Dagger testing
         run: |
           pip install .[dagger]
