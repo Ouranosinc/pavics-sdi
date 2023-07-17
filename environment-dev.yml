@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python >=3.8,<3.12
+  - flit  # solely needed for installing pavics-sdi
   - jinja2 <=3.0.3
   - jupyter
   - myst-nb

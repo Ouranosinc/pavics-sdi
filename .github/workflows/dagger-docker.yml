@@ -29,11 +29,22 @@ jobs:
     name: Integration Tests
     needs: lint
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+        matrix:
+            python-version: [3.9]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Dagger
-        uses: dagger/dagger-for-github@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          workdir: ./tests/ci
-          cmds: python test.py
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install -r requirements-dev.txt
+      - name: Dagger testing
+        run: |
+          python ./ci/dagger-pipeline.py
