@@ -10,7 +10,9 @@ LABEL Description="PAVICS-SDI-TESTING-IMAGE" Vendor="Birdhouse" Version="1.3.0"
 USER root
 
 # Install build tools
-RUN apt-get install --yes build-essential
+RUN apt-get install --yes build-essential \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Switch to /code directory
 WORKDIR /code

@@ -17,14 +17,16 @@ async def main():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         top_level_dir = client.host().directory(Path(__file__).parent.parent.as_posix())
 
-        if os.getenv("CI"):
-            sources = (
-                client.container()
-                # pull container
-                .from_("localpavics-sdi:latest").with_workdir("/code")
-            )
-        else:
-            sources = await top_level_dir.docker_build()
+        # if os.getenv("CI"):
+        #     sources = (
+        #         client.container()
+        #         # pull container
+        #         .from_("localpavics-sdi:latest").with_workdir("/code")
+        #     )
+        # else:
+        sources = await top_level_dir.docker_build(
+            build_args=os.getenv("BASE_IMAGE_TAG")
+        )
 
         username = sources.with_exec(["whoami"])
         whats_here = sources.with_exec(["ls", "-la", "/code"])

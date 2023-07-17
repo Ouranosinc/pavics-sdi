@@ -10,7 +10,7 @@ authors = [
 ]
 maintainers = [
   {name = "Tuan Long Vu", email = "vu.long@ouranos.ca"},
-  {name = "David Huard", email = "huard.davis@ouranos.ca"},
+  {name = "David Huard", email = "huard.david@ouranos.ca"},
   {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"},
   {name = "Francis Charette-Migneault", email = "francis.charette.migneault@gmail.com"}
 ]
