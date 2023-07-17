@@ -45,8 +45,8 @@ docs = [
   "sphinx>=1.4"
 ]
 dagger = [
-  "anyio; python_version >= '3.10'",
-  "dagger; python_version >= '3.10'"
+  "anyio",
+  "dagger-io"
 ]
 
 [project.urls]
