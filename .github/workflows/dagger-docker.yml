@@ -5,6 +5,12 @@ on:
     branches:
       - master
   pull_request:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Image tag to use for the Docker image'
+        required: true
+        default: 'latest'
 
 jobs:
   lint:
@@ -38,7 +44,7 @@ jobs:
         shell: bash -l {0}
     strategy:
         matrix:
-            python-version: [3.8]
+            python-version: [3.10]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -52,7 +58,7 @@ jobs:
           context: .
           file: "Dockerfile"
           build-args: |
-            PYTHON_VERSION=${{ matrix.python-version }}
+            BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }} || latest
           tags: localpavics-sdi:latest
           load: true
           cache-from: type=gha
