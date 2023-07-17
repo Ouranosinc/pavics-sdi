@@ -29,8 +29,5 @@ ENV PATH /opt/conda/envs/birdy/bin:$PATH
 # Copy finch source code
 COPY . /code
 
-# Install pavics-sdi package
-RUN pip install . --no-deps
-
 # Build the documentation
 CMD ["make", "--directory=/code/docs", "html"]
