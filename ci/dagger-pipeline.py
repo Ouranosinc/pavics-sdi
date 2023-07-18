@@ -25,9 +25,11 @@ SANITIZE_FILE_URL = os.getenv(
 
 
 async def main():
-    async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
-        top_level_dir = Path(__file__).parent.parent.as_posix()
-
+    async with dagger.Connection(
+        dagger.Config(
+            log_output=sys.stderr, workdir=Path(__file__).parent.parent.as_posix()
+        )
+    ) as client:
         sources = await (
             # pull container
             client.container()
@@ -37,9 +39,8 @@ async def main():
             .with_env_variable("SANITIZE_FILE_URL", SANITIZE_FILE_URL)
             # copy files to container
             .with_directory(
-                "/code", client.host().directory(top_level_dir, exclude=[".git", "ci"])
+                "/code", client.host().directory(".", exclude=[".git", "ci"])
             )
-            .workdir("/code")
         )
 
         # run notebooks
@@ -51,7 +52,7 @@ async def main():
         whoami = await sources.with_exec(["whoami"]).stdout()
         version = await sources.with_exec(["python", "-V"]).stdout()
         whereami = await sources.with_exec(["pwd"]).stdout()
-        whatshere = await sources.with_exec(["ls", "-la"]).stdout()
+        whatshere = await sources.entries().stdout()
         notebook_tests = await notebooks.stdout()
 
     print("\n")
@@ -85,10 +86,12 @@ def test_notebooks(notebook_path: str) -> list[str]:
     logging.debug("Running notebook-based tests ...")
 
     cmd = [
-        "pytest" "--nbval" "--verbose",
+        "pytest",
+        "--nbval",
+        "--verbose",
         notebook_path,
         "--nbval-sanitize-with",
-        f"$SANITIZE_FILE_URL/output-sanitize.cfg",
+        "$SANITIZE_FILE_URL/output-sanitize.cfg",
         "--ignore",
         f"{notebook_path}/.ipynb_checkpoints",
     ]
