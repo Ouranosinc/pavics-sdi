@@ -35,13 +35,16 @@ async def main():
             client.container().from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
             # copy files to container
             .with_directory(
-                "/code", client.host().directory(".", exclude=[".git", "ci"])
+                "/code",
+                client.host().directory(".", exclude=[".git", "ci"], owner="jenkins"),
             )
         )
 
         # run notebooks
         notebooks = (
-            sources.with_exec(notebook_sanitizer("/code/docs/source/notebooks"))
+            sources.with_exec(
+                notebook_sanitizer(SANITIZE_FILE_URL, "/code/docs/source/notebooks")
+            )
             .with_env_variable("PAVICS_HOST_URL", PAVICS_HOST_URL)
             .with_exec(test_notebooks("/code/docs/source/notebooks"))
         )
@@ -66,13 +69,13 @@ async def main():
     print(notebook_tests)
 
 
-def notebook_sanitizer(notebook_path: str) -> list[str]:
+def notebook_sanitizer(file_url: str, notebook_path: str) -> list[str]:
     logging.debug("Copying notebook output sanitizer ...")
 
     cmd = [
         "curl",
         "-L",
-        SANITIZE_FILE_URL,
+        file_url,
         "-o",
         f"{notebook_path}/output-sanitize.cfg",
         "--silent",
