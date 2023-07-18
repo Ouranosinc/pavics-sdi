@@ -32,11 +32,7 @@ async def main():
     ) as client:
         sources = await (
             # pull container
-            client.container()
-            .from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
-            # set env vars
-            .with_env_variable("PAVICS_HOST_URL", PAVICS_HOST_URL)
-            .with_env_variable("SANITIZE_FILE_URL", SANITIZE_FILE_URL)
+            client.container().from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
             # copy files to container
             .with_directory(
                 "/code", client.host().directory(".", exclude=[".git", "ci"])
@@ -44,9 +40,11 @@ async def main():
         )
 
         # run notebooks
-        notebooks = sources.with_exec(
-            notebook_sanitizer("/code/docs/source/notebooks")
-        ).with_exec(test_notebooks("/code/docs/source/notebooks"))
+        notebooks = (
+            sources.with_exec(notebook_sanitizer("/code/docs/source/notebooks"))
+            .with_env_variable("PAVICS_HOST_URL", PAVICS_HOST_URL)
+            .with_exec(test_notebooks("/code/docs/source/notebooks"))
+        )
 
         # execute
         whoami = await sources.with_exec(["whoami"]).stdout()
@@ -72,9 +70,11 @@ def notebook_sanitizer(notebook_path: str) -> list[str]:
     logging.debug("Copying notebook output sanitizer ...")
 
     cmd = [
+        "sh",
+        "-c",
         "curl",
         "-L",
-        "$SANITIZE_FILE_URL",
+        SANITIZE_FILE_URL,
         "-o",
         f"{notebook_path}/output-sanitize.cfg",
         "--silent",
@@ -91,7 +91,7 @@ def test_notebooks(notebook_path: str) -> list[str]:
         "--verbose",
         notebook_path,
         "--nbval-sanitize-with",
-        "$SANITIZE_FILE_URL/output-sanitize.cfg",
+        f"{SANITIZE_FILE_URL}/output-sanitize.cfg",
         "--ignore",
         f"{notebook_path}/.ipynb_checkpoints",
     ]
