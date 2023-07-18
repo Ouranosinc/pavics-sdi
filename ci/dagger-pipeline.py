@@ -52,7 +52,7 @@ async def main():
         whoami = await sources.with_exec(["whoami"]).stdout()
         version = await sources.with_exec(["python", "-V"]).stdout()
         whereami = await sources.with_exec(["pwd"]).stdout()
-        whatshere = await sources.entries().stdout()
+        whatshere = await sources.with_exec(["ls", "-alh"]).stdout()
         notebook_tests = await notebooks.stdout()
 
     print("\n")
