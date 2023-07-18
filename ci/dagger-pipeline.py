@@ -70,8 +70,6 @@ def notebook_sanitizer(notebook_path: str) -> list[str]:
     logging.debug("Copying notebook output sanitizer ...")
 
     cmd = [
-        "sh",
-        "-c",
         "curl",
         "-L",
         SANITIZE_FILE_URL,
@@ -91,7 +89,7 @@ def test_notebooks(notebook_path: str) -> list[str]:
         "--verbose",
         notebook_path,
         "--nbval-sanitize-with",
-        f"{SANITIZE_FILE_URL}/output-sanitize.cfg",
+        f"{notebook_path}/output-sanitize.cfg",
         "--ignore",
         f"{notebook_path}/.ipynb_checkpoints",
     ]
