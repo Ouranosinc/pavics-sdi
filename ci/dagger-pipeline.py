@@ -37,21 +37,22 @@ async def main():
             .with_env_variable("SANITIZE_FILE_URL", SANITIZE_FILE_URL)
             # copy files to container
             .with_directory(
-                ".", client.host().directory(top_level_dir, exclude=[".git", "ci"])
+                "/code", client.host().directory(top_level_dir, exclude=[".git", "ci"])
             )
+            .workdir("/code")
         )
 
         # run notebooks
-        # notebooks = sources.with_exec(
-        #     notebook_sanitizer("./docs/source/notebooks")
-        # ).with_exec(test_notebooks("./docs/source/notebooks"))
+        notebooks = sources.with_exec(
+            notebook_sanitizer("/code/docs/source/notebooks")
+        ).with_exec(test_notebooks("/code/docs/source/notebooks"))
 
         # execute
         whoami = await sources.with_exec(["whoami"]).stdout()
         version = await sources.with_exec(["python", "-V"]).stdout()
         whereami = await sources.with_exec(["pwd"]).stdout()
         whatshere = await sources.with_exec(["ls", "-la"]).stdout()
-        # notebook_tests = await notebooks.stdout()
+        notebook_tests = await notebooks.stdout()
 
     print("\n")
     print(
@@ -63,7 +64,7 @@ async def main():
         f"{whatshere.strip()}\n"
     )
     print(f"Running commands as `{whoami.strip()}` user in {version.strip()}.\n")
-    # print(notebook_tests)
+    print(notebook_tests)
 
 
 def notebook_sanitizer(notebook_path: str) -> list[str]:
