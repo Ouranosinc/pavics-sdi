@@ -36,7 +36,9 @@ async def main():
             # copy files to container
             .with_directory(
                 "/code",
-                client.host().directory(".", exclude=[".git", "ci"], owner="jenkins"),
+                client.host().directory("."),
+                exclude=[".git", "ci"],
+                owner="jenkins",
             )
         )
 
