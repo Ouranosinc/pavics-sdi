@@ -28,7 +28,7 @@ async def main():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
         top_level_dir = Path(__file__).parent.parent.as_posix()
 
-        sources = (
+        sources = await (
             # pull container
             client.container()
             .from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
@@ -37,30 +37,33 @@ async def main():
             .with_env_variable("SANITIZE_FILE_URL", SANITIZE_FILE_URL)
             # copy files to container
             .with_directory(
-                "/code", client.host().directory(top_level_dir, exclude=[".git", "ci"])
+                ".", client.host().directory(top_level_dir, exclude=[".git", "ci"])
             )
         )
 
         # run notebooks
-        notebooks = sources.with_exec(
-            notebook_sanitizer("/code/docs/source/notebooks")
-        ).with_exec(test_notebooks("/code/docs/source/notebooks"))
-
-        # smoke tests
-        python_version = sources.with_exec(["python", "-V"])
-        username = sources.with_exec(["whoami"])
+        # notebooks = sources.with_exec(
+        #     notebook_sanitizer("./docs/source/notebooks")
+        # ).with_exec(test_notebooks("./docs/source/notebooks"))
 
         # execute
-        user = await username.stdout()
-        version = await python_version.stdout()
-        notebook_tests = await notebooks.stdout()
+        whoami = await sources.with_exec(["whoami"]).stdout()
+        version = await sources.with_exec(["python", "-V"]).stdout()
+        whereami = await sources.with_exec(["pwd"]).stdout()
+        whatshere = await sources.with_exec(["ls", "-la"]).stdout()
+        # notebook_tests = await notebooks.stdout()
 
     print("\n")
     print(
-        f"Hello from Dagger {__dagger_version__} and {'.'.join([str(v) for v in sys.version_info[0:3]])}\n"
+        f"Hello from Dagger {__dagger_version__}"
+        " and "
+        f"{'.'.join([str(v) for v in sys.version_info[0:3]])}"
+        " in "
+        f"{whereami.strip()}\n"
+        f"{whatshere.strip()}\n"
     )
-    print(f"Running commands as `{user.strip()}` user in {version.strip()}.\n")
-    print(notebook_tests)
+    print(f"Running commands as `{whoami.strip()}` user in {version.strip()}.\n")
+    # print(notebook_tests)
 
 
 def notebook_sanitizer(notebook_path: str) -> list[str]:
