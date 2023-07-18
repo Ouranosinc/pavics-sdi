@@ -7,10 +7,19 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      image_tag:
+      BASE_IMAGE_TAG:
         description: 'Image tag to use for the Docker image'
         required: true
         default: 'latest'
+      PAVICS_HOST_URL:
+        description: 'Pavics URL to test against'
+        required: true
+        default: 'https://pavics.ouranos.ca/'
+      SANITIZE_FILE_URL:
+        description: 'URL for the sanitizer configuration'
+        required: true
+        default: 'https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/raw/master/notebooks/output-sanitize.cfg'
+
 
 jobs:
   lint:
@@ -52,6 +61,12 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Set Environment Variables
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+            echo "BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_ENV
+            echo "PAVICS_HOST_URL=${{ github.event.inputs.PAVICS_HOST_URL }}" >> $GITHUB_ENV
+            echo "SANITIZE_FILE_URL=${{ github.event.inputs.SANITIZE_FILE_URL }}" >> $GITHUB_ENV
       - name: Dagger testing
         run: |
           export BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}

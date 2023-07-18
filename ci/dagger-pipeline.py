@@ -1,5 +1,6 @@
-"""Build the documentation within a docker pipeline to test integration and notebooks."""
+"""Run notebook tests within a docker pipeline to test integration."""
 
+import logging
 import os
 import sys
 from pathlib import Path
@@ -15,35 +16,79 @@ except ImportError:
     )
 
 
+BASE_IMAGE_TAG = os.getenv("BASE_IMAGE_TAG", "latest")
+PAVICS_HOST_URL = os.getenv("PAVICS_HOST_URL", "https://pavics.ouranos.ca")
+SANITIZE_FILE_URL = os.getenv(
+    "SANITIZE_FILE_URL",
+    "https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/raw/master/notebooks/output-sanitize.cfg",
+)
+
+
 async def main():
     async with dagger.Connection(dagger.Config(log_output=sys.stderr)) as client:
-        top_level_dir = client.host().directory(Path(__file__).parent.parent.as_posix())
+        top_level_dir = Path(__file__).parent.parent.as_posix()
 
-        # build container
-        sources = await top_level_dir.docker_build(
-            build_args=BuildArg("BASE_IMAGE_TAG", os.getenv("BASE_IMAGE_TAG"))
-            if os.getenv("BASE_IMAGE_TAG")
-            else None,
+        sources = (
+            # pull container
+            client.container()
+            .from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
+            # set env vars
+            .with_env_variable("PAVICS_HOST_URL", PAVICS_HOST_URL)
+            .with_env_variable("SANITIZE_FILE_URL", SANITIZE_FILE_URL)
+            # copy files to container
+            .with_directory(
+                "/code", client.host().directory(top_level_dir, exclude=[".git", "ci"])
+            )
         )
+
+        # run notebooks
+        notebooks = sources.with_exec(
+            notebook_sanitizer("/code/docs/source/notebooks")
+        ).with_exec(test_notebooks("/code/docs/source/notebooks"))
 
         # smoke tests
         python_version = sources.with_exec(["python", "-V"])
         username = sources.with_exec(["whoami"])
 
-        # build docs
-        docs = sources.with_exec(["make", "--directory=/code/docs", "html"])
-
         # execute
         user = await username.stdout()
         version = await python_version.stdout()
-        docs_built = await docs.stdout()
+        notebook_tests = await notebooks.stdout()
 
     print("\n")
     print(
         f"Hello from Dagger {__dagger_version__} and {'.'.join([str(v) for v in sys.version_info[0:3]])}\n"
     )
     print(f"Running commands as `{user.strip()}` user in {version.strip()}.\n")
-    print(docs_built)
+    print(notebook_tests)
+
+
+def notebook_sanitizer(notebook_path: str) -> list[str]:
+    logging.debug("Copying notebook output sanitizer ...")
+
+    cmd = [
+        "curl",
+        "-L",
+        "$SANITIZE_FILE_URL",
+        "-o",
+        f"{notebook_path}/output-sanitize.cfg",
+        "--silent",
+    ]
+    return cmd
+
+
+def test_notebooks(notebook_path: str) -> list[str]:
+    logging.debug("Running notebook-based tests ...")
+
+    cmd = [
+        "pytest" "--nbval" "--verbose",
+        notebook_path,
+        "--nbval-sanitize-with",
+        f"$SANITIZE_FILE_URL/output-sanitize.cfg",
+        "--ignore",
+        f"{notebook_path}/.ipynb_checkpoints",
+    ]
+    return cmd
 
 
 anyio.run(main)
