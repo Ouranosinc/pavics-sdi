@@ -93,10 +93,8 @@ def test_notebooks(notebook_path: str) -> list[str]:
         "--nbval",
         "--verbose",
         notebook_path,
-        "--nbval-sanitize-with",
-        f"{notebook_path}/output-sanitize.cfg",
-        "--ignore",
-        f"{notebook_path}/.ipynb_checkpoints",
+        f"--sanitize-with={notebook_path}/output-sanitize.cfg",
+        f"--ignore={notebook_path}/.ipynb_checkpoints",
     ]
     return cmd
 
