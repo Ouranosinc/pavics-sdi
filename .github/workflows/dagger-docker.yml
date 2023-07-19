@@ -11,7 +11,7 @@ on:
         description: 'Image tag to use for the Docker image'
         required: true
         default: 'latest'
-      PAVICS_HOST_URL:
+      PAVICS_HOST:
         description: 'Pavics URL to test against'
         required: true
         default: 'https://pavics.ouranos.ca/'
@@ -60,7 +60,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
             echo "BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_ENV
-            echo "PAVICS_HOST_URL=${{ github.event.inputs.PAVICS_HOST_URL }}" >> $GITHUB_ENV
+            echo "PAVICS_HOST=${{ github.event.inputs.PAVICS_HOST }}" >> $GITHUB_ENV
             echo "SANITIZE_FILE_URL=${{ github.event.inputs.SANITIZE_FILE_URL }}" >> $GITHUB_ENV
       - name: Dagger testing
         run: |

@@ -17,7 +17,7 @@ except ImportError:
 
 
 BASE_IMAGE_TAG = os.getenv("BASE_IMAGE_TAG", "latest")
-PAVICS_HOST_URL = os.getenv("PAVICS_HOST_URL", "https://pavics.ouranos.ca")
+PAVICS_HOST = os.getenv("PAVICS_HOST", "https://pavics.ouranos.ca")
 SANITIZE_FILE_URL = os.getenv(
     "SANITIZE_FILE_URL",
     "https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/raw/master/notebooks/output-sanitize.cfg",
@@ -47,7 +47,7 @@ async def main():
             sources.with_exec(
                 notebook_sanitizer(SANITIZE_FILE_URL, "/code/docs/source/notebooks")
             )
-            .with_env_variable("PAVICS_HOST_URL", PAVICS_HOST_URL)
+            .with_env_variable("PAVICS_HOST", PAVICS_HOST)
             .with_exec(test_notebooks("/code/docs/source/notebooks"))
         )
 
