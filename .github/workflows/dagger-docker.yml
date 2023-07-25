@@ -1,10 +1,11 @@
 name: Dagger/Docker Testing Suite
 
 on:
-  push:
-    branches:
-      - master
+  # FIXME: Remove Pull Request trigger before merging
   pull_request:
+  schedule:
+    # Every night at 4:00 AM UTC
+    - cron: '0 4 * * *'
   workflow_dispatch:
     inputs:
       BASE_IMAGE_TAG:

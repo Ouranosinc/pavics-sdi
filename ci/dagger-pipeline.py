@@ -48,7 +48,12 @@ async def main():
                 notebook_sanitizer(SANITIZE_FILE_URL, "/code/docs/source/notebooks")
             )
             .with_env_variable("PAVICS_HOST", PAVICS_HOST)
-            .with_exec(test_notebooks("/code/docs/source/notebooks"))
+            .with_exec(
+                test_notebooks(
+                    notebook_path="/code/docs/source/notebooks",
+                    conftest_dir="/code/tests",
+                )
+            )
         )
 
         # execute
@@ -85,17 +90,25 @@ def notebook_sanitizer(file_url: str, notebook_path: str) -> list[str]:
     return cmd
 
 
-def test_notebooks(notebook_path: str) -> list[str]:
+def test_notebooks(
+    notebook_path: str,
+    conftest_dir: str | None,
+) -> list[str]:
     logging.debug("Running notebook-based tests ...")
 
     cmd = [
         "pytest",
+        f"--confcutdir={conftest_dir}" if conftest_dir else None,
         "--nbval",
         "--verbose",
         notebook_path,
         f"--sanitize-with={notebook_path}/output-sanitize.cfg",
         f"--ignore={notebook_path}/.ipynb_checkpoints",
     ]
+
+    while None in cmd:
+        cmd.remove(None)
+
     return cmd
 
 
