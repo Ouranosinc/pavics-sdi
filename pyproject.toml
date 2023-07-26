@@ -56,3 +56,9 @@ dagger = [
 "Issue tracker" = "https://github.com/Ouranosinc/pavics-sdi/issues"
 "About CRIM" = "https://www.crim.ca/en/"
 "About Ouranos" = "https://www.ouranos.ca/en/"
+
+[tool.pytest.ini_options]
+testpaths = [
+  "tests",
+  "docs/source/notbooks"
+]

@@ -51,7 +51,7 @@ async def main():
             .with_exec(
                 test_notebooks(
                     notebook_path="/code/docs/source/notebooks",
-                    conftest_dir="/code/tests",
+                    conftest_dir="/code",
                 )
             )
         )
@@ -98,10 +98,11 @@ def test_notebooks(
 
     cmd = [
         "pytest",
-        f"--confcutdir={conftest_dir}" if conftest_dir else None,
+        # f"--confcutdir={conftest_dir}" if conftest_dir else None,
+        # f"--rootdir={conftest_dir}" if conftest_dir else None,
         "--nbval",
         "--verbose",
-        notebook_path,
+        # notebook_path,
         f"--sanitize-with={notebook_path}/output-sanitize.cfg",
         f"--ignore={notebook_path}/.ipynb_checkpoints",
     ]
