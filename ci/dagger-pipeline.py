@@ -16,7 +16,7 @@ except ImportError:
     )
 
 
-BASE_IMAGE_TAG = os.getenv("BASE_IMAGE_TAG", "latest")
+BASE_IMAGE_TAG = os.getenv("BASE_IMAGE_TAG")
 PAVICS_HOST = os.getenv("PAVICS_HOST", "https://pavics.ouranos.ca")
 SANITIZE_FILE_URL = os.getenv(
     "SANITIZE_FILE_URL",
@@ -30,6 +30,9 @@ async def main():
             log_output=sys.stderr, workdir=Path(__file__).parent.parent.as_posix()
         )
     ) as client:
+        if not BASE_IMAGE_TAG:
+            raise ValueError("BASE_IMAGE_TAG environment variable is not set.")
+
         sources = await (
             # pull container
             client.container().from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")

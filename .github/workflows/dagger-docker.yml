@@ -11,7 +11,6 @@ on:
       BASE_IMAGE_TAG:
         description: 'Image tag to use for the Docker image'
         required: true
-        default: 'latest'
       PAVICS_HOST:
         description: 'Pavics URL to test against'
         required: true
@@ -21,6 +20,8 @@ on:
         required: true
         default: 'https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/raw/master/notebooks/output-sanitize.cfg'
 
+env:
+  BASE_IMAGE_TAG: 230601
 
 jobs:
   lint:
@@ -58,6 +59,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set Environment Variables
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: |
+            echo "BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }}" >> $GITHUB_ENV
+      - name: Set Environment Variables (Workflow Dispatch)
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
             echo "BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_ENV
