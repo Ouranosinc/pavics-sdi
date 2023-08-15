@@ -9,11 +9,15 @@ try:
     import anyio
     import dagger
     from dagger import BuildArg
-    from dagger.engine._version import CLI_VERSION as __dagger_version__  # noqa
 except ImportError:
     raise ImportError(
         "Dagger is not installed. Please install it with `pip install dagger-io` first."
     )
+
+try:
+    from dagger._engine._version import CLI_VERSION as __dagger_version__  # noqa
+except ModuleNotFoundError:
+    __dagger_version__ = "unknown"
 
 
 BASE_IMAGE_TAG = os.getenv("BASE_IMAGE_TAG")
