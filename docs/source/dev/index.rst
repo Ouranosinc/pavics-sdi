@@ -12,4 +12,3 @@ Developer Documentation
    geoserver
    integration_tests
    builddocs
-
