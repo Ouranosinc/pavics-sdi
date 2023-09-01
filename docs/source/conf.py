@@ -42,10 +42,17 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
-    "nbsphinx",
+    "myst_nb",
 ]
 
-nbsphinx_allow_errors = True
+nbsphinx_custom_formats = {
+    ".md": ["jupytext.reads", {"fmt": "mystnb"}],
+}
+
+nb_execution_mode = "cache"
+nb_execution_allow_errors = False
+
+# nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
 
 # napoleon_numpy_docstring = True
 
@@ -100,7 +107,14 @@ gettext_compact = False  # optional.
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "*/.ipynb_checkpoints"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "*/.ipynb_checkpoints",
+    ".jupyter_cache",
+    "jupyter_execute",
+]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -376,11 +390,7 @@ intersphinx_mapping = {
     "finch": ("https://finch.readthedocs.io/en/latest", None),
     "raven": ("https://pavics-raven.readthedocs.io/en/latest", None),
     #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
-    #  'phoenix': ('https://pyramid-phoenix.readthedocs.io/en/latest/', None),
-    #  'malleefowl': ('https://malleefowl.readthedocs.io/en/latest/', None),
     #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
-    "flyingpigeon": ("https://flyingpigeon.readthedocs.io/en/latest/", None),
-    #  'hummingbird': ('https://birdhouse-hummingbird.readthedocs.io/en/latest/', None),
     #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
     "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
     #  'bootstrap': ('https://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),

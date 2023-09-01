@@ -15,12 +15,15 @@ setup(
     install_requires=[],
     extras_require={
         "docs": [
-            "sphinx>=1.4",
-            "sphinx-intl",
-            "sphinx_rtd_theme",
-            "nbsphinx",
             "jinja2",
             "jupyter",
+            "jupytext",
+            "myst-nb",
+            "requests",
+            "sphinx-intl",
+            "sphinx-jsonschema",
+            "sphinx-rtd-theme>=1.0",
+            "sphinx>=1.4",
         ]
     },
     author="CRIM/Ouranos",

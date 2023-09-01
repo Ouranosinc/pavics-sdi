@@ -2,21 +2,15 @@
 Basic climate data analysis
 ===========================
 
-The following processes concern basic climate data analysis, methods for formatting data to examine a
-specific region or time interval. They are provided by Flyingpigeon's
-:ref:`subset processes <flyingpigeon:subset_processes_api>`.
-
-..
-    Spatial subsetting and regridding are methods of deriving a new set of data from another set of data using interpolation techniques to generate different spatial or temporal resolutions.
-
-    For more information on these processes, see the `NCAR description of regridding page <https://climatedataguide.ucar.edu/climate-data-tools-and-analysis/regridding-overview>`_.
+The following processes concern basic climate data analysis, methods for formatting data to examine a specific region or time interval.
 
 
-Spatial and temporal subsetting
--------------------------------
+Spatial subsetting and averaging
+--------------------------------
 
-* :class:`~flyingpigeon.processes.wps_subset_wfs_polygon.SubsetWFSPolygonProcess` Subset over a contour provided by a WFS service.
-* :class:`~flyingpigeon.processes.wps_subset_bbox.SubsetBboxProcess` Subset over a latitude-longitude bounding box.
-* :class:`~flyingpigeon.processes.wps_subset_continents.SubsetcontinentProcess` Subset over one or more continent.
-* :class:`~flyingpigeon.processes.wps_subset_countries.SubsetcountryProcess` Subset over one or more country.
-* :class:`~flyingpigeon.processes.wps_pointinspection.PointinspectionProcess` Extract data over one or more point coordinates.
+Spatial subsetting processed are provided by Finch.
+
+* :class:`~finch.processes.virtual.other.SubsetBboxProcess` Subset over a latitude-longitude bounding box.
+* :class:`~finch.processes.virtual.other.SubsetGridPointProcess` Subset over a number of grid points.
+* :class:`~finch.processes.virtual.other.SubsetPolygonProcess` Subset over a polygon.
+* :class:`~finch.processes.virtual.other.AveragePolygonProcess` Average over an area defined by a polygon.

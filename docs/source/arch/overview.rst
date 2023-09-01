@@ -13,17 +13,8 @@ Birdhouse
    Birdhouse/Finch
       A library of climate indicators.
 
-   Birdhouse/Flyingpigeon
-      Climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc.
-
-   Birdhouse/Malleefowl
-      Access to ESGF data nodes and THREDDS catalogs, workflow engine.
-
-   Birdhouse/Hummingbird
-      Climate Data Operators (CDO) and compliance-checker for netCDF files.
-
 Raven
-  A WPS server for hydrological modeling, calibration, regionalization of ungauged basins and time series analysis.
+  A WPS server for the extraction of watershed properties.
 
 JupyterLab
   A notebook interface to demonstrate how WPS services can be used from a programming environment.

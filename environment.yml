@@ -4,12 +4,11 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python >=3.7,<3.10
+  - python >=3.8,<3.12
   - birdy
   - cartopy
   - clisops
   - dask
-#  - descartes
   - geopandas
   - geoviews
   - hvplot
@@ -20,6 +19,7 @@ dependencies:
   - netcdf4
   - numpy
   - pydap
+  - pykdtree  # Fixes cartopy bug arising with scipy 1.11
   - rasterio
   - rioxarray
   - siphon

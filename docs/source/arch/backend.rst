@@ -54,19 +54,7 @@ Birdhouse/Finch
     `Finch Official Documentation <https://finch.readthedocs.io/en/latest/>`_ Finch also includes processes to subset and average gridded data over bounding boxes or polygons.
 
 Raven
-    Provides hydrological modeling capability using the `Raven`_ framework, along with model calibration utilities, regionalization tools, and watershed properties extraction tools.
-
-Birdhouse/Malleefowl
-    Provides processes to access ESGF data nodes and THREDDS catalogs, as well as a workflow engine to string different processes together.
-    `Malleefowl Official Documentation <https://malleefowl.readthedocs.io/en/latest/>`_
-
-Birdhouse/Flyingpigeon
-    Provides a wide array of climate services including indices computation, spatial analogs, weather analogs, species distribution model, subsetting and averaging, climate fact sheets, etc. FlyingPigeon is the sand box for emerging services, which eventually will make their way to more stable and specialized birds.
-    `Flyingpigeon Official Documentation <https://flyingpigeon.readthedocs.io/en/latest/>`_
-
-Birdhouse/Hummingbird
-    Provides access to climate Data Operators (`CDO`_) functions and compliance-checker for netCDF files.
-    `Hummingbird Official Documentation <https://birdhouse-hummingbird.readthedocs.io/en/latest/>`_
+    Provides tools for watershed properties extraction for hydrological modeling.
 
 Virtually all individual processes ingest and return netCDF files (or OPeNDAP links for some processes), such that one process' output can be used as the input of another process. This lets scientist create complex workflows. By insisting that process inputs and outputs comply with the CF-Convention, we make sure that data is accompanied by clear and unambiguous metadata.
 

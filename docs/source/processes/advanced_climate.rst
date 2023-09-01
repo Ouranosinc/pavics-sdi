@@ -8,8 +8,6 @@ Advanced climate data analysis
    :depth: 3
 
 
-
-
 Spatial analogues
 -----------------
 

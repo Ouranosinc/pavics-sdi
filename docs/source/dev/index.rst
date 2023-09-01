@@ -8,12 +8,7 @@ Developer Documentation
    :maxdepth: 2
 
    installation
-   load_balancing
-   configuration
-   vm
-   permissions
-   geoserver
    data_management
+   geoserver
    integration_tests
    builddocs
-   contributing
