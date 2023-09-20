@@ -4,6 +4,8 @@ channels:
   - defaults
 dependencies:
   - python >=3.10,<3.11
+  - birdy
+  - cartopy
   - cf_xarray
   - clisops
   - dask
@@ -11,6 +13,7 @@ dependencies:
   - geopandas
   - holoviews
   - intake
+  - intake-esm
   - ipython
   - jinja2
   - jupyter
@@ -22,6 +25,7 @@ dependencies:
   - netcdf4
   - numba
   - owslib
+  - pyogrio
   - pytest
   - readthedocs-sphinx-ext
   - recommonmark
@@ -37,4 +41,5 @@ dependencies:
   - webob
   - xarray
   - xclim >=0.45.0
+  - xesmf
   - pip

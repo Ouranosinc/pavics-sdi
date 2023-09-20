@@ -16,6 +16,8 @@ setup(
     install_requires=[],
     extras_require={
         "docs": [
+            "birdhouse-birdy",
+            "cartopy",
             "cf-xarray",
             "clisops",
             "dask",
@@ -23,6 +25,7 @@ setup(
             "geopandas",
             "holoviews",
             "intake",
+            "intake-esm",
             "ipython",
             "jinja2",
             "jupyter",
@@ -34,6 +37,7 @@ setup(
             "netcdf4",
             "numba",
             "owslib",
+            "pyogrio",
             "readthedocs-sphinx-ext",
             "requests",
             "requests-magpie",
@@ -48,6 +52,7 @@ setup(
             "webob",
             "xarray",
             "xclim>=0.45.0",
+            "xesmf",
         ]
     },
     author="CRIM/Ouranos",
