@@ -21,6 +21,7 @@ dependencies:
   - numba
   - owslib
   - pytest
+  - readthedocs-sphinx-ext
   - recommonmark
   - requests
   - requests-magpie

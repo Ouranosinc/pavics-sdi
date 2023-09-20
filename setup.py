@@ -33,6 +33,7 @@ setup(
             "netcdf4",
             "numba",
             "owslib",
+            "readthedocs-sphinx-ext",
             "requests",
             "requests-magpie",
             "sphinx-codeautolink",
