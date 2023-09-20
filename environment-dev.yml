@@ -14,6 +14,7 @@ dependencies:
   - ipython
   - jinja2
   - jupyter
+  - jupytext
   - matplotlib
   - myst-nb
   - myst-parser
