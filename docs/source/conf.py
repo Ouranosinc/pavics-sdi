@@ -388,9 +388,9 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/", None),
-    "finch": ("https://finch.readthedocs.io/en/latest", None),
-    "raven": ("https://pavics-raven.readthedocs.io/en/latest", None),
+    "python": ("https://docs.python.org/3/", None),
+    "finch": ("https://pavics-sdi.readthedocs.io/projects/finch/en/latest/", None),
+    "raven": ("https://pavics-sdi.readthedocs.io/projects/raven/en/latest/", None),
     #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
     #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
     #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
