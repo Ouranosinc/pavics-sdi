@@ -35,6 +35,8 @@ setup(
             "owslib",
             "requests",
             "requests-magpie",
+            "sphinx-codeautolink",
+            "sphinx-copybutton",
             "sphinx-intl",
             "sphinx-jsonschema",
             "sphinx-rtd-theme>=1.0",

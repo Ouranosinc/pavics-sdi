@@ -24,6 +24,8 @@ dependencies:
   - requests
   - requests-magpie
   - sphinx
+  - sphinx-codeautolink
+  - sphinx-copybutton
   - sphinx-intl
   - sphinx-rtd-theme >=1.0
   - urllib3
@@ -31,3 +33,4 @@ dependencies:
   - webob
   - xarray
   - xclim >=0.45.0
+  - pip

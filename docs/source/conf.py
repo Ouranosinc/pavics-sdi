@@ -43,6 +43,8 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
     "myst_nb",
+    "sphinx_codeautolink",
+    "sphinx_copybutton",
 ]
 
 nbsphinx_custom_formats = {
