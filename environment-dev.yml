@@ -4,11 +4,30 @@ channels:
   - defaults
 dependencies:
   - python >=3.8,<3.12
-  - jinja2 <=3.0.3
+  - cf_xarray
+  - clisops
+  - dask
+  - esgf-pyclient
+  - geopandas
+  - intake
+  - ipython
+  - jinja2
   - jupyter
+  - matplotlib
   - myst-nb
+  - myst-parser
   - nbval
+  - netcdf4
+  - numba
+  - owslib
   - pytest
+  - requests
+  - requests-magpie
   - sphinx
   - sphinx-intl
-  - sphinx_rtd_theme >=1.0
+  - sphinx-rtd-theme >=1.0
+  - urllib3
+  - urlpath
+  - webob
+  - xarray
+  - xclim >=0.45.0
