@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 #
 import os
+import sys
 from datetime import date
+from pathlib import Path
 
 # PAVICS documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct 3 13:56:31 2016.
@@ -19,9 +21,14 @@ from datetime import date
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+
+
+sys.path.insert(0, os.path.abspath(".."))
+if os.environ.get("READTHEDOCS") and "ESMFMKFILE" not in os.environ:
+    # RTD doesn't activate the env, and esmpy depends on a env var set there
+    # We assume the `os` package is in {ENV}/lib/pythonX.X/os.py
+    # See conda-forge/esmf-feedstock#91 and readthedocs/readthedocs.org#4067
+    os.environ["ESMFMKFILE"] = str(Path(os.__file__).parent.parent / "esmf.mk")
 
 # -- General configuration ------------------------------------------------
 
