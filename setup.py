@@ -21,6 +21,7 @@ setup(
             "dask",
             "esgf-pyclient",
             "geopandas",
+            "holoviews",
             "intake",
             "ipython",
             "jinja2",
