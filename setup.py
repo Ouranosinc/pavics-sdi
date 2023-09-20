@@ -26,6 +26,7 @@ setup(
             "holoviews",
             "intake",
             "intake-esm",
+            "ipyleaflet",
             "ipython",
             "jinja2",
             "jupyter",
