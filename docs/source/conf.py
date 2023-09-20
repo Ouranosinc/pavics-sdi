@@ -123,6 +123,12 @@ exclude_patterns = [
     "*/.ipynb_checkpoints",
     ".jupyter_cache",
     "jupyter_execute",
+    # obsolete notebooks
+    "notebooks/jupyter_extensions.ipynb",
+    "processes/advanced_climate.rst",
+    "processes/maintenance.rst",
+    "processes/searching.rst",
+    "processes/workflows.rst",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
