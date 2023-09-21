@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python >=3.10,<3.11
+  - aiohttp
   - birdy
   - cartopy
   - cf_xarray
@@ -32,6 +33,7 @@ dependencies:
   - recommonmark
   - requests
   - requests-magpie
+  - siphon
   - sphinx
   - sphinx-codeautolink
   - sphinx-copybutton

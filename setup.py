@@ -16,6 +16,7 @@ setup(
     install_requires=[],
     extras_require={
         "docs": [
+            "aiohttp",
             "birdhouse-birdy",
             "cartopy",
             "cf-xarray",
@@ -42,6 +43,7 @@ setup(
             "readthedocs-sphinx-ext",
             "requests",
             "requests-magpie",
+            "siphon",
             "sphinx-codeautolink",
             "sphinx-copybutton",
             "sphinx-intl",
