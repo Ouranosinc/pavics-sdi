@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.8.0
+    rev: v3.14.0
     hooks:
       - id: pyupgrade
         args: [ '--py38-plus' ]
@@ -29,7 +29,7 @@ repos:
       - id: yamllint
         args: [ '--config-file=.yamllint.yaml' ]
   - repo: https://github.com/psf/black
-    rev: 23.3.0
+    rev: 23.9.1
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
@@ -41,14 +41,13 @@ repos:
     rev: 1.7.0
     hooks:
       - id: nbqa-black
-        args: [ '--target-version=py38' ]
-        additional_dependencies: [ black==23.3.0 ]
+        additional_dependencies: [ 'black==23.9.1' ]
       - id: nbqa-pyupgrade
         args: [ '--py38-plus' ]
-        additional_dependencies: [ pyupgrade==v3.3.1 ]
+        additional_dependencies: [ 'pyupgrade==v3.14.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ isort==5.12.0 ]
+        additional_dependencies: [ 'isort==5.12.0' ]
   - repo: https://github.com/kynan/nbstripout
     rev: 0.6.1
     hooks:
