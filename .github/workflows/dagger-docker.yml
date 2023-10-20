@@ -1,0 +1,74 @@
+name: Dagger/Docker Testing Suite
+
+on:
+  # FIXME: Remove Pull Request trigger before merging
+  pull_request:
+  schedule:
+    # Every night at 4:00 AM UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      BASE_IMAGE_TAG:
+        description: 'Image tag to use for the Docker image'
+        required: true
+      PAVICS_HOST:
+        description: 'Pavics URL to test against'
+        required: true
+        default: 'https://pavics.ouranos.ca/'
+      SANITIZE_FILE_URL:
+        description: 'URL for the sanitizer configuration'
+        required: true
+        default: 'https://github.com/Ouranosinc/PAVICS-e2e-workflow-tests/raw/master/notebooks/output-sanitize.cfg'
+
+env:
+  BASE_IMAGE_TAG: 230601
+
+jobs:
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+            access_token: ${{ github.token }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.0
+
+  integration:
+    name: Integration Tests (Python${{ matrix.python-version }})
+    needs: lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -l {0}
+    strategy:
+        matrix:
+            python-version: ["3.10"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set Environment Variables
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: |
+            echo "BASE_IMAGE_TAG=${{ env.BASE_IMAGE_TAG }}" >> $GITHUB_ENV
+      - name: Set Environment Variables (Workflow Dispatch)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+            echo "BASE_IMAGE_TAG=${{ github.event.inputs.image_tag }}" >> $GITHUB_ENV
+            echo "PAVICS_HOST=${{ github.event.inputs.PAVICS_HOST }}" >> $GITHUB_ENV
+            echo "SANITIZE_FILE_URL=${{ github.event.inputs.SANITIZE_FILE_URL }}" >> $GITHUB_ENV
+      - name: Dagger testing
+        run: |
+          pip install .[dagger]
+          python ./ci/dagger-pipeline.py
