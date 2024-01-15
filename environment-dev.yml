@@ -3,12 +3,47 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python >=3.8,<3.12
-  - jinja2 <=3.0.3
+  - python >=3.10,<3.11
+  - aiohttp
+  - birdy
+  - cartopy
+  - cf_xarray
+  - clisops
+  - dask
+  - esgf-pyclient
+  - geopandas
+  - holoviews
+  - intake
+  - intake-esm
+  - ipyleaflet
+  - ipython
+  - jinja2
   - jupyter
+  - jupytext
+  - matplotlib
   - myst-nb
+  - myst-parser
   - nbval
+  - netcdf4
+  - numba
+  - owslib
+  - pyogrio
   - pytest
+  - readthedocs-sphinx-ext
+  - recommonmark
+  - requests
+  - requests-magpie
+  - siphon
   - sphinx
+  - sphinx-codeautolink
+  - sphinx-copybutton
   - sphinx-intl
-  - sphinx_rtd_theme >=1.0
+  - sphinx-jsonschema
+  - sphinx-rtd-theme >=1.0
+  - urllib3
+  - urlpath
+  - webob
+  - xarray
+  - xclim >=0.45.0
+  - xesmf
+  - pip

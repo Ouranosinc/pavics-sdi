@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 #
 import os
+import sys
 from datetime import date
+from pathlib import Path
 
 # PAVICS documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct 3 13:56:31 2016.
@@ -19,9 +21,14 @@ from datetime import date
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+
+
+sys.path.insert(0, os.path.abspath(".."))
+if os.environ.get("READTHEDOCS") and "ESMFMKFILE" not in os.environ:
+    # RTD doesn't activate the env, and esmpy depends on a env var set there
+    # We assume the `os` package is in {ENV}/lib/pythonX.X/os.py
+    # See conda-forge/esmf-feedstock#91 and readthedocs/readthedocs.org#4067
+    os.environ["ESMFMKFILE"] = str(Path(os.__file__).parent.parent / "esmf.mk")
 
 # -- General configuration ------------------------------------------------
 
@@ -43,6 +50,8 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
     "myst_nb",
+    "sphinx_codeautolink",
+    "sphinx_copybutton",
 ]
 
 nbsphinx_custom_formats = {
@@ -114,6 +123,12 @@ exclude_patterns = [
     "*/.ipynb_checkpoints",
     ".jupyter_cache",
     "jupyter_execute",
+    # obsolete notebooks
+    "notebooks/jupyter_extensions.ipynb",
+    "processes/advanced_climate.rst",
+    "processes/maintenance.rst",
+    "processes/searching.rst",
+    "processes/workflows.rst",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -386,9 +401,9 @@ texinfo_documents = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/", None),
-    "finch": ("https://finch.readthedocs.io/en/latest", None),
-    "raven": ("https://pavics-raven.readthedocs.io/en/latest", None),
+    "python": ("https://docs.python.org/3/", None),
+    "finch": ("https://pavics-sdi.readthedocs.io/projects/finch/en/latest/", None),
+    "raven": ("https://pavics-sdi.readthedocs.io/projects/raven/en/latest/", None),
     #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
     #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
     #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
