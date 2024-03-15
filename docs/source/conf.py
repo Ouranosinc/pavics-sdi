@@ -60,6 +60,7 @@ nbsphinx_custom_formats = {
 
 nb_execution_mode = "cache"
 nb_execution_allow_errors = False
+nb_kernel_rgx_aliases = {"birdy": "python3"}
 
 # nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
 
