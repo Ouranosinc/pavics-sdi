@@ -23,6 +23,7 @@ function or method to display the corresponding help message.
    forecasts
    eccc-geoapi-climate-stations
    eccc-geoapi-xclim
+   CaSR_basic
    WCS_example
    WFS_example
    wps_with_owslib
