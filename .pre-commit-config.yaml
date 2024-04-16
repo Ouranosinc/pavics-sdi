@@ -16,7 +16,7 @@ repos:
         exclude: .ipynb|.po|.xml
       - id: debug-statements
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 24.3.0
+    rev: 24.4.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
@@ -29,10 +29,10 @@ repos:
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py37-plus' ]
-        additional_dependencies: [ 'pyupgrade==v3.15.0' ]
+        additional_dependencies: [ 'pyupgrade==v3.15.2' ]
       - id: nbqa-black
         args: [ '--target-version=py37' ]
-        additional_dependencies: [ 'black==23.12.1' ]
+        additional_dependencies: [ 'black==24.4.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
         additional_dependencies: [ 'isort==5.13.2' ]
