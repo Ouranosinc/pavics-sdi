@@ -33,6 +33,8 @@ function or method to display the corresponding help message.
 
 .. include:: ../deprecated/index.rst
 
+.. _optional-notebooks:
+
 -------------------------
 Optional Notebooks
 -------------------------
