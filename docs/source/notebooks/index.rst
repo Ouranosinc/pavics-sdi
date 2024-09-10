@@ -26,7 +26,6 @@ function or method to display the corresponding help message.
    WCS_example
    WFS_example
    wps_with_owslib
-   WMS_example
    regridding
    subset-user-input
 
