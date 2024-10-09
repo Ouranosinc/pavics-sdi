@@ -6,7 +6,7 @@ repos:
     rev: v3.17.0
     hooks:
       - id: pyupgrade
-        args: [ '--py37-plus' ]
+        args: [ '--py311-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -28,11 +28,11 @@ repos:
     rev: 1.8.7
     hooks:
       - id: nbqa-pyupgrade
-        args: [ '--py37-plus' ]
-        additional_dependencies: [ 'pyupgrade==v3.16.0' ]
+        args: [ '--py311-plus' ]
+        additional_dependencies: [ 'pyupgrade==v3.17.0' ]
       - id: nbqa-black
-        args: [ '--target-version=py37' ]
-        additional_dependencies: [ 'black==24.4.2' ]
+        args: [ '--target-version=py311' ]
+        additional_dependencies: [ 'black==24.10.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
         additional_dependencies: [ 'isort==5.13.2' ]
