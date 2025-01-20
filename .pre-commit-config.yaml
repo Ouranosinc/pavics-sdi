@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.17.0
+    rev: v3.19.1
     hooks:
       - id: pyupgrade
         args: [ '--py311-plus' ]
@@ -25,7 +25,7 @@ repos:
       - id: isort
         args: [ '--profile=black' ]
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.7
+    rev: 1.9.1
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py311-plus' ]
@@ -37,7 +37,7 @@ repos:
         args: [ '--profile=black' ]
         additional_dependencies: [ 'isort==5.13.2' ]
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.7.1
+    rev: 0.8.1
     hooks:
       - id: nbstripout
         files: ".ipynb"
