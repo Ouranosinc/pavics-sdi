@@ -8,10 +8,10 @@ dependencies:
   - birdy
   - cartopy
   - cf_xarray
-  - clisops
+  - clisops >=0.15.0
   - dask
   - esgf-pyclient
-  - geopandas
+  - geopandas >=1.0
   - holoviews
   - intake
   - intake-esm
@@ -26,7 +26,9 @@ dependencies:
   - nbval
   - netcdf4
   - numba
+  - numpy >=1.24.0
   - owslib
+  - pre-commit
   - pyogrio
   - pytest
   - readthedocs-sphinx-ext
@@ -34,7 +36,7 @@ dependencies:
   - requests
   - requests-magpie
   - siphon
-  - sphinx
+  - sphinx <8.2 # Python3.10 compatibility
   - sphinx-codeautolink
   - sphinx-copybutton
   - sphinx-intl
