@@ -8,6 +8,7 @@ dependencies:
   - cartopy
   - clisops >=0.15.0
   - dask
+  - fiona
   - geopandas >=1.0
   - geoviews
   - hvplot

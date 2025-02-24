@@ -10,6 +10,7 @@ dependencies:
   - clisops >=0.15.0
   - dask
   - esgf-pyclient
+  - fiona
   - geopandas >=1.0
   - holoviews
   - intake
