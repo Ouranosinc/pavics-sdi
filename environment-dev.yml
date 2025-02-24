@@ -36,14 +36,13 @@ dependencies:
   - requests
   - requests-magpie
   - siphon
-  - sphinx <8.2 # Python3.10 compatibility
+  - sphinx >=7.0.0,<8.2.0 # Python3.10 compatibility
   - sphinx-codeautolink
   - sphinx-copybutton
   - sphinx-intl
   - sphinx-jsonschema
   - sphinx-rtd-theme >=1.0
   - urllib3
-  - urlpath
   - webob
   - xarray
   - xclim >=0.45.0
