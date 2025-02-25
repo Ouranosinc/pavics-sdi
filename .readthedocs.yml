@@ -7,9 +7,9 @@ sphinx:
 formats: all
 
 build:
-  os: ubuntu-22.04
+  os: ubuntu-24.04
   tools:
-    python: "mambaforge-22.9"
+    python: "mambaforge-23.11"
 
 conda:
   environment: environment-dev.yml

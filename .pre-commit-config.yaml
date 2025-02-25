@@ -14,13 +14,26 @@ repos:
         exclude: .html|.po|.svg|.css|.xml
       - id: end-of-file-fixer
         exclude: .ipynb|.po|.xml
+      - id: check-json
+      - id: check-yaml
       - id: debug-statements
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-no-eval
+      - id: python-no-log-warn
+      - id: python-use-type-annotations
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+      - id: text-unicode-replacement-char
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 24.10.0
+    rev: 25.1.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
-    rev: 5.13.2
+    rev: 6.0.0
     hooks:
       - id: isort
         args: [ '--profile=black' ]
@@ -29,19 +42,34 @@ repos:
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py311-plus' ]
-        additional_dependencies: [ 'pyupgrade==v3.17.0' ]
+        additional_dependencies: [ 'pyupgrade==v3.19.1' ]
       - id: nbqa-black
         args: [ '--target-version=py311' ]
-        additional_dependencies: [ 'black==24.10.0' ]
+        additional_dependencies: [ 'black==25.1.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ 'isort==5.13.2' ]
+        additional_dependencies: [ 'isort==6.0.0' ]
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
       - id: nbstripout
         files: ".ipynb"
         args: [ '--keep-output', '--keep-count' ]
+  - repo: https://github.com/keewis/blackdoc
+    rev: v0.3.9
+    hooks:
+      - id: blackdoc
+        args: [ '--target-version=py311' ]
+        additional_dependencies: [ 'black==25.1.0' ]
+      - id: blackdoc-autoupdate-black
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.31.1
+    hooks:
+      - id: check-readthedocs
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.23.3
+    hooks:
+      - id: gitleaks
   - repo: meta
     hooks:
       - id: check-hooks-apply
