@@ -29,12 +29,14 @@ dependencies:
   - numpy >=1.24.0
   - owslib
   - pre-commit
+  - psutil
   - pyogrio
   - pytest
   - readthedocs-sphinx-ext
   - recommonmark
   - requests
   - requests-magpie
+  - shapely >=2.0
   - siphon
   - sphinx >=7.0.0,<8.2.0 # Python3.10 compatibility
   - sphinx-codeautolink
@@ -47,4 +49,5 @@ dependencies:
   - xarray
   - xclim >=0.45.0
   - xesmf
+  - xscen
   - pip
