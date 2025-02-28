@@ -19,10 +19,13 @@ dependencies:
   - netcdf4
   - numba
   - numpy >=1.24.0
+  - psutil
   - pydap
   - pykdtree  # Fixes cartopy bug arising with scipy 1.11
   - rasterio
   - rioxarray
   - siphon
+  - shapely >=2.0
   - xarray >=0.45.0
+  - xscen
   - xclim
