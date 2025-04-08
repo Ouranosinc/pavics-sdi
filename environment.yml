@@ -6,7 +6,8 @@ dependencies:
   - python >=3.10,<3.13
   - birdy
   - cartopy
-  - clisops >=0.15.0
+  - cf_xarray >=0.10.4
+  - clisops >=0.16.1
   - dask
   - fiona
   - geopandas >=1.0
@@ -26,6 +27,8 @@ dependencies:
   - rioxarray
   - siphon
   - shapely >=2.0
-  - xarray >=0.45.0
-  - xscen
-  - xclim
+  - xarray >=0.46.0
+  - xclim >=0.46.0
+  - xesmf !=0.8.8
+  - xscen >=0.12.1
+  - xsdba >=0.4.0
