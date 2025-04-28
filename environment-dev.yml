@@ -2,13 +2,13 @@ name: pavics-sdi
 channels:
   - conda-forge
 dependencies:
-  - python >=3.10,<3.11
+  - python >=3.12,<3.13
   - aiohttp
   - birdy
   - cartopy
   - cf_xarray >=0.10.4
   - clisops >=0.16.1
-  - dask
+  - dask >=2024.8.1
   - esgf-pyclient
   - fiona
   - geopandas >=1.0
@@ -23,9 +23,10 @@ dependencies:
   - matplotlib
   - myst-nb
   - myst-parser
+  - nbsphinx >=0.9.7
   - nbval
   - netcdf4
-  - numba
+  - numba >=0.57.0
   - numpy >=1.24.0
   - owslib
   - pre-commit
@@ -38,7 +39,7 @@ dependencies:
   - requests-magpie
   - shapely >=2.0
   - siphon
-  - sphinx >=7.0.0,<8.2.0 # Python3.10 compatibility
+  - sphinx >=8.2.0
   - sphinx-codeautolink
   - sphinx-copybutton
   - sphinx-intl
@@ -46,8 +47,8 @@ dependencies:
   - sphinx-rtd-theme >=1.0
   - urllib3
   - webob
-  - xarray
-  - xclim >=0.46.0
+  - xarray >=2023.11.0
+  - xclim >=0.56.0
   - xesmf !=0.8.8
   - xscen >=0.12.1
   - xsdba >=0.4.0
