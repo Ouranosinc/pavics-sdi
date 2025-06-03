@@ -130,6 +130,7 @@ exclude_patterns = [
     "processes/maintenance.rst",
     "processes/searching.rst",
     "processes/workflows.rst",
+    "tutorials/searching.rst",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
@@ -179,10 +180,7 @@ todo_include_todos = True
 if os.environ.get("READTHEDOCS"):
     html_theme = "default"
 else:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-
     html_theme = "sphinx_rtd_theme"
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
