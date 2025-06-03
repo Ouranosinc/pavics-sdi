@@ -48,7 +48,7 @@ dependencies:
   - urllib3
   - webob
   - xarray >=2023.11.0
-  - xclim >=0.56.0
+  - xclim >=0.57.0
   - xesmf !=0.8.8
   - xscen >=0.12.1
   - xsdba >=0.4.0
