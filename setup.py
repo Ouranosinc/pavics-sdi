@@ -27,6 +27,7 @@ setup(
             "fiona",
             "geopandas>=1.0",
             "holoviews",
+            "hvplot",
             "intake",
             "intake-esm",
             "ipyleaflet",
