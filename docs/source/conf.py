@@ -61,8 +61,9 @@ nbsphinx_custom_formats = {
 nb_execution_mode = "cache"
 nb_execution_allow_errors = False
 nb_kernel_rgx_aliases = {"birdy": "python3"}
+nb_execution_excludepatterns = ["deprecated/*.ipynb"]
 
-# nb_execution_excludepatterns = ["notebooks/*.ipynb", "deprecated/*.ipynb"]
+myst_url_schemes = ("http", "https", "mailto")
 
 # napoleon_numpy_docstring = True
 
@@ -72,7 +73,7 @@ templates_path = ["_templates"]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = [".rst", ".md"]
+source_suffix = {".rst": "restructuredtext", ".md": "restructuredtext"}
 
 # The encoding of source files.
 #
@@ -163,6 +164,7 @@ pygments_style = "sphinx"
 
 suppress_warnings = [
     "app.add_directive",
+    "mystnb.unknown_mime_type",
 ]
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
