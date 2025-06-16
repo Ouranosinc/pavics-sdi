@@ -32,6 +32,7 @@ dependencies:
   - owslib
   - pre-commit
   - psutil
+  - pydap
   - pyogrio
   - pytest
   - readthedocs-sphinx-ext

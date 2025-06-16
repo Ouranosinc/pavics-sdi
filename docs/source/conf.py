@@ -61,9 +61,26 @@ nbsphinx_custom_formats = {
 nb_execution_mode = "cache"
 nb_execution_allow_errors = False
 nb_kernel_rgx_aliases = {"birdy": "python3"}
-nb_execution_excludepatterns = ["deprecated/*.ipynb"]
+nb_execution_excludepatterns = [
+    "deprecated/*.ipynb",
+    "notebook-components/*.ipynb",
+    "notebooks/*.ipynb",
+    "tutorials/*.ipynb",
+]
 
 myst_url_schemes = ("http", "https", "mailto")
+
+# Example configuration for intersphinx: refer to the Python standard library.
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3/", None),
+    "finch": ("https://pavics-sdi.readthedocs.io/projects/finch/en/latest/", None),
+    "raven": ("https://pavics-sdi.readthedocs.io/projects/raven/en/latest/", None),
+    #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
+    #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
+    #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
+    "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
+    #  'bootstrap': ('https://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
+}
 
 # napoleon_numpy_docstring = True
 
@@ -398,16 +415,3 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
-
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
-    "finch": ("https://pavics-sdi.readthedocs.io/projects/finch/en/latest/", None),
-    "raven": ("https://pavics-sdi.readthedocs.io/projects/raven/en/latest/", None),
-    #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
-    #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
-    #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
-    "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
-    #  'bootstrap': ('https://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
-}
