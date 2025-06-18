@@ -52,6 +52,7 @@ extensions = [
     "myst_nb",
     "sphinx_codeautolink",
     "sphinx_copybutton",
+    "sphinxext.opengraph",
 ]
 
 nbsphinx_custom_formats = {
@@ -72,15 +73,19 @@ myst_url_schemes = ("http", "https", "mailto")
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3/", None),
+    "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
     "finch": ("https://pavics-sdi.readthedocs.io/projects/finch/en/latest/", None),
+    "python": ("https://docs.python.org/3/", None),
     "raven": ("https://pavics-sdi.readthedocs.io/projects/raven/en/latest/", None),
     #  'birdhouse': ('https://birdhouse.readthedocs.io/en/latest/', None),
-    #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
-    #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
-    "birdy": ("https://birdy.readthedocs.io/en/latest/", None),
     #  'bootstrap': ('https://birdhousebuilderbootstrap.readthedocs.io/en/latest/', None),
+    #  'emu': ('https://emu.readthedocs.io/en/latest/', None),
+    #  'twitcher': ('https://twitcher.readthedocs.io/en/latest/', None),
 }
+
+# Opengraph settings
+ogp_image = "https://pavics-sdi.readthedocs.io/en/latest/_static/pavics_v_light.svg"
+ogp_type = "website"
 
 # napoleon_numpy_docstring = True
 
@@ -89,7 +94,6 @@ templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
-#
 source_suffix = {".rst": "restructuredtext", ".md": "restructuredtext"}
 
 # The encoding of source files.
@@ -187,7 +191,6 @@ suppress_warnings = [
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -195,17 +198,24 @@ todo_include_todos = True
 #
 # on_rtd is whether we are on readthedocs.org, this line of code grabbed from docs.readthedocs.org
 # http://docs.readthedocs.org/en/latest/faq.html?highlight=autodoc#how-do-i-change-behavior-for-read-the-docs
+html_theme = "furo"
 
-if os.environ.get("READTHEDOCS"):
-    html_theme = "default"
-else:  # only import and set the theme if we're building docs locally
-    html_theme = "sphinx_rtd_theme"
+# Add any paths that contain custom static files (such as style sheets) here,
+# relative to this directory. They are copied after the builtin static files,
+# so a file named "default.css" will overwrite the builtin "default.css".
+html_static_path = ["_static"]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    "dark_logo": "pavics_v_dark.svg",
+    "light_logo": "pavics_v_light.svg",
+    "navigation_with_keys": True,
+    "sidebar_hide_name": True,
+    "top_of_page_buttons": ["view", "edit"],
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
@@ -222,18 +232,13 @@ else:  # only import and set the theme if we're building docs locally
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 #
-html_logo = "images/pavics_v.svg"
+# html_logo = ""
 
 # The name of an image file (relative to this directory) to use as a favicon of
 # the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 #
-html_favicon = "images/favicon.ico"
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_favicon = "_static/favicon.ico"
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

@@ -11,6 +11,7 @@ dependencies:
   - dask >=2024.8.1
   - esgf-pyclient
   - fiona
+  - furo >=2024.04.27
   - geopandas >=1.0
   - holoviews
   - hvplot
@@ -46,7 +47,7 @@ dependencies:
   - sphinx-copybutton
   - sphinx-intl
   - sphinx-jsonschema
-  - sphinx-rtd-theme >=1.0
+  - sphinxext-opengraph
   - urllib3
   - webob
   - xarray >=2023.11.0
