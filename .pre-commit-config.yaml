@@ -6,7 +6,7 @@ repos:
     rev: v3.19.1
     hooks:
       - id: pyupgrade
-        args: [ '--py311-plus' ]
+        args: [ '--py310-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -51,10 +51,10 @@ repos:
     rev: 1.9.1
     hooks:
       - id: nbqa-pyupgrade
-        args: [ '--py311-plus' ]
+        args: [ '--py310-plus' ]
         additional_dependencies: [ 'pyupgrade==v3.19.1' ]
       - id: nbqa-black
-        args: [ '--target-version=py311' ]
+        args: [ '--target-version=py310' ]
         additional_dependencies: [ 'black==25.1.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]

@@ -15,7 +15,7 @@ except ImportError:
     )
 
 try:
-    from dagger._engine._version import CLI_VERSION as __dagger_version__  # noqa
+    from dagger._engine._version import CLI_VERSION as __dagger_version__
 except ModuleNotFoundError:
     __dagger_version__ = "unknown"
 
