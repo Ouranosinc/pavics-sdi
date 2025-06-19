@@ -58,6 +58,26 @@ Raven
 
 Virtually all individual processes ingest and return netCDF files (or OPeNDAP links for some processes), such that one process' output can be used as the input of another process. This lets scientist create complex workflows. By insisting that process inputs and outputs comply with the CF-Convention, we make sure that data is accompanied by clear and unambiguous metadata.
 
+Application Packages and Workflow Processes
+-------------------------------------------
+
+Weaver
+    Provides support of `Common Workflow Language (CWL) <https://www.commonwl.org/>`_ which can be used to
+    deploy custom processes as `Application Packages <https://pavics-weaver.readthedocs.io/en/latest/package.html>`_
+    (Docker containers, Python, JavaScript, etc.), and chain processing into distributed
+    `Workflows <https://pavics-weaver.readthedocs.io/en/latest/processes.html#workflow>`_.
+
+    `Weaver`_ provides both a Web Processing Service (WPS) and
+    a `OGC API – Processes <https://ogcapi.ogc.org/processes/>`_ interface.
+
+    Furthermore, `Weaver`_ can combine other WPS processes as
+    `remote providers <https://pavics-weaver.readthedocs.io/en/latest/processes.html#remote-provider>`_ under its
+    unified OGC API endpoints, offering a centralized access point to any Birdhouse WPS process. Because of this,
+    it can also combine *Application Packages*, *OGC API – Processes* and *WPS Remote Providers* simultaneously into
+    a versatile *Workflow* definition.
+
+    The `birdhouse-deploy Weaver Component <https://github.com/bird-house/birdhouse-deploy/tree/master/birdhouse/components#weaver>`_
+    must be enabled to make it available on the server. An example notebook is provided in :ref:`optional-notebooks`.
 
 Authentication and authorization
 --------------------------------
@@ -88,3 +108,5 @@ The PAVICS platform is not meant as a front-end, but still provides backend serv
 .. _`Raven`: http://raven.uwaterloo.ca/
 
 .. _`ICCLIM`: https://icclim.readthedocs.io/en/latest/
+
+.. _`Weaver`: https://pavics-weaver.readthedocs.io/en/latest/

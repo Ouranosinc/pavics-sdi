@@ -2,14 +2,16 @@
 name: pavics-sdi
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
-  - python >=3.8,<3.12
+  - python >=3.10,<3.13
   - birdy
   - cartopy
-  - clisops
-  - dask
-  - geopandas
+  - cf_xarray >=0.10.4
+  - clisops >=0.16.1
+  - dask >=2024.8.1
+  - fiona
+  - geopandas >=1.0
   - geoviews
   - hvplot
   - intake-esm
@@ -17,12 +19,17 @@ dependencies:
   - ipython
   - matplotlib
   - netcdf4
-  - numpy
+  - numba >=0.57.0
+  - numpy >=1.24.0
+  - psutil
   - pydap
   - pykdtree  # Fixes cartopy bug arising with scipy 1.11
   - rasterio
   - rioxarray
   - siphon
-  - urlpath
-  - xarray
-  - xclim
+  - shapely >=2.0
+  - xarray >=2023.11.0
+  - xclim >=0.57.0
+  - xesmf !=0.8.8
+  - xscen >=0.12.1
+  - xsdba >=0.4.0

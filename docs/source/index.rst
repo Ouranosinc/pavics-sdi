@@ -3,9 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+Project Overview
+================
 
-PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
-data search, analytics and visualization services. PAVICS is developped by Ouranos, CRIM and the `birdhouse`_ community and been funded by the `CANARIE`_ research software program.
+PAVICS is a research platform dedicated to climate analysis and visualization. It bundles data search, analytics and visualization services.
+PAVICS is developed by Ouranos, CRIM and the `birdhouse`_ community and been funded by the `CANARIE`_ research software program.
 
 To get a sense of what the platform can do, check out our `JupyterLab`_ environment.
 

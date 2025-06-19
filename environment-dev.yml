@@ -1,15 +1,59 @@
 name: pavics-sdi
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
-  - python >=3.8,<3.12
-  - flit  # solely needed for installing pavics-sdi
-  - jinja2 <=3.0.3
+  - python >=3.12,<3.13
+  - aiohttp
+  - birdy
+  - cartopy
+  - cf_xarray >=0.10.4
+  - clisops >=0.16.1
+  - dask >=2024.8.1
+  - esgf-pyclient
+  - fiona
+  - furo >=2024.04.27
+  - geopandas >=1.0
+  - holoviews
+  - hvplot
+  - intake
+  - intake-esm
+  - ipyleaflet
+  - ipython
+  - jinja2
   - jupyter
+  - jupytext
+  - matplotlib
   - myst-nb
+  - myst-parser
+  - nbsphinx >=0.9.7
   - nbval
+  - netcdf4
+  - numba >=0.57.0
+  - numpy >=1.24.0
+  - owslib
+  - pre-commit
+  - psutil
+  - pydap
+  - pyogrio
   - pytest
-  - sphinx
+  - readthedocs-sphinx-ext
+  - recommonmark
+  - requests
+  - requests-magpie
+  - shapely >=2.0
+  - siphon
+  - sphinx >=8.2.0
+  - sphinx-codeautolink
+  - sphinx-copybutton
   - sphinx-intl
-  - sphinx-rtd-theme >=1.0
+  - sphinx-jsonschema
+  - sphinxext-opengraph
+  - urllib3
+  - webob
+  - xarray >=2023.11.0
+  - xclim >=0.57.0
+  - xesmf !=0.8.8
+  - xscen >=0.12.1
+  - xsdba >=0.4.0
+  - pip
