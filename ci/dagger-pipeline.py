@@ -37,15 +37,17 @@ async def main():
         if not BASE_IMAGE_TAG:
             raise ValueError("BASE_IMAGE_TAG environment variable is not set.")
 
-        sources = await (
-            # pull container
-            client.container().from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
-            # copy files to container
-            .with_directory(
-                "/code",
-                client.host().directory("."),
-                exclude=[".git", "ci"],
-                owner="jenkins",
+        sources = (
+            await (
+                # pull container
+                client.container().from_(f"pavics/workflow-tests:{BASE_IMAGE_TAG}")
+                # copy files to container
+                .with_directory(
+                    "/code",
+                    client.host().directory("."),
+                    exclude=[".git", "ci"],
+                    owner="jenkins",
+                )
             )
         )
 
