@@ -65,6 +65,7 @@ nb_kernel_rgx_aliases = {"birdy": "python3"}
 nb_execution_excludepatterns = [
     "deprecated/*.ipynb",
     "notebook-components/*.ipynb",
+    "notebooks-temp-disabled/*.ipynb",
     "notebooks/*.ipynb",
     "tutorials/*.ipynb",
 ]
@@ -148,6 +149,8 @@ exclude_patterns = [
     "jupyter_execute",
     # obsolete notebooks
     "notebooks/jupyter_extensions.ipynb",
+    "notebooks-temp-disabled/*.ipynb",
+    # obsolete tutorials
     "processes/advanced_climate.rst",
     "processes/maintenance.rst",
     "processes/searching.rst",

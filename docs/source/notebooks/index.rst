@@ -12,7 +12,6 @@ If you're unfamiliar with notebooks, note that typing `TAB` after an object will
    subsetting
    rendering
    opendap
-   esgf-dap
    pavics_thredds
    climex
    CaSR_basic
