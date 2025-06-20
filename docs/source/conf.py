@@ -188,6 +188,7 @@ pygments_style = "sphinx"
 
 suppress_warnings = [
     "app.add_directive",
+    "epub.unknown_project_files",
     "mystnb.unknown_mime_type",
 ]
 
