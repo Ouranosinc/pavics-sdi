@@ -1,18 +1,21 @@
 name: pavics-sdi
 channels:
   - conda-forge
-  - defaults
+  - nodefaults
 dependencies:
-  - python >=3.10,<3.11
+  - python >=3.12,<3.13
   - aiohttp
   - birdy
   - cartopy
-  - cf_xarray
-  - clisops
-  - dask
+  - cf_xarray >=0.10.4
+  - clisops >=0.16.1
+  - dask >=2024.8.1
   - esgf-pyclient
-  - geopandas
+  - fiona
+  - furo >=2024.04.27
+  - geopandas >=1.0
   - holoviews
+  - hvplot
   - intake
   - intake-esm
   - ipyleaflet
@@ -23,27 +26,34 @@ dependencies:
   - matplotlib
   - myst-nb
   - myst-parser
+  - nbsphinx >=0.9.7
   - nbval
   - netcdf4
-  - numba
+  - numba >=0.57.0
+  - numpy >=1.24.0
   - owslib
+  - pre-commit
+  - psutil
+  - pydap
   - pyogrio
   - pytest
   - readthedocs-sphinx-ext
   - recommonmark
   - requests
   - requests-magpie
+  - shapely >=2.0
   - siphon
-  - sphinx
+  - sphinx >=8.2.0
   - sphinx-codeautolink
   - sphinx-copybutton
   - sphinx-intl
   - sphinx-jsonschema
-  - sphinx-rtd-theme >=1.0
+  - sphinxext-opengraph
   - urllib3
-  - urlpath
   - webob
-  - xarray
-  - xclim >=0.45.0
-  - xesmf
+  - xarray >=2023.11.0
+  - xclim >=0.57.0
+  - xesmf !=0.8.8
+  - xscen >=0.12.1
+  - xsdba >=0.4.0
   - pip
