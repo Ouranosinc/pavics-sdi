@@ -53,6 +53,7 @@ These following notebooks demonstrate *additional* and *optional* features of th
    :maxdepth: 1
 
    ../notebook-components/weaver_example
+   ../notebook-components/prometheus_metrics
 
 .. |pavics-components| replace:: Components
 .. _pavics-components: https://github.com/bird-house/birdhouse-deploy/blob/master/birdhouse/components/README.rst
