@@ -6,7 +6,7 @@ repos:
     rev: v3.20.0
     hooks:
       - id: pyupgrade
-        args: [ '--py311-plus' ]
+        args: [ '--py310-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
@@ -16,7 +16,17 @@ repos:
         exclude: .ipynb|.po|.xml
       - id: check-json
       - id: check-yaml
+        args: [ '--allow-multiple-documents' ]
       - id: debug-statements
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.32.0
+    hooks:
+      - id: yamllint
+        args: [ '--config-file=.yamllint.yaml' ]
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
@@ -41,14 +51,14 @@ repos:
     rev: 1.9.1
     hooks:
       - id: nbqa-pyupgrade
-        args: [ '--py311-plus' ]
+        args: [ '--py310-plus' ]
         additional_dependencies: [ 'pyupgrade==v3.19.1' ]
       - id: nbqa-black
-        args: [ '--target-version=py311' ]
+        args: [ '--target-version=py310' ]
         additional_dependencies: [ 'black==25.1.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ 'isort==6.0.0' ]
+        additional_dependencies: [ 'isort==6.0.1' ]
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
