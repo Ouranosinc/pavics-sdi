@@ -10,13 +10,13 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: trailing-whitespace
-        exclude: .html|.po|.svg|.css|.xml
-      - id: end-of-file-fixer
-        exclude: .ipynb|.po|.xml
       - id: check-json
       - id: check-yaml
       - id: debug-statements
+      - id: end-of-file-fixer
+        exclude: .ipynb|.po|.xml
+      - id: trailing-whitespace
+        exclude: .html|.po|.svg|.css|.xml
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
@@ -42,13 +42,13 @@ repos:
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py311-plus' ]
-        additional_dependencies: [ 'pyupgrade==v3.19.1' ]
+        additional_dependencies: [ 'pyupgrade==v3.20.0' ]
       - id: nbqa-black
         args: [ '--target-version=py311' ]
         additional_dependencies: [ 'black==25.1.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ 'isort==6.0.0' ]
+        additional_dependencies: [ 'isort==6.0.1' ]
   - repo: https://github.com/kynan/nbstripout
     rev: 0.8.1
     hooks:
