@@ -20,7 +20,7 @@ setup(
     extras_require={
         "docs": [
             "aiohttp",
-            "birdhouse-birdy",
+            "birdhouse-birdy>=0.9.1",
             "cartopy >=",
             "cf-xarray >=0.10.4",
             "clisops >=0.16.1",

@@ -5,8 +5,8 @@ channels:
 dependencies:
   - python >=3.12,<3.14
   - aiohttp
-  - birdy
-  - cartopy
+  - birdy >=0.9.1
+  - cartopy >=0.23.0
   - cf_xarray >=0.10.4
   - clisops >=0.16.1
   - dask >=2024.8.1

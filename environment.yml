@@ -5,7 +5,7 @@ channels:
   - nodefaults
 dependencies:
   - python >=3.10,<3.14
-  - birdy
+  - birdy >=0.9.1
   - cartopy >=0.23.0
   - cf_xarray >=0.10.4
   - clisops >=0.16.1
@@ -17,7 +17,7 @@ dependencies:
   - intake-esm
   - ipyleaflet
   - ipython >=8.15.0
-  - matplotlib >=3.7.0
+  - matplotlib-base >=3.7.0
   - netcdf4
   - numba >=0.57.0
   - numpy >=1.25.0
