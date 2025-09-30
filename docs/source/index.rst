@@ -43,10 +43,9 @@ Contents
    arch/index
    provenance/index
    support
-   releasenotes
+   release_notes
    license
    todo
-
 
 Indices and tables
 ==================
