@@ -60,7 +60,7 @@ repos:
     hooks:
       - id: blackdoc
         args: [ '--target-version=py311' ]
-        additional_dependencies: [ 'black==25.1.0' ]
+        additional_dependencies: [ 'black==25.9.0' ]
       - id: blackdoc-autoupdate-black
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.34.0
