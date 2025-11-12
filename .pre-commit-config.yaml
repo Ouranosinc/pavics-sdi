@@ -8,7 +8,7 @@ repos:
       - id: pyupgrade
         args: [ '--py310-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
         exclude: .html|.po|.svg|.css|.xml
@@ -39,11 +39,11 @@ repos:
       - id: rst-inline-touching-normal
       - id: text-unicode-replacement-char
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 25.1.0
+    rev: 25.9.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
-    rev: 6.0.1
+    rev: 6.1.0
     hooks:
       - id: isort
         args: [ '--profile=black' ]
@@ -66,18 +66,18 @@ repos:
         files: ".ipynb"
         args: [ '--keep-output', '--keep-count' ]
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.4.1
+    rev: v0.4.3
     hooks:
       - id: blackdoc
         args: [ '--target-version=py311' ]
-        additional_dependencies: [ 'black==25.1.0' ]
+        additional_dependencies: [ 'black==25.9.0' ]
       - id: blackdoc-autoupdate-black
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.2
+    rev: 0.34.0
     hooks:
       - id: check-readthedocs
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.27.2
+    rev: v8.28.0
     hooks:
       - id: gitleaks
   - repo: meta
