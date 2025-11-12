@@ -19,15 +19,14 @@ We plan to build extensive documentation for PAVICS. We're just getting started,
 
 * :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
-* :doc:`System Architecture <arch/index>` describes the individual components of the system and how they work together.
+* :doc:`System Architecture </arch/index>` describes the individual components of the system and how they work together.
 
 * :doc:`Processes </processes/index>` documents all available processes on the PAVICS platform.
 
-
 .. _issue tracker: https://github.com/Ouranosinc/pavics-sdi/issues
 .. _birdhouse: http://bird-house.github.io/
-.. _CANARIE: http://www.canarie.ca/
-.. _JupyterLab: https://pavics.ouranos.ca/jupyter
+.. _CANARIE: https://www.canarie.ca/
+.. _JupyterLab: https://pavics.ouranos.ca/jupyter/hub/login
 
 Contents
 --------

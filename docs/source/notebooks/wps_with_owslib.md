@@ -8,7 +8,7 @@ kernelspec:
 # Working with Web Processing Service with Python and OWSLib
 
 
-In this notebook, you will interact with a Web Processing Service (WPS) server using the [OWSLib](https://geopython.github.io/OWSLib/) library, a client for OGC Web Services. More specifically, you'll learn how to list available processes, get information about a process, and execute a process. If you need more information than provided here, refer to the [OWSLib documentation](https://geopython.github.io/OWSLib/#wps).
+In this notebook, you will interact with a Web Processing Service (WPS) server using the [OWSLib](https://geopython.github.io/OWSLib/) library, a client for OGC Web Services. More specifically, you'll learn how to list available processes, get information about a process, and execute a process. If you need more information than provided here, refer to the [OWSLib documentation](https://owslib.readthedocs.io/en/latest/usage.html#wps).
 
 
 ## Connect to server and list processes

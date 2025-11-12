@@ -9,29 +9,31 @@ This project completed in March 2021 looked at how climate change information ca
 For each watershed, the results include the following properties:
 
 name
-  Watershed name
+    Watershed name
 watershed_area
-  Surface area (km²)
+    Surface area (km²)
 NSE
-  Nash-Sutcliffe Efficiency of calibrated model
+    Nash-Sutcliffe Efficiency of calibrated model
 ``<gcm>_PWM_<t>_[<p>_]<kind>``
-  Climate change factor per unit area (mm/d/km²) computed following these specifications:
+    Climate change factor per unit area (mm/d/km²) computed following these specifications:
 
-  - ``gcm``: Climate model, one of CESM1, CanESM2
-  - *Probability Weighted Moments* calibration method
-  - ``t``: return period, one of 1000, 10000
-  - ``kind``: Factor operation, either additive (+), or multiplicative (*)
-  - ``p`` (*optional*): percentile from bootstrap parameter uncertainty assessment, one of 0.75, 0.9, 0.95 or 0.99. If not present, the result is the direct estimate from the PWM method on the full sample.
+    - ``gcm``: Climate model, one of CESM1, CanESM2
+    - *Probability Weighted Moments* calibration method
+    - ``t``: return period, one of 1000, 10000
+    - ``kind``: Factor operation, either additive (+), or multiplicative (*)
+    - ``p`` (*optional*): percentile from bootstrap parameter uncertainty assessment, one of 0.75, 0.9, 0.95 or 0.99. If not present, the result is the direct estimate from the PWM method on the full sample.
 
 .. warning::
 
-   The ESRI Shapefile format limits field names to 10 characters. The column names above are thus truncated and replaced by an index (e.g. `CanESM2_18`), which complicates parsing. We recommend using the GeoPackage format when downloading the results.
+    The ESRI Shapefile format limits field names to 10 characters. The column names above are thus truncated and replaced by an index (e.g. `CanESM2_18`), which complicates parsing. We recommend using the GeoPackage format when downloading the results.
 
 
 QGIS Client Instructions
 ------------------------
 
-*These instructions were written for QGIS 3.10*
+.. note::
+
+    These instructions were written for QGIS version 3.10.
 
 #. Add a layer using the Web Feature Services (WFS) standard
    :guilabel:`Layer` -> :guilabel:`Add Layer` -> :guilabel:`Add WFS Layer ...`
@@ -57,8 +59,6 @@ Once the layer is available, you can access the various columns of the data tabl
 
 .. _report: https://www.ouranos.ca/wp-content/uploads/FrigonKoenig_2021_FloodFreqAnalDamSafetyCC_EN.pdf
 .. _notebook: notebooks/cruesdeca.ipynb
-
-
 
 Analyse de fréquence des crues et sécurité des barrages dans le climat du 21e siècle
 ====================================================================================
