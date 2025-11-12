@@ -16,7 +16,7 @@ maintainers = [
 ]
 readme = {file = "README.rst", content-type = "text/x-rst"}
 description = "Scientific gateway for climate data analytics."
-license = "BSD"
+license = "BSD-3-Clause"
 license_file = ["LICENSE"]
 classifiers = [
   "Intended Audience :: Science/Research",
