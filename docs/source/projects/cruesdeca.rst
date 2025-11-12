@@ -3,8 +3,7 @@ Flood Frequency Analysis and Dam Safety in the 21st Century Climate
 
 :ref:`Version en français<Analyse de fréquence des crues et sécurité des barrages dans le climat du 21e siècle>`
 
-
-This project completed in March 2021 looked at how climate change information can be integrated into flood design values estimated by frequency analysis. The `report`_ includes maps showing the relative change in 1,000 and 10,000 return values for over 500 watersheds over Canada, comparing the 2080-2100 period to 1990-2010. The data underlying these figures is available online as a geospatial layer named ``public:decamillenial_flood_CC`` on the `Ouranos GeoServer <pavics.ouranos.ca/geoserver>`. This layer can be downloaded locally, streamed by GIS client (see instructions below) or accessed programmatically (see notebook_).
+This project completed in March 2021 looked at how climate change information can be integrated into flood design values estimated by frequency analysis. The `report`_ (in French only) includes maps showing the relative change in 1,000 and 10,000 return values for over 500 watersheds over Canada, comparing the 2080-2100 period to 1990-2010. The data underlying these figures is available online as a geospatial layer named ``public:decamillenial_flood_CC`` on the `Ouranos GeoServer <https://pavics.ouranos.ca/geoserver>`_. This layer can be downloaded locally, streamed by GIS client (see instructions below) or accessed programmatically (see notebook_).
 
 For each watershed, the results include the following properties:
 
@@ -57,13 +56,13 @@ Once the layer is available, you can access the various columns of the data tabl
 #. Click :guilabel:`Classify`
 #. Click :guilabel:`Apply` then :guilabel:`OK`.
 
-.. _report: https://www.ouranos.ca/wp-content/uploads/FrigonKoenig_2021_FloodFreqAnalDamSafetyCC_EN.pdf
+.. _report: https://www.ouranos.ca/fr/projets-publications/valeurs-de-la-crue-de-conception-tenant-compte-du-climat-aux-fins-de
 .. _notebook: notebooks/cruesdeca.ipynb
 
 Analyse de fréquence des crues et sécurité des barrages dans le climat du 21e siècle
 ====================================================================================
 
-Ce projet complété en mars 2021 s'intéresse à l'intégration des projections climatiques dans l'estimation des crues de conception estimée par analyse fréquentielle. Le `rapport` présente des cartes illustrant le changement relatif des crues de temps de retour 1:1,000 et 1:10,000 pour plus de 500 bassins versants au Canada, comparant la période 2080-2100 à celle de 1990-2010. Les données utilisées pour créer ces cartes sont disponibles sous forme de couches géospatiales ( ``public:decamillenial_flood_CC``) sur le `GeoServer d'Ouranos <pavics.ouranos.ca/geoserver>`. Ces couches peuvent être téléchargées manuellement, via un client SIG (voir instructions plus bas), ou accédées par une interface de programmation (voir notebook_, en anglais).
+Ce projet complété en mars 2021 s'intéresse à l'intégration des projections climatiques dans l'estimation des crues de conception estimée par analyse fréquentielle. Le `rapport`_ présente des cartes illustrant le changement relatif des crues de temps de retour 1:1,000 et 1:10,000 pour plus de 500 bassins versants au Canada, comparant la période 2080-2100 à celle de 1990-2010. Les données utilisées pour créer ces cartes sont disponibles sous forme de couches géospatiales ( ``public:decamillenial_flood_CC``) sur le `GeoServer d'Ouranos <https://pavics.ouranos.ca/geoserver>`_. Ces couches peuvent être téléchargées manuellement, via un client SIG (voir instructions plus bas), ou accédées par une interface de programmation (voir notebook_, en anglais).
 
 Pour chaque bassin versant, le tableau de résultats incluent les colonnes suivantes:
 
@@ -112,4 +111,4 @@ Une fois la couche ajoutée, les différentes colonnes de la table de données p
 #. Cliquer sur :guilabel:`Classer`
 #. Cliquer sur :guilabel:`Appliquer`, puis :guilabel:`OK`
 
-.. _rapport: https://www.ouranos.ca/wp-content/uploads/FrigonKoenig_2021_FloodFreqAnalDamSafetyCC_FR.pdf
+.. _rapport: https://www.ouranos.ca/fr/projets-publications/valeurs-de-la-crue-de-conception-tenant-compte-du-climat-aux-fins-de
