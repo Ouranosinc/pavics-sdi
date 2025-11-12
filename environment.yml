@@ -19,8 +19,8 @@ dependencies:
   - ipython
   - matplotlib
   - netcdf4
-  - numba >=0.57.0
-  - numpy >=1.24.0
+  - numba >=0.58.0
+  - numpy >=1.25.0
   - psutil
   - pydap
   - pykdtree  # Fixes cartopy bug arising with scipy 1.11

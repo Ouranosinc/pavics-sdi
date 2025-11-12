@@ -1,5 +1,5 @@
 [build-system]
-requires = ["flit_core >=3.12.0,<4"]
+requires = ["flit_core >=3.11.0,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -16,10 +16,10 @@ maintainers = [
 ]
 readme = {file = "README.rst", content-type = "text/x-rst"}
 description = "Scientific gateway for climate data analytics."
-license = {file = "LICENSE"}
+license = "BSD"
+license_file = ["LICENSE"]
 classifiers = [
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: BSD License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
@@ -36,13 +36,13 @@ docs = [
   "aiohttp",
   "birdhouse-birdy",
   "cartopy",
-  "cf-xarray>=0.10.4",
-  "clisops>=0.16.1",
-  "dask>=2024.8.1",
+  "cf-xarray >=0.10.4",
+  "clisops >=0.16.1",
+  "dask >=2024.8.1",
   "esgf-pyclient",
   "fiona",
   "furo >=2024.04.27",
-  "geopandas>=1.0",
+  "geopandas >=1.0",
   "holoviews",
   "hvplot",
   "intake",
@@ -58,9 +58,10 @@ docs = [
   "nbsphinx",
   "nbval",
   "netcdf4",
-  "numba>=0.57.0",
-  "numpy>=1.24.0",
+  "numba >=0.58.0",
+  "numpy >=1.25.0",
   "owslib",
+  "pip >=25.2",
   "pydap",
   "psutil",
   "pyogrio",
@@ -69,19 +70,19 @@ docs = [
   "requests-magpie",
   "shapely>=2.0",
   "siphon",
-  "sphinx-codeautolink",
+  "sphinx-codeautolink >=0.16.2",
   "sphinx-copybutton",
   "sphinx-intl",
   "sphinx-jsonschema",
-  "sphinx>=7.0.0",
+  "sphinx >=8.2.0",
   "sphinxext-opengraph",
   "urllib3",
   "webob",
-  "xarray>=2023.11.0",
-  "xclim>=0.57.0",
-  "xesmf!=0.8.8",
-  "xscen>=0.12.1",
-  "xsdba>=0.4.0"
+  "xarray >=2023.11.0",
+  "xclim >=0.57.0",
+  "xesmf !=0.8.8",
+  "xscen >=0.12.1",
+  "xsdba >=0.4.0"
 ]
 dagger = [
   "anyio",
