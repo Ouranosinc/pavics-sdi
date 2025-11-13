@@ -11,17 +11,14 @@ To better understand the way THREDDS integrates within PAVICS, see the System Ar
 Data preparation for inclusion in the platform
 ----------------------------------------------
 
-NetCDF files integrated in the PAVICS platform must follow the CF Conventions
-document: http://cfconventions.org/
+NetCDF files integrated in the PAVICS platform must follow the CF Conventions document: http://cfconventions.org/
 
-For variables, the standard_name and units should follow the CF standard name
-table: http://cfconventions.org/standard-names.html
+For variables, the standard_name and units should follow the CF standard name table: http://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html
 
 Adding files
 ------------
 
-NetCDF files can be added to the THREDDS Data Server by system administrators, simply by copying them to the directory used as a docker volume in ``docker-compose.yml``. Contact pavics@ouranos.ca if there are datasets you'd like to see included.
-
+NetCDF files can be added to the THREDDS Data Server by system administrators, simply by copying them to the directory used as a docker volume in ``docker-compose.yml``. Contact mailto:pavics@ouranos.ca if there are datasets you'd like to see included.
 
 Inspecting metadata
 -------------------
