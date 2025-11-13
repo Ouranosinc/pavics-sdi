@@ -26,7 +26,6 @@ NSE
 
     The ESRI Shapefile format limits field names to 10 characters. The column names above are thus truncated and replaced by an index (e.g. `CanESM2_18`), which complicates parsing. We recommend using the GeoPackage format when downloading the results.
 
-
 QGIS Client Instructions
 ------------------------
 
@@ -56,7 +55,7 @@ Once the layer is available, you can access the various columns of the data tabl
 #. Click :guilabel:`Classify`
 #. Click :guilabel:`Apply` then :guilabel:`OK`.
 
-.. _report: https://www.ouranos.ca/fr/projets-publications/valeurs-de-la-crue-de-conception-tenant-compte-du-climat-aux-fins-de
+.. _report: https://www.ouranos.ca/sites/default/files/2022-07/proj-201419-energie-koenig-rapportfinal.pdf
 .. _notebook: notebooks/cruesdeca.ipynb
 
 Analyse de fréquence des crues et sécurité des barrages dans le climat du 21e siècle
@@ -83,7 +82,7 @@ NSE
 
 .. warning::
 
-   Le format *shapefile* limite les noms de colonnes à 10 caractères. Les noms de colonnes décrit plus haut sont donc tronqués et remplacés par un nombre (e.g. `CanESM2_18`), ce qui rend les résultats inintelligibles. On recommande utiliser le format `GeoPackage` pour télécharger les résultats.
+    Le format *shapefile* limite les noms de colonnes à 10 caractères. Les noms de colonnes décrit plus haut sont donc tronqués et remplacés par un nombre (e.g. `CanESM2_18`), ce qui rend les résultats inintelligibles. On recommande utiliser le format `GeoPackage` pour télécharger les résultats.
 
 
 Instructions pour QGIS
@@ -111,4 +110,4 @@ Une fois la couche ajoutée, les différentes colonnes de la table de données p
 #. Cliquer sur :guilabel:`Classer`
 #. Cliquer sur :guilabel:`Appliquer`, puis :guilabel:`OK`
 
-.. _rapport: https://www.ouranos.ca/fr/projets-publications/valeurs-de-la-crue-de-conception-tenant-compte-du-climat-aux-fins-de
+.. _rapport: https://www.ouranos.ca/sites/default/files/2022-07/proj-201419-energie-koenig-rapportfinal.pdf
