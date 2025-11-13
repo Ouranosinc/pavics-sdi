@@ -1,4 +1,4 @@
-name: Dagger/Docker Testing Suite
+name: Linting
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   lint:
-    name: Linting
+    name: Lint (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
