@@ -1,0 +1,23 @@
+---
+
+rules:
+
+  brackets:
+    forbid: false
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+
+  document-start: disable
+
+  indentation:
+    indent-sequences: whatever
+    spaces: consistent
+
+  line-length:
+    max: 120
+    level: warning
+
+  new-lines:
+    type: unix
+
+  truthy: disable
