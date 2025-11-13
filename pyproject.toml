@@ -34,8 +34,8 @@ dependencies = []
 [project.optional-dependencies]
 docs = [
   "aiohttp",
-  "birdhouse-birdy",
-  "cartopy",
+  "birdhouse-birdy >=0.9.1",
+  "cartopy >=0.23.0",
   "cf-xarray >=0.10.4",
   "clisops >=0.16.1",
   "dask >=2024.8.1",
@@ -48,11 +48,11 @@ docs = [
   "intake",
   "intake-esm",
   "ipyleaflet",
-  "ipython",
+  "ipython >=8.15.0",
   "jinja2",
   "jupyter",
   "jupytext",
-  "matplotlib",
+  "matplotlib >=3.7.0",
   "myst-nb",
   "myst-parser",
   "nbsphinx",
@@ -82,7 +82,7 @@ docs = [
   "xclim >=0.57.0",
   "xesmf !=0.8.8",
   "xscen >=0.12.1",
-  "xsdba >=0.4.0"
+  "xsdba >=0.5.0"
 ]
 dagger = [
   "anyio",
