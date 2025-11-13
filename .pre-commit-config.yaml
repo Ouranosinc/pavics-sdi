@@ -3,45 +3,84 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.8.0
+    rev: v3.21.1
     hooks:
       - id: pyupgrade
-        args: [ '--py37-plus' ]
+        args: [ '--py310-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v6.0.0
     hooks:
-      - id: trailing-whitespace
-        exclude: .html|.po|.svg|.css|.xml
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+        args: [ '--allow-multiple-documents' ]
+      - id: debug-statements
       - id: end-of-file-fixer
         exclude: .ipynb|.po|.xml
-      - id: debug-statements
-  - repo: https://github.com/psf/black
-    rev: 23.3.0
+      - id: trailing-whitespace
+        exclude: .html|.po|.svg|.css|.xml
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.3
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args: [ '--config-file=.yamllint.yaml' ]
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-no-eval
+      - id: python-no-log-warn
+      - id: python-use-type-annotations
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+      - id: text-unicode-replacement-char
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 25.11.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+    rev: 7.0.0
     hooks:
       - id: isort
         args: [ '--profile=black' ]
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.7.0
+    rev: 1.9.1
     hooks:
-      - id: nbqa-black
-        args: [ '--target-version=py37' ]
-        additional_dependencies: [ black==23.3.0 ]
       - id: nbqa-pyupgrade
-        args: [ '--py37-plus' ]
-        additional_dependencies: [ pyupgrade==v3.3.1 ]
+        args: [ '--py310-plus' ]
+        additional_dependencies: [ 'pyupgrade==v3.21.1' ]
+      - id: nbqa-black
+        args: [ '--target-version=py310' ]
+        additional_dependencies: [ 'black==25.11.0' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ isort==5.12.0 ]
+        additional_dependencies: [ 'isort==7.0.0' ]
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.6.1
+    rev: 0.8.1
     hooks:
       - id: nbstripout
         files: ".ipynb"
         args: [ '--keep-output', '--keep-count' ]
+  - repo: https://github.com/keewis/blackdoc
+    rev: v0.4.5
+    hooks:
+      - id: blackdoc
+        args: [ '--target-version=py311' ]
+        additional_dependencies: [ 'black==25.11.0' ]
+      - id: blackdoc-autoupdate-black
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.35.0
+    hooks:
+      - id: check-readthedocs
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.29.0
+    hooks:
+      - id: gitleaks
   - repo: meta
     hooks:
       - id: check-hooks-apply
@@ -50,6 +89,7 @@ repos:
 ci:
   autofix_commit_msg: |
     [pre-commit.ci] auto fixes from pre-commit.com hooks
+
     for more information, see https://pre-commit.ci
   autofix_prs: true
   autoupdate_branch: ''

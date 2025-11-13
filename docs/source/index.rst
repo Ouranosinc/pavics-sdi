@@ -3,9 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+Project Overview
+================
 
-PAVICS is a research platform dedicated to climate analysis and visualization. It bundles
-data search, analytics and visualization services. PAVICS is developped by Ouranos, CRIM and the `birdhouse`_ community and been funded by the `CANARIE`_ research software program.
+PAVICS is a research platform dedicated to climate analysis and visualization. It bundles data search, analytics and visualization services.
+PAVICS is developed by Ouranos, CRIM and the `birdhouse`_ community and been funded by the `CANARIE`_ research software program.
 
 To get a sense of what the platform can do, check out our `JupyterLab`_ environment.
 
@@ -17,15 +19,14 @@ We plan to build extensive documentation for PAVICS. We're just getting started,
 
 * :doc:`Developer Documentation </dev/index>` explains how to install and configure the various components and run system tests.
 
-* :doc:`System Architecture <arch/index>` describes the individual components of the system and how they work together.
+* :doc:`System Architecture </arch/index>` describes the individual components of the system and how they work together.
 
 * :doc:`Processes </processes/index>` documents all available processes on the PAVICS platform.
 
-
 .. _issue tracker: https://github.com/Ouranosinc/pavics-sdi/issues
 .. _birdhouse: http://bird-house.github.io/
-.. _CANARIE: http://www.canarie.ca/
-.. _JupyterLab: https://pavics.ouranos.ca/jupyter
+.. _CANARIE: https://www.canarie.ca/
+.. _JupyterLab: https://pavics.ouranos.ca/jupyter/hub/login
 
 Contents
 --------
@@ -41,12 +42,9 @@ Contents
    arch/index
    provenance/index
    support
-   releasenotes
+   release_notes
    license
    todo
-
-
-
 
 Indices and tables
 ==================
