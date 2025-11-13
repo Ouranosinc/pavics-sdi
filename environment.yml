@@ -4,9 +4,9 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python >=3.10,<3.13
-  - birdy
-  - cartopy
+  - python >=3.10,<3.14
+  - birdy >=0.9.1
+  - cartopy >=0.23.0
   - cf_xarray >=0.10.4
   - clisops >=0.16.1
   - dask >=2024.8.1
@@ -16,8 +16,8 @@ dependencies:
   - hvplot
   - intake-esm
   - ipyleaflet
-  - ipython
-  - matplotlib
+  - ipython >=8.15.0
+  - matplotlib-base >=3.7.0
   - netcdf4
   - numba >=0.58.0
   - numpy >=1.25.0
@@ -32,4 +32,4 @@ dependencies:
   - xclim >=0.57.0
   - xesmf !=0.8.8
   - xscen >=0.12.1
-  - xsdba >=0.4.0
+  - xsdba >=0.5.0
