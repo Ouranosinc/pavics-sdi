@@ -11,7 +11,7 @@ Note that as of September 2023, these tools are only available in the `alpha` en
 ```
 
 
-## Installation
+##  CLASSIC Installation
 
 1. In the JupyterLab interface, go into the File Browser sidebar and navigate to your writable-workspace folder.
 2. Open the Git sidebar clone the ClASSIC repository, and click on ``Clone a Repository``.
