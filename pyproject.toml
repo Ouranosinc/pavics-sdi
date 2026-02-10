@@ -62,6 +62,8 @@ docs = [
   "numpy >=1.25.0",
   "owslib",
   "pip >=25.2",
+  "prometheus-api-client >=0.5.5",
+  "prometheus-pandas",
   "pydap",
   "psutil",
   "pyogrio",
