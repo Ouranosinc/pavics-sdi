@@ -1,0 +1,61 @@
+# Global attributes
+# 
+# source_datasets:: file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/GFDL-ESM4_10/tasmax_day_MBCn%2BPCIC-Blend_GFDL-ESM4_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/GFDL-ESM4_10/tasmin_day_MBCn%2BPCIC-Blend_GFDL-ESM4_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CNRM-ESM2-1_10/tasmax_day_MBCn%2BPCIC-Blend_CNRM-ESM2-1_historical%2Bssp126_r1i1p1f2_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CNRM-ESM2-1_10/tasmin_day_MBCn%2BPCIC-Blend_CNRM-ESM2-1_historical%2Bssp126_r1i1p1f2_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/NorESM2-LM_10/tasmax_day_MBCn%2BPCIC-Blend_NorESM2-LM_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/NorESM2-LM_10/tasmin_day_MBCn%2BPCIC-Blend_NorESM2-LM_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MIROC-ES2L_10/tasmax_day_MBCn%2BPCIC-Blend_MIROC-ES2L_historical%2Bssp126_r1i1p1f2_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MIROC-ES2L_10/tasmin_day_MBCn%2BPCIC-Blend_MIROC-ES2L_historical%2Bssp126_r1i1p1f2_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/IPSL-CM6A-LR_10/tasmax_day_MBCn%2BPCIC-Blend_IPSL-CM6A-LR_historical%2Bssp126_r1i1p1f1_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/IPSL-CM6A-LR_10/tasmin_day_MBCn%2BPCIC-Blend_IPSL-CM6A-LR_historical%2Bssp126_r1i1p1f1_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MPI-ESM1-2-LR_10/tasmax_day_MBCn%2BPCIC-Blend_MPI-ESM1-2-LR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MPI-ESM1-2-LR_10/tasmin_day_MBCn%2BPCIC-Blend_MPI-ESM1-2-LR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/NorESM2-MM_10/tasmax_day_MBCn%2BPCIC-Blend_NorESM2-MM_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/NorESM2-MM_10/tasmin_day_MBCn%2BPCIC-Blend_NorESM2-MM_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/INM-CM5-0_10/tasmin_day_MBCn%2BPCIC-Blend_INM-CM5-0_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/INM-CM5-0_10/tasmax_day_MBCn%2BPCIC-Blend_INM-CM5-0_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MRI-ESM2-0_10/tasmax_day_MBCn%2BPCIC-Blend_MRI-ESM2-0_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MRI-ESM2-0_10/tasmin_day_MBCn%2BPCIC-Blend_MRI-ESM2-0_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CanESM5_10/tasmin_day_MBCn%2BPCIC-Blend_CanESM5_historical%2Bssp126_r1i1p2f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CanESM5_10/tasmax_day_MBCn%2BPCIC-Blend_CanESM5_historical%2Bssp126_r1i1p2f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/KACE-1-0-G_10/tasmax_day_MBCn%2BPCIC-Blend_KACE-1-0-G_historical%2Bssp126_r2i1p1f1_gr_19500101-21001230.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/KACE-1-0-G_10/tasmin_day_MBCn%2BPCIC-Blend_KACE-1-0-G_historical%2Bssp126_r2i1p1f1_gr_19500101-21001230.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/ACCESS-ESM1-5_10/tasmin_day_MBCn%2BPCIC-Blend_ACCESS-ESM1-5_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/ACCESS-ESM1-5_10/tasmax_day_MBCn%2BPCIC-Blend_ACCESS-ESM1-5_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CNRM-CM6-1_10/tasmax_day_MBCn%2BPCIC-Blend_CNRM-CM6-1_historical%2Bssp126_r1i1p1f2_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CNRM-CM6-1_10/tasmin_day_MBCn%2BPCIC-Blend_CNRM-CM6-1_historical%2Bssp126_r1i1p1f2_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CMCC-ESM2_10/tasmax_day_MBCn%2BPCIC-Blend_CMCC-ESM2_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CMCC-ESM2_10/tasmin_day_MBCn%2BPCIC-Blend_CMCC-ESM2_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/UKESM1-0-LL_10/tasmax_day_MBCn%2BPCIC-Blend_UKESM1-0-LL_historical%2Bssp126_r1i1p1f2_gn_19500101-21001230.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/UKESM1-0-LL_10/tasmin_day_MBCn%2BPCIC-Blend_UKESM1-0-LL_historical%2Bssp126_r1i1p1f2_gn_19500101-21001230.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/FGOALS-g3_10/tasmin_day_MBCn%2BPCIC-Blend_FGOALS-g3_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/FGOALS-g3_10/tasmax_day_MBCn%2BPCIC-Blend_FGOALS-g3_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MPI-ESM1-2-HR_10/tasmin_day_MBCn%2BPCIC-Blend_MPI-ESM1-2-HR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MPI-ESM1-2-HR_10/tasmax_day_MBCn%2BPCIC-Blend_MPI-ESM1-2-HR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/EC-Earth3_10/tasmin_day_MBCn%2BPCIC-Blend_EC-Earth3_historical%2Bssp126_r4i1p1f1_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/EC-Earth3_10/tasmax_day_MBCn%2BPCIC-Blend_EC-Earth3_historical%2Bssp126_r4i1p1f1_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MIROC6_10/tasmax_day_MBCn%2BPCIC-Blend_MIROC6_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/MIROC6_10/tasmin_day_MBCn%2BPCIC-Blend_MIROC6_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/BCC-CSM2-MR_10/tasmin_day_MBCn%2BPCIC-Blend_BCC-CSM2-MR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/BCC-CSM2-MR_10/tasmax_day_MBCn%2BPCIC-Blend_BCC-CSM2-MR_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/ACCESS-CM2_10/tasmax_day_MBCn%2BPCIC-Blend_ACCESS-CM2_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/ACCESS-CM2_10/tasmin_day_MBCn%2BPCIC-Blend_ACCESS-CM2_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/TaiESM1_10/tasmin_day_MBCn%2BPCIC-Blend_TaiESM1_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/TaiESM1_10/tasmax_day_MBCn%2BPCIC-Blend_TaiESM1_historical%2Bssp126_r1i1p1f1_gn_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/INM-CM4-8_10/tasmin_day_MBCn%2BPCIC-Blend_INM-CM4-8_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/INM-CM4-8_10/tasmax_day_MBCn%2BPCIC-Blend_INM-CM4-8_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/EC-Earth3-Veg_10/tasmax_day_MBCn%2BPCIC-Blend_EC-Earth3-Veg_historical%2Bssp126_r1i1p1f1_gr_19500101-21001231.nc
+#   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/EC-Earth3-Veg_10/tasmin_day_MBCn%2BPCIC-Blend_EC-Earth3-Veg_historical%2Bssp126_r1i1p1f1_gr_19500101-21001231.nc
+#
+# Coordinates
+#   time
+#     long_name:: Time
+#     standard_name:: Time
+#   realization
+#   scenario
+#
+# Data variables
+#   tx_tn_days_above
+#
