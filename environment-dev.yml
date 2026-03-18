@@ -3,11 +3,11 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python >=3.12,<3.13
+  - python >=3.12,<3.14
   - pip >=25.2
   - aiohttp
-  - birdy
-  - cartopy
+  - birdy >=0.9.1
+  - cartopy >=0.23.0
   - cf_xarray >=0.10.4
   - clisops >=0.16.1
   - dask >=2024.8.1
@@ -20,11 +20,11 @@ dependencies:
   - intake
   - intake-esm
   - ipyleaflet
-  - ipython
+  - ipython >=8.15.0
   - jinja2
   - jupyter
   - jupytext
-  - matplotlib
+  - matplotlib-base >=3.7.0
   - myst-nb
   - myst-parser
   - nbsphinx >=0.9.7
@@ -56,4 +56,4 @@ dependencies:
   - xclim >=0.57.0
   - xesmf !=0.8.8
   - xscen >=0.12.1
-  - xsdba >=0.4.0
+  - xsdba >=0.5.0
