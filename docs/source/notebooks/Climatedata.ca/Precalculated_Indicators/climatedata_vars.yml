@@ -18,9 +18,12 @@ variables:
     wet_days_10mm : pr10mm
     wet_days_20mm : pr20mm
     total_precipitation : prtot
+    last_snowfall : last_snowfall
+    first_snowfall : first_snowfall
     maximum_1-day_total_precipitation : prx1day
     maximum_5-day_total_precipitation : prx5day
     maximum_consecutive_dry_days : cdd
+    total_snowfall : prsntot
     number_of_periods_with_more_than_5_consecutive_dry_days : nr_cdd
     frost_days : frost_days
     freeze_thaw_cycles : dlyfrzthw_tx0_tn-1
@@ -29,9 +32,6 @@ variables:
     growing_degree_days_0C : gddgrow_0
     heating_degree_days : hddheat_18
     ice_days : ice_days
-    
-    
-    
-    
-    
-    
+    tropical_nights_18C : tr_18
+    tropical_nights_20C : tr_20
+    tropical_nights_22C : tr_22
