@@ -106,3 +106,8 @@ default.profraw
 
 #JetBrains
 .idea/
+
+docs/source/notebooks/Climatedata.ca/Precalculated_Indicators/GIS-Data/NS_regional_admin_boundaries/CanDCS-M6_83x49_NS_regional_admin_boundaries_weights.nc
+docs/source/notebooks/Climatedata.ca/Precalculated_Indicators/GIS-Data/NS_regional_admin_boundaries/NS_regional_admin_boundaries_simplified.geojson
+docs/source/notebooks/Climatedata.ca/Precalculated_Indicators/figures
+docs/source/notebooks/Climatedata.ca/Precalculated_Indicators/output
