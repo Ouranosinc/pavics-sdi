@@ -13,7 +13,6 @@ If you're unfamiliar with notebooks, note that typing `TAB` after an object will
    rendering
    opendap
    esgf-dap
-   pavics_thredds
    climex
    CaSR_basic
    forecasts
@@ -40,6 +39,7 @@ Deprecated Notebooks
    :maxdepth: 1
 
    ../deprecated/catalog_search
+   ../deprecated/pavics_thredds
 
 .. _optional-notebooks:
 
