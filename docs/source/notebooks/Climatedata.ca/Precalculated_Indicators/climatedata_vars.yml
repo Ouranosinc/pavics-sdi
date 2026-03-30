@@ -23,7 +23,7 @@ variables:
     maximum_1-day_total_precipitation : prx1day
     maximum_5-day_total_precipitation : prx5day
     maximum_consecutive_dry_days : cdd
-    total_snowfall : prsntot
+    total_snowfall : sntot
     number_of_periods_with_more_than_5_consecutive_dry_days : nr_cdd
     frost_days : frost_days
     freeze_thaw_cycles : dlyfrzthw_tx0_tn-1
