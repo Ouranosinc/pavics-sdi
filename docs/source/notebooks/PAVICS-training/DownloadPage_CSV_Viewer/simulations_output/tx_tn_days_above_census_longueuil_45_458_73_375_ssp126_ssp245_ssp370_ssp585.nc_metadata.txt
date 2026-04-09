@@ -1,5 +1,5 @@
 # Global attributes
-# 
+#
 # source_datasets:: file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/GFDL-ESM4_10/tasmax_day_MBCn%2BPCIC-Blend_GFDL-ESM4_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
 #   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/GFDL-ESM4_10/tasmin_day_MBCn%2BPCIC-Blend_GFDL-ESM4_historical%2Bssp126_r1i1p1f1_gr1_19500101-21001231.nc
 #   file:///datasets/ccdp3/CanDCS-M6-corrected-compressed-2024-10-05/CNRM-ESM2-1_10/tasmax_day_MBCn%2BPCIC-Blend_CNRM-ESM2-1_historical%2Bssp126_r1i1p1f2_gr_19500101-21001231.nc
