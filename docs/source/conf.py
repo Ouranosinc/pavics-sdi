@@ -158,7 +158,7 @@ exclude_patterns = [
     "tutorials/searching.rst",
     # PAVICS training workshop materials
     "notebooks/PAVICS-training/DownloadPage_CSV_Viewer/*.ipynb",
-    "notebooks/PAVICS-training/Precalculated_Indicators/*.ipynb"
+    "notebooks/PAVICS-training/Precalculated_Indicators/*.ipynb",
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
