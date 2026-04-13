@@ -156,6 +156,8 @@ exclude_patterns = [
     "processes/searching.rst",
     "processes/workflows.rst",
     "tutorials/searching.rst",
+    # PAVICS training workshop materials
+    "notebooks/PAVICS-training/*.ipynb"
 ]
 
 # The reST default role (used for this markup: `text`) to use for all
