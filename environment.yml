@@ -17,6 +17,7 @@ dependencies:
   - intake-esm
   - ipyleaflet
   - ipython >=8.15.0
+  - jupyter_bokeh
   - matplotlib-base >=3.7.0
   - netcdf4
   - numba >=0.58.0
@@ -29,7 +30,7 @@ dependencies:
   - siphon
   - shapely >=2.0
   - xarray >=2023.11.0
-  - xclim >=0.57.0
+  - xclim >=0.60.0
   - xesmf !=0.8.8
-  - xscen >=0.12.1
-  - xsdba >=0.5.0
+  - xscen >=0.14.0
+  - xsdba >=0.6.1

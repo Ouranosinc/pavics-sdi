@@ -43,6 +43,7 @@ docs = [
   "fiona",
   "furo >=2024.04.27",
   "geopandas >=1.0",
+  "geoviews",
   "holoviews",
   "hvplot",
   "intake",
@@ -51,6 +52,7 @@ docs = [
   "ipython >=8.15.0",
   "jinja2",
   "jupyter",
+  "jupyter_bokeh",
   "jupytext",
   "matplotlib >=3.7.0",
   "myst-nb",
@@ -79,10 +81,10 @@ docs = [
   "urllib3",
   "webob",
   "xarray >=2023.11.0",
-  "xclim >=0.57.0",
+  "xclim >=0.60.0",
   "xesmf !=0.8.8",
-  "xscen >=0.12.1",
-  "xsdba >=0.5.0"
+  "xscen >=0.14.0",
+  "xsdba >=0.6.1"
 ]
 dagger = [
   "anyio",
