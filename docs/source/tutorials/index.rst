@@ -5,6 +5,7 @@ Tutorials
 .. toctree::
 
    bias_correction
+   classic
 
 .. todo::
 
