@@ -6,15 +6,15 @@ build-backend = "flit_core.buildapi"
 name = "pavics_sdi"
 requires-python = ">=3.10"
 authors = [
-  {name = "CRIM/Ouranos", email = "pavics@ouranos.ca"}
+  { name = "CRIM/Ouranos", email = "pavics@ouranos.ca" }
 ]
 maintainers = [
-  {name = "Tuan Long Vu", email = "vu.long@ouranos.ca"},
-  {name = "David Huard", email = "huard.david@ouranos.ca"},
-  {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"},
-  {name = "Francis Charette-Migneault", email = "francis.charette-migneault@crim.ca"}
+  { name = "Tuan Long Vu", email = "vu.long@ouranos.ca" },
+  { name = "David Huard", email = "huard.david@ouranos.ca" },
+  { name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca" },
+  { name = "Francis Charette-Migneault", email = "francis.charette-migneault@crim.ca" }
 ]
-readme = {file = "README.rst", content-type = "text/x-rst"}
+readme = { file = "README.rst", content-type = "text/x-rst" }
 description = "Scientific gateway for climate data analytics."
 license = "BSD-3-Clause"
 license_file = ["LICENSE"]
