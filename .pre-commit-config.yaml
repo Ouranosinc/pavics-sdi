@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.21.2
+    rev: v3.22.0
     hooks:
       - id: pyupgrade
         args: [ '--py310-plus' ]
@@ -40,11 +40,11 @@ repos:
       - id: rst-inline-touching-normal
       - id: text-unicode-replacement-char
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 26.10.0
+    rev: 26.10.1
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/isort
-    rev: 9.0.2
+    rev: 10.0.0b1
     hooks:
       - id: isort
         args: [ '--profile=black' ]
@@ -53,13 +53,13 @@ repos:
     hooks:
       - id: nbqa-pyupgrade
         args: [ '--py310-plus' ]
-        additional_dependencies: [ 'pyupgrade==v3.21.1' ]
+        additional_dependencies: [ 'pyupgrade==v3.22.0' ]
       - id: nbqa-black
         args: [ '--target-version=py310' ]
-        additional_dependencies: [ 'black==25.11.0' ]
+        additional_dependencies: [ 'black==26.10.1' ]
       - id: nbqa-isort
         args: [ '--profile=black' ]
-        additional_dependencies: [ 'isort==7.0.0' ]
+        additional_dependencies: [ 'isort==10.0.0b1' ]
   - repo: https://github.com/kynan/nbstripout
     rev: 0.9.1
     hooks:
@@ -71,10 +71,10 @@ repos:
     hooks:
       - id: blackdoc
         args: [ '--target-version=py311' ]
-        additional_dependencies: [ 'black==26.10.0' ]
+        additional_dependencies: [ 'black==26.10.1' ]
       - id: blackdoc-autoupdate-black
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.38.2
+    rev: 0.39.0
     hooks:
       - id: check-readthedocs
   - repo: https://github.com/gitleaks/gitleaks
